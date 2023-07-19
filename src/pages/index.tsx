@@ -50,6 +50,7 @@ export default function Home() {
     // fetch('https://dolphin-app-wjuu7.ondigitalocean.app/api/home', {
     fetch('http://localhost:8000/api/logout', {
       credentials: 'include',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
