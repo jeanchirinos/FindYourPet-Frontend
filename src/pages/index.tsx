@@ -5,7 +5,6 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [form, setForm] = useState({
-    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -21,9 +20,8 @@ export default function Home() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (form.password !== form.confirmPassword) return alert('Las contraseñas no coinciden')
-
-    fetch('https://dolphin-app-wjuu7.ondigitalocean.app/api/login', {
+    // fetch('https://dolphin-app-wjuu7.ondigitalocean.app/api/login', {
+    fetch('http://localhost:8000/api/login', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -37,11 +35,31 @@ export default function Home() {
     })
   }
 
+  function handlePeity() {
+    // fetch('https://dolphin-app-wjuu7.ondigitalocean.app/api/home', {
+    fetch('http://localhost:8000/api/home', {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+  }
+
+  function handleLogout() {
+    // fetch('https://dolphin-app-wjuu7.ondigitalocean.app/api/home', {
+    fetch('http://localhost:8000/api/logout', {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+  }
+
   return (
     <main className='px-1.5'>
       <form className='flex flex-col' onSubmit={handleSubmit}>
-        <label>Nombre (opcional)</label>
-        <input type='text' value={form.name} name='name' onChange={handleChange} />
         <label>Correo</label>
         <input required type='email' value={form.email} name='email' onChange={handleChange} />
         <label>Contraseña</label>
@@ -52,19 +70,33 @@ export default function Home() {
           name='password'
           onChange={handleChange}
         />
-        <label>Confirmar contraseña</label>
+        {/* <label>Confirmar contraseña</label>
         <input
-          required
           type='password'
           value={form.confirmPassword}
           name='confirmPassword'
           onChange={handleChange}
-        />
+        /> */}
 
-        <button className='bg-primary text-white rounded-md w-fit px-4 py-1 mx-auto mt-5'>
-          Registrarse
-        </button>
+        <div className='flex gap-x-2 w-fit'>
+          <button className='bg-primary text-white rounded-md w-fit px-4 py-1 mx-auto mt-5'>
+            Login
+          </button>
+          <button
+            type='button'
+            onClick={handleLogout}
+            className='bg-red-500 text-white rounded-md w-fit px-4 py-1 mx-auto mt-5'
+          >
+            Logout
+          </button>
+        </div>
       </form>
+      <button
+        className='mt-10 bg-green-500 text-white rounded-md w-fit px-4 py-1 mx-auto'
+        onClick={handlePeity}
+      >
+        Usar PEITY
+      </button>
     </main>
   )
 }
