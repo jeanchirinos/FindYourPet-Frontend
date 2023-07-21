@@ -10,7 +10,30 @@
     "**/.classpath": true,
     "**/.factorypath": true,
     "**/.project": true,
-    "**/.settings": true
+    "**/.settings": true,
+    "next-env.d.ts": true,
+    ".gitignore": true,
+    ".eslintrc.json": true,
+    "postcss.config.js": true,
+    "README.md": true,
+    "src/pages/_document.tsx": true,
+    "src/pages/_app.tsx": true,
+    "node_modules": true,
+    ".next": true,
+    "next.config.js": true,
+    "yarn.lock": true
   },
-  "hide-files.files": []
+  "hide-files.files": [
+    "next-env.d.ts",
+    ".gitignore",
+    ".eslintrc.json",
+    "postcss.config.js",
+    "README.md",
+    "src/pages/_document.tsx",
+    "src/pages/_app.tsx",
+    "node_modules",
+    ".next",
+    "next.config.js",
+    "yarn.lock"
+  ]
 }
