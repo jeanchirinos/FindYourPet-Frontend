@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { twJoin } from 'tailwind-merge'
+import useSWR from 'swr'
+import useSWRMutation from 'swr/mutation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,15 +17,61 @@ enum FormState {
 export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { user } = props
 
+  const [formState, setFormState] = useState(FormState.Login)
+
+  // SWR
+  const { data: userSession = user, mutate } = useSWR<User>(
+    'session',
+    () => {
+      return request('session')
+    },
+    {
+      shouldRetryOnError: false,
+    }
+  )
+  const { trigger: triggerLogout, isMutating: isLoggingOut } = useSWRMutation(
+    'session',
+    () => {
+      return request('logout', {
+        method: 'POST',
+      })
+    },
+    {
+      revalidate: false,
+      populateCache(result, currentData) {
+        return {
+          ...currentData,
+          auth: false,
+          image: null,
+        }
+      },
+    }
+  )
+
+  const { trigger: triggerRegisterLogin, isMutating: isLoggingIn } = useSWRMutation(
+    'session',
+    () => {
+      return request(formState, {
+        method: 'POST',
+        body: {
+          email: form.email,
+          password: form.password,
+        },
+      })
+    },
+    {
+      revalidate: false,
+      populateCache: true,
+    }
+  )
+
   const [form, setForm] = useState({
     email: '',
     password: '',
     confirmPassword: '',
   })
 
-  const [userSession, setUserSession] = useState(user)
-
-  const [formState, setFormState] = useState(FormState.Login)
+  // const [userSession, setUserSession] = useState(user)
 
   const emailRef = useRef<HTMLInputElement>(null)
 
@@ -44,13 +92,15 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    request(formState, {
-      method: 'POST',
-      body: {
-        email: form.email,
-        password: form.password,
-      },
-    })
+    // request(formState, {
+    //   method: 'POST',
+    //   body: {
+    //     email: form.email,
+    //     password: form.password,
+    //   },
+    // })
+
+    triggerRegisterLogin()
   }
 
   function handlePeity() {
@@ -58,16 +108,26 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
   }
 
   function handleLogout() {
-    request('logout', {
-      method: 'POST',
-    })
+    // request('logout', {
+    //   method: 'POST',
+    // })
+    triggerLogout()
   }
 
   const openedWindow = useRef<null | Window>(null)
 
   useEffect(() => {
     function handleMessage(e: MessageEvent<User>) {
-      setUserSession(e.data)
+      // setUserSession(e.data)
+      mutate(e.data, {
+        revalidate: false,
+        populateCache(result, currentData) {
+          return {
+            ...currentData,
+            ...e.data,
+          }
+        },
+      })
       // setUserImage(openedWindow.current?.opener?.location.search.split('=')[1] || user.image)
       openedWindow.current?.close()
     }
@@ -77,7 +137,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
     return () => {
       window.removeEventListener('message', handleMessage)
     }
-  }, [])
+  }, [mutate])
 
   function openGoogleWindow() {
     const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_API_CLIENT}auth/google/redirect`)
@@ -173,6 +233,9 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
       ) : (
         <p>Not logged</p>
       )}
+
+      {isLoggingIn && <p>Logging in 🔒 ...</p>}
+      {isLoggingOut && <p>Logging out 🔴 ...</p>}
     </main>
   )
 }

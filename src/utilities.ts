@@ -34,7 +34,10 @@ export async function request<Response>(
   const data = await res.json()
 
   if (!res.ok) {
-    toast.error(data.message)
+    if (config.method === 'POST') {
+      toast.error(data.message)
+    }
+
     throw new Error(`[${res.status} - ${res.statusText}] : ${data.message}`)
   }
 
