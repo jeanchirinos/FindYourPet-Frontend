@@ -8,7 +8,7 @@ interface Config extends Omit<RequestInit, 'body'> {
 export async function request<Response>(
   url: string,
   config: Config = {},
-  token?: string
+  cookies?: string
 ): Promise<Response> {
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
@@ -17,8 +17,8 @@ export async function request<Response>(
 
   let backendApi: string | undefined
 
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`
+  if (cookies) {
+    headers['Cookie'] = cookies
     backendApi = process.env.NEXT_PUBLIC_BACKEND_API_SERVER
   } else {
     backendApi = process.env.NEXT_PUBLIC_BACKEND_API_CLIENT

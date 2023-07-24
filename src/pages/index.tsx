@@ -194,7 +194,7 @@ export const getServerSideProps: GetServerSideProps<{ user: User }> = async cont
   }
 
   try {
-    user = await request<User>('session', {}, context.req.cookies.jwt)
+    user = await request<User>('session', {}, context.req.headers.cookie)
     // console.log({ user })
   } catch (e) {
     console.error(e)
