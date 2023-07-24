@@ -1,24 +1,35 @@
+import { request } from '@/utilities'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { Inter } from 'next/font/google'
-import { useRef, useState } from 'react'
+import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
 import { twJoin } from 'tailwind-merge'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+enum FormState {
+  Login = 'login',
+  Register = 'register',
+}
+
+export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const { user } = props
+
   const [form, setForm] = useState({
     email: '',
     password: '',
     confirmPassword: '',
   })
 
-  const [formState, setFormState] = useState<'login' | 'register'>('login')
+  const [userImage, setUserImage] = useState(user.image)
+
+  const [formState, setFormState] = useState(FormState.Login)
 
   const emailRef = useRef<HTMLInputElement>(null)
 
-  const isLogin = formState === 'login'
+  const isLogin = formState === FormState.Login
 
-  function toggleFormState(state: 'login' | 'register') {
-    console.log(state)
+  function toggleFormState(state: FormState) {
     emailRef.current?.focus()
     setFormState(state)
   }
@@ -33,50 +44,43 @@ export default function Home() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    // fetch('https://dolphin-app-wjuu7.ondigitalocean.app/api/login', {
-    fetch(`http://localhost:8000/api/${formState}`, {
+    request(formState, {
       method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
+      body: {
         email: form.email,
         password: form.password,
-      }),
+      },
     })
   }
 
   function handlePeity() {
-    // fetch('https://dolphin-app-wjuu7.ondigitalocean.app/api/home', {
-    fetch('http://localhost:8000/api/home', {
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
+    request('home')
   }
 
   function handleLogout() {
-    // fetch('https://dolphin-app-wjuu7.ondigitalocean.app/api/home', {
-    fetch('http://localhost:8000/api/logout', {
-      credentials: 'include',
+    request('logout', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
     })
   }
 
   const openedWindow = useRef<null | Window>(null)
 
-  function openGoogleWindow() {
-    const url = new URL('http://localhost:8000/api/auth/google/redirect')
-    //  url.searchParams.set('environment', process.env.NODE_ENV)
+  useEffect(() => {
+    function handleMessage(e: MessageEvent<{ image: string }>) {
+      setUserImage(e.data.image)
+      // setUserImage(openedWindow.current?.opener?.location.search.split('=')[1] || user.image)
+      openedWindow.current?.close()
+    }
 
+    window.addEventListener('message', handleMessage)
+
+    return () => {
+      window.removeEventListener('message', handleMessage)
+    }
+  }, [])
+
+  function openGoogleWindow() {
+    const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_API}auth/google/redirect`)
     openedWindow.current = window.open(url, '_blank', 'width=400,height=700')
   }
 
@@ -110,7 +114,7 @@ export default function Home() {
         <button
           className={twJoin(
             isLogin ? 'bg-primary' : 'bg-purple-500',
-            'text-white rounded-md px-4 py-1 mx-auto mt-5 w-full'
+            'text-white rounded-md [animation-name]:bg-primary px-4 py-1 mx-auto mt-5 w-full'
           )}
         >
           {isLogin ? 'Ingresar' : 'Registrarse'}
@@ -120,11 +124,9 @@ export default function Home() {
             <label>
               <input
                 type='radio'
-                name='formState'
-                value='login'
                 checked={isLogin}
                 onChange={() => {
-                  toggleFormState('login')
+                  toggleFormState(FormState.Login)
                 }}
               />
               <span>Login</span>
@@ -132,11 +134,9 @@ export default function Home() {
             <label>
               <input
                 type='radio'
-                name='formState'
-                value='register'
                 checked={!isLogin}
                 onChange={() => {
-                  toggleFormState('register')
+                  toggleFormState(FormState.Register)
                 }}
               />
               <span>Registro</span>
@@ -158,13 +158,40 @@ export default function Home() {
         >
           Usar PEITY
         </button>
-        <button
-          className='bg-pink-500 text-white px-4 py-1 rounded-md text-black'
-          onClick={openGoogleWindow}
-        >
+        <button className='bg-pink-500 text-white px-4 py-1 rounded-md' onClick={openGoogleWindow}>
           Ingresar con Google
         </button>
       </div>
+      {userImage ? (
+        <div>
+          <Image src={userImage} alt='Foto de perfil' width={48} height={48} />
+          <p>Usuario logueado</p>
+        </div>
+      ) : (
+        <p>Not logged</p>
+      )}
     </main>
   )
+}
+
+type User = {
+  image: string | null
+}
+
+export const getServerSideProps: GetServerSideProps<{ user: User }> = async context => {
+  let user: User = {
+    image: null,
+  }
+
+  try {
+    user = await request<User>('session', {}, context.req.cookies.jwt)
+  } catch (e) {
+    console.error(e)
+  }
+
+  return {
+    props: {
+      user,
+    },
+  }
 }
