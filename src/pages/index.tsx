@@ -1,13 +1,11 @@
 import { request } from '@/utilities'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { twJoin } from 'tailwind-merge'
 import useSWR from 'swr'
 import useSWRMutation from 'swr/mutation'
-
-const inter = Inter({ subsets: ['latin'] })
+import { toast } from 'react-hot-toast'
 
 enum FormState {
   Login = 'login',
@@ -15,24 +13,34 @@ enum FormState {
 }
 
 export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const { user } = props
-
-  useEffect(() => {
-    console.log({ additionalInfo: props.additionalInfo })
-  }, [props.additionalInfo])
+  // const { user } = props
 
   const [formState, setFormState] = useState(FormState.Login)
 
+  const initialSession: User = {
+    auth: false,
+    image: null,
+  }
+
   // SWR
-  const { data: userSession = user, mutate } = useSWR<User>(
+  const {
+    data: userSession = initialSession,
+    mutate,
+    isLoading,
+  } = useSWR<User>(
     'session',
     () => {
-      return request('session')
+      try {
+        return request('session')
+      } catch (e) {
+        return initialSession
+      }
     },
     {
       shouldRetryOnError: false,
     }
   )
+
   const { trigger: triggerLogout, isMutating: isLoggingOut } = useSWRMutation(
     'session',
     () => {
@@ -66,6 +74,19 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
     {
       revalidate: false,
       populateCache: true,
+    }
+  )
+
+  const { trigger: triggerPeity, isMutating: isMutatingPeity } = useSWRMutation<any>(
+    'home',
+    () => {
+      return request('home')
+    },
+    {
+      revalidate: false,
+      onSuccess(data) {
+        toast.success(`${data.message} usaste Peity AI + Pro🍊`)
+      },
     }
   )
 
@@ -108,7 +129,8 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
   }
 
   function handlePeity() {
-    request('home')
+    // request('home').then(data => console.log(data))
+    triggerPeity()
   }
 
   function handleLogout() {
@@ -149,97 +171,110 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
   }
 
   return (
-    <main className={twJoin(inter.className, 'px-1.5')}>
-      <form className='flex flex-col max-w-xs' onSubmit={handleSubmit}>
-        <label>Correo</label>
-        <input
-          ref={emailRef}
-          required
-          type='email'
-          value={form.email}
-          name='email'
-          onChange={handleChange}
-        />
-        <label>Contraseña</label>
-        <input
-          required
-          type='password'
-          value={form.password}
-          name='password'
-          onChange={handleChange}
-        />
-        {/* <label>Confirmar contraseña</label>
-        <input
-          type='password'
-          value={form.confirmPassword}
-          name='confirmPassword'
-          onChange={handleChange}
-        /> */}
-        <button
-          className={twJoin(
-            isLogin ? 'bg-primary' : 'bg-purple-500',
-            'text-white rounded-md [animation-name]:bg-primary px-4 py-1 mx-auto mt-5 w-full'
-          )}
-        >
-          {isLogin ? 'Ingresar' : 'Registrarse'}
-        </button>
-        <div className='flex gap-x-2 w-fit flex-col'>
-          <fieldset>
-            <label>
-              <input
-                type='radio'
-                checked={isLogin}
-                onChange={() => {
-                  toggleFormState(FormState.Login)
-                }}
-              />
-              <span>Login</span>
-            </label>
-            <label>
-              <input
-                type='radio'
-                checked={!isLogin}
-                onChange={() => {
-                  toggleFormState(FormState.Register)
-                }}
-              />
-              <span>Registro</span>
-            </label>
-          </fieldset>
-
-          {userSession.auth && (
+    <main className='px-1.5'>
+      {!isLoading && !userSession.auth && (
+        <div>
+          <form className='flex flex-col max-w-xs' onSubmit={handleSubmit}>
+            <label>Correo</label>
+            <input
+              ref={emailRef}
+              required
+              type='email'
+              value={form.email}
+              name='email'
+              onChange={handleChange}
+            />
+            <label>Contraseña</label>
+            <input
+              required
+              type='password'
+              value={form.password}
+              name='password'
+              onChange={handleChange}
+            />
+            {/* <label>Confirmar contraseña</label>
+          <input
+            type='password'
+            value={form.confirmPassword}
+            name='confirmPassword'
+            onChange={handleChange}
+          /> */}
             <button
-              type='button'
-              onClick={handleLogout}
-              className='bg-red-400 text-white rounded-md w-fit px-4 py-1 mx-auto mt-5'
+              className={twJoin(
+                isLogin ? 'bg-primary' : 'bg-purple-500',
+                'text-white rounded-md [animation-name]:bg-primary px-4 py-1 mx-auto mt-5 w-full'
+              )}
             >
-              Logout
+              {isLogin ? 'Ingresar' : 'Registrarse'}
             </button>
-          )}
+            <div className='flex gap-x-2 w-fit flex-col'>
+              <fieldset>
+                <label>
+                  <input
+                    type='radio'
+                    checked={isLogin}
+                    onChange={() => {
+                      toggleFormState(FormState.Login)
+                    }}
+                  />
+                  <span>Login</span>
+                </label>
+                <label>
+                  <input
+                    type='radio'
+                    checked={!isLogin}
+                    onChange={() => {
+                      toggleFormState(FormState.Register)
+                    }}
+                  />
+                  <span>Registro</span>
+                </label>
+              </fieldset>
+            </div>
+          </form>
+          <button
+            className='bg-pink-500 text-white px-4 py-1 rounded-md'
+            onClick={openGoogleWindow}
+          >
+            Ingresar con Google
+          </button>
         </div>
-      </form>
-      <div className='space-x-2'>
+      )}
+
+      {userSession.auth && (
+        <button
+          type='button'
+          onClick={handleLogout}
+          className='bg-red-400 text-white rounded-md w-fit px-4 py-1 mx-auto mt-5'
+        >
+          Logout
+        </button>
+      )}
+
+      {userSession.auth && (
         <button
           className='mt-10 bg-orange-500 text-white rounded-md w-fit px-4 py-1 mx-auto'
           onClick={handlePeity}
         >
           Usar PEITY
         </button>
-        <button className='bg-pink-500 text-white px-4 py-1 rounded-md' onClick={openGoogleWindow}>
-          Ingresar con Google
-        </button>
-      </div>
-      {userSession.auth ? (
-        <div>
-          <Image src={userSession.image} alt='Foto de perfil' width={48} height={48} />
-          <p>Usuario logueado</p>
-        </div>
-      ) : (
-        <p>Not logged</p>
       )}
 
-      {isLoggingIn && <p>Logging in 🔒 ...</p>}
-      {isLoggingOut && <p>Logging out 🔴 ...</p>}
+      {isLoading ? (
+        <p>Validando sesión 🤢 ...</p>
+      ) : (
+        userSession.auth && (
+          <div>
+            <Image src={userSession.image} alt='Foto de perfil' width={48} height={48} />
+            <p>Usuario logueado</p>
+          </div>
+        )
+      )}
+
+      {isMutatingPeity && <p className='text-orange-700'>Usando PEITY 🍊...</p>}
+
+      {isLoggingIn && <p className='text-yellow-700'>Logging in 🔒 ...</p>}
+      {isLoggingOut && <p className='text-red-700'>Logging out 🔴 ...</p>}
     </main>
   )
 }
@@ -254,32 +289,38 @@ export type User =
       image: null
     }
 
-export const getServerSideProps: GetServerSideProps<{
-  user: User
-  additionalInfo: any
-}> = async context => {
-  let user: User = {
-    auth: false,
-    image: null,
-  }
+// export const getServerSideProps: GetServerSideProps<{
+//   user: User
+//   additionalInfo: any
+// }> = async context => {
+//   let user: User = {
+//     auth: false,
+//     image: null,
+//   }
 
-  try {
-    // console.log({ cookies: context.req.headers.cookie })
-    user = await request<User>('session', {}, context.req.cookies['jwt'])
-    // console.log({ user })
-  } catch (e) {
-    console.error(e)
-  }
+//   try {
+//     // console.log({ cookies: context.req.headers.cookie })
+//     user = await request<User>('session', {}, context.req.cookies['jwt'])
+//     // console.log({ user })
+//   } catch (e) {
+//     console.error(e)
+//   }
 
+//   return {
+//     props: {
+//       user,
+//       additionalInfo: {
+//         reqCookies: context.req.cookies || null,
+//         rawHeaders: context.req.rawHeaders || null,
+//         jwt: context.req.cookies['jwt'] || null,
+//         reqHeadersCookie: context.req.headers.cookie || null,
+//       },
+//     },
+//   }
+// }
+
+export const getServerSideProps: GetServerSideProps = async () => {
   return {
-    props: {
-      user,
-      additionalInfo: {
-        reqCookies: context.req.cookies,
-        rawHeaders: context.req.rawHeaders,
-        jwt: context.req.cookies['jwt'],
-        reqHeadersCookie: context.req.headers.cookie,
-      },
-    },
+    props: {},
   }
 }

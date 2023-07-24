@@ -36,9 +36,8 @@ export async function request<Response>(
   if (!res.ok) {
     if (config.method === 'POST') {
       toast.error(data.message)
+      throw new Error(`[${res.status} - ${res.statusText}] : ${data.message}`)
     }
-
-    throw new Error(`[${res.status} - ${res.statusText}] : ${data.message}`)
   }
 
   return data as Response
