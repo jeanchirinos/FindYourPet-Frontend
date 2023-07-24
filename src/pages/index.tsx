@@ -21,7 +21,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
     confirmPassword: '',
   })
 
-  const [userImage, setUserImage] = useState(user.image)
+  const [userSession, setUserSession] = useState(user)
 
   const [formState, setFormState] = useState(FormState.Login)
 
@@ -66,8 +66,8 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
   const openedWindow = useRef<null | Window>(null)
 
   useEffect(() => {
-    function handleMessage(e: MessageEvent<{ image: string }>) {
-      setUserImage(e.data.image)
+    function handleMessage(e: MessageEvent<User>) {
+      setUserSession(e.data)
       // setUserImage(openedWindow.current?.opener?.location.search.split('=')[1] || user.image)
       openedWindow.current?.close()
     }
@@ -80,7 +80,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
   }, [])
 
   function openGoogleWindow() {
-    const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_API}auth/google/redirect`)
+    const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_API_CLIENT}auth/google/redirect`)
     openedWindow.current = window.open(url, '_blank', 'width=400,height=700')
   }
 
@@ -142,13 +142,16 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
               <span>Registro</span>
             </label>
           </fieldset>
-          <button
-            type='button'
-            onClick={handleLogout}
-            className='bg-red-400 text-white rounded-md w-fit px-4 py-1 mx-auto mt-5'
-          >
-            Logout
-          </button>
+
+          {userSession.auth && (
+            <button
+              type='button'
+              onClick={handleLogout}
+              className='bg-red-400 text-white rounded-md w-fit px-4 py-1 mx-auto mt-5'
+            >
+              Logout
+            </button>
+          )}
         </div>
       </form>
       <div className='space-x-2'>
@@ -162,9 +165,9 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
           Ingresar con Google
         </button>
       </div>
-      {userImage ? (
+      {userSession.auth ? (
         <div>
-          <Image src={userImage} alt='Foto de perfil' width={48} height={48} />
+          <Image src={userSession.image} alt='Foto de perfil' width={48} height={48} />
           <p>Usuario logueado</p>
         </div>
       ) : (
@@ -174,17 +177,25 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
   )
 }
 
-type User = {
-  image: string | null
-}
+export type User =
+  | {
+      auth: true
+      image: string
+    }
+  | {
+      auth: false
+      image: null
+    }
 
 export const getServerSideProps: GetServerSideProps<{ user: User }> = async context => {
   let user: User = {
+    auth: false,
     image: null,
   }
 
   try {
     user = await request<User>('session', {}, context.req.cookies.jwt)
+    // console.log({ user })
   } catch (e) {
     console.error(e)
   }

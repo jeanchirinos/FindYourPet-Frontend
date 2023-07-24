@@ -15,11 +15,13 @@ export async function request<Response>(
     Accept: 'application/json',
   }
 
-  let backendApi: string | undefined = 'http://localhost:8000/api/'
+  let backendApi: string | undefined
 
   if (token) {
     headers['Authorization'] = `Bearer ${token}`
-    backendApi = process.env.NEXT_PUBLIC_BACKEND_API
+    backendApi = process.env.NEXT_PUBLIC_BACKEND_API_SERVER
+  } else {
+    backendApi = process.env.NEXT_PUBLIC_BACKEND_API_CLIENT
   }
 
   const res = await fetch(`${backendApi}${url}`, {

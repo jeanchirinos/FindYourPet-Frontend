@@ -1,6 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import { User } from '.'
 
 export default function SocialAuth(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { query } = props
@@ -16,9 +17,7 @@ export default function SocialAuth(props: InferGetServerSidePropsType<typeof get
   return <></>
 }
 
-type Query = {
-  image: string
-}
+type Query = User & { auth: string }
 
 export const getServerSideProps: GetServerSideProps<{ query: Query }> = async context => {
   return {
