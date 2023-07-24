@@ -18,7 +18,7 @@ export async function request<Response>(
   let backendApi: string | undefined
 
   if (cookies) {
-    headers['Cookie'] = cookies
+    headers['Cookie'] = `jwt=${cookies};`
     backendApi = process.env.NEXT_PUBLIC_BACKEND_API_SERVER
   } else {
     backendApi = process.env.NEXT_PUBLIC_BACKEND_API_CLIENT

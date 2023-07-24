@@ -17,6 +17,10 @@ enum FormState {
 export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { user } = props
 
+  useEffect(() => {
+    console.log({ additionalInfo: props.additionalInfo })
+  }, [props.additionalInfo])
+
   const [formState, setFormState] = useState(FormState.Login)
 
   // SWR
@@ -250,14 +254,18 @@ export type User =
       image: null
     }
 
-export const getServerSideProps: GetServerSideProps<{ user: User }> = async context => {
+export const getServerSideProps: GetServerSideProps<{
+  user: User
+  additionalInfo: any
+}> = async context => {
   let user: User = {
     auth: false,
     image: null,
   }
 
   try {
-    user = await request<User>('session', {}, context.req.headers.cookie)
+    // console.log({ cookies: context.req.headers.cookie })
+    user = await request<User>('session', {}, context.req.cookies['jwt'])
     // console.log({ user })
   } catch (e) {
     console.error(e)
@@ -266,6 +274,12 @@ export const getServerSideProps: GetServerSideProps<{ user: User }> = async cont
   return {
     props: {
       user,
+      additionalInfo: {
+        reqCookies: context.req.cookies,
+        rawHeaders: context.req.rawHeaders,
+        jwt: context.req.cookies['jwt'],
+        reqHeadersCookie: context.req.headers.cookie,
+      },
     },
   }
 }
