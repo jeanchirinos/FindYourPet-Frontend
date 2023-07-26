@@ -13,7 +13,9 @@ enum FormState {
 }
 
 export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  // const { user } = props
+  const { user } = props
+
+  // console.log({ user })
 
   const [formState, setFormState] = useState(FormState.Login)
 
@@ -24,7 +26,7 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
 
   // SWR
   const {
-    data: userSession = initialSession,
+    data: userSession = user,
     mutate,
     isLoading,
   } = useSWR<User>(
@@ -172,7 +174,8 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
 
   return (
     <main className='px-1.5'>
-      {!isLoading && !userSession.auth && (
+      {/* {!isLoading && !userSession.auth && ( */}
+      {!userSession.auth && (
         <div>
           <form className='flex flex-col max-w-xs' onSubmit={handleSubmit}>
             <label>Correo</label>
@@ -260,16 +263,16 @@ export default function Home(props: InferGetServerSidePropsType<typeof getServer
         </button>
       )}
 
-      {isLoading ? (
+      {/* {isLoading ? (
         <p>Validando sesión 🤢 ...</p>
-      ) : (
-        userSession.auth && (
-          <div>
-            <Image src={userSession.image} alt='Foto de perfil' width={48} height={48} />
-            <p>Usuario logueado</p>
-          </div>
-        )
+      ) : ( */}
+      {userSession.auth && (
+        <div>
+          <Image src={userSession.image} alt='Foto de perfil' width={48} height={48} />
+          <p>Usuario logueado</p>
+        </div>
       )}
+      {/* )} */}
 
       {isMutatingPeity && <p className='text-orange-700'>Usando PEITY 🍊...</p>}
 
@@ -319,8 +322,30 @@ export type User =
 //   }
 // }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps<{
+  user: User
+}> = async context => {
+  let user: User = {
+    auth: false,
+    image: null,
+  }
+
+  try {
+    // console.log({ cookies: context.req.headers.cookie })
+    user = await request<User>('session', {}, context.req.headers.cookie)
+  } catch (e) {
+    console.error(e)
+  }
+
   return {
-    props: {},
+    props: {
+      user,
+    },
   }
 }
+
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   return {
+//     props: {},
+//   }
+// }
