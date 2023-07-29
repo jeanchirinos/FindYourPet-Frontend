@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Find Your Pet</title>
+        <title>Encuentra tu mascota</title>
       </Head>
       <Component {...pageProps} />
       <DynamicToaster />

@@ -10,11 +10,12 @@
     "up": "yarn upgrade-interactive --latest"
   },
   "dependencies": {
-    "@types/node": "20.4.4",
-    "@types/react": "^18.2.16",
+    "@headlessui/react": "^1.7.16",
+    "@types/node": "20.4.5",
+    "@types/react": "^18.2.17",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
-    "eslint": "8.45.0",
+    "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
     "next": "^13.4.12",
     "postcss": "8.4.27",
@@ -27,6 +28,10 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.4"
+    "@tailwindcss/forms": "^0.5.4",
+    "eslint-config-prettier": "^8.9.0",
+    "prettier": "^3.0.0",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "ts-standard": "^12.0.2"
   }
 }
