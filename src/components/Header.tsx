@@ -8,6 +8,8 @@ import useSWRMutation from 'swr/mutation'
 import { mutate } from 'swr'
 import { EFormState } from '@/enums'
 import { User, UserLogged } from '@/types'
+import { FcGoogle } from 'react-icons/fc'
+import { toast } from 'react-hot-toast'
 
 // MAIN COMPONENT
 export function Header(props: { userSession: User }) {
@@ -16,7 +18,7 @@ export function Header(props: { userSession: User }) {
   return (
     <header className='mx-auto flex w-[1600px] max-w-full justify-between px-1.5'>
       <h2>Logo</h2>
-      {userSession.auth ? <UserMenu userSession={userSession} /> : <Enter />}
+      {userSession.auth ? <UserMenu userSession={userSession} /> : <NotUserMenu />}
     </header>
   )
 }
@@ -75,15 +77,38 @@ function UserMenu(props: { userSession: UserLogged }) {
   )
 }
 
-function Enter() {
+function NotUserMenu() {
+  return (
+    <Popover className='relative'>
+      <Popover.Button className='rounded-lg bg-black px-5 py-1 text-white'>Ingresa</Popover.Button>
+      <Transition
+        as={Fragment}
+        enter='transition ease-out duration-200'
+        enterFrom='opacity-0 translate-y-1'
+        enterTo='opacity-100 translate-y-0'
+        leave='transition ease-in duration-150'
+        leaveFrom='opacity-100 translate-y-0'
+        leaveTo='opacity-0 translate-y-1'
+      >
+        <Popover.Panel className='absolute right-0 z-10 mt-2 w-80 rounded-md bg-[#DFD0BB] px-5 py-3'>
+          <NotUserMenuContent />
+        </Popover.Panel>
+      </Transition>
+    </Popover>
+  )
+}
+
+function NotUserMenuContent() {
   // STATES
   const [formState, setFormState] = useState(EFormState.Login)
 
   const [form, setForm] = useState({
     email: '',
     password: '',
-    confirmPassword: '',
+    passwordConfirm: '',
   })
+
+  const [emailSent, setEmailSent] = useState(false)
 
   // EFFECT
   useEffect(() => {
@@ -108,14 +133,17 @@ function Enter() {
     () =>
       request<User>(formState, {
         method: 'POST',
-        body: {
-          email: form.email,
-          password: form.password,
-        },
+        body:
+          formState === EFormState.Login ? { email: form.email, password: form.password } : form,
       }),
     {
       revalidate: false,
       populateCache: true,
+      onSuccess() {
+        if (formState === EFormState.Register) {
+          setEmailSent(true)
+        }
+      },
     },
   )
 
@@ -125,7 +153,7 @@ function Enter() {
   const openedWindow = useRef<null | Window>(null)
   const buttonState = () => {
     if (registerLoginActions.isMutating) {
-      return isLogin ? 'Ingresando' : 'Registrando'
+      return isLogin ? 'Ingresando' : 'Enviando'
     }
 
     return isLogin ? 'Ingresar' : 'Registrarse'
@@ -146,6 +174,11 @@ function Enter() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+
+    if (!isLogin) {
+      if (form.password !== form.passwordConfirm) return toast.error('Las contraseñas no coinciden')
+    }
+
     registerLoginActions.trigger()
   }
 
@@ -155,90 +188,93 @@ function Enter() {
   }
 
   // RENDER
-  return (
-    <Popover className='relative'>
-      <Popover.Button className='rounded-lg bg-black px-5 py-1 text-white'>Ingresa</Popover.Button>
-      <Transition
-        as={Fragment}
-        enter='transition ease-out duration-200'
-        enterFrom='opacity-0 translate-y-1'
-        enterTo='opacity-100 translate-y-0'
-        leave='transition ease-in duration-150'
-        leaveFrom='opacity-100 translate-y-0'
-        leaveTo='opacity-0 translate-y-1'
-      >
-        <Popover.Panel className='absolute right-0 z-10 mt-2 w-64 rounded-md bg-zinc-200 px-4 py-2'>
-          <section className='grid grid-cols-2'>
-            <button onClick={openGoogleWindow}>Google</button>
-            <button>Correo</button>
-          </section>
-          <section>
-            <fieldset>
-              <label>
-                <input
-                  type='radio'
-                  checked={isLogin}
-                  onChange={() => {
-                    toggleFormState(EFormState.Login)
-                  }}
-                />
-                <span>Login</span>
-              </label>
-              <label>
-                <input
-                  type='radio'
-                  checked={!isLogin}
-                  onChange={() => {
-                    toggleFormState(EFormState.Register)
-                  }}
-                />
-                <span>Registro</span>
-              </label>
-            </fieldset>
-          </section>
-          <form className='flex max-w-xs flex-col' onSubmit={handleSubmit}>
-            <label>Correo</label>
-            <input
-              ref={emailRef}
-              required
-              type='email'
-              value={form.email}
-              name='email'
-              onChange={handleChange}
-            />
-            <label>Contraseña</label>
-            <input
-              required
-              type='password'
-              value={form.password}
-              name='password'
-              onChange={handleChange}
-            />
-            {!isLogin && (
-              <>
-                <label>Confirmar contraseña</label>
-                <input
-                  type='password'
-                  required
-                  value={form.confirmPassword}
-                  name='confirmPassword'
-                  onChange={handleChange}
-                />
-              </>
-            )}
+  return emailSent ? (
+    <div>
+      <h1>Se envió el correo</h1>
 
-            <button
-              className={twJoin(
-                isLogin ? 'bg-primary' : 'bg-purple-500',
-                'mx-auto mt-5 w-full rounded-md px-4 py-1 text-white',
-              )}
-              disabled={registerLoginActions.isMutating}
-            >
-              {buttonState()}
-            </button>
-          </form>
-        </Popover.Panel>
-      </Transition>
-    </Popover>
+      <button onClick={() => setEmailSent(false)}>Volver</button>
+    </div>
+  ) : (
+    <div>
+      <button
+        onClick={openGoogleWindow}
+        className='flex w-full items-center justify-center gap-x-1 rounded-md bg-white px-2 py-1 shadow-sm shadow-zinc-300'
+      >
+        <FcGoogle />
+        <span>Continuar con Google</span>
+      </button>
+      <section>
+        <fieldset>
+          <label>
+            <input
+              type='radio'
+              checked={isLogin}
+              onChange={() => {
+                toggleFormState(EFormState.Login)
+              }}
+            />
+            <span>Login</span>
+          </label>
+          <label>
+            <input
+              type='radio'
+              checked={!isLogin}
+              onChange={() => {
+                toggleFormState(EFormState.Register)
+              }}
+            />
+            <span>Registro</span>
+          </label>
+        </fieldset>
+      </section>
+      <form className='flex max-w-xs flex-col' onSubmit={handleSubmit}>
+        <label>Correo</label>
+        <input
+          ref={emailRef}
+          required
+          type='email'
+          value={form.email}
+          name='email'
+          onChange={handleChange}
+        />
+        <label>Contraseña</label>
+        <input
+          required
+          type='password'
+          value={form.password}
+          name='password'
+          minLength={6}
+          onChange={handleChange}
+        />
+        {!isLogin && (
+          <>
+            <label>Confirmar contraseña</label>
+            <input
+              type='password'
+              required
+              value={form.passwordConfirm}
+              name='passwordConfirm'
+              minLength={6}
+              onChange={handleChange}
+            />
+          </>
+        )}
+
+        <button
+          className={twJoin(
+            isLogin ? 'bg-primary' : 'bg-purple-500',
+            'mx-auto mt-5 w-full rounded-md px-4 py-1 text-white',
+          )}
+          disabled={registerLoginActions.isMutating}
+        >
+          {buttonState()}
+        </button>
+      </form>
+      {formState === EFormState.Login && (
+        <Link href='/recuperar' target='_blank'>
+          ¿Olvidaste tu contraseña?
+        </Link>
+      )}
+    </div>
   )
 }
