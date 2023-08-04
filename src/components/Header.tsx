@@ -10,6 +10,7 @@ import { EFormState } from '@/enums'
 import { User, UserLogged } from '@/types'
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-hot-toast'
+import { useLogin, useRegister } from '@/services/auth'
 
 // MAIN COMPONENT
 export function Header(props: { userSession: User }) {
@@ -30,7 +31,9 @@ function UserMenu(props: { userSession: UserLogged }) {
     'session',
     () =>
       request('logout', {
-        method: 'POST',
+        config: {
+          method: 'POST',
+        },
       }),
     {
       revalidate: false,
@@ -60,7 +63,7 @@ function UserMenu(props: { userSession: UserLogged }) {
         leaveFrom='opacity-100 translate-y-0'
         leaveTo='opacity-0 translate-y-1'
       >
-        <Popover.Panel className='absolute right-0 z-10 mt-2 flex flex-col rounded-md bg-zinc-200'>
+        <Popover.Panel className='absolute right-0 z-10 mt-2 flex flex-col rounded-md '>
           <Link href='#' className='px-4 py-1'>
             Perfil
           </Link>
@@ -90,7 +93,7 @@ function NotUserMenu() {
         leaveFrom='opacity-100 translate-y-0'
         leaveTo='opacity-0 translate-y-1'
       >
-        <Popover.Panel className='absolute right-0 z-10 mt-2 w-80 rounded-md bg-[#DFD0BB] px-5 py-3'>
+        <Popover.Panel className='absolute right-0 z-10 mt-2 w-80 rounded-md border border-neutral-200 bg-white px-5 py-3'>
           <NotUserMenuContent />
         </Popover.Panel>
       </Transition>
@@ -128,13 +131,19 @@ function NotUserMenuContent() {
   }, [])
 
   // SWR
+
+  const { trigger: triggerLogin } = useLogin()
+  const { trigger: triggerRegister } = useRegister()
+
   const registerLoginActions = useSWRMutation(
     'session',
     () =>
       request<User>(formState, {
-        method: 'POST',
-        body:
-          formState === EFormState.Login ? { email: form.email, password: form.password } : form,
+        config: {
+          method: 'POST',
+          body:
+            formState === EFormState.Login ? { email: form.email, password: form.password } : form,
+        },
       }),
     {
       revalidate: false,
@@ -151,6 +160,7 @@ function NotUserMenuContent() {
   const emailRef = useRef<HTMLInputElement>(null)
   const isLogin = formState === EFormState.Login
   const openedWindow = useRef<null | Window>(null)
+
   const buttonState = () => {
     if (registerLoginActions.isMutating) {
       return isLogin ? 'Ingresando' : 'Enviando'
@@ -180,6 +190,26 @@ function NotUserMenuContent() {
     }
 
     registerLoginActions.trigger()
+  }
+
+  function handleLoginSubmit() {
+    triggerLogin(
+      { email: form.email, password: form.password },
+      {
+        revalidate: false,
+        populateCache: true,
+      },
+    )
+  }
+
+  function handleRegisterSubmit() {
+    triggerRegister(form, {
+      revalidate: false,
+      populateCache: true,
+      onSuccess() {
+        setEmailSent(true)
+      },
+    })
   }
 
   function openGoogleWindow() {
@@ -227,43 +257,93 @@ function NotUserMenuContent() {
           </label>
         </fieldset>
       </section>
-      <form className='flex max-w-xs flex-col' onSubmit={handleSubmit}>
-        <label>Correo</label>
-        <input
-          ref={emailRef}
-          required
-          type='email'
-          value={form.email}
-          name='email'
-          onChange={handleChange}
-        />
-        <label>Contraseña</label>
+      <form className='mt-4 flex max-w-xs flex-col gap-y-4' onSubmit={handleSubmit}>
+        <div className='relative'>
+          <input
+            className='peer w-full border-2 border-gray-300 text-gray-900 placeholder-transparent focus:border-gray-600 focus:outline-none'
+            placeholder=''
+            ref={emailRef}
+            required
+            type='email'
+            value={form.email}
+            name='email'
+            onChange={handleChange}
+          />
+
+          <label
+            htmlFor='email'
+            className='absolute left-2 top-4 -translate-y-6 bg-white px-1.5 text-xs text-gray-600 transition-all'
+          >
+            Correo
+          </label>
+        </div>
+
+        <div className='relative'>
+          <input
+            className='peer w-full border-2 border-gray-300 text-gray-900 placeholder-transparent focus:border-gray-600 focus:outline-none'
+            placeholder=''
+            ref={emailRef}
+            required
+            onChange={handleChange}
+            type='password'
+            value={form.password}
+            name='password'
+            minLength={8}
+          />
+
+          <label
+            htmlFor='email'
+            className='absolute left-2 top-4 -translate-y-6 bg-white px-1.5 text-xs text-gray-600 transition-all'
+          >
+            Contraseña
+          </label>
+        </div>
+
+        {/* <label>Contraseña</label>
         <input
           required
           type='password'
           value={form.password}
           name='password'
-          minLength={6}
+          minLength={8}
           onChange={handleChange}
-        />
+        /> */}
+
         {!isLogin && (
-          <>
-            <label>Confirmar contraseña</label>
+          // <>
+          //   <label>Confirmar contraseña</label>
+          //   <input
+          //     type='password'
+          //     required
+          //     value={form.passwordConfirm}
+          //     name='passwordConfirm'
+          //     minLength={8}
+          //     onChange={handleChange}
+          //   />
+          // </>
+          <label className='relative'>
             <input
-              type='password'
+              className='peer w-full border-2 border-gray-300 text-gray-900 placeholder-transparent focus:border-gray-600 focus:outline-none'
+              placeholder=''
+              ref={emailRef}
               required
-              value={form.passwordConfirm}
-              name='passwordConfirm'
-              minLength={6}
               onChange={handleChange}
+              type='password'
+              value={form.passwordConfirm}
+              name='password'
+              minLength={8}
             />
-          </>
+
+            <span className='absolute left-2 top-4 -translate-y-6 bg-white px-1.5 text-xs text-gray-600 transition-all'>
+              Confirmar contraseña
+            </span>
+          </label>
         )}
 
         <button
           className={twJoin(
             isLogin ? 'bg-primary' : 'bg-purple-500',
-            'mx-auto mt-5 w-full rounded-md px-4 py-1 text-white',
+            'mx-auto w-full rounded-md px-4 py-1 text-white',
           )}
           disabled={registerLoginActions.isMutating}
         >

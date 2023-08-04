@@ -7,12 +7,20 @@ interface Config extends Omit<RequestInit, 'body'> {
 
 export async function request<Response>(
   url: string,
-  config: Config = {},
-  cookies?: string,
+  options?: { config: Config; cookies?: string },
 ): Promise<Response> {
-  const headers: HeadersInit = {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
+  const { config = {}, cookies } = options ?? {}
+
+  const headers: HeadersInit = {}
+  let body = null
+
+  if (config.body instanceof FormData) {
+    body = config.body
+  } else {
+    headers['content-type'] = 'application/json'
+    headers.accept = 'application/json'
+
+    body = JSON.stringify(config.body)
   }
 
   let backendApi: string | undefined
@@ -24,11 +32,11 @@ export async function request<Response>(
     backendApi = process.env.NEXT_PUBLIC_BACKEND_API_CLIENT
   }
 
-  const res = await fetch(`${backendApi}${url}`, {
+  const res = await fetch(backendApi + url, {
     method: config.method,
     credentials: 'include',
     headers,
-    body: JSON.stringify(config.body),
+    body,
   })
 
   const data = await res.json()
@@ -36,8 +44,15 @@ export async function request<Response>(
   if (!res.ok) {
     if (config.method === 'POST') {
       toast.error(data.message)
-      throw new Error(`[${res.status} - ${res.statusText}] : ${data.message}`)
     }
+
+    if (typeof window !== 'undefined' && res.status === 401) {
+      // removeAuthToken()
+      localStorage.clear()
+      window.location.replace('/')
+    }
+
+    throw new Error(`[${res.status} - ${res.statusText}] : ${data.message}`)
   }
 
   return data as Response
