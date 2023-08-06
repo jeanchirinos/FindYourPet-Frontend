@@ -43,7 +43,7 @@ export async function request<Response>(
 
   if (!res.ok) {
     if (config.method === 'POST') {
-      toast.error(data.message)
+      toast.error(data.msg)
     }
 
     if (typeof window !== 'undefined' && res.status === 401) {
@@ -52,7 +52,7 @@ export async function request<Response>(
       window.location.replace('/')
     }
 
-    throw new Error(`[${res.status} - ${res.statusText}] : ${data.message}`)
+    throw new Error(`[${res.status} - ${res.statusText}] : ${data.msg}`)
   }
 
   return data as Response
