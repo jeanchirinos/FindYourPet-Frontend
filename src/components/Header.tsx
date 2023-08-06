@@ -1,52 +1,50 @@
 import { Popover, Transition } from '@headlessui/react'
 import Link from 'next/link'
-import { request } from '@/utilities'
+// import { request } from '@/utilities'
 import Image from 'next/image'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { twJoin } from 'tailwind-merge'
-import useSWRMutation from 'swr/mutation'
+// import useSWRMutation from 'swr/mutation'
 import { mutate } from 'swr'
 import { EFormState } from '@/enums'
 import { User, UserLogged } from '@/types'
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-hot-toast'
-import { useLogin, useRegister } from '@/services/auth'
+import { useLogin, useLogout, useRegister } from '@/services/auth'
 
 // MAIN COMPONENT
-export function Header(props: { userSession: User }) {
-  const { userSession } = props
+export function Header(props: { session: User }) {
+  const { session } = props
 
   return (
     <header className='mx-auto flex w-[1600px] max-w-full justify-between px-1.5'>
       <h2>Logo</h2>
-      {userSession.auth ? <UserMenu userSession={userSession} /> : <NotUserMenu />}
+      {session.auth ? <UserMenu session={session} /> : <NotUserMenu />}
     </header>
   )
 }
 
 // COMPONENTS
-function UserMenu(props: { userSession: UserLogged }) {
+function UserMenu(props: { session: UserLogged }) {
   // SWR
-  const logoutActions = useSWRMutation(
-    'session',
-    () =>
-      request('logout', {
-        config: {
-          method: 'POST',
-        },
-      }),
-    {
-      revalidate: false,
-      populateCache: true,
-    },
-  )
+  const logoutActions = useLogout()
+
+  function handleLogout() {
+    logoutActions.trigger(
+      {},
+      {
+        revalidate: false,
+        populateCache: true,
+      },
+    )
+  }
 
   // RENDER
   return (
     <Popover className='relative'>
       <Popover.Button>
         <Image
-          src={props.userSession.image}
+          src={props.session.image}
           alt='Perfil'
           width={32}
           height={32}
@@ -69,7 +67,7 @@ function UserMenu(props: { userSession: UserLogged }) {
           </Link>
           <button
             className='w-max px-4 py-1'
-            onClick={() => logoutActions.trigger()}
+            onClick={handleLogout}
             disabled={logoutActions.isMutating}
           >
             {logoutActions.isMutating ? 'Cerrando Sesión' : 'Cerrar sesión'}
@@ -132,40 +130,45 @@ function NotUserMenuContent() {
 
   // SWR
 
-  const { trigger: triggerLogin } = useLogin()
-  const { trigger: triggerRegister } = useRegister()
+  const { trigger: triggerLogin, isMutating: isMutatingLogin } = useLogin()
+  const { trigger: triggerRegister, isMutating: isMutatingRegister } = useRegister()
 
-  const registerLoginActions = useSWRMutation(
-    'session',
-    () =>
-      request<User>(formState, {
-        config: {
-          method: 'POST',
-          body:
-            formState === EFormState.Login ? { email: form.email, password: form.password } : form,
-        },
-      }),
-    {
-      revalidate: false,
-      populateCache: true,
-      onSuccess() {
-        if (formState === EFormState.Register) {
-          setEmailSent(true)
-        }
-      },
-    },
-  )
+  const isMutating = isMutatingLogin || isMutatingRegister
+
+  // const registerLoginActions = useSWRMutation(
+  //   'session',
+  //   () =>
+  //     request<User>(formState, {
+  //       config: {
+  //         method: 'POST',
+  //         body:
+  //           formState === EFormState.Login ? { email: form.email, password: form.password } : form,
+  //       },
+  //     }),
+  //   {
+  //     revalidate: false,
+  //     populateCache: true,
+  //     onSuccess() {
+  //       if (formState === EFormState.Register) {
+  //         setEmailSent(true)
+  //       }
+  //     },
+  //   },
+  // )
 
   // VALUES
+
   const emailRef = useRef<HTMLInputElement>(null)
   const isLogin = formState === EFormState.Login
   const openedWindow = useRef<null | Window>(null)
 
   const buttonState = () => {
-    if (registerLoginActions.isMutating) {
-      return isLogin ? 'Ingresando' : 'Enviando'
+    if (isMutating) {
+      // return isLogin ? 'Ingresando' : 'Enviando'
+      return 'Enviando'
     }
 
+    // return isLogin ? 'Ingresar' : 'Registrarse'
     return isLogin ? 'Ingresar' : 'Registrarse'
   }
 
@@ -185,11 +188,14 @@ function NotUserMenuContent() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (!isLogin) {
+    if (isLogin) {
+      handleLoginSubmit()
+    } else {
       if (form.password !== form.passwordConfirm) return toast.error('Las contraseñas no coinciden')
+      handleRegisterSubmit()
     }
 
-    registerLoginActions.trigger()
+    // registerLoginActions.trigger()
   }
 
   function handleLoginSubmit() {
@@ -299,28 +305,7 @@ function NotUserMenuContent() {
           </label>
         </div>
 
-        {/* <label>Contraseña</label>
-        <input
-          required
-          type='password'
-          value={form.password}
-          name='password'
-          minLength={8}
-          onChange={handleChange}
-        /> */}
-
         {!isLogin && (
-          // <>
-          //   <label>Confirmar contraseña</label>
-          //   <input
-          //     type='password'
-          //     required
-          //     value={form.passwordConfirm}
-          //     name='passwordConfirm'
-          //     minLength={8}
-          //     onChange={handleChange}
-          //   />
-          // </>
           <label className='relative'>
             <input
               className='peer w-full border-2 border-gray-300 text-gray-900 placeholder-transparent focus:border-gray-600 focus:outline-none'
@@ -330,7 +315,7 @@ function NotUserMenuContent() {
               onChange={handleChange}
               type='password'
               value={form.passwordConfirm}
-              name='password'
+              name='passwordConfirm'
               minLength={8}
             />
 
@@ -345,7 +330,7 @@ function NotUserMenuContent() {
             isLogin ? 'bg-primary' : 'bg-purple-500',
             'mx-auto w-full rounded-md px-4 py-1 text-white',
           )}
-          disabled={registerLoginActions.isMutating}
+          disabled={isMutating}
         >
           {buttonState()}
         </button>

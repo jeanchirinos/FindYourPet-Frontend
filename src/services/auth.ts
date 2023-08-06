@@ -33,3 +33,7 @@ export function useResetPassword() {
 
   return useSendData<Args>('reset-password')
 }
+
+export function useLogout() {
+  return useSendData('logout', { key: 'session' })
+}

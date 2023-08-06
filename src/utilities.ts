@@ -7,7 +7,7 @@ interface Config extends Omit<RequestInit, 'body'> {
 
 export async function request<Response>(
   url: string,
-  options?: { config: Config; cookies?: string },
+  options?: { config?: Config; cookies?: string },
 ): Promise<Response> {
   const { config = {}, cookies } = options ?? {}
 

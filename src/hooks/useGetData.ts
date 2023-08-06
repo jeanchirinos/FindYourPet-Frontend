@@ -3,7 +3,7 @@ import { request } from '@/utilities'
 
 export type UseGetDataOptions = {
   /** When all elements from array are true, proceed with petition */
-  waitFor?: unknown[]
+  waitFor?: (undefined | null | boolean)[]
   key?: string
 }
 
@@ -12,9 +12,7 @@ export function useGetData<Response>(url: string, options?: UseGetDataOptions) {
 
   // FUNCTIONS
   const keyFn = () => {
-    const notReadyToFetch = waitFor?.some(
-      item => item === undefined || item === null || item === false,
-    )
+    const notReadyToFetch = waitFor?.some(item => item === undefined || item === null || !item)
 
     if (notReadyToFetch) return null
 
