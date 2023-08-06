@@ -23,3 +23,13 @@ export function useRegister() {
 
   return useSendData<Args, Res>('register', { key: 'session' })
 }
+
+export function useResetPassword() {
+  interface Args {
+    password: string
+    passwordConfirm: string
+    token: string
+  }
+
+  return useSendData<Args>('reset-password')
+}
