@@ -336,7 +336,7 @@ function NotUserMenuContent() {
         </button>
       </form>
       {formState === EFormState.Login && (
-        <Link href='/recuperar' target='_blank'>
+        <Link href={`/recuperar?email=${form.email}`} target='_blank' rel='noreferrer'>
           ¿Olvidaste tu contraseña?
         </Link>
       )}

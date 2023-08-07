@@ -37,3 +37,11 @@ export function useResetPassword() {
 export function useLogout() {
   return useSendData('logout', { key: 'session' })
 }
+
+export function useForgotPassword() {
+  interface Args {
+    email: string
+  }
+
+  return useSendData<Args>('forgot-password')
+}
