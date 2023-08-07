@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast'
 export default function RecuperarApi(
   props: InferGetServerSidePropsType<typeof getServerSideProps>,
 ) {
-  const { token } = props.query
+  const { token } = props
 
   const [passwords, setPasswords] = useState({
     password: '',
@@ -49,24 +49,14 @@ export default function RecuperarApi(
   )
 }
 
-type Query = { token: string }
+export const getServerSideProps: GetServerSideProps<{ token: string }> = async context => {
+  const token = context.query.token as undefined | string
 
-export const getServerSideProps: GetServerSideProps<{ query: Query }> = async context => {
-  // if(!context.req.cookies.jwt_reset) return {redirect: {destination: '/'}}
-
-  if (!context.req.cookies.jwt_reset)
-    return {
-      redirect: {
-        destination: '/',
-      },
-      props: {
-        query: { token: '' },
-      },
-    }
+  if (!token) return { notFound: true }
 
   return {
     props: {
-      query: { token: context.req.cookies.jwt_reset } as Query,
+      token,
     },
   }
 }
