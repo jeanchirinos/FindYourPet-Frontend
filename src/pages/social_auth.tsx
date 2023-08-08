@@ -3,7 +3,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
-export default function SocialAuth(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { query } = props
   const router = useRouter()
 

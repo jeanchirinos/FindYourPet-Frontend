@@ -1,10 +1,10 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import useSWR from 'swr'
-import { Header } from '@/components/Header'
+import { Header } from '@/components/Header/Header'
 import { User } from '@/types'
 import { getSession } from '@/services/user'
 
-export default function Home(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { data: session = props.session } = useSWR('session')
 
   return (

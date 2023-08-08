@@ -1,9 +1,17 @@
 import useSWRMutation from 'swr/mutation'
 import { request } from '@/utilities'
 
-export function useSendData<Args, Response = {}>(url: string, options?: { key: string }) {
+type Params = [
+  url: string,
+  options?: {
+    key: string
+  },
+]
+
+export function useSendData<Args, Response = {}>(...params: Params) {
   type SuccessResponse = Response & { status: 'ok'; msg: string }
 
+  const [url, options] = params
   const { key = url } = options ?? {}
 
   async function fetcher(key: string, param: { arg: Args }) {

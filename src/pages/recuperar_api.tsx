@@ -1,46 +1,50 @@
+import { Input } from '@/components/Input/Input'
 import { useResetPassword } from '@/services/auth'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 
-export default function RecuperarApi(
-  props: InferGetServerSidePropsType<typeof getServerSideProps>,
-) {
+export default function Page(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const { token } = props
 
-  const [passwords, setPasswords] = useState({
-    password: '',
-    passwordConfirm: '',
-  })
+  // STATES
+  const [password, setPassword] = useState('')
+  const [passwordConfirm, setPasswordConfirm] = useState(password)
 
+  // HOOOKS
   const { trigger, isMutating } = useResetPassword()
 
-  const isDisabled = passwords.password !== passwords.passwordConfirm
+  // VALUES
+  const isDisabled = password !== passwordConfirm
 
+  // FUNCTIONS
   function resetPassword(e: React.FormEvent) {
     e.preventDefault()
     if (isDisabled) return toast.error('Las contraseñas no coinciden')
-    trigger({ ...passwords, token })
+    trigger({ password, passwordConfirm, token })
   }
+
+  // RENDER
   return (
     <>
-      <h1>Recuperar</h1>
-      <form onSubmit={resetPassword}>
-        <input
+      <h1 className='mb-4'>Recuperar</h1>
+      <form onSubmit={resetPassword} className='flex max-w-sm flex-col gap-y-4'>
+        <Input
+          label='Contraseña'
           type='password'
-          value={passwords.password}
-          onChange={e => setPasswords({ ...passwords, password: e.target.value })}
-          required
+          name='password'
           minLength={8}
+          onChange={e => setPassword(e.target.value)}
           autoFocus
         />
-        <input
+        <Input
+          label='Confirmar contraseña'
+          name='passwordConfirm'
           type='password'
-          value={passwords.passwordConfirm}
-          onChange={e => setPasswords({ ...passwords, passwordConfirm: e.target.value })}
-          required
           minLength={8}
+          onChange={e => setPasswordConfirm(e.target.value)}
         />
+
         <button disabled={isMutating} className='disabled:bg-rose-600'>
           Restablecer
         </button>
@@ -49,6 +53,7 @@ export default function RecuperarApi(
   )
 }
 
+// SERVER SIDE PROPS
 export const getServerSideProps: GetServerSideProps<{ token: string }> = async context => {
   const token = context.query.token as undefined | string
 

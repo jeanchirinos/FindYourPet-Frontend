@@ -7,7 +7,6 @@
   @apply text-base;
 }
 
-
 /* select inputs of type text search email and password */
 input[type='text'],
 input[type='search'],

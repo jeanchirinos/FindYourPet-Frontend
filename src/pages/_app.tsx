@@ -12,6 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Encuentra tu mascota</title>
+        <meta name='description' content='Encuentra y adopta una mascota' />
       </Head>
       <Component {...pageProps} />
       <DynamicToaster />

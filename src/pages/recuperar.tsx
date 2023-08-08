@@ -1,25 +1,22 @@
+import { Input } from '@/components/Input/Input'
 import { useForgotPassword } from '@/services/auth'
-import { useSearchParams } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 
-export default function Recuperar() {
-  const params = useSearchParams()
+export default function Page(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  // STATES
+  const [email, setEmail] = useState(props.email)
 
-  const [email, setEmail] = useState(params.get('email') ?? '')
-
+  // HOOKS
   const { trigger, isMutating } = useForgotPassword()
 
-  useEffect(() => {
-    setEmail(params.get('email') ?? '')
-  }, [params])
-
+  // FUNCTIONS
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+
     trigger(
-      {
-        email,
-      },
+      { email },
       {
         onSuccess(data) {
           toast.success(data.msg)
@@ -28,13 +25,32 @@ export default function Recuperar() {
     )
   }
 
+  // RENDER
   return (
-    <>
+    <div className='space-y-8'>
       <h2>Ingresa el correo a recuperar</h2>
-      <form onSubmit={handleSubmit}>
-        <input type='email' value={email} onChange={e => setEmail(e.target.value)} required />
+
+      <form onSubmit={handleSubmit} className='max-w-xl'>
+        <Input
+          type='email'
+          label='Correo'
+          onChange={e => setEmail(e.target.value)}
+          autoFocus
+          value={email}
+        />
         <button disabled={isMutating}>{isMutating ? 'Enviando...' : 'Enviar'}</button>
       </form>
-    </>
+    </div>
   )
+}
+
+// SERVER SIDE PROPS
+export const getServerSideProps: GetServerSideProps<{ email: string }> = async context => {
+  const email = (context.query.email as string) ?? ''
+
+  return {
+    props: {
+      email,
+    },
+  }
 }

@@ -6,3 +6,5 @@ export type UserLogged = {
 }
 
 export type User = UserLogged | { status: 'success'; auth: false }
+
+export type SetState<T> = React.Dispatch<React.SetStateAction<T>>

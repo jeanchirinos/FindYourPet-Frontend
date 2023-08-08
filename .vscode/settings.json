@@ -18,10 +18,10 @@
     "yarn.lock": true,
     "README.md": true,
     "src/pages/_document.tsx": true,
-    ".eslintrc.json": true,
     ".gitignore": true,
     ".prettierrc.json": true,
-    "next.config.js": true
+    "next.config.js": true,
+    ".eslintrc.json": true
   },
   "hide-files.files": [
     "next-env.d.ts",
@@ -31,10 +31,10 @@
     "yarn.lock",
     "README.md",
     "src/pages/_document.tsx",
-    ".eslintrc.json",
     ".gitignore",
     ".prettierrc.json",
-    "next.config.js"
+    "next.config.js",
+    ".eslintrc.json"
   ],
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#ab307e",
