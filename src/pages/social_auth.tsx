@@ -1,4 +1,4 @@
-import { User } from '@/types'
+import { SessionLogged } from '@/types'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
@@ -17,7 +17,7 @@ export default function Page(props: InferGetServerSidePropsType<typeof getServer
   return <></>
 }
 
-type Query = User & { auth: string }
+type Query = Omit<SessionLogged, 'auth'>
 
 export const getServerSideProps: GetServerSideProps<{ query: Query }> = async context => {
   return {

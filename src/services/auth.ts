@@ -1,5 +1,6 @@
+import { SWRKey } from '@/enums'
 import { useSendData } from '@/hooks/useSendData'
-import { UserLogged } from '@/types'
+import { SessionLogged } from '@/types'
 
 export function useRegister() {
   interface Args {
@@ -8,9 +9,9 @@ export function useRegister() {
     passwordConfirm: string
   }
 
-  interface Res extends UserLogged {}
+  interface Res extends SessionLogged {}
 
-  return useSendData<Args, Res>('register', { key: 'session' })
+  return useSendData<Args, Res>('register', { key: SWRKey.SESSION })
 }
 
 export function useLogin() {
@@ -19,13 +20,13 @@ export function useLogin() {
     password: string
   }
 
-  interface Res extends UserLogged {}
+  interface Res extends SessionLogged {}
 
-  return useSendData<Args, Res>('login', { key: 'session' })
+  return useSendData<Args, Res>('login', { key: SWRKey.SESSION })
 }
 
 export function useLogout() {
-  return useSendData('logout', { key: 'session' })
+  return useSendData('logout', { key: SWRKey.SESSION })
 }
 
 export function useForgotPassword() {

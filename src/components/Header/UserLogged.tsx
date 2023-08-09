@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { UserLogged as UserLoggedType } from '@/types'
+import { SessionLogged as UserLoggedType } from '@/types'
 import { useLogout } from '@/services/auth'
 import { Popover, PopoverButton, PopoverContent } from '@/components/Popover'
 

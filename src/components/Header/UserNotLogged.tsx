@@ -1,12 +1,14 @@
-import Link from 'next/link'
+// import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { mutate } from 'swr'
-import { User } from '@/types'
+import { SessionLogged } from '@/types'
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-hot-toast'
 import { useLogin, useRegister } from '@/services/auth'
 import { Popover, PopoverButton, PopoverContent } from '../Popover'
-import { Input } from '../Input/Input'
+import { Input } from '@/components/Input/Input'
+import { SWRKey } from '@/enums'
+import { Tabs, Tab, Button, Link } from '@nextui-org/react'
 
 enum EFormState {
   Login = 'login',
@@ -17,38 +19,28 @@ enum EFormState {
 export function UserNotLogged() {
   const [formState, setFormState] = useState(EFormState.Login)
 
-  const isLogin = formState === EFormState.Login
-
   return (
     <Popover>
       <PopoverButton className='rounded-lg bg-black px-5 py-1 text-white'>Ingresa</PopoverButton>
-      <PopoverContent className='right-0 w-80 border border-neutral-200 bg-white px-5 py-3'>
+      <PopoverContent className='right-0 flex w-80 flex-col gap-y-2 border border-neutral-200 bg-white px-5 py-3'>
         <Google />
-        <section>
-          <fieldset>
-            <label>
-              <input
-                type='radio'
-                checked={isLogin}
-                onChange={() => {
-                  setFormState(EFormState.Login)
-                }}
-              />
-              <span>Login</span>
-            </label>
-            <label>
-              <input
-                type='radio'
-                checked={!isLogin}
-                onChange={() => {
-                  setFormState(EFormState.Register)
-                }}
-              />
-              <span>Registro</span>
-            </label>
-            {isLogin ? <Login /> : <Register />}
-          </fieldset>
-        </section>
+        <div className='max-w-sm'>
+          <Tabs
+            fullWidth
+            selectedKey={formState}
+            onSelectionChange={setFormState as any}
+            // classNames={{
+            //   panel: 'max-w-sm',
+            // }}
+          >
+            <Tab key={EFormState.Login} title='Login'>
+              <Login />
+            </Tab>
+            <Tab key={EFormState.Register} title='Registro'>
+              <Register />
+            </Tab>
+          </Tabs>
+        </div>
       </PopoverContent>
     </Popover>
   )
@@ -58,8 +50,8 @@ export function UserNotLogged() {
 function Google() {
   // EFFECT
   useEffect(() => {
-    function handleMessage(e: MessageEvent<User>) {
-      mutate('session', e.data, {
+    function handleMessage(e: MessageEvent<SessionLogged>) {
+      mutate(SWRKey.SESSION, e.data, {
         revalidate: false,
       })
 
@@ -83,13 +75,13 @@ function Google() {
   const openedWindow = useRef<null | Window>(null)
 
   return (
-    <button
-      onClick={openGoogleWindow}
+    <Button
+      onPress={openGoogleWindow}
       className='flex w-full items-center justify-center gap-x-1 rounded-md bg-white px-2 py-1 shadow-sm shadow-zinc-300'
     >
       <FcGoogle />
       <span>Continuar con Google</span>
-    </button>
+    </Button>
   )
 }
 
@@ -129,15 +121,34 @@ function Register() {
     })
   }
 
+  function handleBack() {
+    setEmailSent(false)
+    setForm(initialForm)
+  }
+
   // RENDER
   return (
     <>
       <form className='mt-4 flex max-w-xs flex-col gap-y-4' onSubmit={handleSubmit}>
-        <Input type='email' label='Correo' name='email' onChange={handleChange} autoFocus />
+        {/* <Input type='email' label='Correo' name='email' onChange={handleChange} autoFocus /> */}
+        <Input
+          type='email'
+          label='Correo'
+          name='email'
+          onChange={handleChange}
+          autoFocus
+          value={form.email}
+          classNames={{
+            inputWrapper:
+              // 'group-data-[focus-visible=true]:ring-1 group-data-[focus-visible=true]:ring-[#cacaca]',
+              'group-data-[focus-visible=true]:ring-transparent',
+          }}
+        />
         <Input
           type='password'
           label='Contraseña'
           name='password'
+          value={form.password}
           onChange={handleChange}
           minLength={8}
         />
@@ -145,22 +156,25 @@ function Register() {
           type='password'
           label='Confirmar contraseña'
           name='passwordConfirm'
+          value={form.passwordConfirm}
           onChange={handleChange}
           minLength={8}
         />
 
-        <button
-          className='mx-auto w-full rounded-md bg-primary px-4 py-1 text-white'
-          disabled={isMutating}
+        <Button
+          className='mx-auto w-full rounded-md bg-purple-500 px-4 py-1 text-white'
+          isLoading={isMutating}
+          type='submit'
         >
-          {isMutating ? 'Registrando' : 'Registrarse'}
-        </button>
+          {/* {isMutating ? 'Registrando' : 'Registrarse'} */}
+          Registrarse
+        </Button>
       </form>
 
       {emailSent && (
-        <div className='absolute inset-0 flex flex-col items-center justify-center bg-white'>
+        <div className='absolute inset-0 z-10 flex flex-col items-center justify-center bg-white'>
           <h1>Se envió el correo</h1>
-          <button onClick={() => setEmailSent(false)}>Volver</button>
+          <Button onPress={handleBack}>Volver</Button>
         </div>
       )}
     </>
@@ -195,7 +209,18 @@ function Login() {
 
   return (
     <form className='mt-4 flex max-w-xs flex-col gap-y-4' onSubmit={handleSubmit}>
-      <Input type='email' label='Correo' name='email' onChange={handleChange} autoFocus />
+      <Input
+        type='email'
+        label='Correo'
+        name='email'
+        onChange={handleChange}
+        autoFocus
+        classNames={{
+          inputWrapper:
+            // 'group-data-[focus-visible=true]:ring-1 group-data-[focus-visible=true]:ring-[#cacaca]',
+            'group-data-[focus-visible=true]:ring-transparent',
+        }}
+      />
       <Input
         type='password'
         label='Contraseña'
@@ -203,13 +228,21 @@ function Login() {
         onChange={handleChange}
         minLength={8}
       />
-      <button
-        className='mx-auto w-full rounded-md bg-primary px-4 py-1 text-white'
-        disabled={isMutating}
+      <Button
+        className='mx-auto flex w-full gap-x-2 rounded-md bg-primary px-4 py-1 text-white'
+        type='submit'
+        // disabled={isMutating}
+        isLoading={isMutating}
       >
-        {isMutating ? 'Ingresando' : 'Ingresar'}
-      </button>
-      <Link href={`/recuperar?email=${form.email}`} target='_blank' rel='noreferrer'>
+        {/* {isMutating ? 'Ingresando' : 'Ingresar'} */}
+        Ingresar
+      </Button>
+      <Link
+        href={`/recuperar?email=${form.email}`}
+        target='_blank'
+        rel='noreferrer'
+        className='mx-auto'
+      >
         ¿Olvidaste tu contraseña?
       </Link>
     </form>
