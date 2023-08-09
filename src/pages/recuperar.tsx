@@ -1,5 +1,6 @@
 import { Input } from '@/components/Input/Input'
 import { useForgotPassword } from '@/services/auth'
+import { Button } from '@nextui-org/react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
@@ -27,18 +28,21 @@ export default function Page(props: InferGetServerSidePropsType<typeof getServer
 
   // RENDER
   return (
-    <div className='space-y-8'>
-      <h2>Ingresa el correo a recuperar</h2>
-
-      <form onSubmit={handleSubmit} className='max-w-xl'>
+    <div className='flex min-h-screen items-center justify-center'>
+      <form onSubmit={handleSubmit} className='flex w-80 max-w-full flex-col gap-y-4 text-center'>
+        <h2>Ingresa el correo a recuperar</h2>
         <Input
           type='email'
           label='Correo'
           onChange={e => setEmail(e.target.value)}
           autoFocus
           value={email}
+          required
+          placeholder='example@gmail.com'
         />
-        <button disabled={isMutating}>{isMutating ? 'Enviando...' : 'Enviar'}</button>
+        <Button color='primary' isLoading={isMutating} type='submit' isDisabled={!email}>
+          Enviar correo
+        </Button>
       </form>
     </div>
   )
