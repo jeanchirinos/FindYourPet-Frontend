@@ -51,7 +51,7 @@ export default function Page(props: InferGetServerSidePropsType<typeof getServer
             onChange={e => setPasswordConfirm(e.target.value)}
           />
 
-          <Button color='primary' isLoading={isMutating} isDisabled={!password || isDisabled}>
+          <Button color='primary' isLoading={isMutating} isDisabled={isDisabled} type='submit'>
             Restablecer
           </Button>
         </form>

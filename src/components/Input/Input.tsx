@@ -8,12 +8,13 @@ import { Input as NextUiInput } from '@nextui-org/react'
 export function Input(props: React.ComponentProps<typeof NextUiInput>) {
   return (
     <NextUiInput
-      required
+      isRequired
       {...props}
       classNames={{
         inputWrapper:
           // 'group-data-[focus-visible=true]:ring-1 group-data-[focus-visible=true]:ring-[#cacaca]',
           'group-data-[focus-visible=true]:ring-transparent',
+        label: 'after:hidden',
       }}
     />
   )
