@@ -1,8 +1,8 @@
-import Link from 'next/link'
 import Image from 'next/image'
 import { SessionLogged as UserLoggedType } from '@/types'
 import { useLogout } from '@/services/auth'
-import { Popover, PopoverButton, PopoverContent } from '@/components/Popover'
+import { Button, Link } from '@nextui-org/react'
+import { Popover, PopoverContent, PopoverTrigger } from '../Popover'
 
 export function UserLogged(props: { session: UserLoggedType }) {
   // HOOKS
@@ -21,8 +21,8 @@ export function UserLogged(props: { session: UserLoggedType }) {
 
   // RENDER
   return (
-    <Popover>
-      <PopoverButton>
+    <Popover placement='bottom-end'>
+      <PopoverTrigger>
         <Image
           src={props.session.image}
           alt='Perfil'
@@ -31,14 +31,18 @@ export function UserLogged(props: { session: UserLoggedType }) {
           className='rounded-full'
           loading='eager'
         />
-      </PopoverButton>
-      <PopoverContent className='right-0 flex flex-col border border-neutral-200'>
-        <Link href='#' className='px-4 py-1'>
+      </PopoverTrigger>
+      <PopoverContent className='w-40'>
+        <Link href='#' className='w-full p-2 text-sm'>
           Perfil
         </Link>
-        <button className='w-max px-4 py-1' onClick={handleLogout} disabled={isMutating}>
-          {isMutating ? 'Cerrando Sesión' : 'Cerrar sesión'}
-        </button>
+        <Button
+          onPress={handleLogout}
+          className='w-full justify-start bg-transparent px-2 py-0 text-sm'
+          isLoading={isMutating}
+        >
+          Cerrar sesión
+        </Button>
       </PopoverContent>
     </Popover>
   )

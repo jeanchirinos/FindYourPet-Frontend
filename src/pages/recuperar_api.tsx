@@ -1,4 +1,4 @@
-import { Input } from '@/components/Input/Input'
+import { Input } from '@/components/Input'
 import { useResetPassword } from '@/services/auth'
 import { Button } from '@nextui-org/react'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
