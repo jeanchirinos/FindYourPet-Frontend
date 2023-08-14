@@ -198,9 +198,6 @@ function Login() {
     trigger(form, {
       revalidate: false,
       populateCache: true,
-      onSuccess(data) {
-        toast.success(data.role)
-      },
     })
   }
 
