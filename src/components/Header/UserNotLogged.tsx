@@ -21,7 +21,7 @@ export function UserNotLogged() {
   const [formState, setFormState] = useState(EFormState.Login)
 
   return (
-    <Popover placement='bottom-end' isOpen>
+    <Popover placement='bottom-end'>
       <PopoverTrigger className='px-5 py-1'>Ingresa</PopoverTrigger>
       <PopoverContent className='flex w-80 flex-col gap-y-2 border border-neutral-200 bg-white '>
         <Google />
@@ -234,8 +234,4 @@ function Login() {
       </form>
     </>
   )
-}
-
-function MyButtonWithLoading(props: { isLoading: boolean }) {
-  return <button>Ingresar {props.isLoading && 'Cargando'}</button>
 }
