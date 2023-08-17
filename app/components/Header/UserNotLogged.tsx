@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { mutate } from 'swr'
-import { SessionLogged } from '@/types'
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-hot-toast'
 import { useLogin, useRegister } from '@/services/auth'
@@ -49,8 +48,10 @@ export function UserNotLogged() {
 function Google() {
   // EFFECT
   useEffect(() => {
-    function handleMessage(e: MessageEvent<SessionLogged>) {
-      mutate(SWRKey.SESSION, e.data, {
+    function handleMessage(e: MessageEvent<string>) {
+      const data = JSON.parse(e.data)
+
+      mutate(SWRKey.SESSION, data, {
         revalidate: false,
       })
 

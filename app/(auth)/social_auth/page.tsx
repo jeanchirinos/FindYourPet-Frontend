@@ -11,7 +11,7 @@ export default function Page(props: { searchParams: SessionLogged }) {
     // Open only if it was opened by the app
     if (!window.opener) return router.replace('/')
 
-    window.opener.postMessage(searchParams, window.location.origin)
+    window.opener.postMessage(JSON.stringify(searchParams), window.location.origin)
   }, [router, searchParams])
 
   return <></>
