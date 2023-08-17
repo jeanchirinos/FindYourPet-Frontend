@@ -1,12 +1,8 @@
 import '@/styles/globals.css'
-// import dynamic from 'next/dynamic'
 import { Livvic } from 'next/font/google'
 import { Providers } from './providers'
 import { Metadata } from 'next'
 
-// const DynamicToaster = dynamic(() => import('react-hot-toast').then(module => module.Toaster), {
-//   ssr: false,
-// })
 
 const livvic = Livvic({ weight: ['400'], subsets: ['latin'] })
 
@@ -30,7 +26,6 @@ export default function RootLayout(props: React.PropsWithChildren) {
       <body>
         <Providers>{props.children}</Providers>
       </body>
-      {/* <DynamicToaster /> */}
     </html>
   )
 }

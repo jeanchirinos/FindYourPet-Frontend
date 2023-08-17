@@ -5,7 +5,7 @@ import { cookies } from 'next/headers'
 // import dynamic from 'next/dynamic'
 // import { Livvic } from 'next/font/google'
 // import { Metadata } from 'next'
-import { Header } from '@/components/Header/Header'
+import { Header } from 'app/(session)/components/Header/Header'
 import NextTopLoader from 'nextjs-toploader'
 
 // const DynamicToaster = dynamic(() => import('react-hot-toast').then(module => module.Toaster), {

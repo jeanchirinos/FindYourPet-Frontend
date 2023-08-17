@@ -2,24 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :placeholder-shown:not(:focus) + span {
-  transform: translateY(-0.4rem);
-  @apply text-base;
-} */
-
-/* select inputs of type text search email and password */
-/* input[type='text'],
-input[type='search'],
-input[type='email'],
-input[type='password'] {
-  @apply rounded-md;
-}
-
-input:focus {
-  outline: none;
-  border-color: transparent !important;
-} */
-
 input:-webkit-autofill,
 input:-webkit-autofill:is(:hover, :focus, :active) {
   transition: background-color 5000s ease-in-out 0s;
