@@ -1,17 +1,16 @@
 'use client'
-import { SessionLogged } from '@/types'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
-export default function Page(props: { searchParams: SessionLogged }) {
-  const { searchParams } = props
+export default function Page() {
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     // Open only if it was opened by the app
     if (!window.opener) return router.replace('/')
 
-    window.opener.postMessage(JSON.stringify(searchParams), window.location.origin)
+    window.opener.postMessage(Object.fromEntries(searchParams), window.location.origin)
   }, [router, searchParams])
 
   return <></>

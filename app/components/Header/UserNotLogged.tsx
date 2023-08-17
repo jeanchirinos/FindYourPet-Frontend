@@ -49,13 +49,11 @@ function Google() {
   // EFFECT
   useEffect(() => {
     function handleMessage(e: MessageEvent<string>) {
-      const data = JSON.parse(e.data)
-
-      mutate(SWRKey.SESSION, data, {
+      mutate(SWRKey.SESSION, e.data, {
         revalidate: false,
+      }).then(() => {
+        openedWindow.current?.close()
       })
-
-      openedWindow.current?.close()
     }
 
     window.addEventListener('message', handleMessage)
