@@ -1,4 +1,4 @@
-import { toast } from 'react-hot-toast'
+// import { toast } from 'react-hot-toast'
 
 interface Config extends Omit<RequestInit, 'body'> {
   method?: 'GET' | 'POST'
@@ -43,7 +43,7 @@ export async function request<Response>(
 
   if (!res.ok) {
     if (config.method === 'POST') {
-      toast.error(data.msg)
+      // toast.error(data.msg)
     }
 
     if (typeof window !== 'undefined' && res.status === 401) {

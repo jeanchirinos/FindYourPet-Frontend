@@ -1,13 +1,15 @@
-import { Input } from '@/components/Input'
+'use client'
+import { Input } from 'app/components/Input'
 import { useForgotPassword } from '@/services/auth'
 import { Button } from '@nextui-org/react'
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 
-export default function Page(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Page(props: { searchParams: null | { email: string } }) {
+  const initialEmail = props.searchParams?.email ?? ''
+
   // STATES
-  const [email, setEmail] = useState(props.email)
+  const [email, setEmail] = useState(initialEmail)
 
   // HOOKS
   const { trigger, isMutating } = useForgotPassword()
@@ -46,15 +48,4 @@ export default function Page(props: InferGetServerSidePropsType<typeof getServer
       </form>
     </div>
   )
-}
-
-// SERVER SIDE PROPS
-export const getServerSideProps: GetServerSideProps<{ email: string }> = async context => {
-  const email = (context.query.email as string) ?? ''
-
-  return {
-    props: {
-      email,
-    },
-  }
 }

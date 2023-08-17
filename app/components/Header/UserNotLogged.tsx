@@ -1,4 +1,5 @@
-// import Link from 'next/link'
+'use client'
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { mutate } from 'swr'
 import { SessionLogged } from '@/types'
@@ -6,10 +7,10 @@ import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-hot-toast'
 import { useLogin, useRegister } from '@/services/auth'
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/Popover'
-import { Input } from '@/components/Input'
+import { Input } from 'app/components/Input'
 import { SWRKey } from '@/enums'
-import { Tabs, Tab, Link } from '@nextui-org/react'
-import { Button } from '../Button'
+import { Tabs, Tab } from '@nextui-org/react'
+import { Button } from '@/components/Button'
 
 enum EFormState {
   Login = 'login',
@@ -21,29 +22,26 @@ export function UserNotLogged() {
   const [formState, setFormState] = useState(EFormState.Login)
 
   return (
-    <Popover placement='bottom-end'>
-      <PopoverTrigger className='px-5 py-1'>Ingresa</PopoverTrigger>
-      <PopoverContent className='flex w-80 flex-col gap-y-2 border border-neutral-200 bg-white '>
-        <Google />
-        <div className='w-full max-w-sm'>
-          <Tabs
-            fullWidth
-            selectedKey={formState}
-            onSelectionChange={setFormState as any}
-            // classNames={{
-            //   panel: 'max-w-sm',
-            // }}
-          >
-            <Tab key={EFormState.Login} title='Login'>
-              <Login />
-            </Tab>
-            <Tab key={EFormState.Register} title='Registro'>
-              <Register />
-            </Tab>
-          </Tabs>
-        </div>
-      </PopoverContent>
-    </Popover>
+    <>
+      {/* <Popover placement='bottom-end'> */}
+
+      <Popover>
+        <PopoverTrigger className='px-5 py-1'>Ingresa</PopoverTrigger>
+        <PopoverContent className='right-0 flex w-80 flex-col gap-y-2 border border-neutral-200 bg-white px-5 py-3'>
+          <div className='max-w-sm'>
+            <Google />
+            <Tabs fullWidth selectedKey={formState} onSelectionChange={setFormState as any}>
+              <Tab key={EFormState.Login} title='Login'>
+                <Login />
+              </Tab>
+              <Tab key={EFormState.Register} title='Registro'>
+                <Register />
+              </Tab>
+            </Tabs>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </>
   )
 }
 
@@ -69,6 +67,7 @@ function Google() {
   // FUNCTIONS
   function openGoogleWindow() {
     const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_API_CLIENT}auth/google/redirect`)
+
     openedWindow.current = window.open(url, '_blank', 'width=400,height=700')
   }
 

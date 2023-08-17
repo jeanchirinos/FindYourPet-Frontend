@@ -14,27 +14,23 @@
     "next-env.d.ts": true,
     "postcss.config.js": true,
     "node_modules": true,
-    ".next": true,
     "yarn.lock": true,
     "README.md": true,
-    "src/pages/_document.tsx": true,
     ".gitignore": true,
     ".prettierrc.json": true,
-    "next.config.js": true,
-    ".eslintrc.json": true
+    ".eslintrc.json": true,
+    ".next": true
   },
   "hide-files.files": [
     "next-env.d.ts",
     "postcss.config.js",
     "node_modules",
-    ".next",
     "yarn.lock",
     "README.md",
-    "src/pages/_document.tsx",
     ".gitignore",
     ".prettierrc.json",
-    "next.config.js",
-    ".eslintrc.json"
+    ".eslintrc.json",
+    ".next"
   ],
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#ab307e",

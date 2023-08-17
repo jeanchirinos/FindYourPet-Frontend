@@ -1,3 +1,5 @@
+'use client'
+
 import { SWRKey } from '@/enums'
 import { useSendData } from '@/hooks/useSendData'
 import { SessionLogged } from '@/types'

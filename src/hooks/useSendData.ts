@@ -1,3 +1,5 @@
+'use client'
+
 import useSWRMutation from 'swr/mutation'
 import { request } from '@/utilities'
 

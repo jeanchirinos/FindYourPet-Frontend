@@ -1,3 +1,4 @@
+'use client'
 import { Button as BaseButton, Spinner } from '@nextui-org/react'
 import { twMerge } from 'tailwind-merge'
 

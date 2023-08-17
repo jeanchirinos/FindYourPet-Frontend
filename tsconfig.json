@@ -21,7 +21,7 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": [
-        "src/components/*"
+        "app/components/*"
       ],
       "@/pages/*": [
         "pages/*"
@@ -34,13 +34,20 @@
       ],
       "@/public/*": [
         "public/*"
-      ],
-    }
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".vscode/middleware.ts"
   ],
   "exclude": [
     "node_modules"
