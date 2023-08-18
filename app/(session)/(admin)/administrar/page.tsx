@@ -1,5 +1,7 @@
 'use client'
-import { useCategories } from '@/services/category'
+import { MyCombobox } from '@/components/Combobox'
+import { Input } from '@/components/Input'
+import { useBreeds } from '@/services/breed'
 
 // export default function Page() {
 //   const { categories } = useCategories()
@@ -40,11 +42,12 @@ export default function Page() {
   //   return users.slice(start, end)
   // }, [page, users])
 
-  const { categories } = useCategories()
+  const { breeds: categories } = useBreeds()
 
   return (
-    <div className='min-h-screen'>
-      <h1 className='text-center text-3xl font-black'>{categories?.name}</h1>
+    <div className='flex min-h-screen flex-col items-center gap-y-10 py-20'>
+      {/* <h1 className='text-center text-3xl font-black'>{categories?.name}</h1> */}
+      <MyCombobox />
       <Table
         aria-label='Example table with client side pagination'
         className='mx-auto w-fit'
@@ -64,6 +67,7 @@ export default function Page() {
       >
         <TableHeader>
           <TableColumn key='name'>Nombre</TableColumn>
+          <TableColumn key='name'>Acciones</TableColumn>
         </TableHeader>
         <TableBody items={categories?.breeds ?? []}>
           {item => (
