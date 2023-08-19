@@ -1,12 +1,17 @@
 'use client'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
-import { useCategories } from '@/services/category'
+import { Category } from '@/services/category'
+import { SetState } from '@/types'
 
-export function MyCombobox() {
-  const { categories = [] } = useCategories()
+interface Props {
+  categories: Category[]
+  selected: Category
+  setSelected: SetState<Category>
+}
 
-  const [selected, setSelected] = useState(categories[0])
+export function MyCombobox(props: Props) {
+  const { categories, selected, setSelected } = props
 
   const [query, setQuery] = useState('')
 
@@ -19,10 +24,6 @@ export function MyCombobox() {
             .replace(/\s+/g, '')
             .includes(query.toLowerCase().replace(/\s+/g, '')),
         )
-
-  useEffect(() => {
-    setSelected(categories[0])
-  }, [categories])
 
   // RENDER
   return (

@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { getSession } from '@/services/session'
-import { Session } from '@/types'
-import { ERole } from '@/enums'
+// import { getSession } from '@/services/session'
+// import { Session } from '@/types'
+// import { ERole } from '@/enums'
 
 export async function middleware(request: NextRequest) {
   // Routes that doesn't require session
@@ -22,15 +22,15 @@ export async function middleware(request: NextRequest) {
   // session = await getSession(request.headers.get('cookie')!)
   // }
 
-  const session = {
-    status: 'success',
-    auth: true,
-    image: 'http://127.0.0.1:8000/users/2/profile.webp',
-    role: 'admin',
-  }
+  // const session = {
+  //   status: 'success',
+  //   auth: true,
+  //   image: 'http://127.0.0.1:8000/users/2/profile.webp',
+  //   role: 'admin',
+  // }
 
   const response = NextResponse.next()
-  response.cookies.set('session', JSON.stringify(session))
+  // response.cookies.set('session', JSON.stringify(session))
 
   // if (
   //   request.nextUrl.pathname.startsWith('/administrar') &&

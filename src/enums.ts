@@ -5,4 +5,5 @@ export enum ERole {
 
 export enum SWRKey {
   SESSION = 'session',
+  BREEDS = 'breeds',
 }

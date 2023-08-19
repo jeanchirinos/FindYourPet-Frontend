@@ -2,7 +2,7 @@
 import { request } from '@/utilities'
 import useSWR from 'swr'
 
-interface Category {
+export interface Category {
   id: number
   name: string
   image: string
@@ -13,7 +13,10 @@ async function getCategories() {
 }
 
 export function useCategories() {
-  const { data: categories, ...rest } = useSWR('categories', getCategories)
+  const { data: categories, ...rest } = useSWR('categories', getCategories, {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+  })
 
   return {
     categories,

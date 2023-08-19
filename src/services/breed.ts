@@ -12,12 +12,15 @@ interface BreedsData {
   }[]
 }
 
-async function getBreeds() {
-  return request<BreedsData>('breedList/2')
+async function getBreeds(id: number) {
+  return request<BreedsData>(`breedList/${id}`)
 }
 
-export function useBreeds() {
-  const { data: breeds, ...rest } = useSWR('breeds', getBreeds)
+export function useBreeds(id: number) {
+  const { data: breeds, ...rest } = useSWR('breeds', () => getBreeds(id), {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+  })
 
   return {
     breeds,

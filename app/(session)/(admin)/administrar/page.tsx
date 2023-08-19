@@ -1,7 +1,9 @@
 'use client'
 import { MyCombobox } from '@/components/Combobox'
-import { Input } from '@/components/Input'
+import { SWRKey } from '@/enums'
+// import { Input } from '@/components/Input'
 import { useBreeds } from '@/services/breed'
+import { useCategories } from '@/services/category'
 
 // export default function Page() {
 //   const { categories } = useCategories()
@@ -27,6 +29,8 @@ import {
   getKeyValue,
   // Pagination,
 } from '@nextui-org/react'
+import { useEffect, useState } from 'react'
+import { mutate } from 'swr'
 // import { useState, useMemo } from 'react'
 
 export default function Page() {
@@ -41,13 +45,24 @@ export default function Page() {
 
   //   return users.slice(start, end)
   // }, [page, users])
+  const { categories = [] } = useCategories()
 
-  const { breeds: categories } = useBreeds()
+  const [selected, setSelected] = useState(categories[0])
+
+  useEffect(() => {
+    setSelected(categories[0])
+  }, [categories])
+
+  useEffect(() => {
+    mutate(SWRKey.BREEDS)
+  }, [selected])
+
+  const { breeds } = useBreeds(selected?.id)
 
   return (
     <div className='flex min-h-screen flex-col items-center gap-y-10 py-20'>
       {/* <h1 className='text-center text-3xl font-black'>{categories?.name}</h1> */}
-      <MyCombobox />
+      <MyCombobox categories={categories} selected={selected} setSelected={setSelected} />
       <Table
         aria-label='Example table with client side pagination'
         className='mx-auto w-fit'
@@ -69,7 +84,7 @@ export default function Page() {
           <TableColumn key='name'>Nombre</TableColumn>
           <TableColumn key='name'>Acciones</TableColumn>
         </TableHeader>
-        <TableBody items={categories?.breeds ?? []}>
+        <TableBody items={breeds?.breeds ?? []}>
           {item => (
             <TableRow key={item.name}>
               {columnKey => <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
