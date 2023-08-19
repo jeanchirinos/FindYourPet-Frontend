@@ -27,7 +27,7 @@ export function PopoverContent(props: ComponentProps<typeof HeadlessPopover.Pane
     >
       <HeadlessPopover.Panel
         {...props}
-        className={twMerge('absolute z-10 mt-2 rounded-md', props.className)}
+        className={twMerge('absolute mt-2 rounded-md', props.className)}
       >
         {props.children}
       </HeadlessPopover.Panel>

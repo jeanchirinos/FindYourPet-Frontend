@@ -1,26 +1,13 @@
 'use client'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { useCategories } from '@/services/category'
-
-// const people = [
-// { id: 1, name: 'Rata' },
-// { id: 2, name: 'Conejo' },
-// { id: 3, name: 'Devon Webb', icon: 'rata' },
-// { id: 4, name: 'Tom Nook 2', icon: 'rata' },
-// { id: 5, name: 'Tanya Fox', icon: 'rata' },
-// { id: 6, name: 'Hellen Schmidt', icon: 'rata' },
-// ]
 
 export function MyCombobox() {
   const { categories = [] } = useCategories()
 
-  // const [selected, setSelected] = useState(people[0])
-  const [selected, setSelected] = useState({
-    id: 0,
-    name: 'No seleccionado',
-    image: '<svg></svg>',
-  })
+  const [selected, setSelected] = useState(categories[0])
+
   const [query, setQuery] = useState('')
 
   const filteredPeople =
@@ -33,6 +20,11 @@ export function MyCombobox() {
             .includes(query.toLowerCase().replace(/\s+/g, '')),
         )
 
+  useEffect(() => {
+    setSelected(categories[0])
+  }, [categories])
+
+  // RENDER
   return (
     <div className='z-10 w-72'>
       <Combobox value={selected} onChange={setSelected}>
@@ -47,10 +39,12 @@ export function MyCombobox() {
               {/* <ChevronUpDownIcon className='h-5 w-5 text-gray-400' aria-hidden='true' /> */}
               {/* <TomNook className='h-5 w-5 text-gray-400' aria-hidden='true' /> */}
               {/* <Icon name={selected.name} className='h-5 w-5 text-gray-400' aria-hidden='true' /> */}
-              <div
-                className='[&>*]:h-5 [&>*]:w-5 [&>*]:text-gray-400'
-                dangerouslySetInnerHTML={{ __html: selected.image }}
-              />
+              {selected && (
+                <div
+                  className='[&>*]:h-5 [&>*]:w-5 [&>*]:text-gray-400'
+                  dangerouslySetInnerHTML={{ __html: selected.image }}
+                />
+              )}
             </Combobox.Button>
           </div>
           <Transition
