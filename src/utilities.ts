@@ -49,7 +49,7 @@ export async function request<Response>(
     if (typeof window !== 'undefined' && res.status === 401) {
       // removeAuthToken()
       localStorage.clear()
-      window.location.replace('/')
+      // window.location.replace('/')
     }
 
     throw new Error(`[${res.status} - ${res.statusText}] : ${data.msg}`)
