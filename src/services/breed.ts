@@ -1,6 +1,8 @@
 'use client'
-import { request } from '@/utilities'
-import useSWR from 'swr'
+import { SWRKey } from '@/enums'
+import { useGetData } from '@/hooks/useGetData'
+// import { request } from '@/utilities'
+// import useSWR from 'swr'
 
 interface BreedsData {
   id: number
@@ -12,14 +14,21 @@ interface BreedsData {
   }[]
 }
 
-async function getBreeds(id: number) {
-  return request<BreedsData>(`breedList/${id}`)
-}
+// async function getBreeds(id: number) {
+//   return request<BreedsData>(`breedList/${id}`)
+// }
 
-export function useBreeds(id: number) {
-  const { data: breeds, ...rest } = useSWR('breeds', () => getBreeds(id), {
-    revalidateIfStale: false,
-    revalidateOnFocus: false,
+export function useBreeds(id: number | undefined) {
+  // const { data: breeds, ...rest } = useSWR('breeds', () => getBreeds(id), {
+  //   revalidateIfStale: false,
+  //   revalidateOnFocus: false,
+
+  // })
+
+  const { data: breeds, ...rest } = useGetData<BreedsData>(`breedList/${id}`, {
+    // key: SWRKey.BREEDS,
+    key: id?.toString(),
+    waitFor: [Boolean(id)],
   })
 
   return {

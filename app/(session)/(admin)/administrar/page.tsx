@@ -1,23 +1,7 @@
 'use client'
 import { MyCombobox } from '@/components/Combobox'
-import { SWRKey } from '@/enums'
-// import { Input } from '@/components/Input'
 import { useBreeds } from '@/services/breed'
 import { useCategories } from '@/services/category'
-
-// export default function Page() {
-//   const { categories } = useCategories()
-
-//   return (
-//     <>
-//       {categories?.map(category => (
-//         <div key={category.id}>
-//           <h1>{category.name}</h1>
-//         </div>
-//       ))}
-//     </>
-//   )
-// }
 
 import {
   Table,
@@ -45,6 +29,7 @@ export default function Page() {
 
   //   return users.slice(start, end)
   // }, [page, users])
+
   const { categories = [] } = useCategories()
 
   const [selected, setSelected] = useState(categories[0])
@@ -54,7 +39,9 @@ export default function Page() {
   }, [categories])
 
   useEffect(() => {
-    mutate(SWRKey.BREEDS)
+    // mutate(SWRKey.BREEDS)
+    if (!selected?.id) return
+    mutate(selected.id.toString())
   }, [selected])
 
   const { breeds } = useBreeds(selected?.id)
@@ -82,7 +69,7 @@ export default function Page() {
       >
         <TableHeader>
           <TableColumn key='name'>Nombre</TableColumn>
-          <TableColumn key='name'>Acciones</TableColumn>
+          <TableColumn key='actions'>Acciones</TableColumn>
         </TableHeader>
         <TableBody items={breeds?.breeds ?? []}>
           {item => (

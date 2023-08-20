@@ -13,7 +13,7 @@ export function Header() {
   return (
     <header className='fixed inset-0 z-20 mx-auto flex h-[40px] w-[1600px] max-w-full justify-between px-1.5'>
       <Link href='/' aria-label='Inicio'>
-        <Image src={Logo} alt='Logo' height={40} />
+        <Image src={Logo} alt='Logo' height={40} loading='eager' />
       </Link>
       {session.auth ? <UserLogged session={session} /> : <UserNotLogged />}
     </header>

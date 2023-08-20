@@ -1,43 +1,36 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-// import { getSession } from '@/services/session'
-// import { Session } from '@/types'
-// import { ERole } from '@/enums'
+import { getSession } from '@/services/session'
+import { Session } from '@/types'
+import { ERole } from '@/enums'
 
 export async function middleware(request: NextRequest) {
   // Routes that doesn't require session
-  // if (
-  //   request.nextUrl.pathname.startsWith('/recuperar') ||
-  //   request.nextUrl.pathname.startsWith('/recuperar_api') ||
-  //   request.nextUrl.pathname.startsWith('/social_auth')
-  // ) {
-  //   return NextResponse.next()
-  // }
+  if (
+    request.nextUrl.pathname.startsWith('/recuperar') ||
+    request.nextUrl.pathname.startsWith('/recuperar_api') ||
+    request.nextUrl.pathname.startsWith('/social_auth')
+  ) {
+    return NextResponse.next()
+  }
 
-  // const authCookie = request.cookies.get('jwt')
+  const authCookie = request.cookies.get('jwt')
 
-  // let session: Session = { auth: false }
+  let session: Session = { auth: false }
 
-  // if (authCookie) {
-  // session = await getSession(request.headers.get('cookie')!)
-  // }
-
-  // const session = {
-  //   status: 'success',
-  //   auth: true,
-  //   image: 'http://127.0.0.1:8000/users/2/profile.webp',
-  //   role: 'admin',
-  // }
+  if (authCookie) {
+    session = await getSession(request.headers.get('cookie')!)
+  }
 
   const response = NextResponse.next()
-  // response.cookies.set('session', JSON.stringify(session))
+  response.cookies.set('session', JSON.stringify(session))
 
-  // if (
-  //   request.nextUrl.pathname.startsWith('/administrar') &&
-  //   (!session.auth || session.role !== ERole.ADMIN)
-  // ) {
-  //   return Response.redirect(new URL('/', request.nextUrl))
-  // }
+  if (
+    request.nextUrl.pathname.startsWith('/administrar') &&
+    (!session.auth || session.role !== ERole.ADMIN)
+  ) {
+    return NextResponse.redirect(new URL('', request.nextUrl.origin))
+  }
 
   return response
 }

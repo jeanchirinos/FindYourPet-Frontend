@@ -10,6 +10,8 @@ import { Input } from 'app/components/Input'
 import { SWRKey } from '@/enums'
 import { Tabs, Tab } from '@nextui-org/react'
 import { Button } from '@/components/Button'
+import { setCookie } from 'typescript-cookie'
+import { SessionLogged } from '@/types'
 
 enum EFormState {
   Login = 'login',
@@ -48,12 +50,14 @@ export function UserNotLogged() {
 function Google() {
   // EFFECT
   useEffect(() => {
-    function handleMessage(e: MessageEvent<string>) {
+    function handleMessage(e: MessageEvent<SessionLogged & { token: string }>) {
       mutate(SWRKey.SESSION, e.data, {
         revalidate: false,
-      }).then(() => {
-        openedWindow.current?.close()
       })
+
+      setCookie('jwt', e.data.token)
+
+      openedWindow.current?.close()
     }
 
     window.addEventListener('message', handleMessage)
@@ -65,6 +69,7 @@ function Google() {
 
   // FUNCTIONS
   function openGoogleWindow() {
+    // TODO: URL BASE ON ENVIRONMENT : DEVELOPMENT | PRODUCTION OR BASE ON URL PASSED
     const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_API_CLIENT}auth/google/redirect`)
 
     openedWindow.current = window.open(url, '_blank', 'width=400,height=700')
@@ -113,6 +118,9 @@ function Register() {
     trigger(form, {
       revalidate: false,
       populateCache: true,
+      onSuccess(data) {
+        setCookie('jwt', data.token)
+      },
     })
 
     setEmailSent(true)
@@ -193,9 +201,13 @@ function Login() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+
     trigger(form, {
       revalidate: false,
       populateCache: true,
+      onSuccess(data) {
+        setCookie('jwt', data.token)
+      },
     })
   }
 

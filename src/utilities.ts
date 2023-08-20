@@ -1,4 +1,5 @@
 import { toast } from 'react-hot-toast'
+import { getCookie } from 'typescript-cookie'
 
 interface Config extends Omit<RequestInit, 'body'> {
   method?: 'GET' | 'POST'
@@ -7,9 +8,9 @@ interface Config extends Omit<RequestInit, 'body'> {
 
 export async function request<Response>(
   url: string,
-  options?: { config?: Config; cookies?: string },
+  options?: { config?: Config; cookies?: string; token?: string },
 ): Promise<Response> {
-  const { config = {}, cookies } = options ?? {}
+  const { config = {}, cookies, token } = options ?? {}
 
   const headers: HeadersInit = {}
   let body = null
@@ -19,6 +20,18 @@ export async function request<Response>(
   } else {
     headers['content-type'] = 'application/json'
     headers.accept = 'application/json'
+
+    let authToken
+
+    if (token) {
+      authToken = token
+    } else if (typeof window !== 'undefined') {
+      authToken = getCookie('jwt')
+    }
+
+    if (authToken) {
+      headers.authorization = `Bearer ${authToken}`
+    }
 
     body = JSON.stringify(config.body)
   }

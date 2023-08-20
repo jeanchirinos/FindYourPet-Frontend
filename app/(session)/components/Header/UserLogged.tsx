@@ -8,12 +8,15 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/Popover'
 import { ERole } from '@/enums'
 import { removeCookie } from 'typescript-cookie'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export function UserLogged(props: { session: UserLoggedType }) {
   const { session } = props
 
   // HOOKS
   const { trigger, isMutating } = useLogout()
+
+  const router = useRouter()
 
   // FUNCTIONS
   function handleLogout() {
@@ -23,7 +26,10 @@ export function UserLogged(props: { session: UserLoggedType }) {
         onSuccess() {
           localStorage.clear()
           removeCookie('session')
-          window.location.href = '/'
+          removeCookie('jwt')
+          router.replace('/')
+          router.refresh()
+          // window.location.href = '/'
         },
         revalidate: false,
         populateCache: true,

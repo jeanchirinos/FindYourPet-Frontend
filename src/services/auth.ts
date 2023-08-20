@@ -11,7 +11,9 @@ export function useRegister() {
     passwordConfirm: string
   }
 
-  interface Res extends SessionLogged {}
+  interface Res extends SessionLogged {
+    token: string
+  }
 
   return useSendData<Args, Res>('register', { key: SWRKey.SESSION })
 }
@@ -22,7 +24,9 @@ export function useLogin() {
     password: string
   }
 
-  interface Res extends SessionLogged {}
+  interface Res extends SessionLogged {
+    token: string
+  }
 
   return useSendData<Args, Res>('login', { key: SWRKey.SESSION })
 }
