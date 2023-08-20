@@ -21,6 +21,12 @@ export const metadata: Metadata = {
 //   <meta name='theme-color' content='#ffffff' />
 
 export default function RootLayout(props: React.PropsWithChildren) {
+
+
+  const imagesDomains = process.env.NEXT_PUBLIC_IMAGES_DOMAINS?.split(',')
+
+  console.log({hola: imagesDomains})
+
   return (
     <html lang='es' className={livvic.className}>
       <body>

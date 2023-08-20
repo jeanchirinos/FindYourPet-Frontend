@@ -21,7 +21,8 @@ export function SessionContext(props: Props) {
   const data = {
     status: 'success',
     auth: true,
-    image: 'http://127.0.0.1:8000/users/2/profile.webp',
+    // image: 'http://127.0.0.1:8000/users/2/profile.webp',
+    image: 'https://encuentratumascota.nijui.com/backend/users/2/profile.webp',
     role: 'admin',
   }
 
