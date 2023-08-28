@@ -1,5 +1,4 @@
 'use client'
-import { SWRKey } from '@/enums'
 import { useGetData } from '@/hooks/useGetData'
 // import { request } from '@/utilities'
 // import useSWR from 'swr'

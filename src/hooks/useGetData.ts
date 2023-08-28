@@ -36,6 +36,6 @@ export function useGetData<Response>(...params: Params) {
 
   // RETURN
   return useSWR<Response>(keyFn(), fetcher, {
-    revalidateOnMount: true,
+    // revalidateOnMount: true,
   })
 }
