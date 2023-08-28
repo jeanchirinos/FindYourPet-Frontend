@@ -1,5 +1,7 @@
 import React from 'react'
-export const SearchIcon = props => (
+
+//@ts-ignore
+export const SearchIcon = (props: any) => (
   <svg
     aria-hidden='true'
     fill='none'

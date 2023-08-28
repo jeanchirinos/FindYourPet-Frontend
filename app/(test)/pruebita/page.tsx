@@ -35,7 +35,7 @@ const statusColorMap: Record<string, ChipProps['color']> = {
 
 const INITIAL_VISIBLE_COLUMNS = ['name', 'role', 'status', 'actions']
 
-type User = (typeof users)[0]
+type TUser = (typeof users)[0]
 
 export default function App() {
   const [filterValue, setFilterValue] = React.useState('')
@@ -84,17 +84,17 @@ export default function App() {
   }, [page, filteredItems, rowsPerPage])
 
   const sortedItems = React.useMemo(() => {
-    return [...items].sort((a: User, b: User) => {
-      const first = a[sortDescriptor.column as keyof User] as number
-      const second = b[sortDescriptor.column as keyof User] as number
+    return [...items].sort((a: TUser, b: TUser) => {
+      const first = a[sortDescriptor.column as keyof TUser] as number
+      const second = b[sortDescriptor.column as keyof TUser] as number
       const cmp = first < second ? -1 : first > second ? 1 : 0
 
       return sortDescriptor.direction === 'descending' ? -cmp : cmp
     })
   }, [sortDescriptor, items])
 
-  const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
-    const cellValue = user[columnKey as keyof User]
+  const renderCell = React.useCallback((user: TUser, columnKey: React.Key) => {
+    const cellValue = user[columnKey as keyof TUser]
 
     switch (columnKey) {
       case 'name':
@@ -134,7 +134,7 @@ export default function App() {
             <Dropdown className='border-1 border-default-200 bg-background'>
               <DropdownTrigger>
                 <Button isIconOnly radius='full' size='sm' variant='light'>
-                  <VerticalDotsIcon className='text-default-400' />
+                  {/* <VerticalDotsIcon className='text-default-400' /> */}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
@@ -233,9 +233,9 @@ export default function App() {
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Button className='bg-foreground text-background' endContent={<PlusIcon />} size='sm'>
+            {/* <Button className='bg-foreground text-background' endContent={<PlusIcon />} size='sm'>
               Add New
-            </Button>
+            </Button> */}
           </div>
         </div>
         <div className='flex items-center justify-between'>

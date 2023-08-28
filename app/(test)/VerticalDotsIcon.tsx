@@ -1,5 +1,5 @@
 import React from 'react'
-export const VerticalDotsIcon = ({ size = 24, width, height, ...props }) => (
+export const VerticalDotsIcon = ({ size = 24, width, height, ...props }: any) => (
   <svg
     aria-hidden='true'
     fill='none'
