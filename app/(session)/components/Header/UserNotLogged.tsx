@@ -118,9 +118,9 @@ function Register() {
     trigger(form, {
       revalidate: false,
       populateCache: true,
-      onSuccess(data) {
-        setCookie('jwt', data.token)
-      },
+      // onSuccess(data) {
+      //   setCookie('jwt', data.token)
+      // },
     })
 
     setEmailSent(true)
