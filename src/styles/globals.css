@@ -4,5 +4,5 @@
 
 input:-webkit-autofill,
 input:-webkit-autofill:is(:hover, :focus, :active) {
-  transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 50000s ease-in-out 0s;
 }

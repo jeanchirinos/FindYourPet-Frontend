@@ -21,17 +21,17 @@ export async function request<Response>(
     headers['content-type'] = 'application/json'
     headers.accept = 'application/json'
 
-    let authToken
+    // let authToken
 
-    if (token) {
-      authToken = token
-    } else if (typeof window !== 'undefined') {
-      authToken = getCookie('jwt')
-    }
+    // if (token) {
+    //   authToken = token
+    // } else if (typeof window !== 'undefined') {
+    //   authToken = getCookie('jwt')
+    // }
 
-    if (authToken) {
-      headers.authorization = `Bearer ${authToken}`
-    }
+    // if (authToken) {
+    //   headers.authorization = `Bearer ${authToken}`
+    // }
 
     body = JSON.stringify(config.body)
   }
