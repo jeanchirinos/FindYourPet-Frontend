@@ -55,7 +55,8 @@ function Google() {
         revalidate: false,
       })
 
-      setCookie('jwt', e.data.token)
+      //! LOCAL - PRODUCTION
+      // setCookie('jwt', e.data.token)
 
       openedWindow.current?.close()
     }
@@ -205,9 +206,9 @@ function Login() {
     trigger(form, {
       revalidate: false,
       populateCache: true,
-      onSuccess(data) {
-        setCookie('jwt', data.token)
-      },
+      // onSuccess(data) {
+      //   setCookie('jwt', data.token)
+      // },
     })
   }
 
