@@ -4,6 +4,7 @@ import { Session } from '@/types'
 import { createContext, useContext, type PropsWithChildren, useEffect } from 'react'
 import useSWR from 'swr'
 import { getCookie } from 'typescript-cookie'
+import { useRef } from 'react'
 
 interface CtxProps {
   session: Session
@@ -28,7 +29,12 @@ export function SessionContext(props: Props) {
   })
 
   // TODO: Remove this
+
+  const flag = useRef(false)
   useEffect(() => {
+    if (flag.current) return
+    flag.current = true
+
     if (data.auth) return
 
     const cookieSession = getCookie('session')
