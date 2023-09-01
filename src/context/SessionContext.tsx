@@ -1,8 +1,9 @@
 'use client'
 import { SWRKey } from '@/enums'
 import { Session } from '@/types'
-import { createContext, useContext, type PropsWithChildren } from 'react'
+import { createContext, useContext, type PropsWithChildren, useEffect } from 'react'
 import useSWR from 'swr'
+import { getCookie } from 'typescript-cookie'
 
 interface CtxProps {
   session: Session
@@ -16,7 +17,7 @@ interface Props extends PropsWithChildren {
 
 export function SessionContext(props: Props) {
   const { session, children } = props
-  const { data = session } = useSWR(SWRKey.SESSION, {
+  const { data = session, mutate } = useSWR(SWRKey.SESSION, {
     // fallbackData: session,
     // onSuccess() {
     //   console.log('success')
@@ -26,7 +27,16 @@ export function SessionContext(props: Props) {
     // },
   })
 
-  console.log({ data })
+  // TODO: Remove this
+  useEffect(() => {
+    if (data.auth) return
+
+    const session = getCookie('session') as unknown as Session | null
+
+    if (session?.auth) {
+      mutate(session)
+    }
+  }, [data, mutate])
 
   return <Context.Provider value={{ session: data }}>{children}</Context.Provider>
 }
