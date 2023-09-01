@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 import { Header } from 'app/(session)/components/Header/Header'
 import NextTopLoader from 'nextjs-toploader'
 
-export default function RootLayout(props: React.PropsWithChildren) {
+export default async function RootLayout(props: React.PropsWithChildren) {
   const cookieSession = cookies().get('session')?.value
   // const cookieSession2 = cookies().get('jwt')?.value
   // console.log({ cookieSession2 })

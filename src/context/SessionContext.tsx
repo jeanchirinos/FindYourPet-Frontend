@@ -17,7 +17,7 @@ interface Props extends PropsWithChildren {
 export function SessionContext(props: Props) {
   const { session, children } = props
   const { data = session } = useSWR(SWRKey.SESSION, {
-    fallbackData: session,
+    // fallbackData: session,
     // onSuccess() {
     //   console.log('success')
     // },
@@ -26,7 +26,7 @@ export function SessionContext(props: Props) {
     // },
   })
 
-  // console.log({ data })
+  console.log({ data })
 
   return <Context.Provider value={{ session: data }}>{children}</Context.Provider>
 }
