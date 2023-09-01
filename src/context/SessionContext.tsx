@@ -31,10 +31,11 @@ export function SessionContext(props: Props) {
   useEffect(() => {
     if (data.auth) return
 
-    const session = getCookie('session') as unknown as Session | null
+    const cookieSession = getCookie('session')
+    const session = JSON.parse(cookieSession ?? 'null') as Session | null
 
     if (session?.auth) {
-      mutate(session)
+      mutate(session, { revalidate: false })
     }
   }, [data, mutate])
 
