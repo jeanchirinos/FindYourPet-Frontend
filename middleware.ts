@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest, next: () => NextResponse)
 
   console.log('--- START 1 - Logs ---')
 
-  console.table([
+  console.log([
     { cookiesGetJwt: request.cookies.get('jwt') },
     { headersGetCookie: request.headers.get('cookie') },
   ])
@@ -45,7 +45,7 @@ export async function middleware(request: NextRequest, next: () => NextResponse)
 
   console.log('--- START 2 - Logs ---')
 
-  console.table([
+  console.log([
     { cookiesGetJwt: request.cookies.get('jwt') },
     { headersGetCookie: request.headers.get('cookie') },
     { session },
