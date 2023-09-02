@@ -4,9 +4,7 @@ import { getSession } from '@/services/session'
 import { Session } from '@/types'
 import { ERole } from '@/enums'
 
-let session: Session = { auth: false }
-
-export async function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest, next: () => NextResponse) {
   // Routes that doesn't require session
   if (
     request.nextUrl.pathname.startsWith('/recuperar') ||
@@ -18,11 +16,22 @@ export async function middleware(request: NextRequest) {
 
   const authCookie = request.cookies.get('jwt')
 
+  let session: Session = { auth: false }
+  let session2: Session = { auth: false }
+
+  console.log('--- START 1 - Logs ---')
+
+  console.table([
+    { cookiesGetJwt: request.cookies.get('jwt') },
+    { headersGetCookie: request.headers.get('cookie') },
+  ])
+
+  console.log('--- END 1 - Logs ---')
+
   if (authCookie) {
     session = await getSession(request.headers.get('cookie')!)
+    session2 = await getSession(request.cookies.get('jwt')?.value!)
   }
-
-  console.log({ sessionServer: session })
 
   const response = NextResponse.next()
   response.cookies.set('session', JSON.stringify(session))
@@ -33,6 +42,17 @@ export async function middleware(request: NextRequest) {
   ) {
     return NextResponse.redirect(new URL('', request.nextUrl.origin))
   }
+
+  console.log('--- START 2 - Logs ---')
+
+  console.table([
+    { cookiesGetJwt: request.cookies.get('jwt') },
+    { headersGetCookie: request.headers.get('cookie') },
+    { session },
+    { session2 },
+  ])
+
+  console.log('--- END 2 - Logs ---')
 
   return response
 }
