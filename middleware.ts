@@ -37,12 +37,17 @@ export async function middleware(request: NextRequest) {
   const response = NextResponse.next()
   // response.cookies.set('session', JSON.stringify(session))
 
-  // if (
-  //   request.nextUrl.pathname.startsWith('/administrar') &&
-  //   (!session.auth || session.role !== ERole.ADMIN)
-  // ) {
-  //   return NextResponse.redirect(new URL('', request.nextUrl.origin))
-  // }
+  if (request.nextUrl.pathname.startsWith('/administrar')) {
+    const authCookie = request.cookies.get('jwt')?.value
+
+    if (!authCookie) return response
+
+    const session = await getSession(authCookie ?? '')
+
+    if (!session.auth || session.role !== ERole.ADMIN) {
+      return NextResponse.redirect(new URL('', request.nextUrl.origin))
+    }
+  }
 
   // console.log('--- START 2 - Logs ---')
 
