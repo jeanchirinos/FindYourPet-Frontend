@@ -40,7 +40,9 @@ export async function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith('/administrar')) {
     const authCookie = request.cookies.get('jwt')?.value
 
-    if (!authCookie) return response
+    const redirection = NextResponse.redirect(new URL('', request.nextUrl.origin))
+
+    if (!authCookie) return redirection
 
     const session = await getSession(authCookie ?? '')
 
