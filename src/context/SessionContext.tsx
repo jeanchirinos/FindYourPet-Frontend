@@ -7,7 +7,7 @@ import { getCookie } from 'typescript-cookie'
 import { useRef } from 'react'
 
 interface CtxProps {
-  session: Session
+  session: Session | null
 }
 
 const Context = createContext({} as CtxProps)
@@ -16,9 +16,10 @@ interface Props extends PropsWithChildren {
   session: Session
 }
 
-export function SessionContext(props: Props) {
-  const { session, children } = props
-  const { data = session, mutate } = useSWR(SWRKey.SESSION, {
+// export function SessionContext(props: Props) {
+export function SessionContext(props: React.PropsWithChildren) {
+  // const { session, children } = props
+  const { data = null, mutate } = useSWR(SWRKey.SESSION, {
     // fallbackData: session,
     // onSuccess() {
     //   console.log('success')
@@ -45,9 +46,9 @@ export function SessionContext(props: Props) {
   // }, [data, mutate])
   //
 
-  console.log({ data, session })
+  // console.log({ data, session })
 
-  return <Context.Provider value={{ session: data }}>{children}</Context.Provider>
+  return <Context.Provider value={{ session: data }}>{props.children}</Context.Provider>
 }
 
 export const useSessionContext = () => useContext(Context)

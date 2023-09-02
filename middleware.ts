@@ -4,7 +4,7 @@ import { getSession } from '@/services/session'
 import { Session } from '@/types'
 import { ERole } from '@/enums'
 
-export async function middleware(request: NextRequest, next: () => NextResponse) {
+export async function middleware(request: NextRequest) {
   // Routes that doesn't require session
   if (
     request.nextUrl.pathname.startsWith('/recuperar') ||
@@ -14,45 +14,46 @@ export async function middleware(request: NextRequest, next: () => NextResponse)
     return NextResponse.next()
   }
 
-  const authCookie = request.cookies.get('jwt')
+  // Routes that require can require session
+  // const authCookie = request.cookies.get('jwt')
 
-  let session: Session = { auth: false }
-  let session2: Session = { auth: false }
+  // let session: Session = { auth: false }
+  // let session2: Session = { auth: false }
 
-  console.log('--- START 1 - Logs ---')
+  // console.log('--- START 1 - Logs ---')
 
-  console.log([
-    { cookiesGetJwt: request.cookies.get('jwt') },
-    { headersGetCookie: request.headers.get('cookie') },
-  ])
+  // console.log([
+  //   { cookiesGetJwt: request.cookies.get('jwt')?.value },
+  //   { headersGetCookie: request.headers.get('cookie') },
+  // ])
 
-  console.log('--- END 1 - Logs ---')
+  // console.log('--- END 1 - Logs ---')
 
-  if (authCookie) {
-    session = await getSession(request.headers.get('cookie')!)
-    session2 = await getSession(request.cookies.get('jwt')?.value!)
-  }
+  // if (authCookie) {
+  //   session = await getSession(request.headers.get('cookie')!)
+  //   session2 = await getSession(request.cookies.get('jwt')?.value!)
+  // }
 
   const response = NextResponse.next()
-  response.cookies.set('session', JSON.stringify(session))
+  // response.cookies.set('session', JSON.stringify(session))
 
-  if (
-    request.nextUrl.pathname.startsWith('/administrar') &&
-    (!session.auth || session.role !== ERole.ADMIN)
-  ) {
-    return NextResponse.redirect(new URL('', request.nextUrl.origin))
-  }
+  // if (
+  //   request.nextUrl.pathname.startsWith('/administrar') &&
+  //   (!session.auth || session.role !== ERole.ADMIN)
+  // ) {
+  //   return NextResponse.redirect(new URL('', request.nextUrl.origin))
+  // }
 
-  console.log('--- START 2 - Logs ---')
+  // console.log('--- START 2 - Logs ---')
 
-  console.log([
-    { cookiesGetJwt: request.cookies.get('jwt') },
-    { headersGetCookie: request.headers.get('cookie') },
-    { session },
-    { session2 },
-  ])
+  // console.log([
+  //   { cookiesGetJwt: request.cookies.get('jwt')?.value },
+  //   { headersGetCookie: request.headers.get('cookie') },
+  //   { session },
+  //   { session2 },
+  // ])
 
-  console.log('--- END 2 - Logs ---')
+  // console.log('--- END 2 - Logs ---')
 
   return response
 }
