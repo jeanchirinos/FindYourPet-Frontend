@@ -29,21 +29,23 @@ export function SessionContext(props: Props) {
   })
 
   // TODO: Remove this
+  // const flag = useRef(false)
+  // useEffect(() => {
+  //   if (flag.current) return
+  //   flag.current = true
 
-  const flag = useRef(false)
-  useEffect(() => {
-    if (flag.current) return
-    flag.current = true
+  //   if (data.auth) return
 
-    if (data.auth) return
+  //   const cookieSession = getCookie('session')
+  //   const session = JSON.parse(cookieSession ?? 'null') as Session | null
 
-    const cookieSession = getCookie('session')
-    const session = JSON.parse(cookieSession ?? 'null') as Session | null
+  //   if (session?.auth) {
+  //     mutate(session, { revalidate: false })
+  //   }
+  // }, [data, mutate])
+  //
 
-    if (session?.auth) {
-      mutate(session, { revalidate: false })
-    }
-  }, [data, mutate])
+  console.log({ data, session })
 
   return <Context.Provider value={{ session: data }}>{children}</Context.Provider>
 }

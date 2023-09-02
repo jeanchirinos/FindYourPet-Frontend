@@ -22,6 +22,8 @@ export async function middleware(request: NextRequest) {
     session = await getSession(request.headers.get('cookie')!)
   }
 
+  console.log({ sessionServer: session })
+
   const response = NextResponse.next()
   response.cookies.set('session', JSON.stringify(session))
 
