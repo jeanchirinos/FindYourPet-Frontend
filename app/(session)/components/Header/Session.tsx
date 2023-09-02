@@ -1,3 +1,4 @@
+'use client'
 import { useSessionContext } from '@/context/SessionContext'
 import { UserLogged } from './UserLogged'
 import { UserNotLogged } from './UserNotLogged'
