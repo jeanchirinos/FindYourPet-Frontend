@@ -4,6 +4,8 @@ import { getSession } from '@/services/session'
 import { Session } from '@/types'
 import { ERole } from '@/enums'
 
+let session: Session = { auth: false }
+
 export async function middleware(request: NextRequest) {
   // Routes that doesn't require session
   if (
@@ -15,8 +17,6 @@ export async function middleware(request: NextRequest) {
   }
 
   const authCookie = request.cookies.get('jwt')
-
-  let session: Session = { auth: false }
 
   if (authCookie) {
     session = await getSession(request.headers.get('cookie')!)

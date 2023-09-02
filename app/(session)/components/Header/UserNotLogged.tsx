@@ -118,7 +118,7 @@ function Register() {
 
     trigger(form, {
       revalidate: false,
-      populateCache: true,
+      // populateCache: false,
       // onSuccess(data) {
       //   setCookie('jwt', data.token)
       // },
