@@ -10,7 +10,6 @@ import { Input } from 'app/components/Input'
 import { SWRKey } from '@/enums'
 import { Tabs, Tab } from '@nextui-org/react'
 import { Button } from '@/components/Button'
-import { setCookie } from 'typescript-cookie'
 import { SessionLogged } from '@/types'
 
 enum EFormState {

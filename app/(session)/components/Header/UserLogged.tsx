@@ -12,9 +12,7 @@ import { useRouter } from 'next/navigation'
 // import { useSessionContext } from '@/context/SessionContext'
 
 export function UserLogged(props: { session: UserLoggedType }) {
-  // export function UserLogged() {
   const { session } = props
-  // const {session} = useSessionContext()
 
   // HOOKS
   const { trigger, isMutating } = useLogout()
