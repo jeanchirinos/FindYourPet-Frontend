@@ -16,7 +16,63 @@ module.exports = {
       },
     },
   },
+  plugins: 
+  [
+    nextui(),
+		(plugin)=>
+		{
+      const {addVariant, matchUtilities, matchComponents, matchVariant} = plugin;
+
+			addVariant('child', '& > *')
+			addVariant('child-hover', '& > *:hover')
+
+      matchUtilities
+      (
+        {
+          transform: value => 
+          ({ 
+            transform: value,
+          }),
+        },
+        {
+          values: 
+          {
+            '': '',
+          },
+        }
+      )
+
+      matchComponents
+      (
+        {
+          templateColumns: value => 
+          ({
+            gridTemplateColumns: `repeat(auto-fill, minmax(min(${value}, 100%), 1fr))`,
+          }),
+        },
+        {
+          values: 
+          {
+            '': '',
+          },
+        },
+      )
+
+      matchVariant('nth-child', value => 
+      {
+        let valueToNumber = Number(value)
+  
+        if (valueToNumber >= 0) 
+        {
+          return `& > *:nth-child(${value})`
+        }
+  
+        valueToNumber = Math.abs(valueToNumber)
+  
+        return `& > *:nth-last-child(${valueToNumber})`
+      })
+		}
+	],
   darkMode: 'class',
   // plugins: [require('@tailwindcss/forms'), nextui()],
-  plugins: [nextui()],
 }

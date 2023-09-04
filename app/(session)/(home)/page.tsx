@@ -1,4 +1,27 @@
+import { Card } from "@/components/Card";
+
 export default function Page() {
+  const cards = 
+  [
+    {
+      id: 1,
+      name: "Lechonk aesthetic",
+      location: "Lima, La Victoria",
+      image: "https://api-encuentratumascota.nijui.com/users/profile.webp"
+    },
+    {
+      id: 2,
+      name: "Lechonk de barrio",
+      location: "Lima, San Martín de Porres",
+      image: "https://api-encuentratumascota.nijui.com/users/profile.webp"
+    },
+    {
+      id: 3,
+      name: "Lechonk de la selva",
+      location: "Lima, San Juan de Lurigancho",
+      image: "https://api-encuentratumascota.nijui.com/users/profile.webp"
+    },
+  ]
   return (
     <main className='h-[150vh] pt-[50px]'>
       <section className='mt-5 flex w-full justify-center'>
@@ -24,6 +47,12 @@ export default function Page() {
             </button>
           </div>
         </div>
+      </section>
+
+      <section className="grid templateColumns-[250px] gap-5">
+        {cards.map((card) => (
+          <Card key={card.id} {...card}/>
+        ))}
       </section>
     </main>
   )
