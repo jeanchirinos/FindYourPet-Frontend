@@ -2,6 +2,7 @@
 import { SWRKey } from '@/enums'
 import { useGetData } from '@/hooks/useGetData'
 import { useSendData } from '@/hooks/useSendData'
+import { SetOptional } from 'type-fest'
 
 export interface Category {
   id: number
@@ -20,8 +21,10 @@ export function useCategories() {
   }
 }
 
-export function useUpsertCategory(category: Category) {
-  const { trigger, isMutating } = useSendData<Category>('category-upsert', {
+export type TUpserCategory = SetOptional<Category, 'id'>
+
+export function useUpsertCategory(category: TUpserCategory) {
+  const { trigger, isMutating } = useSendData<TUpserCategory>('category-upsert', {
     key: SWRKey.CATEGORIES,
   })
 

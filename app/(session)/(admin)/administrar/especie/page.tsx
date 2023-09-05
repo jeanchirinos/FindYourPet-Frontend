@@ -2,33 +2,46 @@
 
 import { Button } from '@/components/Button'
 import { Modal, UseModal, useModal } from '@/components/Modal'
-import { Category, useCategories, useDeleteCategory, useUpsertCategory } from '@/services/category'
+import {
+  Category,
+  TUpserCategory,
+  useCategories,
+  useDeleteCategory,
+  useUpsertCategory,
+} from '@/services/category'
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 import { Input } from '@/components/Input'
 import { Textarea } from '@nextui-org/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SetState } from '@/types'
 
-const initialCategory: Omit<Category, 'id'> = { image: '', name: '' }
+const initialCategory: TUpserCategory = { image: '', name: '' }
 
 export default function Page() {
-  const { categories } = useCategories()
-  const [currentCategory, setCurrentCategory] = useState<Category | null>(null)
+  // STATES
+  const [currentCategory, setCurrentCategory] = useState<TUpserCategory>(initialCategory)
 
+  // HOOKS
+  const { categories } = useCategories()
   const modal = useModal()
 
+  // FUNCTIONS
   function handleOpenModa() {
-    //@ts-ignore
     setCurrentCategory(initialCategory)
     modal.open()
   }
 
+  // RENDER
   return (
     <main className='px-4 pt-[var(--header-height)]'>
       <h1>Especies</h1>
 
       <Button onPress={handleOpenModa}>Crear</Button>
-      <UpsertModal modal={modal} currentCategory={currentCategory} />
+      <UpsertModal
+        modal={modal}
+        currentCategory={currentCategory}
+        setCurrentCategory={setCurrentCategory}
+      />
 
       <section className='flex flex-col gap-y-2'>
         {categories?.map((cat, i) => (
@@ -45,14 +58,17 @@ export default function Page() {
   )
 }
 
-function UpsertModal(props: { modal: UseModal; currentCategory: Category | null }) {
-  const { modal, currentCategory } = props
+function UpsertModal(props: {
+  modal: UseModal
+  currentCategory: TUpserCategory
+  setCurrentCategory: SetState<TUpserCategory>
+}) {
+  const { modal, currentCategory, setCurrentCategory } = props
 
-  //@ts-ignore
-  const [category, setCategory] = useState<Category>(currentCategory ?? initialCategory)
+  // HOOKS
+  const { handleUpsert } = useUpsertCategory(currentCategory)
 
-  const { handleUpsert } = useUpsertCategory(category)
-
+  // FUNCTIONS
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     handleUpsert({
@@ -63,18 +79,13 @@ function UpsertModal(props: { modal: UseModal; currentCategory: Category | null 
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setCategory({ ...category, [e.target.name]: e.target.value })
+    setCurrentCategory({ ...currentCategory, [e.target.name]: e.target.value })
   }
-
-  useEffect(() => {
-    //@ts-ignore
-    setCategory(currentCategory ?? initialCategory)
-  }, [currentCategory])
 
   return (
     <Modal modal={props.modal}>
       <form className='flex flex-col gap-y-4' onSubmit={handleSubmit}>
-        <Input label='Nombre' name='name' onChange={handleChange} value={category.name} />
+        <Input label='Nombre' name='name' onChange={handleChange} value={currentCategory.name} />
         <Textarea
           onChange={handleChange}
           label='SVG'
@@ -83,7 +94,7 @@ function UpsertModal(props: { modal: UseModal; currentCategory: Category | null 
           // labelPlacement='outside'
           // placeholder='Enter your description'
           className='w-[400px] max-w-full'
-          value={category.image}
+          value={currentCategory.image}
         />
         <Button type='submit'>Guardar</Button>
       </form>
@@ -94,7 +105,7 @@ function UpsertModal(props: { modal: UseModal; currentCategory: Category | null 
 function Row(props: {
   category: Category
   modal: UseModal
-  setCurrentCategory: SetState<Category | null>
+  setCurrentCategory: SetState<TUpserCategory>
   index: number
 }) {
   const { category, modal, setCurrentCategory, index } = props
