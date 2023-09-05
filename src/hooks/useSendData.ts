@@ -10,8 +10,10 @@ type Params = [
   },
 ]
 
+export type DefaultSuccessResponse = { status: 'ok'; msg: string }
+
 export function useSendData<Args, Response = {}>(...params: Params) {
-  type SuccessResponse = Response & { status: 'ok'; msg: string }
+  type SuccessResponse = Response & DefaultSuccessResponse
 
   const [url, options] = params
   const { key = url } = options ?? {}

@@ -11,6 +11,7 @@ import { SWRKey } from '@/enums'
 import { Tabs, Tab } from '@nextui-org/react'
 import { Button } from '@/components/Button'
 import { SessionLogged } from '@/types'
+import { setCookie } from 'typescript-cookie'
 
 enum EFormState {
   Login = 'login',
@@ -117,10 +118,6 @@ function Register() {
 
     trigger(form, {
       revalidate: false,
-      // populateCache: false,
-      // onSuccess(data) {
-      //   setCookie('jwt', data.token)
-      // },
     })
 
     setEmailSent(true)
@@ -205,6 +202,7 @@ function Login() {
     trigger(form, {
       revalidate: false,
       populateCache: true,
+      //! LOCAL - PRODUCTION
       // onSuccess(data) {
       //   setCookie('jwt', data.token)
       // },

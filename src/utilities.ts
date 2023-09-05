@@ -21,6 +21,7 @@ export async function request<Response>(
     headers['content-type'] = 'application/json'
     headers.accept = 'application/json'
 
+    //! LOCAL - PRODUCTION
     // let authToken
 
     // if (token) {
@@ -32,6 +33,7 @@ export async function request<Response>(
     // if (authToken) {
     //   headers.authorization = `Bearer ${authToken}`
     // }
+    //!
 
     body = JSON.stringify(config.body)
   }
