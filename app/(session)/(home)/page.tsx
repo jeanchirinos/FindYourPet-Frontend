@@ -22,7 +22,7 @@ export default function Page() {
     },
   ]
   return (
-    <main className='h-[150vh] pt-[var(--header-height)]'>
+    <main className='h-[150vh]'>
       <section className='mt-5 flex w-full justify-center'>
         <div className='w-[800px] max-w-full'>
           <div className='flex'>

@@ -23,6 +23,7 @@
     "nextjs-toploader": "^1.4.2",
     "postcss": "8.4.29",
     "react": "18.2.0",
+    "react-advanced-cropper": "^0.19.3",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",

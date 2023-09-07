@@ -24,7 +24,9 @@ export default async function RootLayout(props: React.PropsWithChildren) {
           <p className='text-red-500'>{cookieSession2}</p>
         </div> */}
         <Header />
-        {props.children}
+        <main className='pt-[var(--header-height)]'>
+          {props.children}
+        </main>
       </SessionContext>
     </>
   )

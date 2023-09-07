@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'black',
+        primary: '#f27140',
       },
     },
   },
