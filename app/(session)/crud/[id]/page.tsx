@@ -1,9 +1,8 @@
-import { PageProps } from '.next/types/app/layout'
 import { Categories } from './Categories'
 import { Breeds } from './Breeds'
 import { redirect } from 'next/navigation'
 
-export default function Page(props: PageProps) {
+export default function Page(props: { params: { id: string } }) {
   const cruds = {
     especies: Categories,
     razas: Breeds,
