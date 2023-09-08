@@ -28,21 +28,6 @@ export function useUpsertCategory(category: TUpserCategory) {
     key: SWRKey.CATEGORIES,
   })
 
-  // function handleUpsert({ onSuccess }: { onSuccess?: () => void }) {
-  //   trigger(category, {
-  //     // optimisticData(currentData: Category[] = []) {
-  //     //   const auxCategories = structuredClone(currentData)
-
-  //     //   auxCategories.unshift(category)
-
-  //     //   return auxCategories
-  //     // },
-  //     onSuccess,
-  //     populateCache: false,
-  //     // revalidate: false,
-  //   })
-  // }
-
   function handleUpsert({ onSuccess }: { onSuccess?: () => void }) {
     trigger(category, {
       onSuccess,
@@ -59,12 +44,7 @@ export function useDeleteCategory(id: number) {
   })
 
   function handleDelete() {
-    trigger(
-      { id },
-      {
-        populateCache: false,
-      },
-    )
+    trigger({ id }, { populateCache: false })
   }
 
   return { handleDelete }

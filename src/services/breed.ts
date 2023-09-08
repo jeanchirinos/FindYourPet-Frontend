@@ -3,7 +3,7 @@ import { useGetData } from '@/hooks/useGetData'
 // import { request } from '@/utilities'
 // import useSWR from 'swr'
 
-interface BreedsData {
+export interface BreedsData {
   id: number
   name: string
   breeds: {
@@ -24,14 +24,14 @@ export function useBreeds(id: number | undefined) {
 
   // })
 
-  const { data: breeds, ...rest } = useGetData<BreedsData>(`breedList/${id}`, {
+  const { data: breedsData, ...rest } = useGetData<BreedsData>(`breedList/${id}`, {
     // key: SWRKey.BREEDS,
     key: id?.toString(),
     waitFor: [Boolean(id)],
   })
 
   return {
-    breeds,
+    breeds: breedsData?.breeds,
     ...rest,
   }
 }

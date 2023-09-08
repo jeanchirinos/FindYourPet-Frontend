@@ -26,10 +26,10 @@ export function Modal(props: Props) {
           leaveTo='opacity-0'
         >
           {/* bg-black/25 */}
-          <div className='fixed inset-0 ' />
+          <div className='fixed inset-0 z-50 bg-black/25' />
         </Transition.Child>
 
-        <div className='fixed inset-0 flex items-center justify-center p-4'>
+        <div className='fixed inset-0 z-50 flex items-center justify-center p-4'>
           <Transition.Child
             as={Fragment}
             enter='ease-out duration-300'
@@ -39,7 +39,7 @@ export function Modal(props: Props) {
             leaveFrom='opacity-100 scale-100'
             leaveTo='opacity-0 scale-95'
           >
-            <Dialog.Panel className='bg-hard_dark max-h-full overflow-y-auto rounded-2xl p-6 shadow-xl'>
+            <Dialog.Panel className='max-h-full overflow-y-auto rounded-2xl bg-white p-6 shadow-xl'>
               <Child onExitComplete={onExitComplete}>{children}</Child>
             </Dialog.Panel>
           </Transition.Child>

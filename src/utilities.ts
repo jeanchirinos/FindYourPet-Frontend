@@ -22,17 +22,18 @@ export async function request<Response>(
     headers.accept = 'application/json'
 
     //! LOCAL - PRODUCTION
-    // let authToken
+    if (process.env.NODE_ENV === 'development') {
+      let authToken
+      if (token) {
+        authToken = token
+      } else if (typeof window !== 'undefined') {
+        authToken = getCookie('jwt')
+      }
 
-    // if (token) {
-    //   authToken = token
-    // } else if (typeof window !== 'undefined') {
-    //   authToken = getCookie('jwt')
-    // }
-
-    // if (authToken) {
-    //   headers.authorization = `Bearer ${authToken}`
-    // }
+      if (authToken) {
+        headers.authorization = `Bearer ${authToken}`
+      }
+    }
     //!
 
     body = JSON.stringify(config.body)

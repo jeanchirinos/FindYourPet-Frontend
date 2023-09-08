@@ -56,6 +56,7 @@ function Google() {
       })
 
       //! LOCAL - PRODUCTION
+      if(process.env.NODE_ENV === 'development') setCookie('jwt', e.data.token, { expires: 7 })
       // setCookie('jwt', e.data.token)
 
       openedWindow.current?.close()
@@ -203,9 +204,9 @@ function Login() {
       revalidate: false,
       populateCache: true,
       //! LOCAL - PRODUCTION
-      // onSuccess(data) {
-      //   setCookie('jwt', data.token)
-      // },
+      onSuccess(data) {
+        if(process.env.NODE_ENV === 'development') setCookie('jwt', data.token, { expires: 7 })
+      },
     })
   }
 

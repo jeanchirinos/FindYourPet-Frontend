@@ -3,11 +3,13 @@
 import useSWR from 'swr'
 import { request } from '@/utilities'
 
-type Params = [
+export type SWRWaitFor = (undefined | null | boolean)[]
+
+export type Params = [
   url: string,
   options?: {
     /** When all elements from array are true, proceed with petition */
-    waitFor?: (undefined | null | boolean)[]
+    waitFor?: SWRWaitFor
     key?: string
   },
 ]
