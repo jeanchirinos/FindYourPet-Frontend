@@ -24,6 +24,7 @@ export async function request<Response>(
     //! LOCAL - PRODUCTION
     if (process.env.NODE_ENV === 'development') {
       let authToken
+
       if (token) {
         authToken = token
       } else if (typeof window !== 'undefined') {
@@ -70,6 +71,12 @@ export async function request<Response>(
 
     throw new Error(`[${res.status} - ${res.statusText}] : ${data.msg}`)
   }
+
+  return data as Response
+}
+
+export async function fetcher<Response>(url: string) {
+  const data = await request(url)
 
   return data as Response
 }

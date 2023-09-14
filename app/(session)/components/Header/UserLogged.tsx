@@ -52,7 +52,7 @@ export function UserLogged(props: { session: UserLoggedType }) {
         />
       </PopoverTrigger>
       <PopoverContent className='right-0 flex flex-col border border-neutral-200 bg-white'>
-        <Link href='/perfil' className='w-full px-4 py-2 text-sm'>
+        <Link href={`/perfil/${session.username}`} className='w-full px-4 py-2 text-sm'>
           Perfil
         </Link>
         {session.role === ERole.ADMIN && (

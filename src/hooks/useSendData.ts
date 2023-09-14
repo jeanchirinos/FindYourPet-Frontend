@@ -1,18 +1,21 @@
 'use client'
 
-import useSWRMutation from 'swr/mutation'
+import useSWRMutation, { SWRMutationConfiguration } from 'swr/mutation'
 import { request } from '@/utilities'
 
-type Params = [
+type Params<Data, Args> = [
   url: string,
   options?: {
     key: string
+    options?: SWRMutationConfiguration<Data, any, string, Args>
   },
 ]
 
 export type DefaultSuccessResponse = { status: 'ok'; msg: string }
 
-export function useSendData<Args, Response = {}>(...params: Params) {
+export function useSendData<Args, Response = object>(
+  ...params: Params<Response & DefaultSuccessResponse, Args>
+) {
   type SuccessResponse = Response & DefaultSuccessResponse
 
   const [url, options] = params
