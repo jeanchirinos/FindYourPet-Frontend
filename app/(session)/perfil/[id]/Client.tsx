@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { BiSolidCamera } from 'react-icons/bi'
 import { HiOutlineMail, HiOutlineDeviceMobile } from 'react-icons/hi'
 import { useRef, useState, useEffect } from 'react'
+
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
 import { User } from './page'
@@ -127,7 +128,7 @@ export function Client(props: { user: User | undefined }) {
 function EditableForm(props: { user: User | undefined; setIsEditable: SetState<boolean> }) {
   const { setIsEditable, user } = props
 
-  const { trigger, isMutating } = useUpdateUser()
+  const { trigger, isMutating } = useUpdateUser(user!.username)
 
   const [editableUser, setEditableUser] = useState<Partial<User> | undefined>(user)
 

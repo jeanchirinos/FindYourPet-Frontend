@@ -4,13 +4,13 @@ import { fetcher } from '@/utilities'
 import { User } from 'app/(session)/perfil/[id]/page'
 import useSWR from 'swr'
 
-const userKey = (id: number) => `user/${id}`
+const userKey = (username: string) => `user/${username}`
 
 export function useUser({
   id,
   initialData,
 }: {
-  id: string | number | undefined
+  id: string
   initialData: User
 }) {
   const { data = initialData, ...rest } = useSWR<User>(userKey(id))
@@ -21,10 +21,10 @@ export function useUser({
   }
 }
 
-export function useUpdateUser(id: number) {
+export function useUpdateUser(username: string) {
   type Args = Partial<User>
 
   return useSendData<Args>('user-update', {
-    key: userKey(id),
+    key: userKey(username),
   })
 }
