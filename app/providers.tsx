@@ -1,6 +1,8 @@
 'use client'
+import { fetcher } from '@/utilities'
 import { NextUIProvider } from '@nextui-org/react'
 import dynamic from 'next/dynamic'
+import { SWRConfig } from 'swr'
 
 const Toaster = dynamic(() => import('react-hot-toast').then(module => module.Toaster), {
   ssr: false,
@@ -18,9 +20,15 @@ const Toaster = dynamic(() => import('react-hot-toast').then(module => module.To
 
 export function Providers(props: React.PropsWithChildren) {
   return (
-    <NextUIProvider>
-      {props.children}
-      <Toaster />
-    </NextUIProvider>
+    <SWRConfig
+      value={{
+        fetcher,
+      }}
+    >
+      <NextUIProvider>
+        {props.children}
+        <Toaster />
+      </NextUIProvider>
+    </SWRConfig>
   )
 }

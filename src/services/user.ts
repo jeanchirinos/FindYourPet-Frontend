@@ -1,19 +1,11 @@
-import { SWRKey } from '@/enums'
 import { useSendData } from '@/hooks/useSendData'
-import { fetcher } from '@/utilities'
 import { User } from 'app/(session)/perfil/[id]/page'
 import useSWR from 'swr'
 
 const userKey = (username: string) => `user/${username}`
 
-export function useUser({
-  id,
-  initialData,
-}: {
-  id: string
-  initialData: User
-}) {
-  const { data = initialData, ...rest } = useSWR<User>(userKey(id))
+export function useUser({ username, initialData }: { username: string; initialData: User }) {
+  const { data = initialData, ...rest } = useSWR<User>(userKey(username))
 
   return {
     user: data,

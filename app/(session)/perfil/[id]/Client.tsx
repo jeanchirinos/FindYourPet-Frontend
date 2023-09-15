@@ -16,7 +16,7 @@ import { useRouter, useParams } from 'next/navigation'
 export function Client(props: { user: User | undefined }) {
   const params = useParams()
 
-  const { user } = useUser({ id: params.id as string, initialData: props.user! })
+  const { user } = useUser({ username: params.id as string, initialData: props.user! })
   const { email, image, isUser, mobile, name, username } = user || {}
 
   // useEffect(() => {
