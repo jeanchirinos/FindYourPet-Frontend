@@ -20,3 +20,9 @@ export function useUpdateUser(username: string) {
     key: userKey(username),
   })
 }
+
+export function useUpdateImage(username: string) {
+  return useSendData<FormData>('user-profile', {
+    key: userKey(username),
+  })
+}

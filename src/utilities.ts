@@ -21,24 +21,24 @@ export async function request<Response>(
     headers['content-type'] = 'application/json'
     headers.accept = 'application/json'
 
-    //! LOCAL - PRODUCTION
-    if (process.env.NODE_ENV === 'development') {
-      let authToken
-
-      if (token) {
-        authToken = token
-      } else if (typeof window !== 'undefined') {
-        authToken = getCookie('jwt')
-      }
-
-      if (authToken) {
-        headers.authorization = `Bearer ${authToken}`
-      }
-    }
-    //!
-
     body = JSON.stringify(config.body)
   }
+
+  //! LOCAL - PRODUCTION
+  if (process.env.NODE_ENV === 'development') {
+    let authToken
+
+    if (token) {
+      authToken = token
+    } else if (typeof window !== 'undefined') {
+      authToken = getCookie('jwt')
+    }
+
+    if (authToken) {
+      headers.authorization = `Bearer ${authToken}`
+    }
+  }
+  //!
 
   let backendApi: string | undefined
 

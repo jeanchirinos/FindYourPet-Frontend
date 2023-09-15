@@ -10,7 +10,7 @@ import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
 import { User } from './page'
 import { SetState } from '@/types'
-import { useUpdateUser, useUser } from '@/services/user'
+import { useUpdateImage, useUpdateUser, useUser } from '@/services/user'
 import { useRouter, useParams } from 'next/navigation'
 
 export function Client(props: { user: User | undefined }) {
@@ -18,6 +18,8 @@ export function Client(props: { user: User | undefined }) {
 
   const { user } = useUser({ username: params.id as string, initialData: props.user! })
   const { email, image, isUser, mobile, name, username } = user || {}
+
+  const { trigger: triggerUpdateImage } = useUpdateImage(username)
 
   // useEffect(() => {
   //   mutate()
@@ -46,10 +48,23 @@ export function Client(props: { user: User | undefined }) {
 
   function submitUpdateImage(e: React.FormEvent) {
     e.preventDefault()
-    // const canvas = cropperRef.current?.getCanvas()?.toDataURL()
+    const canvas = cropperRef.current?.getCanvas()?.toDataURL()
 
-    // if (!canvas) return
+    if (!canvas) return
     // TODO: Send image to server
+
+    const formData = new FormData()
+
+    // console.log({ canvas })
+
+    formData.append('image', canvas)
+    // send just image
+
+    triggerUpdateImage(formData, {
+      onSuccess() {
+        setIsImageEditable(false)
+      },
+    })
   }
 
   // RENDER
@@ -64,9 +79,12 @@ export function Client(props: { user: User | undefined }) {
               stencilComponent={CircleStencil}
               ref={cropperRef}
             />
-            <Button type='submit' className='bg-primary text-white'>
-              Guardar
-            </Button>
+            <footer className='flex gap-x-2 child:flex-grow'>
+              <Button onPress={() => setIsImageEditable(false)}>Cancelar</Button>
+              <Button type='submit' className='bg-primary text-white'>
+                Guardar
+              </Button>
+            </footer>
           </form>
         ) : (
           <>
