@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --header-height: 50px;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:is(:hover, :focus, :active) {
   transition: background-color 50000s ease-in-out 0s;
 }
 
-:root{
-  --header-height: 50px
+input[type='file']::-webkit-file-upload-button {
+  cursor: pointer;
 }

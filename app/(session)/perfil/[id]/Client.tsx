@@ -91,19 +91,19 @@ export function Client(props: { user: User | undefined }) {
             <Image
               className='rounded-full object-cover'
               src={image}
-              width='600'
-              height='600'
-              alt='Lechonk aesthetic'
+              width={600}
+              height={600}
+              alt='Perfil'
             />
 
             {isUser && (
-              <label className='absolute bottom-5 right-5 cursor-pointer'>
-                <div className='rounded-full bg-pink-500 p-1 text-2xl text-white'>
+              <label className='absolute bottom-5 right-5'>
+                <div className='pointer-events-none absolute rounded-full bg-pink-500 p-1 text-2xl text-white'>
                   <BiSolidCamera />
                 </div>
                 <input
                   type='file'
-                  className='invisible absolute'
+                  className='aspect-square w-[2rem] opacity-0'
                   accept='image/*'
                   onChange={handleInputImage}
                 />
@@ -147,7 +147,6 @@ function EditableForm(props: { user: User | undefined; setIsEditable: SetState<b
   const { setIsEditable, user } = props
 
   const { trigger, isMutating } = useUpdateUser(user!.username)
-
   const [editableUser, setEditableUser] = useState<Partial<User> | undefined>(user)
 
   const router = useRouter()
@@ -164,7 +163,6 @@ function EditableForm(props: { user: User | undefined; setIsEditable: SetState<b
         setIsEditable(false)
         router.replace(`/perfil/${editableUser?.username}`)
       },
-      // revalidate: false,
     })
   }
 
