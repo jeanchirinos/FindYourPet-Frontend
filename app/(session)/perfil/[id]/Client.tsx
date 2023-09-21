@@ -4,26 +4,24 @@ import { Input } from '@/components/Input'
 import Image from 'next/image'
 import { BiSolidCamera } from 'react-icons/bi'
 import { HiOutlineMail, HiOutlineDeviceMobile } from 'react-icons/hi'
-import { useRef, useState, useEffect } from 'react'
+import { Suspense, useRef, useState } from 'react'
 
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
 import { User } from './page'
 import { SetState } from '@/types'
-import { useUpdateImage, useUpdateUser, useUser } from '@/services/user'
+import { useUpdateImage, useUpdateUser } from '@/services/user'
 import { useRouter, useParams } from 'next/navigation'
 
-export function Client(props: { user: User | undefined }) {
+export function Client(props: { user: User }) {
+  // HOOKS
+  const { user } = props
   const params = useParams()
+  const router = useRouter()
 
-  const { user } = useUser({ username: params.id as string, initialData: props.user! })
-  const { email, image, isUser, mobile, name, username } = user || {}
+  const { email, image, isUser, mobile, name, username } = user
 
   const { trigger: triggerUpdateImage } = useUpdateImage(username)
-
-  // useEffect(() => {
-  //   mutate()
-  // }, [params, mutate])
 
   // REF
   const cropperRef = useRef<CropperRef>(null)
@@ -34,7 +32,6 @@ export function Client(props: { user: User | undefined }) {
   const [imagePreview, setImagePreview] = useState('')
 
   // FUNCTIONS
-
   function handleInputImage(e: React.ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) return
 
@@ -48,22 +45,20 @@ export function Client(props: { user: User | undefined }) {
 
   function submitUpdateImage(e: React.FormEvent) {
     e.preventDefault()
-    const canvas = cropperRef.current?.getCanvas()?.toDataURL()
 
-    if (!canvas) return
-    // TODO: Send image to server
+    const canvasUrl = cropperRef.current?.getCanvas()?.toDataURL()
+    if (!canvasUrl) return
 
     const formData = new FormData()
 
-    // console.log({ canvas })
-
-    formData.append('image', canvas)
-    // send just image
+    formData.append('image', canvasUrl)
 
     triggerUpdateImage(formData, {
-      onSuccess() {
+      onSuccess(data) {
         setIsImageEditable(false)
+        router.refresh()
       },
+      revalidate: false,
     })
   }
 
@@ -88,11 +83,11 @@ export function Client(props: { user: User | undefined }) {
           </form>
         ) : (
           <>
-            <Image
+            <img
               className='rounded-full object-cover'
               src={image}
-              width={600}
-              height={600}
+              width={300}
+              height={300}
               alt='Perfil'
             />
 
@@ -128,7 +123,7 @@ export function Client(props: { user: User | undefined }) {
               <span>Celular: {mobile}</span>
             </div>
           </div>
-          {props.user?.isUser && (
+          {isUser && (
             <Button className='bg-primary text-white' onPress={() => setIsEditable(true)}>
               Editar
             </Button>
@@ -141,11 +136,12 @@ export function Client(props: { user: User | undefined }) {
   )
 }
 
-// user/update
+type EditableFormProps = { user: User | undefined; setIsEditable: SetState<boolean> }
 
-function EditableForm(props: { user: User | undefined; setIsEditable: SetState<boolean> }) {
-  const { setIsEditable, user } = props
+function EditableForm(props: EditableFormProps) {
+  const { user, setIsEditable } = props
 
+  // HOOKS
   const { trigger, isMutating } = useUpdateUser(user!.username)
   const [editableUser, setEditableUser] = useState<Partial<User> | undefined>(user)
 
@@ -156,13 +152,25 @@ function EditableForm(props: { user: User | undefined; setIsEditable: SetState<b
     setIsEditable(false)
   }
 
+  const keys: (keyof User)[] = ['name', 'username', 'mobile']
+  const hasNotEdited = keys.every(key => editableUser?.[key] === user?.[key])
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+
+    if (hasNotEdited) return
+
     trigger(editableUser!, {
       onSuccess() {
         setIsEditable(false)
-        router.replace(`/perfil/${editableUser?.username}`)
+
+        if (editableUser?.username !== user?.username) {
+          router.replace(`/perfil/${editableUser?.username}`)
+        } else {
+          router.refresh()
+        }
       },
+      revalidate: false,
     })
   }
 
@@ -172,6 +180,7 @@ function EditableForm(props: { user: User | undefined; setIsEditable: SetState<b
     setEditableUser(prev => ({ ...prev, [name]: value }))
   }
 
+  // RENDER
   return (
     <section>
       <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
@@ -203,7 +212,12 @@ function EditableForm(props: { user: User | undefined; setIsEditable: SetState<b
           <Button type='button' onPress={handleCancel}>
             Cancelar
           </Button>
-          <Button type='submit' className='bg-primary text-white' safeIsLoading={isMutating}>
+          <Button
+            type='submit'
+            className='bg-primary text-white disabled:bg-gray-500'
+            safeIsLoading={isMutating}
+            disabled={hasNotEdited}
+          >
             Guardar
           </Button>
         </div>

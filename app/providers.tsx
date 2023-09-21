@@ -24,6 +24,7 @@ export function Providers(props: React.PropsWithChildren) {
       value={{
         fetcher,
       }}
+      
     >
       <NextUIProvider>
         {props.children}

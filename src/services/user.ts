@@ -4,7 +4,11 @@ import useSWR from 'swr'
 
 const userKey = (username: string) => `user/${username}`
 
-export function useUser({ username, initialData }: { username: string; initialData: User }) {
+type UseUser = { username: string; initialData: User }
+
+export function useUser(params: UseUser) {
+  const { username, initialData } = params
+
   const { data = initialData, ...rest } = useSWR<User>(userKey(username))
 
   return {

@@ -2,6 +2,8 @@ import { Client } from './Client'
 import { request } from '@/utilities'
 import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
+// import { ServerClient } from './ServerClient'
+// import { Suspense } from 'react'
 
 interface Props {
   params: { id: string }
@@ -18,6 +20,9 @@ export type User = {
 
 async function getUser(id: string) {
   try {
+    // await 5 seconds
+    // await new Promise(resolve => setTimeout(resolve, 5000))
+
     const authCookie = cookies().get('jwt')?.value
 
     const response = await request<User>(`user/${id}`, { cookies: `jwt=${authCookie}` })
@@ -25,9 +30,6 @@ async function getUser(id: string) {
 
     return user
   } catch (err) {
-    // console.log(err)
-    // return 404 response
-
     return notFound()
   }
 }
@@ -37,5 +39,10 @@ export default async function Page(props: Props) {
 
   const user = await getUser(id)
 
-  return <Client user={user} />
+  return (
+    // <Suspense fallback={<></>}>
+    <Client user={user} />
+    // </Suspense>
+  )
+  // return <ServerClient user={user} />
 }
