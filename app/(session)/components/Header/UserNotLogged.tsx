@@ -12,6 +12,7 @@ import { Tabs, Tab } from '@nextui-org/react'
 import { Button } from '@/components/Button'
 import { SessionLogged } from '@/types'
 import { setCookie } from 'typescript-cookie'
+import { useRouter } from 'next/navigation'
 
 enum EFormState {
   Login = 'login',
@@ -48,18 +49,21 @@ export function UserNotLogged() {
 
 // COMPONTENTS
 function Google() {
+  const router = useRouter()
+
   // EFFECT
   useEffect(() => {
     function handleMessage(e: MessageEvent<SessionLogged & { token: string }>) {
-      mutate(SWRKey.SESSION, e.data, {
-        revalidate: false,
-      })
+      // mutate(SWRKey.SESSION, e.data, {
+      //   revalidate: false,
+      // })
 
       //! LOCAL - PRODUCTION
-      if(process.env.NODE_ENV === 'development') setCookie('jwt', e.data.token, { expires: 7 })
-      // setCookie('jwt', e.data.token)
+      if (process.env.NODE_ENV === 'development') setCookie('jwt', e.data.token, { expires: 7 })
 
       openedWindow.current?.close()
+
+      router.refresh()
     }
 
     window.addEventListener('message', handleMessage)
@@ -187,6 +191,7 @@ function Login() {
   })
 
   // HOOKS
+  const router = useRouter()
   const { trigger, isMutating } = useLogin()
 
   // FUNCTIONS
@@ -200,12 +205,21 @@ function Login() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
+    // trigger(form, {
+    //   revalidate: false,
+    //   populateCache: true,
+    //   //! LOCAL - PRODUCTION
+    //   onSuccess(data) {
+    //     if (process.env.NODE_ENV === 'development') setCookie('jwt', data.token, { expires: 7 })
+    //   },
+    // })
+
     trigger(form, {
       revalidate: false,
-      populateCache: true,
       //! LOCAL - PRODUCTION
       onSuccess(data) {
-        if(process.env.NODE_ENV === 'development') setCookie('jwt', data.token, { expires: 7 })
+        if (process.env.NODE_ENV === 'development') setCookie('jwt', data.token, { expires: 7 })
+        router.refresh()
       },
     })
   }

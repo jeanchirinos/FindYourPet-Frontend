@@ -1,10 +1,9 @@
 'use client'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
-import Image from 'next/image'
 import { BiSolidCamera } from 'react-icons/bi'
 import { HiOutlineMail, HiOutlineDeviceMobile } from 'react-icons/hi'
-import { Suspense, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
@@ -27,19 +26,18 @@ export function Client(props: { user: User }) {
   const cropperRef = useRef<CropperRef>(null)
 
   // STATES
-  const [isEditable, setIsEditable] = useState(false)
-  const [isImageEditable, setIsImageEditable] = useState(false)
-  const [imagePreview, setImagePreview] = useState('')
+  const [formIsEditable, setFormIsEditable] = useState(false)
+  const [imagePreview, setImagePreview] = useState<undefined | string>('')
 
   // FUNCTIONS
   function handleInputImage(e: React.ChangeEvent<HTMLInputElement>) {
     if (!e.target.files) return
 
     const file = e.target.files[0]
+    const imagePreview = URL.createObjectURL(file)
 
     if (file) {
-      setIsImageEditable(true)
-      setImagePreview(URL.createObjectURL(file))
+      setImagePreview(imagePreview)
     }
   }
 
@@ -54,8 +52,8 @@ export function Client(props: { user: User }) {
     formData.append('image', canvasUrl)
 
     triggerUpdateImage(formData, {
-      onSuccess(data) {
-        setIsImageEditable(false)
+      onSuccess() {
+        setImagePreview(undefined)
         router.refresh()
       },
       revalidate: false,
@@ -66,7 +64,7 @@ export function Client(props: { user: User }) {
   return (
     <div className='mx-auto w-[400px] max-w-full space-y-3'>
       <section className='relative mx-auto aspect-square w-[250px] max-w-full'>
-        {isImageEditable ? (
+        {imagePreview ? (
           <form className='flex flex-col gap-y-2' onSubmit={submitUpdateImage}>
             <Cropper
               src={imagePreview}
@@ -75,7 +73,7 @@ export function Client(props: { user: User }) {
               ref={cropperRef}
             />
             <footer className='flex gap-x-2 child:flex-grow'>
-              <Button onPress={() => setIsImageEditable(false)}>Cancelar</Button>
+              <Button onPress={() => setImagePreview(undefined)}>Cancelar</Button>
               <Button type='submit' className='bg-primary text-white'>
                 Guardar
               </Button>
@@ -107,7 +105,7 @@ export function Client(props: { user: User }) {
           </>
         )}
       </section>
-      {!isEditable && (
+      {!formIsEditable && (
         <section className='flex flex-col gap-3'>
           <div>
             <div className='text-center'>
@@ -124,14 +122,14 @@ export function Client(props: { user: User }) {
             </div>
           </div>
           {isUser && (
-            <Button className='bg-primary text-white' onPress={() => setIsEditable(true)}>
+            <Button className='bg-primary text-white' onPress={() => setFormIsEditable(true)}>
               Editar
             </Button>
           )}
         </section>
       )}
 
-      {isEditable && <EditableForm user={user} setIsEditable={setIsEditable} />}
+      {formIsEditable && <EditableForm user={user} setIsEditable={setFormIsEditable} />}
     </div>
   )
 }
@@ -151,9 +149,6 @@ function EditableForm(props: EditableFormProps) {
   function handleCancel() {
     setIsEditable(false)
   }
-
-  const keys: (keyof User)[] = ['name', 'username', 'mobile']
-  const hasNotEdited = keys.every(key => editableUser?.[key] === user?.[key])
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -179,6 +174,10 @@ function EditableForm(props: EditableFormProps) {
 
     setEditableUser(prev => ({ ...prev, [name]: value }))
   }
+
+  // VALUES
+  const keys: (keyof User)[] = ['name', 'username', 'mobile']
+  const hasNotEdited = keys.every(key => editableUser?.[key] === user?.[key])
 
   // RENDER
   return (

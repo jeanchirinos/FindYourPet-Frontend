@@ -2,6 +2,7 @@ import { Client } from './Client'
 import { request } from '@/utilities'
 import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 // import { ServerClient } from './ServerClient'
 // import { Suspense } from 'react'
 
@@ -25,8 +26,7 @@ async function getUser(id: string) {
 
     const authCookie = cookies().get('jwt')?.value
 
-    const response = await request<User>(`user/${id}`, { cookies: `jwt=${authCookie}` })
-    const user = await response
+    const user = await request<User>(`user/${id}`, { cookies: `jwt=${authCookie}` })
 
     return user
   } catch (err) {
@@ -37,12 +37,17 @@ async function getUser(id: string) {
 export default async function Page(props: Props) {
   const { id } = props.params
 
+  return (
+    <Suspense>
+      <Profile id={id} />
+    </Suspense>
+  )
+}
+
+async function Profile(props: { id: string }) {
+  const { id } = props
+
   const user = await getUser(id)
 
-  return (
-    // <Suspense fallback={<></>}>
-    <Client user={user} />
-    // </Suspense>
-  )
-  // return <ServerClient user={user} />
+  return <Client user={user} />
 }

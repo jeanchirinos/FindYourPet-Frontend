@@ -41,7 +41,8 @@
     "react/self-closing-comp": "warn",
     "react/jsx-no-target-blank": "warn",
     "@typescript-eslint/no-unnecessary-type-assertion": "warn",
-    "no-unneeded-ternary": "warn"
+    "no-unneeded-ternary": "warn",
+    "@next/next/no-img-element": "off"
   },
   "globals": {
     "React": "readonly",

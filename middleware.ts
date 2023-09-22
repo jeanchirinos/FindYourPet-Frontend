@@ -7,10 +7,10 @@ export async function middleware(request: NextRequest) {
   const response = NextResponse.next()
   const redirection = NextResponse.redirect(new URL('', request.nextUrl.origin))
 
-  const authCookie = request.cookies.get('jwt')?.value
-  if (!authCookie) return redirection
+  const token = request.cookies.get('jwt')?.value
+  if (!token) return redirection
 
-  const session = await getSession(authCookie)
+  const session = await getSession(token)
 
   if (!session.auth || session.role !== ERole.ADMIN) {
     return redirection

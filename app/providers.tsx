@@ -23,8 +23,11 @@ export function Providers(props: React.PropsWithChildren) {
     <SWRConfig
       value={{
         fetcher,
+        revalidateIfStale: false,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
+        shouldRetryOnError: false,
       }}
-      
     >
       <NextUIProvider>
         {props.children}

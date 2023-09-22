@@ -1,6 +1,6 @@
-import { SessionContext } from '@/context/SessionContext'
-import { SessionLogged } from '@/types'
-import { cookies } from 'next/headers'
+// import { SessionContext } from '@/context/SessionContext'
+// import { SessionLogged } from '@/types'
+// import { cookies } from 'next/headers'
 import { Header } from 'app/(session)/components/Header/Header'
 import NextTopLoader from 'nextjs-toploader'
 
@@ -18,16 +18,14 @@ export default async function RootLayout(props: React.PropsWithChildren) {
     <>
       <NextTopLoader color='#FF813F' height={1.5} showSpinner={false} />
       {/* <SessionContext session={session}> */}
-      <SessionContext>
-        {/* <div className='fixed z-50'>
+      {/* <SessionContext> */}
+      {/* <div className='fixed z-50'>
           <p>{cookieSession}</p>
           <p className='text-red-500'>{cookieSession2}</p>
         </div> */}
-        <Header />
-        <main className='pt-[var(--header-height)]'>
-          {props.children}
-        </main>
-      </SessionContext>
+      <Header />
+      <main className='pt-[var(--header-height)]'>{props.children}</main>
+      {/* </SessionContext> */}
     </>
   )
 }

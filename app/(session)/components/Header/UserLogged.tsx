@@ -21,28 +21,39 @@ export function UserLogged(props: { session: UserLoggedType }) {
 
   // FUNCTIONS
   function handleLogout() {
-    trigger(
-      {},
-      {
-        onSuccess() {
-          localStorage.clear()
-          removeCookie('session')
-          removeCookie('jwt')
-          router.replace('/')
-          router.refresh()
-          // window.location.href = '/'
-        },
-        revalidate: false,
-        populateCache: true,
+    // trigger(
+    //   {},
+    //   {
+    //     onSuccess() {
+    //       localStorage.clear()
+    //       removeCookie('session')
+    //       removeCookie('jwt')
+    //       router.replace('/')
+    //       router.refresh()
+    //       // window.location.href = '/'
+    //     },
+    //     revalidate: false,
+    //     populateCache: true,
+    //   },
+    // )
+
+    trigger(null, {
+      onSuccess() {
+        localStorage.clear()
+        removeCookie('jwt')
+        router.replace('/')
+        router.refresh()
+        // window.location.href = '/'
       },
-    )
+      revalidate: false,
+    })
   }
 
   // RENDER
   return (
     <Popover>
       <PopoverTrigger>
-        <Image
+        <img
           src={session.image}
           alt='Perfil'
           width={32}
