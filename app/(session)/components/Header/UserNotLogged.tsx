@@ -218,7 +218,9 @@ function Login() {
       revalidate: false,
       //! LOCAL - PRODUCTION
       onSuccess(data) {
-        if (process.env.NODE_ENV === 'development') setCookie('jwt', data.token, { expires: 7 })
+        if (process.env.NODE_ENV === 'development') {
+          setCookie('jwt', data.token, { expires: 7 })
+        }
         router.refresh()
       },
     })

@@ -1,4 +1,3 @@
-'use server'
 import { Session } from '@/types'
 import { request } from '@/utilities'
 // import { GetServerSidePropsContext } from 'next'
