@@ -9,8 +9,9 @@ export async function middleware(request: NextRequest) {
 
   const token = request.cookies.get('jwt')?.value
   if (!token) return redirection
+  const cookies = request.cookies.toString()
 
-  const session = await getSession(token)
+  const session = await getSession(token, cookies)
 
   if (!session.auth || session.role !== ERole.ADMIN) {
     return redirection

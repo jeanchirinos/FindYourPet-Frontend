@@ -2,12 +2,12 @@ import { Session } from '@/types'
 import { request } from '@/utilities/requestServer'
 import { request as requestClient } from '@/utilities/utilities'
 
-export async function getSession(token?: string) {
+export async function getSession(token?: string, cookies?: string) {
   let session
 
   const myRequest = token ? requestClient : request
 
-  const options = token ? { token } : undefined
+  const options = token ? { token, cookies } : undefined
 
   try {
     session = await myRequest<Session>('session', options)
