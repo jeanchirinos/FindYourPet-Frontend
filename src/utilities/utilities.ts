@@ -6,11 +6,14 @@ interface Config extends Omit<RequestInit, 'body'> {
   body?: object
 }
 
-export type RequestParams = [url: string, options?: { config?: Config; token?: string }]
+export type RequestParams = [
+  url: string,
+  options?: { config?: Config; token?: string; cookies?: string },
+]
 
 export async function request<Response>(...params: RequestParams): Promise<Response> {
   const [url, options] = params
-  const { config = {}, token } = options ?? {}
+  const { config = {}, token, cookies } = options ?? {}
 
   const headers: HeadersInit = {}
   let body = null
@@ -40,7 +43,6 @@ export async function request<Response>(...params: RequestParams): Promise<Respo
 
     if (authToken) {
       headers.authorization = `Bearer ${authToken}`
-      headers.Cookie = `jwt=${authToken}`
     }
 
     if (isClient) {
@@ -48,6 +50,8 @@ export async function request<Response>(...params: RequestParams): Promise<Respo
     }
   }
   //!
+
+  if (cookies) headers.Cookie = cookies
 
   const res = await fetch(backendApi + url, {
     method: config.method,

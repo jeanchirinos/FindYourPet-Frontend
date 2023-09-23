@@ -6,5 +6,5 @@ export function request<Response>(...params: RequestParams) {
 
   const authToken = cookies().get('jwt')?.value
 
-  return baseRequest<Response>(url, { ...options, token: authToken })
+  return baseRequest<Response>(url, { ...options, token: authToken, cookies: cookies().toString() })
 }
