@@ -19,7 +19,6 @@ export async function request<Response>(...params: RequestParams): Promise<Respo
   let body = null
 
   if (config.body instanceof FormData) {
-    headers['content-type'] = 'multipart/form-data'
     body = config.body
   } else {
     headers['content-type'] = 'application/json'
@@ -30,7 +29,7 @@ export async function request<Response>(...params: RequestParams): Promise<Respo
 
   let backendApi = process.env.NEXT_PUBLIC_BACKEND_API_SERVER!
 
-  //! LOCAL - PRODUCTION - DIFFERENT DOMAINS
+  //! LOCAL TO PRODUCTION - DIFFERENT DOMAINS
   if (process.env.NODE_ENV === 'development') {
     let authToken
     const isClient = typeof window !== 'undefined'
