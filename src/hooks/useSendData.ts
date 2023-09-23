@@ -1,7 +1,7 @@
 'use client'
 
 import useSWRMutation, { SWRMutationConfiguration } from 'swr/mutation'
-import { request } from '@/utilities'
+import { request } from '@/utilities/utilities'
 
 type Params<Data, Args> = [
   url: string,

@@ -6,16 +6,17 @@ interface Config extends Omit<RequestInit, 'body'> {
   body?: object
 }
 
-export async function request<Response>(
-  url: string,
-  options?: { config?: Config; cookies?: string; token?: string },
-): Promise<Response> {
-  const { config = {}, cookies, token } = options ?? {}
+export type RequestParams = [url: string, options?: { config?: Config; token?: string }]
+
+export async function request<Response>(...params: RequestParams): Promise<Response> {
+  const [url, options] = params
+  const { config = {}, token } = options ?? {}
 
   const headers: HeadersInit = {}
   let body = null
 
   if (config.body instanceof FormData) {
+    headers['content-type'] = 'multipart/form-data'
     body = config.body
   } else {
     headers['content-type'] = 'application/json'
@@ -24,30 +25,29 @@ export async function request<Response>(
     body = JSON.stringify(config.body)
   }
 
-  //! LOCAL - PRODUCTION
+  let backendApi = process.env.NEXT_PUBLIC_BACKEND_API_SERVER!
+
+  //! LOCAL - PRODUCTION - DIFFERENT DOMAINS
   if (process.env.NODE_ENV === 'development') {
     let authToken
+    const isClient = typeof window !== 'undefined'
 
     if (token) {
       authToken = token
-    } else if (typeof window !== 'undefined') {
+    } else if (isClient) {
       authToken = getCookie('jwt')
     }
 
     if (authToken) {
       headers.authorization = `Bearer ${authToken}`
+      headers.Cookie = `jwt=${authToken}`
+    }
+
+    if (isClient) {
+      backendApi = process.env.NEXT_PUBLIC_BACKEND_API_CLIENT!
     }
   }
   //!
-
-  let backendApi: string | undefined
-
-  if (cookies) {
-    headers.Cookie = cookies
-    backendApi = process.env.NEXT_PUBLIC_BACKEND_API_SERVER
-  } else {
-    backendApi = process.env.NEXT_PUBLIC_BACKEND_API_CLIENT
-  }
 
   const res = await fetch(backendApi + url, {
     method: config.method,
@@ -63,11 +63,11 @@ export async function request<Response>(
       toast.error(data.msg)
     }
 
-    if (typeof window !== 'undefined' && res.status === 401) {
-      // removeAuthToken()
-      localStorage.clear()
-      // window.location.replace('/')
-    }
+    // if (typeof window !== 'undefined' && res.status === 401) {
+    //   // removeAuthToken()
+    //   // localStorage.clear()
+    //   // window.location.replace('/')
+    // }
 
     throw new Error(`[${res.status} - ${res.statusText}] : ${data.msg}`)
   }
@@ -79,4 +79,8 @@ export async function fetcher<Response>(url: string) {
   const data = await request(url)
 
   return data as Response
+}
+
+export async function waitFor(seconds: number) {
+  return new Promise(resolve => setTimeout(resolve, seconds * 1000))
 }

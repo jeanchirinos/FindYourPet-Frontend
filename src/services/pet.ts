@@ -1,6 +1,6 @@
 'use client'
 
-import { request } from '@/utilities'
+import { request } from '@/utilities/utilities'
 import useSWR from 'swr'
 
 interface Pet {

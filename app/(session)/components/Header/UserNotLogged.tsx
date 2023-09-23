@@ -1,13 +1,11 @@
 'use client'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { mutate } from 'swr'
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-hot-toast'
 import { useLogin, useRegister } from '@/services/auth'
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/Popover'
 import { Input } from 'app/components/Input'
-import { SWRKey } from '@/enums'
 import { Tabs, Tab } from '@nextui-org/react'
 import { Button } from '@/components/Button'
 import { SessionLogged } from '@/types'
@@ -204,15 +202,6 @@ function Login() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-
-    // trigger(form, {
-    //   revalidate: false,
-    //   populateCache: true,
-    //   //! LOCAL - PRODUCTION
-    //   onSuccess(data) {
-    //     if (process.env.NODE_ENV === 'development') setCookie('jwt', data.token, { expires: 7 })
-    //   },
-    // })
 
     trigger(form, {
       revalidate: false,

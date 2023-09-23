@@ -1,36 +1,16 @@
 import { Session } from '@/types'
-import { request } from '@/utilities'
-// import { GetServerSidePropsContext } from 'next'
-import { cookies } from 'next/headers'
-
-// export async function getSessionOld(context: GetServerSidePropsContext | string) {
-//   let session: Session
-
-//   try {
-//     session = await request<Session>('session', {
-//       // cookies: typeof context === 'string' ? context : context.req.headers.cookie,
-//       cookies: typeof context === 'string' ? `jwt=${context}` : context.req.headers.cookie,
-//     })
-//   } catch (e) {
-//     session = { auth: false }
-//   }
-
-//   return session
-// }
+import { request } from '@/utilities/requestServer'
+import { request as requestClient } from '@/utilities/utilities'
 
 export async function getSession(token?: string) {
   let session
 
-  let authToken = token
+  const myRequest = token ? requestClient : request
 
-  if (!authToken) {
-    authToken = cookies().get('jwt')?.value
-  }
+  const options = token ? { token } : undefined
 
   try {
-    session = await request<Session>('session', {
-      cookies: `jwt=${authToken}`,
-    })
+    session = await myRequest<Session>('session', options)
   } catch (e) {
     session = { auth: false } as const
   }

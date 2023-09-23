@@ -1,17 +1,14 @@
 'use client'
-import Image from 'next/image'
-import { SessionLogged as UserLoggedType } from '@/types'
+import { SessionLogged } from '@/types'
 import { useLogout } from '@/services/auth'
-// import { Button, Link } from '@nextui-org/react'
 import { Button } from '@nextui-org/react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/Popover'
 import { ERole } from '@/enums'
 import { removeCookie } from 'typescript-cookie'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-// import { useSessionContext } from '@/context/SessionContext'
 
-export function UserLogged(props: { session: UserLoggedType }) {
+export function UserLogged(props: { session: SessionLogged }) {
   const { session } = props
 
   // HOOKS
@@ -21,22 +18,6 @@ export function UserLogged(props: { session: UserLoggedType }) {
 
   // FUNCTIONS
   function handleLogout() {
-    // trigger(
-    //   {},
-    //   {
-    //     onSuccess() {
-    //       localStorage.clear()
-    //       removeCookie('session')
-    //       removeCookie('jwt')
-    //       router.replace('/')
-    //       router.refresh()
-    //       // window.location.href = '/'
-    //     },
-    //     revalidate: false,
-    //     populateCache: true,
-    //   },
-    // )
-
     trigger(null, {
       onSuccess() {
         localStorage.clear()

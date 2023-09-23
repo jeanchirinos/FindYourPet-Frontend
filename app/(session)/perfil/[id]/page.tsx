@@ -1,14 +1,7 @@
+import { request } from '@/utilities/requestServer'
 import { Client } from './Client'
-import { request } from '@/utilities'
-import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
-// import { ServerClient } from './ServerClient'
-// import { Suspense } from 'react'
-
-interface Props {
-  params: { id: string }
-}
 
 export type User = {
   username: string
@@ -19,14 +12,9 @@ export type User = {
   isUser: boolean
 }
 
-async function getUser(id: string) {
+async function getUser(username: string) {
   try {
-    // await 5 seconds
-    // await new Promise(resolve => setTimeout(resolve, 5000))
-
-    const authCookie = cookies().get('jwt')?.value
-
-    const user = await request<User>(`user/${id}`, { cookies: `jwt=${authCookie}` })
+    const user = await request<User>(`user/${username}`)
 
     return user
   } catch (err) {
@@ -34,20 +22,20 @@ async function getUser(id: string) {
   }
 }
 
-export default async function Page(props: Props) {
-  const { id } = props.params
+export default async function Page(props: { params: { id: string } }) {
+  const { id: username } = props.params
 
   return (
     <Suspense>
-      <Profile id={id} />
+      <Profile username={username} />
     </Suspense>
   )
 }
 
-async function Profile(props: { id: string }) {
-  const { id } = props
+async function Profile(props: { username: string }) {
+  const { username } = props
 
-  const user = await getUser(id)
+  const user = await getUser(username)
 
   return <Client user={user} />
 }

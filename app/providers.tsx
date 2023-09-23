@@ -1,5 +1,5 @@
 'use client'
-import { fetcher } from '@/utilities'
+import { fetcher } from '@/utilities/utilities'
 import { NextUIProvider } from '@nextui-org/react'
 import dynamic from 'next/dynamic'
 import { SWRConfig } from 'swr'

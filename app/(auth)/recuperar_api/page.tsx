@@ -1,4 +1,4 @@
-import { request } from '@/utilities'
+import { request } from '@/utilities/utilities'
 import { Form } from './Form'
 import { notFound } from 'next/navigation'
 
@@ -6,8 +6,8 @@ async function verifyToken(token: string | undefined) {
   if (!token) notFound()
 
   try {
-    await request(`verify-token/${token}`, { cookies: 'cookies' })
-  } catch (err) {
+    await request(`verify-token/${token}`)
+  } catch (e) {
     notFound()
   }
 

@@ -1,7 +1,7 @@
 'use client'
 
 import useSWR from 'swr'
-import { request } from '@/utilities'
+import { request } from '@/utilities/utilities'
 
 export type SWRWaitFor = (undefined | null | boolean)[]
 
