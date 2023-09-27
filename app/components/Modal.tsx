@@ -54,7 +54,6 @@ function Child(props: React.PropsWithChildren<{ onExitComplete?(): void }>) {
 
   useEffect(() => {
     return () => {
-      // console.log('Child unmounted')
       onExitComplete?.()
     }
   }, [])
