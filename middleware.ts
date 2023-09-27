@@ -4,6 +4,7 @@ import { getSession } from '@/services/session'
 import { ERole } from '@/enums'
 
 export async function middleware(request: NextRequest) {
+  console.log({ origin: request.nextUrl.origin })
   const response = NextResponse.next()
   const redirection = NextResponse.redirect(new URL('', request.nextUrl.origin))
 
@@ -23,3 +24,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: ['/crud/:path*'],
 }
+
+// export const config = {
+//   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+// }

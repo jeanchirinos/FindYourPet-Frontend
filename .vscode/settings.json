@@ -19,7 +19,6 @@
     "README.md": true,
     ".gitignore": true,
     ".prettierrc.json": true,
-    ".next": true,
     ".eslintrc.json": true
   },
   "hide-files.files": [
@@ -30,7 +29,6 @@
     "README.md",
     ".gitignore",
     ".prettierrc.json",
-    ".next",
     ".eslintrc.json"
   ],
   "peacock.color": "#D2A9B0",
