@@ -7,9 +7,15 @@ import { z } from 'zod'
 
 export async function updateUser(prevState: any, formData: FormData) {
   const schema = z.object({
-    name: z.string().nonempty(),
+    name: z.string(),
     username: z.string().nonempty(),
-    mobile: z.string().nonempty(),
+    mobile: z.union([
+      z
+        .string()
+        .length(9)
+        .regex(/^9[0-9]{8}$/),
+      z.literal(''),
+    ]),
   })
 
   const data = schema.parse({
@@ -33,25 +39,19 @@ export async function updateUser(prevState: any, formData: FormData) {
   }
 }
 
-// export async function deleteTodo(prevState: any, formData: FormData) {
-//   const schema = z.object({
-//     id: z.string().nonempty(),
-//     todo: z.string().nonempty(),
-//   })
-//   const data = schema.parse({
-//     id: formData.get('id'),
-//     todo: formData.get('todo'),
-//   })
+export async function updateUserImage(prevState: any, formData: FormData) {
+  try {
+    const response = await request<DefaultSuccessResponse>('user-profile', {
+      config: {
+        method: 'POST',
+        body: formData,
+      },
+    })
 
-//   try {
-//     await sql`
-//       DELETE FROM todos
-//       WHERE id = ${data.id};
-//     `
+    revalidatePath('/')
 
-//     revalidatePath('/')
-//     return { message: `Deleted todo ${data.todo}` }
-//   } catch (e) {
-//     return { message: 'Failed to delete todo' }
-//   }
-// }
+    return response
+  } catch (e) {
+    return { msg: 'Failed to update user profile image' }
+  }
+}

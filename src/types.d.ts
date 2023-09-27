@@ -3,6 +3,8 @@ export type SessionLogged = {
   image: string
   role: ERole
   username: string
+  email: string
+  name: string | null
 }
 
 export type Session = SessionLogged | { auth: false }

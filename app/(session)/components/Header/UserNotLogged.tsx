@@ -208,7 +208,7 @@ function Login() {
       //! LOCAL - PRODUCTION
       onSuccess(data) {
         if (process.env.NODE_ENV === 'development') {
-          setCookie('jwt', data.token, { expires: 7 })
+          setCookie('jwt', data.token, { expires: 7, path: '/' })
         }
         router.refresh()
       },

@@ -23,7 +23,7 @@ export function UserLogged(props: { session: SessionLogged }) {
       onSuccess() {
         localStorage.clear()
         removeCookie('jwt')
-        router.replace('/')
+        // router.replace('/')
         router.refresh()
         // window.location.href = '/'
       },
@@ -45,6 +45,10 @@ export function UserLogged(props: { session: SessionLogged }) {
         />
       </PopoverTrigger>
       <PopoverContent className='right-0 flex flex-col border border-neutral-200 bg-white'>
+        <div className='flex flex-col border-b border-neutral-100 px-4 py-2'>
+          {session.name && <span className='text-sm font-semibold'>{session.name}</span>}
+          <span className='text-xs'>{session.email}</span>
+        </div>
         <Link href={`/perfil/${session.username}`} className='w-full px-4 py-2 text-sm'>
           Perfil
         </Link>

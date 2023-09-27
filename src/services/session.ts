@@ -10,7 +10,12 @@ export async function getSession(token?: string, cookies?: string) {
   const options = token ? { token, cookies } : undefined
 
   try {
-    session = await myRequest<Session>('session', options)
+    session = await myRequest<Session>('session', {
+      ...options,
+      config: {
+        cache: 'no-cache',
+      },
+    })
   } catch (e) {
     session = { auth: false } as const
   }

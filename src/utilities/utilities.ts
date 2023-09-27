@@ -61,6 +61,8 @@ export async function request<Response>(...params: RequestParams): Promise<Respo
 
   const data = await res.json()
 
+  console.log({ url, data })
+
   if (!res.ok) {
     if (config.method === 'POST') {
       toast.error(data.msg)

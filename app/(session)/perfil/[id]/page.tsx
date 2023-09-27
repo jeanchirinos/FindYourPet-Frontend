@@ -1,7 +1,8 @@
 import { request } from '@/utilities/requestServer'
-import { Client } from './Client'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
+import Image from 'next/image'
+import { HiOutlineDeviceMobile, HiOutlineMail } from 'react-icons/hi'
 
 export type User = {
   username: string
@@ -36,5 +37,34 @@ async function Profile(props: { username: string }) {
 
   const user = await getUser(username)
 
-  return <Client user={user} />
+  return (
+    <div className='mx-auto w-[400px] max-w-full space-y-3'>
+      <section className='relative mx-auto aspect-square w-[250px] max-w-full'>
+        <Image
+          className='rounded-full object-cover'
+          src={user.image}
+          width={300}
+          height={300}
+          alt='Perfil'
+          loading='eager'
+        />
+      </section>
+      <section className='flex flex-col gap-3'>
+        <div>
+          <div className='text-center'>
+            <h1 className='text-2xl font-bold leading-none'>{user.name}</h1>
+            <span>{user.username}</span>
+          </div>
+          <div className='flex items-center gap-1'>
+            <HiOutlineMail />
+            <span>Correo: {user.email}</span>
+          </div>
+          <div className='flex items-center gap-1'>
+            <HiOutlineDeviceMobile />
+            <span>Celular: {user.mobile}</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
 }
