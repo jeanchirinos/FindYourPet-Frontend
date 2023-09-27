@@ -7,6 +7,7 @@ import { ERole } from '@/enums'
 import { removeCookie } from 'typescript-cookie'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 export function UserLogged(props: { session: SessionLogged }) {
   const { session } = props
@@ -34,7 +35,7 @@ export function UserLogged(props: { session: SessionLogged }) {
   return (
     <Popover>
       <PopoverTrigger>
-        <img
+        <Image
           src={session.image}
           alt='Perfil'
           width={32}

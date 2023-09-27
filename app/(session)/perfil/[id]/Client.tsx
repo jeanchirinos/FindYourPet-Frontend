@@ -11,6 +11,7 @@ import { User } from './page'
 import { SetState } from '@/types'
 import { useUpdateImage, useUpdateUser } from '@/services/user'
 import { useRouter, useParams } from 'next/navigation'
+import Image from 'next/image'
 
 export function Client(props: { user: User }) {
   // HOOKS
@@ -81,12 +82,13 @@ export function Client(props: { user: User }) {
           </form>
         ) : (
           <>
-            <img
+            <Image
               className='rounded-full object-cover'
               src={image}
               width={300}
               height={300}
               alt='Perfil'
+              loading='eager'
             />
 
             {isUser && (
