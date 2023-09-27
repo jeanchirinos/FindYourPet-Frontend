@@ -14,8 +14,7 @@ export type User = {
 
 async function getUser(username: string) {
   try {
-    const user = await request<User>(`user/${username}`)
-
+    const user = await request<User>(`user?username=${username}`)
     return user
   } catch (err) {
     return notFound()

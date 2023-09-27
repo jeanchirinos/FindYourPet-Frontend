@@ -48,6 +48,9 @@ export function UserLogged(props: { session: SessionLogged }) {
         <Link href={`/perfil/${session.username}`} className='w-full px-4 py-2 text-sm'>
           Perfil
         </Link>
+        <Link href='/ajustes' className='w-full px-4 py-2 text-sm'>
+          Ajustes
+        </Link>
         {session.role === ERole.ADMIN && (
           <Link href='/crud/especies' className='w-full px-4 py-2 text-sm'>
             Administrar

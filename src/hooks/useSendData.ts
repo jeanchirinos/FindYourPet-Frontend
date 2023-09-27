@@ -11,7 +11,7 @@ type Params<Data, Args> = [
   },
 ]
 
-export type DefaultSuccessResponse = { status: 'ok'; msg: string }
+export type DefaultSuccessResponse = { status: 'success'; msg: string }
 
 export function useSendData<Args, Response = object>(
   ...params: Params<Response & DefaultSuccessResponse, Args>
