@@ -1,8 +1,6 @@
 'use server'
 
-import { DefaultSuccessResponse } from '@/hooks/useSendData'
 import { errorResponse, requestAction } from '@/utilities/actionsRequest'
-import { request } from '@/utilities/requestServer'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 
@@ -37,11 +35,15 @@ export async function updateUser(prevState: any, formData: FormData) {
 
     return response
   } catch (error) {
-    return errorResponse
+    // if (error instanceof ZodError) {
+    //   console.log({ error: error.formErrors.fieldErrors })
+    // }
+
+    return { errorResponse }
   }
 }
 
-export async function updateUserImage(prevState: any, formData: FormData) {
+export async function updateUserImageProfile(prevState: any, formData: FormData) {
   const response = await requestAction('user-profile', {
     method: 'POST',
     body: formData,

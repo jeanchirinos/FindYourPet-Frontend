@@ -12,7 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@nextui-org/react": "^2.1.13",
-    "@types/node": "20.7.1",
+    "@types/node": "20.7.2",
     "@types/react": "^18.2.23",
     "@types/react-dom": "18.2.8",
     "autoprefixer": "10.4.16",
@@ -21,7 +21,7 @@
     "framer-motion": "^10.16.4",
     "next": "^13.5.3",
     "nextjs-toploader": "^1.4.2",
-    "postcss": "8.4.30",
+    "postcss": "8.4.31",
     "react": "18.2.0",
     "react-advanced-cropper": "^0.19.3",
     "react-dom": "18.2.0",

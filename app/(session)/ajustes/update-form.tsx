@@ -5,7 +5,7 @@ import {
   experimental_useFormState as useFormState,
   experimental_useFormStatus as useFormStatus,
 } from 'react-dom'
-import { updateUser, updateUserImage } from './actions'
+import { updateUser, updateUserImageProfile } from './actions'
 import { Input } from '@/components/Input'
 import { User } from '../perfil/[id]/page'
 import { Button } from '@/components/Button'
@@ -76,7 +76,7 @@ export function SubmitButton(props: React.ComponentProps<typeof Button>) {
 function ProfileImage(props: { user: User }) {
   const { user } = props
 
-  const [state, formAction] = useFormState(updateUserImage, initialState)
+  const [state, formAction] = useFormState(updateUserImageProfile, initialState)
 
   useEffect(() => {
     if (!state.status) return

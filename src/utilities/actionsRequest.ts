@@ -9,9 +9,11 @@ export type RequestParams = [url: string, config?: Config]
 
 export const errorResponse = { status: 'error', msg: 'Hubo un error' } as const
 
+type PossibleResponse<Response> = (DefaultSuccessResponse & Response) | typeof errorResponse
+
 export async function requestAction<Response>(
   ...params: RequestParams
-): Promise<(DefaultSuccessResponse & Response) | typeof errorResponse> {
+): Promise<PossibleResponse<Response>> {
   const [url, config = {}] = params
 
   const headers: HeadersInit = {}
@@ -28,7 +30,7 @@ export async function requestAction<Response>(
 
   const backendApiUrl = process.env.NEXT_PUBLIC_BACKEND_API_SERVER!
 
-  headers.Cookie = cookies().toString()
+  // headers.Cookie = cookies().toString()
 
   try {
     const res = await fetch(backendApiUrl + url, {
@@ -42,9 +44,8 @@ export async function requestAction<Response>(
 
     const data = await res.json()
 
-    return { msg: 'Petición correcta', status: 'success', ...data } as DefaultSuccessResponse &
-      Response
+    return { msg: 'Petición correcta', status: 'success', ...data } as PossibleResponse<Response>
   } catch (e) {
-    return { status: 'error', msg: 'Hubo un error' }
+    return errorResponse
   }
 }
