@@ -38,7 +38,7 @@ export function UpdateForm(props: { user: User }) {
       <ProfileImage user={user} />
       <form className='flex max-w-[350px] flex-col gap-3' action={formAction}>
         <Input type='text' label='Nombre' isRequired={false} defaultValue={user.name} name='name' />
-        <Input type='text' label='Usuario' defaultValue={user.username} name='username' required />
+        <Input type='text' label='Usuario' defaultValue={user.username} name='username' />
         <Input
           type='text'
           label='Móvil'
@@ -55,8 +55,10 @@ export function UpdateForm(props: { user: User }) {
   )
 }
 
-function SubmitButton(props: React.ComponentProps<typeof Button>) {
+export function SubmitButton(props: React.ComponentProps<typeof Button>) {
   const { pending } = useFormStatus()
+
+  const { children = 'Guardar', ...otherProps } = props
 
   return (
     <Button
@@ -64,9 +66,9 @@ function SubmitButton(props: React.ComponentProps<typeof Button>) {
       aria-disabled={pending}
       disabled={pending}
       className='bg-primary text-white disabled:bg-gray-500'
-      {...props}
+      {...otherProps}
     >
-      {pending ? 'Updating' : 'Update'}
+      {pending ? 'Cargando' : children}
     </Button>
   )
 }

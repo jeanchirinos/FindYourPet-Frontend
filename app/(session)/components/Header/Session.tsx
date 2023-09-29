@@ -1,4 +1,4 @@
-import { UserLogged } from './UserLogged'
+import { UserLogged } from './UserLogged/UserLogged'
 import { UserNotLogged } from './UserNotLogged'
 import { getSession } from '@/services/session'
 

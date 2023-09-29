@@ -1,3 +1,4 @@
+'use client'
 import { Popover as HeadlessPopover, Transition } from '@headlessui/react'
 import { Fragment, type ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'

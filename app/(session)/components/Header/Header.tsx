@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Session } from './Session'
 import { Suspense } from 'react'
 import Logo from '@/public/img/logo.webp'
+import { Button } from '@/components/Button'
 
 export function Header() {
   return (
@@ -10,9 +11,12 @@ export function Header() {
       <Link href='/' aria-label='Inicio'>
         <Image src={Logo} alt='Logo' width={40} loading='eager' />
       </Link>
-      <Suspense>
-        <Session />
-      </Suspense>
+      <aside className='flex items-center gap-x-4'>
+        <Button className='bg-primary text-white'>Publicar</Button>
+        <Suspense>
+          <Session />
+        </Suspense>
+      </aside>
     </header>
   )
 }

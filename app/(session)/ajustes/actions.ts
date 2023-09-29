@@ -1,6 +1,7 @@
 'use server'
 
 import { DefaultSuccessResponse } from '@/hooks/useSendData'
+import { errorResponse, requestAction } from '@/utilities/actionsRequest'
 import { request } from '@/utilities/requestServer'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
@@ -18,40 +19,37 @@ export async function updateUser(prevState: any, formData: FormData) {
     ]),
   })
 
-  const data = schema.parse({
-    name: formData.get('name'),
-    username: formData.get('username'),
-    mobile: formData.get('mobile'),
-  })
-
   try {
-    const response = await request<DefaultSuccessResponse>('user-update', {
-      config: {
-        method: 'POST',
-        body: data,
-      },
+    const data = schema.parse({
+      name: formData.get('name'),
+      username: formData.get('username'),
+      mobile: formData.get('mobile'),
     })
 
-    revalidatePath('/')
+    const response = await requestAction('user-update', {
+      method: 'POST',
+      body: data,
+    })
+
+    if (response.status === 'success') {
+      revalidatePath('/')
+    }
+
     return response
-  } catch (e) {
-    return { msg: 'Failed to update user' }
+  } catch (error) {
+    return errorResponse
   }
 }
 
 export async function updateUserImage(prevState: any, formData: FormData) {
-  try {
-    const response = await request<DefaultSuccessResponse>('user-profile', {
-      config: {
-        method: 'POST',
-        body: formData,
-      },
-    })
+  const response = await requestAction('user-profile', {
+    method: 'POST',
+    body: formData,
+  })
 
+  if (response.status === 'success') {
     revalidatePath('/')
-
-    return response
-  } catch (e) {
-    return { msg: 'Failed to update user profile image' }
   }
+
+  return response
 }
