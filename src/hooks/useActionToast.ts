@@ -14,7 +14,7 @@ export function useActionToast(action: any, options?: Options) {
   const [state, formAction] = useFormState(action, { status: null, msg: null })
 
   useEffect(() => {
-    if (state.status) {
+    if (state?.status) {
       // @ts-ignore
       toast[state.status](state.msg)
 

@@ -93,10 +93,12 @@ export async function forgotPassword(prevState: any, formData: FormData) {
     return errorResponse
   }
 
-  await requestAction('forgot-password', {
+  const response = await requestAction('forgot-password', {
     method: 'POST',
     body: data,
   })
+
+  return response
 }
 
 export async function resetPassword(prevState: any, formData: FormData) {
@@ -123,10 +125,12 @@ export async function resetPassword(prevState: any, formData: FormData) {
     return errorResponse
   }
 
-  await requestAction('reset-password', {
+  const response = await requestAction('reset-password', {
     method: 'POST',
     body: data,
   })
+
+  return response
 }
 
 // if (error instanceof z.ZodError) {
