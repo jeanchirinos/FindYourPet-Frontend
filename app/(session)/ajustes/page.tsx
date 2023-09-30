@@ -6,11 +6,9 @@ import { requestAction } from '@/utilities/actionsRequest'
 async function getUser() {
   const response = await requestAction<User>('user')
 
-  if (response.status === 'success') {
-    return response
-  } else {
-    redirect('/')
-  }
+  if (response.status === 'error') redirect('/')
+
+  return response
 }
 
 export default async function Page() {

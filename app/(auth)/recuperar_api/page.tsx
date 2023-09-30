@@ -1,15 +1,13 @@
-import { request } from '@/utilities/utilities'
 import { Form } from './Form'
 import { notFound } from 'next/navigation'
+import { requestAction } from '@/utilities/actionsRequest'
 
 async function verifyToken(token: string | undefined) {
   if (!token) notFound()
 
-  try {
-    await request(`verify-token/${token}`)
-  } catch (e) {
-    notFound()
-  }
+  const response = await requestAction(`verify-token/${token}`)
+
+  if (response.status === 'error') notFound()
 
   return token
 }
@@ -20,6 +18,7 @@ interface Props {
 
 export default async function Page(props: Props) {
   const { token } = props.searchParams
+
   await verifyToken(token)
 
   // RENDER

@@ -1,5 +1,5 @@
-import { DefaultSuccessResponse } from '@/hooks/useSendData'
 import { cookies } from 'next/headers'
+import { DefaultSuccessResponse } from './utilities'
 
 interface Config extends Omit<RequestInit, 'body'> {
   body?: object
@@ -30,21 +30,28 @@ export async function requestAction<Response>(
 
   const backendApiUrl = process.env.NEXT_PUBLIC_BACKEND_API_SERVER!
 
-  // headers.Cookie = cookies().toString()
+  headers.Cookie = cookies().toString()
 
   try {
     const res = await fetch(backendApiUrl + url, {
       method: config.method,
-      credentials: 'include',
+      // credentials: 'include',
       headers,
       body,
     })
 
-    if (!res.ok) throw new Error('Error en la petición')
+    if (!res.ok)
+      throw new Error('Error en la petición', {
+        cause: {
+          url: res.url,
+          status: res.status,
+          statusText: res.statusText,
+        },
+      })
 
     const data = await res.json()
 
-    return { msg: 'Petición correcta', status: 'success', ...data } as PossibleResponse<Response>
+    return { msg: '', status: 'success', ...data } as PossibleResponse<Response>
   } catch (e) {
     return errorResponse
   }

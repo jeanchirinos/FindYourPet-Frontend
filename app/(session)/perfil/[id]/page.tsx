@@ -1,8 +1,8 @@
-import { request } from '@/utilities/requestServer'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import Image from 'next/image'
 import { HiOutlineDeviceMobile, HiOutlineMail } from 'react-icons/hi'
+import { requestAction } from '@/utilities/actionsRequest'
 
 export type User = {
   username: string
@@ -14,12 +14,11 @@ export type User = {
 }
 
 async function getUser(username: string) {
-  try {
-    const user = await request<User>(`user?username=${username}`)
-    return user
-  } catch (err) {
-    return notFound()
-  }
+  const user = await requestAction<User>(`user?username=${username}`)
+
+  if (user.status === 'error') return notFound()
+
+  return user
 }
 
 export default async function Page(props: { params: { id: string } }) {

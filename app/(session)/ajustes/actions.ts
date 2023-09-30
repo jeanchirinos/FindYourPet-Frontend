@@ -17,30 +17,28 @@ export async function updateUser(prevState: any, formData: FormData) {
     ]),
   })
 
+  let data: z.infer<typeof schema>
+
   try {
-    const data = schema.parse({
+    data = schema.parse({
       name: formData.get('name'),
       username: formData.get('username'),
       mobile: formData.get('mobile'),
     })
-
-    const response = await requestAction('user-update', {
-      method: 'POST',
-      body: data,
-    })
-
-    if (response.status === 'success') {
-      revalidatePath('/')
-    }
-
-    return response
   } catch (error) {
-    // if (error instanceof ZodError) {
-    //   console.log({ error: error.formErrors.fieldErrors })
-    // }
-
-    return { errorResponse }
+    return errorResponse
   }
+
+  const response = await requestAction('user-update', {
+    method: 'POST',
+    body: data,
+  })
+
+  if (response.status === 'success') {
+    revalidatePath('/')
+  }
+
+  return response
 }
 
 export async function updateUserImageProfile(prevState: any, formData: FormData) {

@@ -2,36 +2,24 @@
 
 import {
   //@ts-ignore
-  experimental_useFormState as useFormState,
   experimental_useFormStatus as useFormStatus,
 } from 'react-dom'
 import { updateUser, updateUserImageProfile } from './actions'
 import { Input } from '@/components/Input'
 import { User } from '../perfil/[id]/page'
 import { Button } from '@/components/Button'
-import toast from 'react-hot-toast'
 
 import { BiSolidCamera } from 'react-icons/bi'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
 import Image from 'next/image'
-
-const initialState = {
-  status: null,
-  msg: null,
-}
+import { useActionToast } from '@/hooks/useActionToast'
 
 export function UpdateForm(props: { user: User }) {
   const { user } = props
-  const [state, formAction] = useFormState(updateUser, initialState)
-
-  useEffect(() => {
-    if (!state.status) return
-    // @ts-ignore
-    toast[state.status](state.msg)
-  }, [state])
+  const { formAction } = useActionToast(updateUser)
 
   return (
     <>
@@ -55,44 +43,20 @@ export function UpdateForm(props: { user: User }) {
   )
 }
 
-export function SubmitButton(props: React.ComponentProps<typeof Button>) {
-  const { pending } = useFormStatus()
-
-  const { children = 'Guardar', ...otherProps } = props
-
-  return (
-    <Button
-      type='submit'
-      aria-disabled={pending}
-      disabled={pending}
-      className='bg-primary text-white disabled:bg-gray-500'
-      {...otherProps}
-    >
-      {pending ? 'Cargando' : children}
-    </Button>
-  )
-}
-
 function ProfileImage(props: { user: User }) {
   const { user } = props
-
-  const [state, formAction] = useFormState(updateUserImageProfile, initialState)
-
-  useEffect(() => {
-    if (!state.status) return
-    // @ts-ignore
-    toast[state.status](state.msg)
-
-    if (state.status === 'success') {
-      setImagePreview(undefined)
-    }
-  }, [state])
 
   // REF
   const cropperRef = useRef<CropperRef>(null)
 
   const [imagePreview, setImagePreview] = useState<undefined | string>('')
   const [dataImage, setDataImage] = useState<undefined | string>('')
+
+  const { formAction } = useActionToast(updateUserImageProfile, {
+    onSuccess() {
+      setImagePreview(undefined)
+    },
+  })
 
   // FUNCTIONS
   function handleInputImage(e: React.ChangeEvent<HTMLInputElement>) {
@@ -152,5 +116,23 @@ function ProfileImage(props: { user: User }) {
         </>
       )}
     </section>
+  )
+}
+
+export function SubmitButton(props: React.ComponentProps<typeof Button>) {
+  const { pending } = useFormStatus()
+
+  const { children = 'Guardar', ...otherProps } = props
+
+  return (
+    <Button
+      type='submit'
+      aria-disabled={pending}
+      disabled={pending}
+      className='bg-primary text-white disabled:bg-gray-500'
+      {...otherProps}
+    >
+      {pending ? 'Cargando' : children}
+    </Button>
   )
 }
