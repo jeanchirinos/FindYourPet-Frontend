@@ -1,4 +1,4 @@
-import { ForgotForm } from './Form'
+import { ForgotForm } from './form'
 
 export default function Page(props: { searchParams: null | { email: string } }) {
   const initialEmail = props.searchParams?.email ?? ''
