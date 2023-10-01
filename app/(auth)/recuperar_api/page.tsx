@@ -19,7 +19,7 @@ interface Props {
 export default async function Page(props: Props) {
   const { token } = props.searchParams
 
-  await verifyToken(token)
+  // await verifyToken(token)
 
   // RENDER
   return (

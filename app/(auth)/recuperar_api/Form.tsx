@@ -6,9 +6,9 @@ import { useActionToast } from '@/hooks/useActionToast'
 import Link from 'next/link'
 
 export function Form(props: { token: string }) {
-  const { formAction, state } = useActionToast(resetPassword)
+  const { formAction, state } = useActionToast(resetPassword, { showToast: false })
 
-  if (state === 'success') {
+  if (state.status === 'success') {
     return (
       <div className='flex flex-col gap-y-2 text-center'>
         <p>Contraseña restablecida</p>

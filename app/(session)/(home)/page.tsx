@@ -22,7 +22,7 @@ export default function Page() {
     },
   ]
   return (
-    <main className='animate-fade animate-duration-500 h-[150vh]'>
+    <main className='animate-fade animate-duration-300 h-[150vh]'>
       <section className='mt-5 flex w-full justify-center'>
         <div className='w-[800px] max-w-full'>
           <div className='flex'>
