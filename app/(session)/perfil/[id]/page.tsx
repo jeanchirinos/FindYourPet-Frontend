@@ -6,8 +6,8 @@ import { requestAction } from '@/utilities/actionsRequest'
 
 export type User = {
   username: string
-  name: string
-  mobile: string
+  name: string | null
+  mobile: string | null
   email: string
   image: string
   isUser: boolean
@@ -58,10 +58,12 @@ async function Profile(props: { username: string }) {
             <HiOutlineMail />
             <span>Correo: {user.email}</span>
           </div>
-          <div className='flex items-center gap-1'>
-            <HiOutlineDeviceMobile />
-            <span>Celular: {user.mobile}</span>
-          </div>
+          {user.mobile && (
+            <div className='flex items-center gap-1'>
+              <HiOutlineDeviceMobile />
+              <span>Celular: {user.mobile}</span>
+            </div>
+          )}
         </div>
       </section>
     </div>

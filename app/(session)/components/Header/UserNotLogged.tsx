@@ -11,7 +11,7 @@ import { setCookie } from 'typescript-cookie'
 import { useRouter } from 'next/navigation'
 import { useActionToast } from '@/hooks/useActionToast'
 import { login, register } from '@/serverActions/auth'
-import { SubmitButton } from 'app/(session)/ajustes/update-form'
+import { SubmitButton } from '@/components/SubmitButton'
 
 enum EFormState {
   Login = 'login',
@@ -118,7 +118,7 @@ function Register() {
         <Input type='password' name='password' label='Contraseña' minLength={8} />
         <Input type='password' name='passwordConfirm' label='Confirmar contraseña' minLength={8} />
 
-        <SubmitButton className='bg-purple-500'>Registrarse</SubmitButton>
+        <SubmitButton className='bg-purple-500 text-white'>Registrarse</SubmitButton>
       </form>
 
       {emailSent && (

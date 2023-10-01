@@ -1,7 +1,7 @@
 'use client'
 import { Input } from 'app/components/Input'
 import { resetPassword } from '@/serverActions/auth'
-import { SubmitButton } from 'app/(session)/ajustes/update-form'
+import { SubmitButton } from '@/components/SubmitButton'
 import { useActionToast } from '@/hooks/useActionToast'
 
 export function Form(props: { token: string }) {

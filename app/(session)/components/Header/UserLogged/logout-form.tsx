@@ -1,7 +1,7 @@
 'use client'
 import { useActionToast } from '@/hooks/useActionToast'
 import { logout } from '@/serverActions/auth'
-import { SubmitButton } from 'app/(session)/ajustes/update-form'
+import { SubmitButton } from '@/components/SubmitButton'
 
 export function LogoutForm() {
   const { formAction } = useActionToast(logout)

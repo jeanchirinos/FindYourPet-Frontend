@@ -20,7 +20,8 @@
     ".gitignore": true,
     ".prettierrc.json": true,
     ".eslintrc.json": true,
-    ".next": true
+    ".next": true,
+    "next.config.js": true
   },
   "hide-files.files": [
     "next-env.d.ts",
@@ -31,7 +32,8 @@
     ".gitignore",
     ".prettierrc.json",
     ".eslintrc.json",
-    ".next"
+    ".next",
+    "next.config.js"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {

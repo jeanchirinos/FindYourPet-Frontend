@@ -2,7 +2,7 @@
 import { Input } from '@/components/Input'
 import { useActionToast } from '@/hooks/useActionToast'
 import { forgotPassword } from '@/serverActions/auth'
-import { SubmitButton } from 'app/(session)/ajustes/update-form'
+import { SubmitButton } from '@/components/SubmitButton'
 
 export function ForgotForm(props: { initialEmail: string }) {
   const { initialEmail } = props

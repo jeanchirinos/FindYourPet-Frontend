@@ -4,8 +4,8 @@ import toast from 'react-hot-toast'
 import { experimental_useFormState as useFormState } from 'react-dom'
 
 type Options = {
-  onSuccess?: () => void
-  onError?: () => void
+  onSuccess?(): void
+  onError?(): void
 }
 
 export function useActionToast(action: any, options?: Options) {
@@ -14,11 +14,14 @@ export function useActionToast(action: any, options?: Options) {
   const [state, formAction] = useFormState(action, { status: null, msg: null })
 
   useEffect(() => {
-    if (state?.status) {
-      // @ts-ignore
-      toast[state.status](state.msg)
+    const { status, msg } = state as
+      | { status: 'success' | 'error'; msg: string }
+      | { status: null; msg: null }
 
-      if (state.status === 'success') {
+    if (status) {
+      toast[status](msg)
+
+      if (status === 'success') {
         onSuccess?.()
       }
     }
