@@ -16,63 +16,65 @@ module.exports = {
       },
     },
   },
-  plugins: 
-  [
+  plugins: [
     nextui(),
-		(plugin)=>
-		{
-      const {addVariant, matchUtilities, matchComponents, matchVariant} = plugin;
+    require('tailwindcss-animated'),
+    plugin => {
+      const { addVariant, matchUtilities, addUtilities, matchComponents, matchVariant } = plugin
 
-			addVariant('child', '& > *')
-			addVariant('child-hover', '& > *:hover')
+      addVariant('child', '& > *')
+      addVariant('child-hover', '& > *:hover')
 
-      matchUtilities
-      (
+      matchUtilities(
         {
-          transform: value => 
-          ({ 
+          transform: value => ({
             transform: value,
           }),
         },
         {
-          values: 
-          {
+          values: {
             '': '',
           },
-        }
+        },
       )
 
-      matchComponents
-      (
+      matchComponents(
         {
-          templateColumns: value => 
-          ({
+          templateColumns: value => ({
             gridTemplateColumns: `repeat(auto-fill, minmax(min(${value}, 100%), 1fr))`,
           }),
         },
         {
-          values: 
-          {
+          values: {
             '': '',
           },
         },
       )
 
-      matchVariant('nth-child', value => 
-      {
+      matchVariant('nth-child', value => {
         let valueToNumber = Number(value)
-  
-        if (valueToNumber >= 0) 
-        {
+
+        if (valueToNumber >= 0) {
           return `& > *:nth-child(${value})`
         }
-  
+
         valueToNumber = Math.abs(valueToNumber)
-  
+
         return `& > *:nth-last-child(${valueToNumber})`
-      })
-		}
-	],
+      })
+
+      addUtilities({
+        '.text-balance': {
+          textWrap: 'balance',
+        },
+        '.scrollbar-transparent': {
+          '&::-webkit-scrollbar': {
+            backgroundColor: 'transparent',
+          },
+        },
+      })
+    },
+  ],
   darkMode: 'class',
   // plugins: [require('@tailwindcss/forms'), nextui()],
 }

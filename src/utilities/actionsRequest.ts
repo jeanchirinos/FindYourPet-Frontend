@@ -9,7 +9,9 @@ export type RequestParams = [url: string, config?: Config]
 
 export const errorResponse = { status: 'error', msg: 'Hubo un error' } as const
 
-type PossibleResponse<Response> = (DefaultSuccessResponse & Response) | typeof errorResponse
+type PossibleResponse<Response> =
+  | (DefaultSuccessResponse & Response)
+  | { status: 'error'; msg: string }
 
 export async function requestAction<Response>(
   ...params: RequestParams
@@ -41,11 +43,10 @@ export async function requestAction<Response>(
     })
 
     if (!res.ok)
-      throw new Error('Error en la petición', {
+      throw new Error(res.statusText, {
         cause: {
           url: res.url,
           status: res.status,
-          statusText: res.statusText,
         },
       })
 
@@ -53,6 +54,10 @@ export async function requestAction<Response>(
 
     return { msg: '', status: 'success', ...data } as PossibleResponse<Response>
   } catch (e) {
-    return errorResponse
+    if (e instanceof Error) {
+      return { ...errorResponse, msg: e.message }
+    }
+
+    return { ...errorResponse }
   }
 }

@@ -37,7 +37,7 @@ async function Profile(props: { username: string }) {
   const user = await getUser(username)
 
   return (
-    <div className='mx-auto w-[400px] max-w-full space-y-3'>
+    <div className='animate-fade animate-duration-500 mx-auto w-[400px] max-w-full space-y-3'>
       <section className='relative mx-auto aspect-square w-[250px] max-w-full'>
         <Image
           className='rounded-full object-cover'

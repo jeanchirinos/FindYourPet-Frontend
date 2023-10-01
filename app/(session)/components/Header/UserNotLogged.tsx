@@ -6,7 +6,6 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/Popover'
 import { Input } from 'app/components/Input'
 import { Tabs, Tab } from '@nextui-org/react'
 import { Button } from '@/components/Button'
-import { SessionLogged } from '@/types'
 import { setCookie } from 'typescript-cookie'
 import { useRouter } from 'next/navigation'
 import { useActionToast } from '@/hooks/useActionToast'
@@ -48,11 +47,15 @@ function Google() {
 
   // EFFECT
   useEffect(() => {
-    function handleMessage(e: MessageEvent<SessionLogged & { token: string }>) {
-      if (process.env.NODE_ENV === 'development') setCookie('jwt', e.data.token, { expires: 7 })
+    function handleMessage(e: MessageEvent<{ token?: string }>) {
+      const token = e.data.token
+
+      if (token) {
+        if (process.env.NODE_ENV === 'development') setCookie('jwt', token, { expires: 7 })
+        router.refresh()
+      }
 
       openedWindow.current?.close()
-      router.refresh()
     }
 
     window.addEventListener('message', handleMessage)
