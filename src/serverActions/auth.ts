@@ -133,6 +133,13 @@ export async function resetPassword(prevState: any, formData: FormData) {
   return response
 }
 
+export async function disconnectGoogle() {
+  const response = await requestAction('user-google-disconnect', {
+    method: 'POST',
+  })
+
+  return response
+}
 // if (error instanceof z.ZodError) {
 // return errorResponse(error.formErrors.fieldErrors)
 // }
