@@ -48,7 +48,7 @@ function Google() {
   // EFFECT
   useEffect(() => {
     function handleMessage(e: MessageEvent<{ token?: string }>) {
-      const token = e.data.token
+      const { token } = e.data
 
       if (token) {
         if (process.env.NODE_ENV === 'development') setCookie('jwt', token, { expires: 7 })

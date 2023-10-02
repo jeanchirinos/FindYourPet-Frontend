@@ -13,7 +13,7 @@ export default function Page() {
   }, [router])
 
   function handleBack() {
-    window.opener.postMessage(null, window.location.origin)
+    window.opener.postMessage({}, window.location.origin)
   }
 
   return (
