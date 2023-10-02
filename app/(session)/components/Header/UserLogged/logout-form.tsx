@@ -10,7 +10,7 @@ export function LogoutForm() {
 
   const { formAction } = useActionToast(logout, {
     onSuccess() {
-      Cookies.remove('jwt')
+      Cookies.remove('jwt', { path: '/' })
       router.refresh()
     },
     showSuccessToast: false,
