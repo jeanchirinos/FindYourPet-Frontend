@@ -22,8 +22,8 @@ export function GoogleForm(props: { isConnected: boolean; username: string | nul
       <div className='flex items-center gap-x-2'>
         <FcGoogle size={24} />
         <div className='flex flex-col text-sm'>
-          {isConnected && <p className='text-sm text-neutral-500'>{username}</p>}
           <p>Google</p>
+          {isConnected && <p className='text-sm text-neutral-500'>{username}</p>}
         </div>
       </div>
 

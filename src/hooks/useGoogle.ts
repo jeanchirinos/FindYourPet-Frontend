@@ -12,10 +12,11 @@ export function useGoogle() {
     function handleMessage(e: MessageEvent<{ token?: string }>) {
       const { token } = e.data
 
+      router.refresh()
+
       if (token) {
         // if it comes from home page
         // if (process.env.NODE_ENV === 'development') setCookie('jwt', token, { expires: 7 })
-        router.refresh()
       }
 
       openedWindow.current?.close()

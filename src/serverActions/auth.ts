@@ -138,6 +138,10 @@ export async function disconnectGoogle() {
     method: 'POST',
   })
 
+  if (response.status === 'success') {
+    revalidatePath('/')
+  }
+
   return response
 }
 // if (error instanceof z.ZodError) {
