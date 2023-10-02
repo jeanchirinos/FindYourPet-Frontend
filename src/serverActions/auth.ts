@@ -71,13 +71,14 @@ export async function login(prevState: any, formData: FormData) {
 }
 
 export async function logout() {
-  const response = await requestAction('logout', {
+  await requestAction('logout', {
     method: 'POST',
   })
 
-  return response
+  // return response
   // cookies().delete('jwt')
-  // cookies().delete({ path: '/', name: 'jwt' })
+  cookies().delete({ domain: '.nijui.com', name: 'jwt' })
+  cookies().delete({ name: 'jwt' })
 }
 
 export async function forgotPassword(prevState: any, formData: FormData) {

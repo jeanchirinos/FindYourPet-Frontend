@@ -16,7 +16,7 @@ export function useGoogle() {
 
       if (token) {
         // if it comes from home page
-        // if (process.env.NODE_ENV === 'development') setCookie('jwt', token, { expires: 7 })
+        // if (process.env.NODE_ENV === 'development') setCookie('jwt', token, { expires: 7, path: '/' })
       }
 
       openedWindow.current?.close()
