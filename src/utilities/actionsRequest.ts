@@ -52,7 +52,6 @@ export async function requestAction<Response>(
 
     const data = await res.json()
 
-    console.log({ msg: '', status: 'success', ...data })
     return { msg: '', status: 'success', ...data } as PossibleResponse<Response>
   } catch (e) {
     if (e instanceof Error) {

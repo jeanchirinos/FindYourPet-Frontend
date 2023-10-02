@@ -58,16 +58,18 @@ export async function login(prevState: any, formData: FormData) {
     body: data,
   })
 
-  if (response.status === 'error') return response
+  if (response.status === 'success') {
+    if (process.env.NODE_ENV === 'development') {
+      const expires = new Date()
+      expires.setDate(expires.getDate() + 7)
 
-  if (process.env.NODE_ENV === 'development') {
-    const expires = new Date()
-    expires.setDate(expires.getDate() + 7)
+      cookies().set('jwt', response.token, { expires })
+    }
 
-    cookies().set('jwt', response.token, { expires })
+    revalidatePath('/')
   }
 
-  revalidatePath('/')
+  return response
 }
 
 export async function logout() {
