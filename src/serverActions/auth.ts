@@ -59,12 +59,10 @@ export async function login(prevState: any, formData: FormData) {
   })
 
   if (response.status === 'success') {
-    if (process.env.NODE_ENV === 'development') {
-      const expires = new Date()
-      expires.setDate(expires.getDate() + 7)
+    const expires = new Date()
+    expires.setDate(expires.getDate() + 7)
 
-      cookies().set('jwt', response.token, { expires })
-    }
+    cookies().set('jwt', response.token, { expires })
 
     revalidatePath('/')
   }
