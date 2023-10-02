@@ -136,7 +136,7 @@ function Register() {
 }
 
 function Login() {
-  const { formAction } = useActionToast(login, { showToast: false })
+  const { formAction } = useActionToast(login, { showSuccessToast: false })
   const [currentEmail, setCurrentEmail] = useState('')
 
   return (

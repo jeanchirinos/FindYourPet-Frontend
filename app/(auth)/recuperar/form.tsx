@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export function ForgotForm(props: { initialEmail: string }) {
   const { initialEmail } = props
-  const { formAction, state } = useActionToast(forgotPassword, { showToast: false })
+  const { formAction, state } = useActionToast(forgotPassword, { showSuccessToast: false })
 
   if (state.status === 'success')
     return (

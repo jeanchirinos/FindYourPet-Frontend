@@ -43,7 +43,8 @@ export async function requestAction<Response>(
     })
 
     if (!res.ok)
-      throw new Error(res.statusText, {
+      //@ts-ignore
+      throw new Error(res.msg ?? res.statusText, {
         cause: {
           url: res.url,
           status: res.status,

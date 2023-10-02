@@ -6,11 +6,11 @@ import { experimental_useFormState as useFormState } from 'react-dom'
 type Options = {
   onSuccess?(): void
   onError?(): void
-  showToast?: boolean
+  showSuccessToast?: boolean
 }
 
 export function useActionToast(action: any, options?: Options) {
-  const { onSuccess, showToast = true } = options ?? {}
+  const { onSuccess, onError, showSuccessToast = true } = options ?? {}
 
   const [state, formAction] = useFormState(action, { status: null, msg: null })
 
@@ -20,12 +20,16 @@ export function useActionToast(action: any, options?: Options) {
       | { status: null; msg: null }
 
     if (status) {
-      if (showToast) {
+      if (status === 'error' || showSuccessToast) {
         toast[status](msg)
       }
 
       if (status === 'success') {
         onSuccess?.()
+      }
+
+      if (status === 'error') {
+        onError?.()
       }
     }
 

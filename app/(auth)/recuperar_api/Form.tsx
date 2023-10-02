@@ -6,7 +6,7 @@ import { useActionToast } from '@/hooks/useActionToast'
 import Link from 'next/link'
 
 export function Form(props: { token: string }) {
-  const { formAction, state } = useActionToast(resetPassword, { showToast: false })
+  const { formAction, state } = useActionToast(resetPassword, { showSuccessToast: false })
 
   if (state.status === 'success') {
     return (
