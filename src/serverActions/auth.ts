@@ -75,7 +75,8 @@ export async function logout() {
     method: 'POST',
   })
 
-  cookies().delete('jwt')
+  // cookies().delete('jwt')
+  cookies().delete({ path: '/', name: 'jwt' })
 }
 
 export async function forgotPassword(prevState: any, formData: FormData) {
