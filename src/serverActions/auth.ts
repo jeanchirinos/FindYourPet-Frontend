@@ -71,12 +71,13 @@ export async function login(prevState: any, formData: FormData) {
 }
 
 export async function logout() {
-  await requestAction('logout', {
+  const response = await requestAction('logout', {
     method: 'POST',
   })
 
+  return response
   // cookies().delete('jwt')
-  cookies().delete({ path: '/', name: 'jwt' })
+  // cookies().delete({ path: '/', name: 'jwt' })
 }
 
 export async function forgotPassword(prevState: any, formData: FormData) {
