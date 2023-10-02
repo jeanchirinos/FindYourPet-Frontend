@@ -12,7 +12,7 @@ export function GoogleForm(props: { isConnected: boolean; username: string | nul
 
   const { openGoogleWindow } = useGoogle()
 
-  const { formAction } = useActionToast(disconnectGoogle)
+  const { formAction } = useActionToast(disconnectGoogle, { showSuccessToast: false })
 
   return (
     <form
