@@ -51,8 +51,8 @@ function Google() {
       const { token } = e.data
 
       if (token) {
-        if (process.env.NODE_ENV === 'development')
-          setCookie('jwt', token, { expires: 7, path: '/' })
+        // if (process.env.NODE_ENV === 'development')
+        setCookie('jwt', token, { expires: 7, path: '/' })
         router.refresh()
       }
 

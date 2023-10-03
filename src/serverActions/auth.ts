@@ -77,8 +77,8 @@ export async function logout() {
 
   // return response
   // cookies().delete('jwt')
-  cookies().delete({ domain: '.nijui.com', name: 'jwt' })
-  cookies().delete({ name: 'jwt' })
+  // cookies().delete({ domain: '.nijui.com', name: 'jwt' })
+  cookies().delete('jwt')
 }
 
 export async function forgotPassword(prevState: any, formData: FormData) {
