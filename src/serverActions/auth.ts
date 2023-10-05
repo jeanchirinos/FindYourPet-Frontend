@@ -64,7 +64,7 @@ export async function login(prevState: any, formData: FormData) {
 
     cookies().set('jwt', response.token, { expires })
 
-    revalidatePath('/')
+    // revalidatePath('/')
   }
 
   return response

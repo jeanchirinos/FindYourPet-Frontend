@@ -53,6 +53,10 @@ export async function requestAction<Response>(
 
     const data = await res.json()
 
+    if (Array.isArray(data)) {
+      return { msg: '', status: 'success', data } as PossibleResponse<Response>
+    }
+
     return { msg: '', status: 'success', ...data } as PossibleResponse<Response>
   } catch (e) {
     if (e instanceof Error) {

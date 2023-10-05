@@ -88,5 +88,4 @@ export async function waitFor(seconds: number) {
   return new Promise(resolve => setTimeout(resolve, seconds * 1000))
 }
 
-
 export type DefaultSuccessResponse = { status: 'success'; msg: string }
