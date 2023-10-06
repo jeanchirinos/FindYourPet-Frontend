@@ -21,21 +21,25 @@ export function Form(props: React.PropsWithChildren) {
 
   return (
     <div className='flex gap-4 max-md:flex-col'>
-      <section className='h-[200px] w-[300px] rounded-md bg-neutral-200 ' />
+      {/* <section className='h-[200px] w-[300px] rounded-md bg-neutral-200 ' /> */}
       <form action={formAction} className='flex flex-col gap-y-3'>
+        <input type='file' name='image' required />
         <Status />
         <Textarea
           label='Descripción'
-          required
+          isRequired
           name='description'
           className='w-[400px] max-w-full'
           // value={currentCategory.image}
         />
-        <Input label='Ubicación' isRequired={false} name='' />
+        <Input label='Ubicación' isRequired={false} name='location' />
         {/* <ComboboxComponent array={departamentos} objectKey='nombre_ubigeo' objectId='id_ubigeo' /> */}
         {/* <ListBox array={departamentos} objectKey='nombre_ubigeo' 
         objectId='id_ubigeo' /> */}
         {props.children}
+        <input type='text' hidden readOnly value='Lima' name='estate' />
+        <input type='text' hidden readOnly value='Lima' name='city' />
+        <input type='text' hidden readOnly value='Lince' name='district' />
 
         <SubmitButton>Publicar</SubmitButton>
       </form>
@@ -87,73 +91,60 @@ function Status() {
 }
 
 export function PetInfo(props: { categories: Category[] }) {
-  // const [selected, setSelected] = useState(props.categories[0])
+  const { categories } = props
 
-  const convertedCategories = props.categories.map(category => ({
-    ...category,
-    id: category.id.toString(),
-  }))
+  // STATES
+  const [selectedCategory, setSelectedCategory] = useState<Selection>(
+    new Set([categories[0].id.toString()]),
+  )
 
-  const [selected, setSelected] = useState<Selection>(new Set([convertedCategories[0].id]))
-  const [selectedBreed, setSelectedBreed] = useState<BreedsData['breeds'][0] | undefined>(undefined)
+  const [breeds, setBreeds] = useState<BreedsData['breeds']>([])
+  const [selectedBreed, setSelectedBreed] = useState<Selection>(new Set([]))
 
-  const [breeds, setBreeds] = useState<BreedsData['breeds'] | undefined>(undefined)
-
+  // EFFECTS
   useEffect(() => {
     async function getBreeds() {
-      //@ts-ignore
-      const response = await request<BreedsData>(`breedList/${selected.values().next().value}`)
+      if (typeof selectedCategory !== 'object') return
+
+      const categoryId = Array.from(selectedCategory)[0]
+
+      const response = await request<BreedsData>(`breedList/${categoryId}`)
 
       setBreeds(response.breeds)
     }
 
     getBreeds()
-  }, [selected])
+  }, [selectedCategory])
 
   useEffect(() => {
-    if (!breeds) return
+    if (!breeds.length) return
 
-    setSelectedBreed(breeds[0])
+    const breedId = breeds[0].id.toString()
+
+    setSelectedBreed(new Set([breedId]))
   }, [breeds])
 
-  // const convertedBreeds = props.categories.map(category => ({
-  //   ...category,
-  //   id: category.id.toString(),
-  // }))
-
+  // RENDER
   return (
     <>
-      {/* <ListBox
-        selected={selected}
-        setSelected={setSelected}
-        array={props.categories}
-        objectKey='name'
-        objectId='id'
-      /> */}
       <Select
         label='Especie'
-        selected={selected}
-        setSelected={setSelected}
-        array={convertedCategories}
+        selected={selectedCategory}
+        setSelected={setSelectedCategory}
+        array={categories}
         objectKey='name'
         objectId='id'
       />
 
-      {/* <Select
+      <Select
+        label='Raza'
         selected={selectedBreed}
         setSelected={setSelectedBreed}
-        array={convertedCategories}
+        array={breeds}
         objectKey='name'
         objectId='id'
-      /> */}
-
-      {/* <ListBox
-        selected={selectedBreed}
-        setSelected={setSelectedBreed}
-        array={breeds ?? []}
-        objectKey='name'
-        objectId='id'
-      /> */}
+        name='breed_id'
+      />
     </>
   )
 }

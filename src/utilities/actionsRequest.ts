@@ -42,14 +42,19 @@ export async function requestAction<Response>(
       body,
     })
 
-    if (!res.ok)
+    if (!res.ok) {
+      const json = await res.json()
+      const msg = JSON.stringify(json.msg)
+
       //@ts-ignore
       throw new Error(res.msg ?? res.statusText, {
         cause: {
           url: res.url,
           status: res.status,
+          json: msg,
         },
       })
+    }
 
     const data = await res.json()
 
@@ -60,6 +65,7 @@ export async function requestAction<Response>(
     return { msg: '', status: 'success', ...data } as PossibleResponse<Response>
   } catch (e) {
     if (e instanceof Error) {
+      // console.error(e)
       return { ...errorResponse, msg: e.message }
     }
 

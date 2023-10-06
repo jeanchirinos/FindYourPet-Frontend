@@ -1,6 +1,5 @@
 import { SetState } from '@/types'
 import { Select as BaseSelect, SelectItem } from '@nextui-org/react'
-// import { useState } from 'react'
 
 type Props = Omit<React.ComponentProps<typeof BaseSelect>, 'children'> & {
   array: any[]
@@ -13,20 +12,27 @@ type Props = Omit<React.ComponentProps<typeof BaseSelect>, 'children'> & {
 export function Select(props: Props) {
   const { array, objectKey, objectId, selected, setSelected, ...otherProps } = props
 
+  const arrayOfObjectsToStrings = array.map(obj => {
+    const newObj: any = {}
+    for (const key in obj) {
+      newObj[key] = obj[key].toString()
+    }
+
+    return newObj
+  })
+
   return (
     <div className='flex w-full max-w-xs flex-col gap-2'>
       <BaseSelect
-        variant='bordered'
-        placeholder='Select an animal'
         selectedKeys={selected}
-        // defaultSelectedKeys={selected}
         className='max-w-xs'
         onSelectionChange={setSelected}
+        disallowEmptySelection
         {...otherProps}
       >
-        {array?.map(animal => (
-          <SelectItem key={animal[objectId]} value={animal[objectId]}>
-            {animal[objectKey]}
+        {arrayOfObjectsToStrings.map(a => (
+          <SelectItem key={a[objectId]} value={a[objectId]}>
+            {a[objectKey]}
           </SelectItem>
         ))}
       </BaseSelect>

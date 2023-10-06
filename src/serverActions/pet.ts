@@ -4,20 +4,28 @@ import { z } from 'zod'
 
 export async function createPet(prevState: any, formData: FormData) {
   const schema = z.object({
-    breed_id: z.number(),
-    // image: z.string(),
+    breed_id: z.string(),
+    // breed_id: z.number(),
+    image: z.any(),
     description: z.string(),
+    estate: z.string(),
     city: z.string(),
     district: z.string(),
     location: z.string(),
-    status: z.number(),
+    status: z.string(),
+    // status: z.number(),
   })
 
   try {
     schema.parse({
-      email: formData.get('email'),
-      password: formData.get('password'),
-      passwordConfirm: formData.get('passwordConfirm'),
+      breed_id: formData.get('breed_id'),
+      image: formData.get('image'),
+      description: formData.get('description'),
+      estate: formData.get('estate'),
+      city: formData.get('city'),
+      district: formData.get('district'),
+      location: formData.get('location'),
+      status: formData.get('status'),
     })
   } catch (error) {
     return errorResponse
