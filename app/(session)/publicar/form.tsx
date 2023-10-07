@@ -13,12 +13,49 @@ import { Category } from '@/services/category'
 import { request } from '@/utilities/utilities'
 import { BreedsData } from '@/services/breed'
 import { Select } from '@/components/Select'
+import departamentos from '@/data/departamentos.json'
+import provincias from '@/data/provincias.json'
+import distritos from '@/data/distritos.json'
 
 export function Form(props: React.PropsWithChildren) {
   const { formAction } = useActionToast(createPet)
 
-  // console.log({ distritos: distritos['2563'] })
+  // Departamento
+  const [selectedDepartamento, setSelectedDepartamento] = useState<Selection>(
+    new Set([departamentos[0].id_ubigeo]),
+  )
 
+  const departamentoId = Array.from(selectedDepartamento)[0] as keyof typeof provincias
+
+  // Provincia
+  const provinciasArray = provincias[departamentoId]
+
+  const [selectedProvincia, setSelectedProvincia] = useState<Selection>(
+    new Set([provinciasArray[0].id_ubigeo]),
+  )
+
+  useEffect(() => {
+    const provinciaId = provinciasArray[0].id_ubigeo
+
+    setSelectedProvincia(new Set([provinciaId]))
+  }, [selectedDepartamento, provinciasArray])
+
+  const provinciaId = Array.from(selectedProvincia)[0] as keyof typeof distritos
+
+  // Distrito
+  const distritosArray = distritos[provinciaId]
+
+  const [selectedDistrito, setSelectedDistrito] = useState<Selection>(
+    new Set([distritosArray[0].id_ubigeo]),
+  )
+
+  useEffect(() => {
+    const distritoId = distritosArray[0].id_ubigeo
+
+    setSelectedDistrito(new Set([distritoId]))
+  }, [selectedProvincia, distritosArray])
+
+  // RENDER
   return (
     <div className='flex gap-4 max-md:flex-col'>
       {/* <section className='h-[200px] w-[300px] rounded-md bg-neutral-200 ' /> */}
@@ -26,20 +63,41 @@ export function Form(props: React.PropsWithChildren) {
         <input type='file' name='image' required />
         <Status />
         <Textarea
+          name='description'
           label='Descripción'
           isRequired
-          name='description'
           className='w-[400px] max-w-full'
-          // value={currentCategory.image}
         />
         <Input label='Ubicación' isRequired={false} name='location' />
-        {/* <ComboboxComponent array={departamentos} objectKey='nombre_ubigeo' objectId='id_ubigeo' /> */}
-        {/* <ListBox array={departamentos} objectKey='nombre_ubigeo' 
-        objectId='id_ubigeo' /> */}
         {props.children}
-        <input type='text' hidden readOnly value='Lima' name='estate' />
-        <input type='text' hidden readOnly value='Lima' name='city' />
-        <input type='text' hidden readOnly value='Lince' name='district' />
+        <Select
+          label='Departamento'
+          selected={selectedDepartamento}
+          setSelected={setSelectedDepartamento}
+          array={departamentos}
+          objectKey='nombre_ubigeo'
+          objectId='id_ubigeo'
+          name='estate'
+        />
+        <Select
+          label='Provincia'
+          selectedKeys={selectedProvincia}
+          setSelected={setSelectedProvincia}
+          array={provinciasArray}
+          objectKey='nombre_ubigeo'
+          objectId='id_ubigeo'
+          name='city'
+        />
+
+        <Select
+          label='Distrito'
+          selectedKeys={selectedDistrito}
+          setSelected={setSelectedDistrito}
+          array={distritosArray}
+          objectKey='nombre_ubigeo'
+          objectId='id_ubigeo'
+          name='district'
+        />
 
         <SubmitButton>Publicar</SubmitButton>
       </form>

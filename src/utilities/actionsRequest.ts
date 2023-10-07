@@ -65,7 +65,7 @@ export async function requestAction<Response>(
     return { msg: '', status: 'success', ...data } as PossibleResponse<Response>
   } catch (e) {
     if (e instanceof Error) {
-      // console.error(e)
+      console.error(e)
       return { ...errorResponse, msg: e.message }
     }
 

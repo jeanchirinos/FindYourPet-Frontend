@@ -5,7 +5,6 @@ import { z } from 'zod'
 export async function createPet(prevState: any, formData: FormData) {
   const schema = z.object({
     breed_id: z.string(),
-    // breed_id: z.number(),
     image: z.any(),
     description: z.string(),
     estate: z.string(),
@@ -13,7 +12,6 @@ export async function createPet(prevState: any, formData: FormData) {
     district: z.string(),
     location: z.string(),
     status: z.string(),
-    // status: z.number(),
   })
 
   try {
@@ -28,6 +26,7 @@ export async function createPet(prevState: any, formData: FormData) {
       status: formData.get('status'),
     })
   } catch (error) {
+    console.log({ error })
     return errorResponse
   }
 
