@@ -2,7 +2,7 @@
 import { errorResponse, requestAction } from '@/utilities/actionsRequest'
 import { z } from 'zod'
 
-export async function createPet(prevState: any, formData: FormData) {
+export async function createPet(formData: FormData) {
   const schema = z.object({
     breed_id: z.string(),
     image: z.any(),

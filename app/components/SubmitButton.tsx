@@ -1,3 +1,5 @@
+'use client'
+
 import {
   //@ts-ignore
   experimental_useFormStatus as useFormStatus,

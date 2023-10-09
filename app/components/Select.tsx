@@ -37,3 +37,43 @@ export function Select(props: Props) {
     </BaseSelect>
   )
 }
+
+type Props2 = React.ComponentProps<'select'> & {
+  array: any[]
+  objectKey: string
+  objectId: string
+  selected?: any
+  setSelected?: SetState<any>
+}
+
+export function SelectNative(props: Props2) {
+  const { array, objectKey, objectId, selected, setSelected, ...otherProps } = props
+
+  // const arrayOfObjectsToStrings = array.map(obj => {
+  //   const newObj: any = {}
+  //   for (const key in obj) {
+  //     newObj[key] = obj[key].toString()
+  //   }
+
+  //   return newObj
+  // })
+
+  // FUNCTIONS
+
+  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    if (!setSelected) return
+
+    setSelected(e.target.value)
+  }
+
+  // RENDER
+  return (
+    <select required {...otherProps} onChange={handleChange} value={selected?.toString()}>
+      {array.map(a => (
+        <option key={a[objectId]} value={a[objectId].toString()}>
+          {a[objectKey]}
+        </option>
+      ))}
+    </select>
+  )
+}

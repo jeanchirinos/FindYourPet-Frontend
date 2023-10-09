@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   title: 'Encuentra tu mascota',
   description: 'Encuentra y adopta una mascota',
   manifest: '/site.webmanifest',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
 }
 
 //  <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
