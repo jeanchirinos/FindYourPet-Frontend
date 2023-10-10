@@ -1,29 +1,44 @@
-import { Card } from '@/components/Card'
+import { requestActionData } from '@/utilities/actionsRequest'
+import { Pets } from './pets'
 
-export default function Page() {
-  const cards = [
-    {
-      id: 1,
-      name: 'Lechonk aesthetic',
-      location: 'Lima, La Victoria',
-      image: 'https://api-encuentratumascota.nijui.com/users/profile.webp',
-    },
-    {
-      id: 2,
-      name: 'Lechonk de barrio',
-      location: 'Lima, San Martín de Porres',
-      image: 'https://api-encuentratumascota.nijui.com/users/profile.webp',
-    },
-    {
-      id: 3,
-      name: 'Lechonk de la selva',
-      location: 'Lima, San Juan de Lurigancho',
-      image: 'https://api-encuentratumascota.nijui.com/users/profile.webp',
-    },
-  ]
+export type Pet = {
+  id: number
+  breed_id: number
+  user_id: number
+  image: string
+  description: string
+  city: string
+  district: string
+  location: string
+  status: number
+  image_width: number
+  image_height: number
+  status_name: string
+  breed: {
+    id: number
+    name: string
+  }
+  user: {
+    id: number
+    username: string
+    image: string
+  }
+}
+
+async function getPets() {
+  const response = await requestActionData<Pet[]>('pet')
+
+  if (response.status === 'error') return []
+
+  return response.data
+}
+
+export default async function Page() {
+  const pets = await getPets()
+
   return (
-    <main className='animate-fade animate-duration-200 px-2 pb-2'>
-      <section className='mt-5 flex w-full justify-center'>
+    <main className='animate-fade px-2 pb-2 animate-duration-200'>
+      <section className='mb-10 mt-5 flex w-full justify-center'>
         <div className='w-[800px] max-w-full'>
           <div className='flex'>
             <div className='relative w-fit rounded-t-lg border border-[#822527] p-2 text-left before:absolute before:-bottom-1 before:left-0 before:h-[5px] before:w-full before:bg-white'>
@@ -48,11 +63,13 @@ export default function Page() {
         </div>
       </section>
 
-      <section className='templateColumns-[250px] mx-auto mt-10 grid w-[1600px] max-w-full gap-5'>
-        {cards.map(card => (
-          <Card key={card.id} {...card} />
-        ))}
-      </section>
+      <Pets pets={pets} />
     </main>
   )
 }
+
+/* <section className='templateColumns-[250px] mx-auto mt-10 grid w-[1600px] max-w-full gap-5'>
+        {cards.map(card => (
+          <Card key={card.id} {...card} />
+        ))}
+      </section> */

@@ -34,12 +34,8 @@ export function PetImage() {
   return (
     <>
       {imagePreview && (
-        <div className='flex flex-col gap-y-3'>
-          <img
-            src={imagePreview}
-            alt='Mascota'
-            className='max-h-[250px] max-w-[300px] self-center rounded-md'
-          />
+        <div className='mx-auto flex w-[400px] max-w-full flex-col gap-y-3'>
+          <img src={imagePreview} alt='Mascota' className='max-h-[250px] self-center rounded-md' />
           <label className='relative flex cursor-pointer justify-center overflow-hidden'>
             <input
               type='file'
@@ -48,7 +44,7 @@ export function PetImage() {
               accept='image/*'
               onChange={handleInputImage}
             />
-            <Button className='pointer-events-none md:w-full'>Editar</Button>
+            <Button className='pointer-events-none w-full'>Editar</Button>
           </label>
         </div>
       )}
