@@ -49,7 +49,7 @@ export function PetImage() {
         </div>
       )}
       {!imagePreview && (
-        <label className='flex h-[300px] w-[400px] items-center justify-center rounded-md border border-dashed border-neutral-300 bg-neutral-100/30'>
+        <label className='flex h-[300px] w-[400px] max-w-full items-center justify-center rounded-md border border-dashed border-neutral-300 bg-neutral-100/30'>
           <div className='flex flex-col items-center gap-y-2.5'>
             <CiImageOn size={28} className='text-neutral-500' />
             <p className='max-w-[25ch] text-center text-xs leading-tight text-neutral-500 text-balance'>
