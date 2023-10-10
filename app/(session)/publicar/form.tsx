@@ -5,7 +5,7 @@ import { Textarea } from '@nextui-org/react'
 import { SubmitButton } from '@/components/SubmitButton'
 import { manageReponse } from '@/utilities/testing'
 import { Input } from '@/components/Input'
-import { Place } from './client_components'
+import { PetImage, Place } from './client_components'
 
 type Props = {
   StatusComponent: React.ReactNode
@@ -23,9 +23,9 @@ export function Form(props: Props) {
 
   // RENDER
   return (
-    <div className='flex gap-4 max-md:flex-col'>
-      <form action={formAction} className='flex flex-col gap-y-3'>
-        <input type='file' name='image' required />
+    <form action={formAction} className='flex gap-4 max-md:flex-col'>
+      <PetImage />
+      <section className='flex flex-col gap-y-3'>
         {StatusComponent}
         <Textarea
           name='description'
@@ -38,7 +38,7 @@ export function Form(props: Props) {
         <Place />
 
         <SubmitButton>Publicar</SubmitButton>
-      </form>
-    </div>
+      </section>
+    </form>
   )
 }

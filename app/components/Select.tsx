@@ -39,7 +39,7 @@ export function Select(props: Props) {
 }
 
 type Props2 = React.ComponentProps<'select'> & {
-  array: any[]
+  array: any[] | undefined
   objectKey: string
   objectId: string
   selected?: any
@@ -69,7 +69,7 @@ export function SelectNative(props: Props2) {
   // RENDER
   return (
     <select required {...otherProps} onChange={handleChange} value={selected?.toString()}>
-      {array.map(a => (
+      {array?.map(a => (
         <option key={a[objectId]} value={a[objectId].toString()}>
           {a[objectKey]}
         </option>

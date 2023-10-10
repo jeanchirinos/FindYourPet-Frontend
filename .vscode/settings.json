@@ -19,7 +19,6 @@
     "README.md": true,
     ".gitignore": true,
     ".prettierrc.json": true,
-    ".eslintrc.json": true,
     ".next": true,
     "next.config.js": true
   },
@@ -31,7 +30,6 @@
     "README.md",
     ".gitignore",
     ".prettierrc.json",
-    ".eslintrc.json",
     ".next",
     "next.config.js"
   ],

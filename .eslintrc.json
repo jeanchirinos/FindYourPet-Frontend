@@ -42,7 +42,8 @@
     "react/jsx-no-target-blank": "warn",
     "@typescript-eslint/no-unnecessary-type-assertion": "warn",
     "no-unneeded-ternary": "warn",
-    "@next/next/no-img-element": "off"
+    "@next/next/no-img-element": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "warn"
   },
   "globals": {
     "React": "readonly",
