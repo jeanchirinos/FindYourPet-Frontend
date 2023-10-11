@@ -1,5 +1,9 @@
 import { requestActionData } from '@/utilities/actionsRequest'
-import { Pets } from './pets'
+import { IoLocationSharp } from 'react-icons/io5'
+import { twJoin } from 'tailwind-merge'
+
+import { Masonry, ResponsiveMasonry } from '@/components/Masonry'
+import Image from 'next/image'
 
 export type Pet = {
   id: number
@@ -63,13 +67,47 @@ export default async function Page() {
         </div>
       </section>
 
-      <Pets pets={pets} />
+      {/* @ts-ignore */}
+      <ResponsiveMasonry
+        columnsCountBreakPoints={{ 300: 1, 450: 2, 900: 4 }}
+        className='mx-auto w-[1600px] max-w-full'
+      >
+        {/*@ts-ignore */}
+        <Masonry gutter='1.2rem'>
+          {pets.map(pet => (
+            <PetCard key={pet.id} pet={pet} />
+          ))}
+        </Masonry>
+      </ResponsiveMasonry>
     </main>
   )
 }
 
-/* <section className='templateColumns-[250px] mx-auto mt-10 grid w-[1600px] max-w-full gap-5'>
-        {cards.map(card => (
-          <Card key={card.id} {...card} />
-        ))}
-      </section> */
+export function PetCard(props: { pet: Pet }) {
+  const { pet } = props
+
+  const colors = ['bg-pink-300', 'bg-red-300', 'bg-purple-300']
+  const cardColor = colors[pet.status - 1]
+
+  return (
+    <div className='flex flex-col gap-2 rounded-xl border-3 border-[#9c9b9b] p-4'>
+      <header className={twJoin('rounded-lg p-3 text-center', cardColor)}>
+        <h2 className='text-lg font-semibold text-neutral-100'>{pet.status_name}</h2>
+      </header>
+      <Image
+        className='h-auto w-full object-cover'
+        // style={{ maxWidth: `${pet.image_width}px`, maxHeight: `${pet.image_height}px` }}
+        src={pet.image}
+        width={pet.image_width}
+        height={pet.image_height}
+        alt='Mascota'
+      />
+      <footer className='flex items-center gap-1.5'>
+        <IoLocationSharp />
+        <p className='text-neutral-600'>
+          {pet.city}, {pet.district}
+        </p>
+      </footer>
+    </div>
+  )
+}
