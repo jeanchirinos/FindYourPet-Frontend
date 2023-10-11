@@ -1,5 +1,5 @@
 import { toast } from 'react-hot-toast'
-import { getCookie } from 'typescript-cookie'
+import { getCookie, getCookies } from 'typescript-cookie'
 
 interface Config extends Omit<RequestInit, 'body'> {
   method?: 'GET' | 'POST'
@@ -27,34 +27,34 @@ export async function request<Response>(...params: RequestParams): Promise<Respo
     body = JSON.stringify(config.body)
   }
 
-  let backendApi = process.env.NEXT_PUBLIC_BACKEND_API_SERVER!
+  const backendApi = process.env.NEXT_PUBLIC_BACKEND_API
 
-  //! LOCAL TO PRODUCTION - DIFFERENT DOMAINS
-  if (process.env.NODE_ENV === 'development') {
-    let authToken
-    const isClient = typeof window !== 'undefined'
+  // //! LOCAL TO PRODUCTION - DIFFERENT DOMAINS
+  // // if (process.env.NODE_ENV === 'development') {
+  //   let authToken
+  //   // const isClient = typeof window !== 'undefined'
 
-    if (token) {
-      authToken = token
-    } else if (isClient) {
-      authToken = getCookie('jwt')
-    }
+  //   if (token) {
+  //     authToken = token
+  //   } else if (isClient) {
+  //     authToken = getCookie('jwt')
+  //   }
 
-    if (authToken) {
-      headers.authorization = `Bearer ${authToken}`
-    }
+  //   if (authToken) {
+  //     headers.authorization = `Bearer ${authToken}`
+  //   }
 
-    if (isClient) {
-      backendApi = process.env.NEXT_PUBLIC_BACKEND_API_CLIENT!
-    }
-  }
-  //!
+  // // }
+  // //!
 
-  if (cookies) headers.Cookie = cookies
+  // console.log({ cookies: Object.entries(getCookies()). })
+
+  // if (cookies) headers.Cookie = getCookies()
+
+  headers.Cookie = cookies ?? `jwt=${getCookie('jwt')}`
 
   const res = await fetch(backendApi + url, {
     method: config.method,
-    credentials: 'include',
     headers,
     body,
   })

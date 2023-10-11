@@ -34,7 +34,7 @@ export async function requestAction<Response>(
     body = JSON.stringify(config.body)
   }
 
-  const backendApiUrl = process.env.NEXT_PUBLIC_BACKEND_API_SERVER!
+  const backendApiUrl = process.env.NEXT_PUBLIC_BACKEND_API!
 
   headers.Cookie = cookies().toString()
 
@@ -95,7 +95,7 @@ export async function requestActionData<Response>(
     body = JSON.stringify(config.body)
   }
 
-  const backendApiUrl = process.env.NEXT_PUBLIC_BACKEND_API_SERVER!
+  const backendApiUrl = process.env.NEXT_PUBLIC_BACKEND_API!
 
   headers.Cookie = cookies().toString()
 

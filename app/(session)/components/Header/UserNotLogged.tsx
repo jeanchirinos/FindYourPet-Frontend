@@ -69,7 +69,7 @@ function Google() {
   // FUNCTIONS
   function openGoogleWindow() {
     // TODO: URL BASE ON ENVIRONMENT : DEVELOPMENT | PRODUCTION OR BASE ON URL PASSED
-    const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_API_CLIENT}auth/google/redirect`)
+    const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_API}auth/google/redirect`)
 
     openedWindow.current = window.open(url, '_blank', 'width=400,height=700')
   }

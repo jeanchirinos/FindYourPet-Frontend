@@ -28,7 +28,6 @@ export function useGetData<Response>(...params: Params) {
     return key
   }
 
-  // const requestUrl = process.env.NEXT_PUBLIC_BACKEND_API_CLIENT + url
   const requestUrl = url
 
   async function fetcher() {

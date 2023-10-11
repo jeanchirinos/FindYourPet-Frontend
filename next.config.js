@@ -1,4 +1,4 @@
-const imagesDomains = process.env.NEXT_PUBLIC_IMAGES_DOMAINS?.split(',')
+const imagesDomains = process.env.IMAGES_DOMAINS.split(',')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
