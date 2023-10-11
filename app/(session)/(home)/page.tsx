@@ -5,7 +5,7 @@ import { twJoin } from 'tailwind-merge'
 import { Masonry, ResponsiveMasonry } from '@/components/Masonry'
 import Image from 'next/image'
 
-export type Pet = {
+type Pet = {
   id: number
   breed_id: number
   user_id: number
@@ -83,7 +83,7 @@ export default async function Page() {
   )
 }
 
-export function PetCard(props: { pet: Pet }) {
+function PetCard(props: { pet: Pet }) {
   const { pet } = props
 
   const colors = ['bg-pink-300', 'bg-red-300', 'bg-purple-300']
