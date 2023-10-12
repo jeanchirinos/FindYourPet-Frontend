@@ -25,7 +25,7 @@ export async function Status() {
 async function getCategories() {
   const response = await requestActionData<Category[]>('category')
 
-  if (response.status === 'error') throw new Error('')
+  if (response.status === 'error') return []
 
   return response.data
 }

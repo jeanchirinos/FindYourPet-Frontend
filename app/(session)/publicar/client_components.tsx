@@ -73,7 +73,7 @@ export function PetInfo(props: { categories: Category[] }) {
   const { categories } = props
 
   // STATES
-  const [selectedCategory, setSelectedCategory] = useState(categories[0].id)
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]?.id)
   const { data } = useSWR<BreedsData>(`breedList/${selectedCategory}`)
 
   // RENDER
@@ -85,9 +85,16 @@ export function PetInfo(props: { categories: Category[] }) {
         array={categories}
         objectKey='name'
         objectId='id'
+        placeholder='Especie'
       />
 
-      <SelectNative array={data?.breeds} objectKey='name' objectId='id' name='breed_id' />
+      <SelectNative
+        array={data?.breeds}
+        objectKey='name'
+        objectId='id'
+        name='breed_id'
+        placeholder='Raza'
+      />
     </>
   )
 }
@@ -123,6 +130,7 @@ export function Place() {
         objectId='id_ubigeo'
         objectKey='nombre_ubigeo'
         setSelected={setSelectedDepartamento}
+        placeholder='Departamento'
       />
       <SelectNative
         name='city'
@@ -130,6 +138,7 @@ export function Place() {
         objectId='id_ubigeo'
         objectKey='nombre_ubigeo'
         setSelected={setSelectedProvincia}
+        placeholder='Provincia'
       />
 
       <SelectNative
@@ -137,6 +146,7 @@ export function Place() {
         array={distritosArray}
         objectId='id_ubigeo'
         objectKey='nombre_ubigeo'
+        placeholder='Distrito'
       />
     </>
   )
@@ -146,7 +156,7 @@ export function StatusInfo(props: { statusList: { id: number; value: string }[] 
   const { statusList } = props
 
   return (
-    <RadioGroup name='status' defaultValue={statusList[0].id.toString()}>
+    <RadioGroup name='status' defaultValue={statusList[0]?.id.toString()}>
       <div className='flex gap-2 max-sm:flex-col'>
         {statusList.map(item => (
           <RadioGroup.Option

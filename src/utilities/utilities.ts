@@ -47,8 +47,6 @@ export async function request<Response>(...params: RequestParams): Promise<Respo
   // // }
   // //!
 
-  // console.log({ cookies: Object.entries(getCookies()). })
-
   // if (cookies) headers.Cookie = getCookies()
 
   headers.Cookie = cookies ?? `jwt=${getCookie('jwt')}`

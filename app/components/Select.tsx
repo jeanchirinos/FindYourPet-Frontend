@@ -49,17 +49,6 @@ type Props2 = React.ComponentProps<'select'> & {
 export function SelectNative(props: Props2) {
   const { array, objectKey, objectId, selected, setSelected, ...otherProps } = props
 
-  // const arrayOfObjectsToStrings = array.map(obj => {
-  //   const newObj: any = {}
-  //   for (const key in obj) {
-  //     newObj[key] = obj[key].toString()
-  //   }
-
-  //   return newObj
-  // })
-
-  // FUNCTIONS
-
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
     if (!setSelected) return
 
@@ -68,12 +57,23 @@ export function SelectNative(props: Props2) {
 
   // RENDER
   return (
-    <select required {...otherProps} onChange={handleChange} value={selected?.toString()}>
-      {array?.map(a => (
-        <option key={a[objectId]} value={a[objectId].toString()}>
-          {a[objectKey]}
-        </option>
-      ))}
-    </select>
+    <label className='flex flex-col gap-y-1 rounded-lg bg-default-100 px-2 py-1.5'>
+      <span className='pointer-events-none absolute ml-1 text-xs text-foreground-600'>
+        {props.placeholder}
+      </span>
+      <select
+        required
+        {...otherProps}
+        onChange={handleChange}
+        value={selected?.toString()}
+        className='cursor-pointer bg-transparent pt-4 text-sm focus:outline-none'
+      >
+        {array?.map(a => (
+          <option key={a[objectId]} value={a[objectId].toString()}>
+            {a[objectKey]}
+          </option>
+        ))}
+      </select>
+    </label>
   )
 }
