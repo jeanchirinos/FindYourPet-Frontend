@@ -10,3 +10,19 @@ export type SessionLogged = {
 export type Session = SessionLogged | { auth: false }
 
 export type SetState<T> = React.Dispatch<React.SetStateAction<T>>
+
+export interface BreedsData {
+  id: number
+  name: string
+  breeds: {
+    id: number
+    name: string
+    category_id: number
+  }[]
+}
+
+export interface Category {
+  id: number
+  name: string
+  image: string
+}

@@ -1,5 +1,5 @@
 import { toast } from 'react-hot-toast'
-import { getCookie, getCookies } from 'typescript-cookie'
+import { getCookie } from 'typescript-cookie'
 
 interface Config extends Omit<RequestInit, 'body'> {
   method?: 'GET' | 'POST'
@@ -13,7 +13,7 @@ export type RequestParams = [
 
 export async function request<Response>(...params: RequestParams): Promise<Response> {
   const [url, options] = params
-  const { config = {}, token, cookies } = options ?? {}
+  const { config = {}, cookies } = options ?? {}
 
   const headers: HeadersInit = {}
   let body = null
@@ -28,26 +28,6 @@ export async function request<Response>(...params: RequestParams): Promise<Respo
   }
 
   const backendApi = process.env.NEXT_PUBLIC_BACKEND_API
-
-  // //! LOCAL TO PRODUCTION - DIFFERENT DOMAINS
-  // // if (process.env.NODE_ENV === 'development') {
-  //   let authToken
-  //   // const isClient = typeof window !== 'undefined'
-
-  //   if (token) {
-  //     authToken = token
-  //   } else if (isClient) {
-  //     authToken = getCookie('jwt')
-  //   }
-
-  //   if (authToken) {
-  //     headers.authorization = `Bearer ${authToken}`
-  //   }
-
-  // // }
-  // //!
-
-  // if (cookies) headers.Cookie = getCookies()
 
   headers.Cookie = cookies ?? `jwt=${getCookie('jwt')}`
 

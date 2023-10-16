@@ -1,44 +1,6 @@
 import { SetState } from '@/types'
-import { Select as BaseSelect, SelectItem } from '@nextui-org/react'
 
-type Props = Omit<React.ComponentProps<typeof BaseSelect>, 'children'> & {
-  array: any[]
-  objectKey: string
-  objectId: string
-  selected?: any
-  setSelected?: SetState<any>
-}
-
-export function Select(props: Props) {
-  const { array, objectKey, objectId, selected, setSelected, ...otherProps } = props
-
-  const arrayOfObjectsToStrings = array.map(obj => {
-    const newObj: any = {}
-    for (const key in obj) {
-      newObj[key] = obj[key].toString()
-    }
-
-    return newObj
-  })
-
-  return (
-    <BaseSelect
-      className='max-w-xs'
-      selectedKeys={selected}
-      onSelectionChange={setSelected}
-      disallowEmptySelection
-      {...otherProps}
-    >
-      {arrayOfObjectsToStrings.map(a => (
-        <SelectItem key={a[objectId]} value={a[objectId]}>
-          {a[objectKey]}
-        </SelectItem>
-      ))}
-    </BaseSelect>
-  )
-}
-
-type Props2 = React.ComponentProps<'select'> & {
+type Props = React.ComponentProps<'select'> & {
   array: any[] | undefined
   objectKey: string
   objectId: string
@@ -46,7 +8,7 @@ type Props2 = React.ComponentProps<'select'> & {
   setSelected?: SetState<any>
 }
 
-export function SelectNative(props: Props2) {
+export function Select(props: Props) {
   const { array, objectKey, objectId, selected, setSelected, ...otherProps } = props
 
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {

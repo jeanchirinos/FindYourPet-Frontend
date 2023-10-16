@@ -1,9 +1,8 @@
 'use client'
 
-import { BreedsData } from '@/services/breed'
-import { Category } from '@/services/category'
+import { BreedsData, Category } from '@/types'
 import { useEffect, useState } from 'react'
-import { SelectNative } from '@/components/Select'
+import { Select } from '@/components/Select'
 import departamentos from '@/data/departamentos.json'
 import provincias from '@/data/provincias.json'
 import distritos from '@/data/distritos.json'
@@ -48,6 +47,7 @@ export function PetImage() {
           </label>
         </div>
       )}
+
       {!imagePreview && (
         <label className='mx-auto flex h-[300px] w-[400px] max-w-full items-center justify-center rounded-md border border-dashed border-neutral-300 bg-neutral-100/30'>
           <div className='flex flex-col items-center gap-y-2.5'>
@@ -79,7 +79,7 @@ export function PetInfo(props: { categories: Category[] }) {
   // RENDER
   return (
     <>
-      <SelectNative
+      <Select
         selected={selectedCategory}
         setSelected={setSelectedCategory}
         array={categories}
@@ -88,7 +88,7 @@ export function PetInfo(props: { categories: Category[] }) {
         placeholder='Especie'
       />
 
-      <SelectNative
+      <Select
         array={data?.breeds}
         objectKey='name'
         objectId='id'
@@ -124,7 +124,7 @@ export function Place() {
   // RENDER
   return (
     <>
-      <SelectNative
+      <Select
         name='estate'
         array={departamentos}
         objectId='id_ubigeo'
@@ -132,7 +132,7 @@ export function Place() {
         setSelected={setSelectedDepartamento}
         placeholder='Departamento'
       />
-      <SelectNative
+      <Select
         name='city'
         array={provinciasArray}
         objectId='id_ubigeo'
@@ -141,7 +141,7 @@ export function Place() {
         placeholder='Provincia'
       />
 
-      <SelectNative
+      <Select
         name='district'
         array={distritosArray}
         objectId='id_ubigeo'

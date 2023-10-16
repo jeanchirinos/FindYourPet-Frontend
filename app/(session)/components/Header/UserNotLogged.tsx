@@ -10,14 +10,15 @@ import { login, register } from '@/serverActions/auth'
 import { SubmitButton } from '@/components/SubmitButton'
 import { manageReponse } from '@/utilities/testing'
 import { useGoogle } from '@/hooks/useGoogle'
-
-enum EFormState {
-  Login = 'login',
-  Register = 'register',
-}
+import { useFormAction } from '@/hooks/useFormAction'
 
 // MAIN COMPONENT
 export function UserNotLogged() {
+  enum EFormState {
+    Login = 'login',
+    Register = 'register',
+  }
+
   const [formState, setFormState] = useState(EFormState.Login)
 
   return (
@@ -111,14 +112,7 @@ function Register() {
 function Login() {
   const [currentEmail, setCurrentEmail] = useState('')
 
-  // FUNCTIONS
-  async function formAction(formData: FormData) {
-    const response = await login(formData)
-
-    manageReponse(response, {
-      showSuccessToast: false,
-    })
-  }
+  const { formAction } = useFormAction(login, { showSuccessToast: false })
 
   // RENDER
   return (

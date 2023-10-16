@@ -62,7 +62,7 @@ export async function login(formData: FormData) {
     const expires = new Date()
     expires.setDate(expires.getDate() + 7)
 
-    cookies().set('jwt', response.token, { expires })
+    cookies().set('jwt', response.data.token, { expires })
   }
 
   return response
@@ -142,6 +142,3 @@ export async function disconnectGoogle() {
 
   return response
 }
-// if (error instanceof z.ZodError) {
-// return errorResponse(error.formErrors.fieldErrors)
-// }

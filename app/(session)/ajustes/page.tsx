@@ -15,7 +15,7 @@ async function getUser() {
 
   if (response.status === 'error') redirect('/')
 
-  return response
+  return response.data
 }
 
 export default async function Page() {
@@ -39,7 +39,8 @@ async function getGoogleData() {
     'user-google-data',
   )
 
-  return response
+  //@ts-ignore
+  return response.data
 }
 
 async function ConnectedAccounts() {

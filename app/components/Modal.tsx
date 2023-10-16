@@ -56,6 +56,8 @@ function Child(props: React.PropsWithChildren<{ onExitComplete?(): void }>) {
     return () => {
       onExitComplete?.()
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return props.children

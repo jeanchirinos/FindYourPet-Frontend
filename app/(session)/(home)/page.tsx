@@ -1,4 +1,4 @@
-import { requestActionData } from '@/utilities/actionsRequest'
+import { requestAction } from '@/utilities/actionsRequest'
 import { IoLocationSharp } from 'react-icons/io5'
 import { twJoin } from 'tailwind-merge'
 
@@ -31,7 +31,7 @@ type Pet = {
 }
 
 async function getPets() {
-  const response = await requestActionData<Pet[]>('pet')
+  const response = await requestAction<Pet[]>('pet')
 
   if (response.status === 'error') return []
 

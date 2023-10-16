@@ -3,9 +3,9 @@
 import { createPet } from '@/serverActions/pet'
 import { Textarea } from '@nextui-org/react'
 import { SubmitButton } from '@/components/SubmitButton'
-import { manageReponse } from '@/utilities/testing'
 import { Input } from '@/components/Input'
 import { PetImage, Place } from './client_components'
+import { useFormAction } from '@/hooks/useFormAction'
 
 type Props = {
   StatusComponent: React.ReactNode
@@ -15,11 +15,7 @@ type Props = {
 export function Form(props: Props) {
   const { StatusComponent, CategoryComponent } = props
 
-  async function formAction(formData: FormData) {
-    const response = await createPet(formData)
-
-    manageReponse(response)
-  }
+  const { formAction } = useFormAction(createPet)
 
   // RENDER
   return (

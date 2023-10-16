@@ -1,12 +1,12 @@
-import { Category } from '@/services/category'
-import { requestActionData } from '@/utilities/actionsRequest'
+import { Category } from '@/types'
+import { requestAction } from '@/utilities/actionsRequest'
 import { PetInfo, StatusInfo } from './client_components'
 
 // Status
 async function getStatusList() {
   type Response = { id: number; value: string }[]
 
-  const response = await requestActionData<Response>('pet-status')
+  const response = await requestAction<Response>('pet-status')
 
   if (response.status === 'error') return []
 
@@ -21,7 +21,7 @@ export async function Status() {
 
 // Categories
 async function getCategories() {
-  const response = await requestActionData<Category[]>('category')
+  const response = await requestAction<Category[]>('category')
 
   if (response.status === 'error') return []
 

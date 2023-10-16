@@ -6,14 +6,12 @@ import { cookies } from 'next/headers'
 
 async function getSession() {
   const jwt = cookies().get('jwt')
-
   if (!jwt) return { auth: false } as const
 
   const response = await requestAction<SessionLogged>('session')
-
   if (response.status === 'error') return { auth: false } as const
 
-  return response
+  return response.data
 }
 
 export async function Session() {
