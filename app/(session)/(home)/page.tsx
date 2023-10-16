@@ -73,7 +73,7 @@ export default async function Page() {
 }
 
 async function PetMasonry() {
-  // const pets = await getPets()
+  const pets = await getPets()
 
   return (
     <ResponsiveMasonry
@@ -81,9 +81,9 @@ async function PetMasonry() {
       className='mx-auto w-[1600px] max-w-full'
     >
       <Masonry gutter='1.2rem'>
-        {/* {pets.map(pet => (
+        {pets.map(pet => (
           <PetCard key={pet.id} pet={pet} />
-        ))} */}
+        ))}
       </Masonry>
     </ResponsiveMasonry>
   )
