@@ -13,7 +13,7 @@ export function ForgotForm(props: { initialEmail: string }) {
     return (
       <div className='flex flex-col gap-y-2 text-center'>
         <p>Correo enviado</p>
-        <p className='text-balance text-xs'>Revisa tu correo para restablecer tu contraseña</p>
+        <p className='text-xs text-balance'>Revisa tu correo para restablecer tu contraseña</p>
 
         <Link replace href='/' className='mt-2 rounded-md bg-primary py-1.5 text-white'>
           Ir a inicio

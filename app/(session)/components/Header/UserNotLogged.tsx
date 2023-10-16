@@ -8,9 +8,9 @@ import { Tabs, Tab } from '@nextui-org/react'
 import { Button } from '@/components/Button'
 import { setCookie } from 'typescript-cookie'
 import { useRouter } from 'next/navigation'
-import { useActionToast } from '@/hooks/useActionToast'
 import { login, register } from '@/serverActions/auth'
 import { SubmitButton } from '@/components/SubmitButton'
+import { manageReponse } from '@/utilities/testing'
 
 enum EFormState {
   Login = 'login',
@@ -51,7 +51,6 @@ function Google() {
       const { token } = e.data
 
       if (token) {
-        // if (process.env.NODE_ENV === 'development')
         setCookie('jwt', token, { expires: 7, path: '/' })
         router.refresh()
       }
@@ -96,16 +95,21 @@ function Register() {
   // HOOKS
   const formRef = useRef<HTMLFormElement>(null)
 
-  const { formAction } = useActionToast(register, {
-    onSuccess() {
-      setEmailSent(true)
-      formRef?.current?.reset()
-    },
-  })
-
   // FUNCTIONS
   function handleBack() {
     setEmailSent(false)
+  }
+
+  async function formAction(formData: FormData) {
+    const response = await register(formData)
+
+    manageReponse(response, {
+      onSuccess() {
+        setEmailSent(true)
+        formRef?.current?.reset()
+      },
+      showSuccessToast: false,
+    })
   }
 
   // RENDER
@@ -137,9 +141,18 @@ function Register() {
 }
 
 function Login() {
-  const { formAction } = useActionToast(login, { showSuccessToast: false })
   const [currentEmail, setCurrentEmail] = useState('')
 
+  // FUNCTIONS
+  async function formAction(formData: FormData) {
+    const response = await login(formData)
+
+    manageReponse(response, {
+      showSuccessToast: false,
+    })
+  }
+
+  // RENDER
   return (
     <form className='mt-4 flex max-w-xs flex-col gap-y-4' action={formAction}>
       <Input

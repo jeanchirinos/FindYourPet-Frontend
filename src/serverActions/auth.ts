@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 import { z } from 'zod'
 
-export async function register(prevState: any, formData: FormData) {
+export async function register(formData: FormData) {
   const schema = z
     .object({
       email: z.string().email(),
@@ -36,7 +36,7 @@ export async function register(prevState: any, formData: FormData) {
   return response
 }
 
-export async function login(prevState: any, formData: FormData) {
+export async function login(formData: FormData) {
   const schema = z.object({
     email: z.string().email(),
     password: z.string().min(8),
@@ -63,8 +63,6 @@ export async function login(prevState: any, formData: FormData) {
     expires.setDate(expires.getDate() + 7)
 
     cookies().set('jwt', response.token, { expires })
-
-    // revalidatePath('/')
   }
 
   return response
@@ -75,13 +73,10 @@ export async function logout() {
     method: 'POST',
   })
 
-  // return response
-  // cookies().delete('jwt')
-  // cookies().delete({ domain: '.nijui.com', name: 'jwt' })
   cookies().delete('jwt')
 }
 
-export async function forgotPassword(prevState: any, formData: FormData) {
+export async function forgotPassword(formData: FormData) {
   const schema = z.object({
     email: z.string().email(),
   })

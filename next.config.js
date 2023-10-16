@@ -1,10 +1,8 @@
-const imagesDomains = process.env.IMAGES_DOMAINS.split(',')
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: imagesDomains,
+    domains: [process.env.IMAGES_DOMAIN],
   },
   experimental: {
     serverActions: true,

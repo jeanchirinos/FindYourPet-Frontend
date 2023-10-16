@@ -7,7 +7,7 @@ import { z } from 'zod'
 export async function updateUser(prevState: any, formData: FormData) {
   const schema = z.object({
     name: z.string(),
-    username: z.string().nonempty(),
+    username: z.string().min(1),
     mobile: z.union([
       z
         .string()
@@ -41,7 +41,7 @@ export async function updateUser(prevState: any, formData: FormData) {
   return response
 }
 
-export async function updateUserImageProfile(prevState: any, formData: FormData) {
+export async function updateUserImageProfile(formData: FormData) {
   const response = await requestAction('user-profile', {
     method: 'POST',
     body: formData,

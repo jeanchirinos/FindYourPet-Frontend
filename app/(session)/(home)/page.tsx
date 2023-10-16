@@ -4,6 +4,7 @@ import { twJoin } from 'tailwind-merge'
 
 import { Masonry, ResponsiveMasonry } from '@/components/Masonry'
 import Image from 'next/image'
+import { Suspense } from 'react'
 
 type Pet = {
   id: number
@@ -38,8 +39,6 @@ async function getPets() {
 }
 
 export default async function Page() {
-  const pets = await getPets()
-
   return (
     <main className='animate-fade px-2 pb-2 animate-duration-200'>
       <section className='mb-10 mt-5 flex w-full justify-center'>
@@ -66,20 +65,27 @@ export default async function Page() {
           </div>
         </div>
       </section>
-
-      {/* @ts-ignore */}
-      <ResponsiveMasonry
-        columnsCountBreakPoints={{ 300: 1, 450: 2, 900: 4 }}
-        className='mx-auto w-[1600px] max-w-full'
-      >
-        {/*@ts-ignore */}
-        <Masonry gutter='1.2rem'>
-          {pets.map(pet => (
-            <PetCard key={pet.id} pet={pet} />
-          ))}
-        </Masonry>
-      </ResponsiveMasonry>
+      <Suspense>
+        <PetMasonry />
+      </Suspense>
     </main>
+  )
+}
+
+async function PetMasonry() {
+  // const pets = await getPets()
+
+  return (
+    <ResponsiveMasonry
+      columnsCountBreakPoints={{ 300: 1, 450: 2, 900: 4 }}
+      className='mx-auto w-[1600px] max-w-full'
+    >
+      <Masonry gutter='1.2rem'>
+        {/* {pets.map(pet => (
+          <PetCard key={pet.id} pet={pet} />
+        ))} */}
+      </Masonry>
+    </ResponsiveMasonry>
   )
 }
 
@@ -96,7 +102,6 @@ function PetCard(props: { pet: Pet }) {
       </header>
       <Image
         className='h-auto w-full object-cover'
-        // style={{ maxWidth: `${pet.image_width}px`, maxHeight: `${pet.image_height}px` }}
         src={pet.image}
         width={pet.image_width}
         height={pet.image_height}

@@ -5,8 +5,12 @@ import { requestAction } from '@/utilities/actionsRequest'
 
 import { GoogleForm } from './google-form'
 import { Suspense } from 'react'
+import { cookies } from 'next/headers'
 
 async function getUser() {
+  const jwt = cookies().get('jwt')
+  if (!jwt) redirect('/')
+
   const response = await requestAction<User>('user')
 
   if (response.status === 'error') redirect('/')

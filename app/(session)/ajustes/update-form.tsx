@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { useActionToast } from '@/hooks/useActionToast'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, useModal } from '@/components/Modal'
+import { manageReponse } from '@/utilities/testing'
 
 export function UpdateForm(props: { user: User }) {
   const { user } = props
@@ -48,20 +49,15 @@ export function UpdateForm(props: { user: User }) {
 function ProfileImage(props: { user: User }) {
   const { user } = props
 
+  // HOOKS
   const profileImageModal = useModal()
 
   // REF
   const cropperRef = useRef<CropperRef>(null)
   const inputImageRef = useRef<HTMLInputElement>(null)
 
+  // STATES
   const [imagePreview, setImagePreview] = useState<undefined | string>(undefined)
-  const [dataImage, setDataImage] = useState<undefined | string>('')
-
-  const { formAction } = useActionToast(updateUserImageProfile, {
-    onSuccess() {
-      profileImageModal.close()
-    },
-  })
 
   // FUNCTIONS
   function handleInputImage(e: React.ChangeEvent<HTMLInputElement>) {
@@ -76,6 +72,20 @@ function ProfileImage(props: { user: User }) {
 
     setImagePreview(imagePreview)
     profileImageModal.open()
+  }
+
+  async function formAction(formData: FormData) {
+    const image = cropperRef.current?.getCanvas()?.toDataURL()!
+
+    formData.set('image', image)
+
+    const response = await updateUserImageProfile(formData)
+
+    manageReponse(response, {
+      onSuccess() {
+        profileImageModal.close()
+      },
+    })
   }
 
   // RENDER
@@ -104,33 +114,12 @@ function ProfileImage(props: { user: User }) {
         </label>
       </section>
 
-      <Modal
-        modal={profileImageModal}
-        onExitComplete={() => {
-          const inputImage = inputImageRef.current
-
-          if (!inputImage) return
-
-          inputImageRef.current.value = ''
-        }}
-      >
+      <Modal modal={profileImageModal}>
         <form className='flex flex-col gap-y-2' action={formAction}>
-          <input type='text' name='image' hidden value={dataImage} readOnly />
           <section className='relative max-h-[70vh] w-[400px] max-w-full overflow-y-auto'>
-            <Cropper
-              src={imagePreview}
-              // src={user.image}
-              // backgroundClassName='!w-full !h-auto'
-              // boundaryClassName='max-w-full w-[500px]'
-              stencilComponent={CircleStencil}
-              ref={cropperRef}
-            />
-
-            {/* <div className='h-[1000px] w-[100px]' /> */}
+            <Cropper src={imagePreview} stencilComponent={CircleStencil} ref={cropperRef} />
           </section>
-          <SubmitButton
-            onPress={() => setDataImage(cropperRef.current?.getCanvas()?.toDataURL())}
-          />
+          <SubmitButton />
         </form>
       </Modal>
     </>

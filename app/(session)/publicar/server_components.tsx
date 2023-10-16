@@ -3,7 +3,6 @@ import { requestActionData } from '@/utilities/actionsRequest'
 import { PetInfo, StatusInfo } from './client_components'
 
 // Status
-
 async function getStatusList() {
   type Response = { id: number; value: string }[]
 
@@ -21,7 +20,6 @@ export async function Status() {
 }
 
 // Categories
-
 async function getCategories() {
   const response = await requestActionData<Category[]>('category')
 
