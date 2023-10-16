@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import Image from 'next/image'
 import { HiOutlineDeviceMobile, HiOutlineMail } from 'react-icons/hi'
-import { requestAction } from '@/utilities/actionsRequest'
+import { actionRequest } from '@/utilities/actionRequest'
 
 export type User = {
   username: string
@@ -14,7 +14,7 @@ export type User = {
 }
 
 async function getUser(username: string) {
-  const user = await requestAction<User>(`user?username=${username}`)
+  const user = await actionRequest<User>(`user?username=${username}`)
 
   if (user.status === 'error') return notFound()
 

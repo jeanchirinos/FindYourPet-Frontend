@@ -29,7 +29,8 @@
     "public/favicon-32x32.png": true,
     "public/mstile-150x150.png": true,
     "public/site.webmanifest": true,
-    "public/safari-pinned-tab.svg": true
+    "public/safari-pinned-tab.svg": true,
+    "next.config.js": true
   },
   "hide-files.files": [
     "next-env.d.ts",
@@ -49,7 +50,8 @@
     "public/favicon-32x32.png",
     "public/mstile-150x150.png",
     "public/site.webmanifest",
-    "public/safari-pinned-tab.svg"
+    "public/safari-pinned-tab.svg",
+    "next.config.js"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {

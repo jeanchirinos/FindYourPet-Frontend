@@ -47,7 +47,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".vscode/middleware.ts"
   ],
   "exclude": [
     "node_modules"

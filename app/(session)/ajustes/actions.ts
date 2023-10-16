@@ -1,6 +1,6 @@
 'use server'
 
-import { errorResponse, requestAction } from '@/utilities/actionsRequest'
+import { errorResponse, actionRequest } from '@/utilities/actionRequest'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 
@@ -29,7 +29,7 @@ export async function updateUser(prevState: any, formData: FormData) {
     return errorResponse
   }
 
-  const response = await requestAction('user-update', {
+  const response = await actionRequest('user-update', {
     method: 'POST',
     body: data,
   })
@@ -42,7 +42,7 @@ export async function updateUser(prevState: any, formData: FormData) {
 }
 
 export async function updateUserImageProfile(formData: FormData) {
-  const response = await requestAction('user-profile', {
+  const response = await actionRequest('user-profile', {
     method: 'POST',
     body: formData,
   })

@@ -1,11 +1,11 @@
 import { Form } from './Form'
 import { notFound } from 'next/navigation'
-import { requestAction } from '@/utilities/actionsRequest'
+import { actionRequest } from '@/utilities/actionRequest'
 
 async function verifyToken(token: string | undefined) {
   if (!token) notFound()
 
-  const response = await requestAction(`verify-token/${token}`)
+  const response = await actionRequest(`verify-token/${token}`)
 
   if (response.status === 'error') notFound()
 

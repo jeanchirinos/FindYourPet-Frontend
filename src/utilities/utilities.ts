@@ -1,65 +1,11 @@
-import { toast } from 'react-hot-toast'
-import { getCookie } from 'typescript-cookie'
+import { clientRequest } from './clientRequest'
 
-interface Config extends Omit<RequestInit, 'body'> {
-  method?: 'GET' | 'POST'
-  body?: object
-}
+export async function swrFetcher<Response>(url: string) {
+  const response = await clientRequest<Response>(url)
 
-export type RequestParams = [
-  url: string,
-  options?: { config?: Config; token?: string; cookies?: string },
-]
-
-export async function request<Response>(...params: RequestParams): Promise<Response> {
-  const [url, options] = params
-  const { config = {}, cookies } = options ?? {}
-
-  const headers: HeadersInit = {}
-  let body = null
-
-  if (config.body instanceof FormData) {
-    body = config.body
-  } else {
-    headers['content-type'] = 'application/json'
-    headers.accept = 'application/json'
-
-    body = JSON.stringify(config.body)
+  if (response.status === 'success') {
+    return response.data
   }
-
-  const backendApi = process.env.NEXT_PUBLIC_BACKEND_API
-
-  headers.Cookie = cookies ?? `jwt=${getCookie('jwt')}`
-
-  const res = await fetch(backendApi + url, {
-    method: config.method,
-    headers,
-    body,
-  })
-
-  const data = await res.json()
-
-  if (!res.ok) {
-    if (config.method === 'POST') {
-      toast.error(data.msg)
-    }
-
-    // if (typeof window !== 'undefined' && res.status === 401) {
-    //   // removeAuthToken()
-    //   // localStorage.clear()
-    //   // window.location.replace('/')
-    // }
-
-    throw new Error(`[${res.status} - ${res.statusText}] : ${data.msg}`)
-  }
-
-  return data as Response
-}
-
-export async function fetcher<Response>(url: string) {
-  const data = await request(url)
-
-  return data as Response
 }
 
 export async function waitFor(seconds: number) {

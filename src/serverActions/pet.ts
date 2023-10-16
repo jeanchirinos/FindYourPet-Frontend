@@ -1,5 +1,5 @@
 'use server'
-import { errorResponse, requestAction } from '@/utilities/actionsRequest'
+import { errorResponse, actionRequest } from '@/utilities/actionRequest'
 import { z } from 'zod'
 
 export async function createPet(prevState: any, formData: FormData) {
@@ -30,7 +30,7 @@ export async function createPet(prevState: any, formData: FormData) {
     return errorResponse
   }
 
-  const response = await requestAction('pet-store', {
+  const response = await actionRequest('pet-store', {
     method: 'POST',
     body: formData,
   })

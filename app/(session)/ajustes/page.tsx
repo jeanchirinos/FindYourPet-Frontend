@@ -1,7 +1,7 @@
 import { User } from '../perfil/[id]/page'
 import { UpdateForm } from './update-form'
 import { redirect } from 'next/navigation'
-import { requestAction } from '@/utilities/actionsRequest'
+import { actionRequest } from '@/utilities/actionRequest'
 
 import { GoogleForm } from './google-form'
 import { Suspense } from 'react'
@@ -11,7 +11,7 @@ async function getUser() {
   const jwt = cookies().get('jwt')
   if (!jwt) redirect('/')
 
-  const response = await requestAction<User>('user')
+  const response = await actionRequest<User>('user')
 
   if (response.status === 'error') redirect('/')
 
@@ -35,7 +35,7 @@ export default async function Page() {
 }
 
 async function getGoogleData() {
-  const response = await requestAction<{ isConnected: boolean; username: string | null }>(
+  const response = await actionRequest<{ isConnected: boolean; username: string | null }>(
     'user-google-data',
   )
 

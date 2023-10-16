@@ -1,11 +1,12 @@
-import { cookies } from 'next/headers'
 import { DefaultSuccessResponse } from './utilities'
 
-interface Config extends Omit<RequestInit, 'body'> {
+export interface Config extends Omit<RequestInit, 'body'> {
   body?: object
+  cookies: string
 }
 
 export type RequestParams = [url: string, config?: Config]
+export type RequestParamsWithoutCookies = [url: string, config?: Omit<Config, 'cookies'>]
 
 export const errorResponse = { status: 'error', msg: 'Hubo un error' } as const
 
@@ -13,10 +14,12 @@ type PossibleResponse<Response> =
   | (DefaultSuccessResponse & Response)
   | { status: 'error'; msg: string }
 
-export async function requestAction<Response>(
+export async function request<Response>(
   ...params: RequestParams
 ): Promise<PossibleResponse<{ data: Response }>> {
-  const [url, config = {}] = params
+  const [url, config = {} as Config] = params
+
+  const { cookies } = config
 
   const headers: HeadersInit = {}
   let body = null
@@ -32,7 +35,7 @@ export async function requestAction<Response>(
 
   const backendApiUrl = process.env.NEXT_PUBLIC_BACKEND_API
 
-  headers.Cookie = cookies().toString()
+  headers.Cookie = cookies
 
   try {
     const res = await fetch(backendApiUrl + url, {

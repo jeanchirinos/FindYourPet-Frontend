@@ -1,5 +1,6 @@
 'use server'
-import { errorResponse, requestAction } from '@/utilities/actionsRequest'
+import { actionRequest } from '@/utilities/actionRequest'
+import { errorResponse } from '@/utilities/request'
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 import { z } from 'zod'
@@ -28,7 +29,7 @@ export async function register(formData: FormData) {
     return errorResponse
   }
 
-  const response = await requestAction('register', {
+  const response = await actionRequest('register', {
     method: 'POST',
     body: data,
   })
@@ -53,7 +54,7 @@ export async function login(formData: FormData) {
     return errorResponse
   }
 
-  const response = await requestAction<{ token: string }>('login', {
+  const response = await actionRequest<{ token: string }>('login', {
     method: 'POST',
     body: data,
   })
@@ -69,7 +70,7 @@ export async function login(formData: FormData) {
 }
 
 export async function logout() {
-  await requestAction('logout', {
+  await actionRequest('logout', {
     method: 'POST',
   })
 
@@ -91,7 +92,7 @@ export async function forgotPassword(formData: FormData) {
     return errorResponse
   }
 
-  const response = await requestAction('forgot-password', {
+  const response = await actionRequest('forgot-password', {
     method: 'POST',
     body: data,
   })
@@ -123,7 +124,7 @@ export async function resetPassword(prevState: any, formData: FormData) {
     return errorResponse
   }
 
-  const response = await requestAction('reset-password', {
+  const response = await actionRequest('reset-password', {
     method: 'POST',
     body: data,
   })
@@ -132,7 +133,7 @@ export async function resetPassword(prevState: any, formData: FormData) {
 }
 
 export async function disconnectGoogle() {
-  const response = await requestAction('user-google-disconnect', {
+  const response = await actionRequest('user-google-disconnect', {
     method: 'POST',
   })
 

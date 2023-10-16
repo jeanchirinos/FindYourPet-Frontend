@@ -12,7 +12,7 @@ type ActionParams<SuccessRes = {}, ErrorRes = {}> = {
   showErrorToast?: boolean
 }
 
-export function manageReponse<S = {}, E = {}>(
+export function manageActionResponse<S = {}, E = {}>(
   response: MyResponse,
   manageParams?: ActionParams<S, E>,
 ) {

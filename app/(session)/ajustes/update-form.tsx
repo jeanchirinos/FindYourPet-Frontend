@@ -12,7 +12,7 @@ import Image from 'next/image'
 import { useFormAction } from '@/hooks/useFormAction'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, useModal } from '@/components/Modal'
-import { manageReponse } from '@/utilities/testing'
+import { manageActionResponse } from '@/utilities/manageActionResponse'
 
 export function UpdateForm(props: { user: User }) {
   const { user } = props
@@ -81,7 +81,7 @@ function ProfileImage(props: { user: User }) {
 
     const response = await updateUserImageProfile(formData)
 
-    manageReponse(response, {
+    manageActionResponse(response, {
       onSuccess() {
         profileImageModal.close()
       },

@@ -8,7 +8,7 @@ import { Tabs, Tab } from '@nextui-org/react'
 import { Button } from '@/components/Button'
 import { login, register } from '@/serverActions/auth'
 import { SubmitButton } from '@/components/SubmitButton'
-import { manageReponse } from '@/utilities/testing'
+import { manageActionResponse } from '@/utilities/manageActionResponse'
 import { useGoogle } from '@/hooks/useGoogle'
 import { useFormAction } from '@/hooks/useFormAction'
 
@@ -72,7 +72,7 @@ function Register() {
   async function formAction(formData: FormData) {
     const response = await register(formData)
 
-    manageReponse(response, {
+    manageActionResponse(response, {
       onSuccess() {
         setEmailSent(true)
         formRef?.current?.reset()

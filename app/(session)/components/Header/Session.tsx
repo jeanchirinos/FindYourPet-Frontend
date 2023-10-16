@@ -1,4 +1,4 @@
-import { requestAction } from '@/utilities/actionsRequest'
+import { actionRequest } from '@/utilities/actionRequest'
 import { UserLogged } from './UserLogged/UserLogged'
 import { UserNotLogged } from './UserNotLogged'
 import { SessionLogged } from '@/types'
@@ -8,7 +8,7 @@ async function getSession() {
   const jwt = cookies().get('jwt')
   if (!jwt) return { auth: false } as const
 
-  const response = await requestAction<SessionLogged>('session')
+  const response = await actionRequest<SessionLogged>('session')
   if (response.status === 'error') return { auth: false } as const
 
   return response.data
