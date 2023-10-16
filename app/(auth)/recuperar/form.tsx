@@ -1,13 +1,13 @@
 'use client'
 import { Input } from '@/components/Input'
-import { useActionToast } from '@/hooks/useActionToast'
+import { useFormAction } from '@/hooks/useFormAction'
 import { forgotPassword } from '@/serverActions/auth'
 import { SubmitButton } from '@/components/SubmitButton'
 import Link from 'next/link'
 
 export function ForgotForm(props: { initialEmail: string }) {
   const { initialEmail } = props
-  const { formAction, state } = useActionToast(forgotPassword, { showSuccessToast: false })
+  const { formAction, state } = useFormAction(forgotPassword, { showSuccessToast: false })
 
   if (state.status === 'success')
     return (

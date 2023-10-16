@@ -2,22 +2,23 @@
 
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
-// import { setCookie } from 'typescript-cookie'
+import { setCookie } from 'typescript-cookie'
 
-export function useGoogle() {
+export function useGoogle(params?: { loggedIn?: boolean }) {
+  const { loggedIn = false } = params ?? {}
+
   const router = useRouter()
 
   // EFFECT
   useEffect(() => {
-    function handleMessage(e: MessageEvent<{ token?: string }>) {
+    function handleMessage(e: MessageEvent<{ token: string }>) {
       const { token } = e.data
 
-      router.refresh()
-
-      if (token) {
-        // if it comes from home page
-        // if (process.env.NODE_ENV === 'development') setCookie('jwt', token, { expires: 7, path: '/' })
+      if (!loggedIn) {
+        setCookie('jwt', token, { expires: 7, path: '/' })
       }
+
+      router.refresh()
 
       openedWindow.current?.close()
     }
@@ -27,7 +28,7 @@ export function useGoogle() {
     return () => {
       window.removeEventListener('message', handleMessage)
     }
-  }, [router])
+  }, [router, loggedIn])
 
   // FUNCTIONS
   function openGoogleWindow() {

@@ -9,14 +9,14 @@ import { useRef, useState } from 'react'
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
 import Image from 'next/image'
-import { useActionToast } from '@/hooks/useActionToast'
+import { useFormAction } from '@/hooks/useFormAction'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, useModal } from '@/components/Modal'
 import { manageReponse } from '@/utilities/testing'
 
 export function UpdateForm(props: { user: User }) {
   const { user } = props
-  const { formAction } = useActionToast(updateUser)
+  const { formAction } = useFormAction(updateUser)
 
   return (
     <>

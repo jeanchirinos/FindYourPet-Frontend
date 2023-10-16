@@ -1,10 +1,10 @@
 'use client'
-import { useActionToast } from '@/hooks/useActionToast'
+import { useFormAction } from '@/hooks/useFormAction'
 import { logout } from '@/serverActions/auth'
 import { SubmitButton } from '@/components/SubmitButton'
 
 export function LogoutForm() {
-  const { formAction } = useActionToast(logout)
+  const { formAction } = useFormAction(logout)
 
   return (
     <form action={formAction}>

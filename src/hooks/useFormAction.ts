@@ -10,7 +10,7 @@ type Options = {
   showSuccessToast?: boolean
 }
 
-export function useActionToast(action: any, options?: Options) {
+export function useFormAction(action: any, options?: Options) {
   const { onSuccess, onError, showSuccessToast = true } = options ?? {}
 
   const [state, formAction] = useFormState(action, { status: null, msg: null })

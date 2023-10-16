@@ -1,16 +1,15 @@
 'use client'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { FcGoogle } from 'react-icons/fc'
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/Popover'
 import { Input } from 'app/components/Input'
 import { Tabs, Tab } from '@nextui-org/react'
 import { Button } from '@/components/Button'
-import { setCookie } from 'typescript-cookie'
-import { useRouter } from 'next/navigation'
 import { login, register } from '@/serverActions/auth'
 import { SubmitButton } from '@/components/SubmitButton'
 import { manageReponse } from '@/utilities/testing'
+import { useGoogle } from '@/hooks/useGoogle'
 
 enum EFormState {
   Login = 'login',
@@ -43,38 +42,7 @@ export function UserNotLogged() {
 
 // COMPONTENTS
 function Google() {
-  const router = useRouter()
-
-  // EFFECT
-  useEffect(() => {
-    function handleMessage(e: MessageEvent<{ token?: string }>) {
-      const { token } = e.data
-
-      if (token) {
-        setCookie('jwt', token, { expires: 7, path: '/' })
-        router.refresh()
-      }
-
-      openedWindow.current?.close()
-    }
-
-    window.addEventListener('message', handleMessage)
-
-    return () => {
-      window.removeEventListener('message', handleMessage)
-    }
-  }, [router])
-
-  // FUNCTIONS
-  function openGoogleWindow() {
-    // TODO: URL BASE ON ENVIRONMENT : DEVELOPMENT | PRODUCTION OR BASE ON URL PASSED
-    const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_API}auth/google/redirect`)
-
-    openedWindow.current = window.open(url, '_blank', 'width=400,height=700')
-  }
-
-  // VALUES
-  const openedWindow = useRef<null | Window>(null)
+  const { openGoogleWindow } = useGoogle()
 
   return (
     <Button

@@ -4,15 +4,15 @@ import { FcGoogle } from 'react-icons/fc'
 import { Button } from '@/components/Button'
 import { useGoogle } from '@/hooks/useGoogle'
 import { SubmitButton } from '@/components/SubmitButton'
-import { useActionToast } from '@/hooks/useActionToast'
+import { useFormAction } from '@/hooks/useFormAction'
 import { disconnectGoogle } from '@/serverActions/auth'
 
 export function GoogleForm(props: { isConnected: boolean; username: string | null }) {
   const { isConnected, username } = props
 
-  const { openGoogleWindow } = useGoogle()
+  const { openGoogleWindow } = useGoogle({ loggedIn: true })
 
-  const { formAction } = useActionToast(disconnectGoogle, { showSuccessToast: false })
+  const { formAction } = useFormAction(disconnectGoogle, { showSuccessToast: false })
 
   return (
     <form
