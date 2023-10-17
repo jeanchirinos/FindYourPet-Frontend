@@ -1,5 +1,6 @@
 'use server'
-import { errorResponse, actionRequest } from '@/utilities/actionRequest'
+import { actionRequest } from '@/utilities/actionRequest'
+import { errorResponse } from '@/utilities/request'
 import { z } from 'zod'
 
 export async function createPet(prevState: any, formData: FormData) {

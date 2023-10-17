@@ -1,5 +1,5 @@
 'use client'
-import { updateUser, updateUserImageProfile } from './actions'
+import { updateMobile, updateUser, updateUserImageProfile } from './actions'
 import { Input } from '@/components/Input'
 import { User } from '../perfil/[id]/page'
 
@@ -18,6 +18,19 @@ export function UpdateForm(props: { user: User }) {
   const { user } = props
   const { formAction } = useFormAction(updateUser)
 
+  const updateMobileModal = useModal()
+
+  async function handleMobileFormAction(formData: FormData) {
+    const response = await updateMobile(formData)
+
+    manageActionResponse(response, {
+      onSuccess() {
+        updateMobileModal.open()
+      },
+      showSuccessToast: false,
+    })
+  }
+
   return (
     <>
       <ProfileImage user={user} />
@@ -30,18 +43,41 @@ export function UpdateForm(props: { user: User }) {
           name='name'
         />
         <Input type='text' label='Usuario' defaultValue={user.username} name='username' />
+        <SubmitButton />
+      </form>
+      <form action={handleMobileFormAction} className='mt-4 flex items-center gap-x-2'>
         <Input
           type='text'
+          name='mobile'
           label='Móvil'
           isRequired={false}
           defaultValue={user.mobile ?? ''}
-          name='mobile'
           minLength={9}
           maxLength={9}
           pattern='^9[0-9]{8}$'
         />
-        <SubmitButton />
+        <SubmitButton>Agregar</SubmitButton>
       </form>
+
+      <Modal modal={updateMobileModal}>
+        <form className='flex flex-col justify-center gap-y-5 text-center'>
+          <section>
+            <h2>Se envió un código de verificación a tu número de celular</h2>
+
+            <p>Ingresa el código</p>
+          </section>
+          <section className='flex justify-around'>
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+          </section>
+
+          <SubmitButton>Confirmar</SubmitButton>
+        </form>
+      </Modal>
     </>
   )
 }

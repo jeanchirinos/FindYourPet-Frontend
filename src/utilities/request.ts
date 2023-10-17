@@ -1,5 +1,3 @@
-import { DefaultSuccessResponse } from './utilities'
-
 export interface Config extends Omit<RequestInit, 'body'> {
   body?: object
   cookies: string
@@ -9,6 +7,8 @@ export type RequestParams = [url: string, config?: Config]
 export type RequestParamsWithoutCookies = [url: string, config?: Omit<Config, 'cookies'>]
 
 export const errorResponse = { status: 'error', msg: 'Hubo un error' } as const
+
+type DefaultSuccessResponse = { status: 'success'; msg: string }
 
 type PossibleResponse<Response> =
   | (DefaultSuccessResponse & Response)

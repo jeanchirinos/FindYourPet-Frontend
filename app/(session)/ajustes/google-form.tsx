@@ -28,7 +28,7 @@ export function GoogleForm(props: { isConnected: boolean; username: string | nul
       </div>
 
       {isConnected ? (
-        <SubmitButton size='sm' className='rounded-md bg-zinc-100 text-sm'>
+        <SubmitButton size='sm' className='rounded-md bg-zinc-300 text-sm'>
           Desconectar
         </SubmitButton>
       ) : (

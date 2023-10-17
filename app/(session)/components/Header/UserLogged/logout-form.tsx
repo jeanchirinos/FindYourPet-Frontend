@@ -8,7 +8,7 @@ export function LogoutForm() {
 
   return (
     <form action={formAction}>
-      <SubmitButton className='w-full justify-start bg-transparent px-4 py-0 text-sm'>
+      <SubmitButton className='w-full justify-start bg-transparent px-4 py-0 text-sm text-black'>
         Cerrar sesión
       </SubmitButton>
     </form>
