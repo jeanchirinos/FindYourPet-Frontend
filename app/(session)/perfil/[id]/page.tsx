@@ -14,11 +14,11 @@ export type User = {
 }
 
 async function getUser(username: string) {
-  const user = await actionRequest<User>(`user?username=${username}`)
+  const res = await actionRequest<User>(`user?username=${username}`)
 
-  if (user.status === 'error') return notFound()
+  if (res.status === 'error') return notFound()
 
-  return user.data
+  return res.data
 }
 
 export default async function Page(props: { params: { id: string } }) {

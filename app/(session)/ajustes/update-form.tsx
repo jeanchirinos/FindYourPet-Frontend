@@ -4,7 +4,7 @@ import { Input } from '@/components/Input'
 import { User } from '../perfil/[id]/page'
 
 import { BiSolidCamera } from 'react-icons/bi'
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
@@ -13,23 +13,11 @@ import { useFormAction } from '@/hooks/useFormAction'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, useModal } from '@/components/Modal'
 import { manageActionResponse } from '@/utilities/manageActionResponse'
+import { Button } from '@/components/Button'
 
 export function UpdateForm(props: { user: User }) {
   const { user } = props
   const { formAction } = useFormAction(updateUser)
-
-  const updateMobileModal = useModal()
-
-  async function handleMobileFormAction(formData: FormData) {
-    const response = await updateMobile(formData)
-
-    manageActionResponse(response, {
-      onSuccess() {
-        updateMobileModal.open()
-      },
-      showSuccessToast: false,
-    })
-  }
 
   return (
     <>
@@ -45,39 +33,8 @@ export function UpdateForm(props: { user: User }) {
         <Input type='text' label='Usuario' defaultValue={user.username} name='username' />
         <SubmitButton />
       </form>
-      <form action={handleMobileFormAction} className='mt-4 flex items-center gap-x-2'>
-        <Input
-          type='text'
-          name='mobile'
-          label='Móvil'
-          isRequired={false}
-          defaultValue={user.mobile ?? ''}
-          minLength={9}
-          maxLength={9}
-          pattern='^9[0-9]{8}$'
-        />
-        <SubmitButton>Agregar</SubmitButton>
-      </form>
 
-      <Modal modal={updateMobileModal}>
-        <form className='flex flex-col justify-center gap-y-5 text-center'>
-          <section>
-            <h2>Se envió un código de verificación a tu número de celular</h2>
-
-            <p>Ingresa el código</p>
-          </section>
-          <section className='flex justify-around'>
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-          </section>
-
-          <SubmitButton>Confirmar</SubmitButton>
-        </form>
-      </Modal>
+      <MobileForm initialMobile={user.mobile ?? ''} />
     </>
   )
 }
@@ -157,6 +114,100 @@ function ProfileImage(props: { user: User }) {
           </section>
           <SubmitButton />
         </form>
+      </Modal>
+    </>
+  )
+}
+
+function MobileForm(props: { initialMobile: string }) {
+  const updateMobileModal = useModal()
+
+  async function handleMobileFormAction(formData: FormData) {
+    const response = await updateMobile(formData)
+
+    manageActionResponse(response, {
+      onSuccess() {
+        // updateMobileModal.open()
+      },
+      showSuccessToast: false,
+    })
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+
+    if (isDisabled) return
+    updateMobileModal.open()
+  }
+
+  const [currentMobile, setCurrentMobile] = useState(props.initialMobile)
+  const [isEditable, setIsEditable] = useState(false)
+
+  const isDisabled = props.initialMobile === currentMobile
+
+  return (
+    <>
+      <form onSubmit={handleSubmit} className='mt-4 flex items-center gap-x-2'>
+        <Input
+          type='text'
+          name='mobile'
+          label='Móvil'
+          isRequired={false}
+          value={currentMobile}
+          minLength={9}
+          maxLength={9}
+          pattern='^9[0-9]{8}$'
+          onChange={e => setCurrentMobile(e.target.value)}
+          readOnly={!isEditable}
+        />
+
+        {isEditable ? (
+          <div className='flex gap-x-1.5'>
+            <Button size='sm' isDisabled={isDisabled} type='submit'>
+              Guardar
+            </Button>
+            <Button
+              size='sm'
+              onClick={() => {
+                setIsEditable(false)
+                setCurrentMobile(props.initialMobile)
+              }}
+            >
+              Cancelar
+            </Button>
+          </div>
+        ) : (
+          <Button size='sm' onClick={() => setIsEditable(true)}>
+            Editar
+          </Button>
+        )}
+      </form>
+
+      <Modal modal={updateMobileModal}>
+        <form
+          className='flex flex-col justify-center gap-y-5 text-center'
+          action={handleMobileFormAction}
+        >
+          <h2 className='max-w-[30ch]'>
+            Se enviará un código de verificación a tu número de celular
+          </h2>
+
+          <div className='flex justify-center gap-x-2'>
+            <Button onClick={updateMobileModal.close}>Cancelar</Button>
+            <SubmitButton>Confirmar</SubmitButton>
+          </div>
+        </form>
+
+        <>
+          {/* <section className='flex justify-around'>
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
+          </section> */}
+        </>
       </Modal>
     </>
   )

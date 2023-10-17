@@ -35,18 +35,17 @@ export default async function Page() {
 }
 
 async function getGoogleData() {
-  const response = await actionRequest<{ isConnected: boolean; username: string | null }>(
-    'user-google-data',
-  )
+  type Res = { isConnected: boolean; username: string | null }
 
-  //@ts-ignore
+  const response = await actionRequest<Res>('user-google-data')
+
   return response.data
 }
 
 async function ConnectedAccounts() {
   const googleData = await getGoogleData()
 
-  if (googleData.status === 'error') return null
+  if (!googleData) return null
 
   return (
     <>

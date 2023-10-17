@@ -27,7 +27,6 @@ export async function createPet(prevState: any, formData: FormData) {
       status: formData.get('status'),
     })
   } catch (error) {
-    console.log({ error })
     return errorResponse
   }
 

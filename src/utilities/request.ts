@@ -6,17 +6,17 @@ export interface Config extends Omit<RequestInit, 'body'> {
 export type RequestParams = [url: string, config?: Config]
 export type RequestParamsWithoutCookies = [url: string, config?: Omit<Config, 'cookies'>]
 
-export const errorResponse = { status: 'error', msg: 'Hubo un error' } as const
+export const errorResponse = { status: 'error', msg: 'Hubo un error', data: null } as const
 
 type DefaultSuccessResponse = { status: 'success'; msg: string }
 
 type PossibleResponse<Response> =
-  | (DefaultSuccessResponse & Response)
-  | { status: 'error'; msg: string }
+  | (DefaultSuccessResponse & { data: Response })
+  | { status: 'error'; msg: string; data: null }
 
 export async function request<Response>(
   ...params: RequestParams
-): Promise<PossibleResponse<{ data: Response }>> {
+): Promise<PossibleResponse<Response>> {
   const [url, config = {} as Config] = params
 
   const { cookies } = config
@@ -48,8 +48,7 @@ export async function request<Response>(
       const json = await res.json()
       const msg = JSON.stringify(json.msg)
 
-      //@ts-ignore
-      throw new Error(res.msg ?? res.statusText, {
+      throw new Error(msg ?? res.statusText, {
         cause: {
           url: res.url,
           status: res.status,
@@ -58,9 +57,11 @@ export async function request<Response>(
       })
     }
 
-    const data = await res.json()
+    const responseData = (await res.json()) as DefaultSuccessResponse & Response
 
-    return { msg: '', status: 'success', data }
+    const { status = 'success', msg = '' } = responseData
+
+    return { msg, status, data: responseData }
   } catch (e) {
     if (e instanceof Error) {
       console.error(e)

@@ -9,6 +9,7 @@ async function getSession() {
   if (!jwt) return { auth: false } as const
 
   const response = await actionRequest<SessionLogged>('session')
+
   if (response.status === 'error') return { auth: false } as const
 
   return response.data
