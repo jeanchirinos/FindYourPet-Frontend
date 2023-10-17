@@ -37,7 +37,7 @@ export async function register(formData: FormData) {
   return response
 }
 
-export async function login(formData: FormData) {
+export async function login(prevState: any, formData: FormData) {
   const schema = z.object({
     email: z.string().email(),
     password: z.string().min(8),
