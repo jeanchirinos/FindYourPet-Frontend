@@ -68,10 +68,39 @@ export async function updateMobile(formData: FormData) {
     return errorResponse
   }
 
-  const response = await actionRequest('user-update-mobile', {
+  const response = await actionRequest('update-mobile', {
     method: 'POST',
     body: data,
   })
 
   return response
 }
+
+// export async function verifyMobile(formData: FormData) {
+//   const schema = z.object({
+//     mobile: z.union([
+//       z
+//         .string()
+//         .length(9)
+//         .regex(/^9[0-9]{8}$/),
+//       z.literal(''),
+//     ]),
+//   })
+
+//   let data: z.infer<typeof schema>
+
+//   try {
+//     data = schema.parse({
+//       mobile: formData.get('mobile'),
+//     })
+//   } catch (error) {
+//     return errorResponse
+//   }
+
+//   const response = await actionRequest('user-update-mobile', {
+//     method: 'POST',
+//     body: data,
+//   })
+
+//   return response
+// }

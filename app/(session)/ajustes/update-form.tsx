@@ -14,6 +14,8 @@ import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, useModal } from '@/components/Modal'
 import { manageActionResponse } from '@/utilities/manageActionResponse'
 import { Button } from '@/components/Button'
+import { useSteps } from '@/hooks/useSteps'
+import { clientRequest } from '@/utilities/clientRequest'
 
 export function UpdateForm(props: { user: User }) {
   const { user } = props
@@ -120,14 +122,24 @@ function ProfileImage(props: { user: User }) {
 }
 
 function MobileForm(props: { initialMobile: string }) {
+  const { initialMobile } = props
+
+  // STATES
+  const [currentMobile, setCurrentMobile] = useState(initialMobile)
+  const [isEditable, setIsEditable] = useState(false)
+
+  // HOOKS
   const updateMobileModal = useModal()
 
+  const { currentStep, nextStep } = useSteps()
+
+  // FUNCTIONS
   async function handleMobileFormAction(formData: FormData) {
     const response = await updateMobile(formData)
 
     manageActionResponse(response, {
       onSuccess() {
-        // updateMobileModal.open()
+        nextStep()
       },
       showSuccessToast: false,
     })
@@ -140,10 +152,8 @@ function MobileForm(props: { initialMobile: string }) {
     updateMobileModal.open()
   }
 
-  const [currentMobile, setCurrentMobile] = useState(props.initialMobile)
-  const [isEditable, setIsEditable] = useState(false)
-
-  const isDisabled = props.initialMobile === currentMobile
+  // VALUES
+  const isDisabled = initialMobile === currentMobile
 
   return (
     <>
@@ -184,31 +194,95 @@ function MobileForm(props: { initialMobile: string }) {
       </form>
 
       <Modal modal={updateMobileModal}>
-        <form
-          className='flex flex-col justify-center gap-y-5 text-center'
-          action={handleMobileFormAction}
-        >
-          <h2 className='max-w-[30ch]'>
-            Se enviará un código de verificación a tu número de celular
-          </h2>
+        {currentStep === 1 && (
+          <form
+            className='flex flex-col justify-center gap-y-5 text-center'
+            action={handleMobileFormAction}
+          >
+            <input type='hidden' name='mobile' value={currentMobile} />
+            <h2 className='max-w-[30ch]'>
+              Se enviará un código de verificación a tu número de celular
+            </h2>
 
-          <div className='flex justify-center gap-x-2'>
-            <Button onClick={updateMobileModal.close}>Cancelar</Button>
-            <SubmitButton>Confirmar</SubmitButton>
-          </div>
-        </form>
+            <div className='flex justify-center gap-x-2'>
+              <Button onClick={updateMobileModal.close}>Cancelar</Button>
+              <SubmitButton>Confirmar</SubmitButton>
+            </div>
+          </form>
+        )}
 
-        <>
-          {/* <section className='flex justify-around'>
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-            <div className='aspect-square h-10 rounded-full bg-foreground-200' />
-          </section> */}
-        </>
+        {currentStep === 2 && (
+          <form
+            className='flex flex-col justify-center gap-y-5 text-center'
+            action={handleMobileFormAction}
+          >
+            <h2 className='max-w-[30ch]'>
+              Ingrese el código de verificación que se envió a su número de celular
+            </h2>
+
+            <section id='form_codes' className='flex justify-around'>
+              <CodeInput />
+              <CodeInput />
+              <CodeInput />
+              <CodeInput />
+              <CodeInput />
+              <CodeInput />
+            </section>
+
+            <Button onClick={updateMobileModal.close}>Cerrar</Button>
+          </form>
+        )}
+
+        <></>
       </Modal>
     </>
+  )
+}
+
+function CodeInput() {
+  return (
+    <input
+      className='aspect-square h-10 rounded-full bg-foreground-200 text-center'
+      maxLength={1}
+      onChange={async e => {
+        const form = document.getElementById('form_codes')!
+        const inputs = Array.from(form.getElementsByTagName('input'))
+
+        const currInputIndex = inputs.indexOf(e.currentTarget)
+
+        const code = inputs.map(input => input.value).join('')
+
+        if (e.currentTarget === inputs.at(-1)) {
+          const response = await clientRequest('verify-mobile', { method: 'POST', body: { code } })
+
+          if (response.status === 'success') {
+            alert('Success')
+          } else {
+            alert('Error')
+          }
+        }
+
+        const value = e.currentTarget.value
+
+        if (value) {
+          const newIndex = e.currentTarget.value ? currInputIndex + 1 : currInputIndex - 1
+
+          const input = inputs[newIndex]
+          input?.focus()
+        }
+      }}
+      onKeyDown={e => {
+        if (!e.currentTarget.value && e.key === 'Backspace') {
+          const form = document.getElementById('form_codes')!
+          const inputs = Array.from(form.getElementsByTagName('input'))
+
+          const currInputIndex = inputs.indexOf(e.currentTarget)
+
+          const newIndex = currInputIndex - 1
+          const input = inputs[newIndex]
+          input?.focus()
+        }
+      }}
+    />
   )
 }

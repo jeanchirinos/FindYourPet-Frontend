@@ -17,10 +17,7 @@
     "node_modules": true,
     "yarn.lock": true,
     "README.md": true,
-    ".gitignore": true,
-    ".prettierrc.json": true,
     ".next": true,
-    ".eslintrc.json": true,
     "public/android-chrome-192x192.png": true,
     "public/android-chrome-512x512.png": true,
     "public/apple-touch-icon.png": true,
@@ -29,8 +26,7 @@
     "public/favicon-32x32.png": true,
     "public/mstile-150x150.png": true,
     "public/site.webmanifest": true,
-    "public/safari-pinned-tab.svg": true,
-    "next.config.js": true
+    "public/safari-pinned-tab.svg": true
   },
   "hide-files.files": [
     "next-env.d.ts",
@@ -38,10 +34,7 @@
     "node_modules",
     "yarn.lock",
     "README.md",
-    ".gitignore",
-    ".prettierrc.json",
     ".next",
-    ".eslintrc.json",
     "public/android-chrome-192x192.png",
     "public/android-chrome-512x512.png",
     "public/apple-touch-icon.png",
@@ -50,8 +43,7 @@
     "public/favicon-32x32.png",
     "public/mstile-150x150.png",
     "public/site.webmanifest",
-    "public/safari-pinned-tab.svg",
-    "next.config.js"
+    "public/safari-pinned-tab.svg"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {
