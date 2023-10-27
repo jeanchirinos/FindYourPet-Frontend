@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   other: {
     'msapplication-TileColor': '#FFFFFF',
   },
+  metadataBase: process.env.NEXT_PUBLIC_APP_URL
+    ? new URL(process.env.NEXT_PUBLIC_APP_URL)
+    : new URL(`http://localhost:${process.env.PORT ?? 3000}`),
 }
 
 export const viewport: Viewport = {

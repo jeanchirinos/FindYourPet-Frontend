@@ -72,18 +72,18 @@ type PossibleResponse<Response> =
 
 //     // if(config.method === 'POST'){
 
-//       const responseData = (await res.json()) as DefaultSuccessResponse & Response
-//       // const responseData = (await res.json()) as {ok: true, msg: string} & {data: Response}
+//       const resData = (await res.json()) as DefaultSuccessResponse & Response
+//       // const resData = (await res.json()) as {ok: true, msg: string} & {data: Response}
 
-//       const { status = 'success', msg = '' } = responseData
-//       // const { ok = true, msg = '' } = responseData
+//       const { status = 'success', msg = '' } = resData
+//       // const { ok = true, msg = '' } = resData
 
-//       return { msg, status, data: responseData }
+//       return { msg, status, data: resData }
 //     // }
 
-//     // const responseData = (await res.json()) as Response
+//     // const resData = (await res.json()) as Response
 
-//     // return responseData
+//     // return resData
 
 //   } catch (e) {
 //     if (e instanceof Error) {
@@ -143,11 +143,11 @@ export async function request<Response>(
       })
     }
 
-    const responseData = (await res.json()) as { ok: true; msg: string | undefined; data: Response }
+    const resData = (await res.json()) as { ok: true; msg: string | undefined; data: Response }
 
-    const { ok = true, msg = '', data } = responseData
+    const { ok = true, msg = '', data } = resData
 
-    return { msg, ok, data: data ?? (responseData as Response) }
+    return { msg, ok, data: data ?? (resData as Response) }
   } catch (e) {
     if (e instanceof Error) {
       // return { msg: e.message, ok: false, data: undefined }
@@ -225,16 +225,16 @@ export async function request<Response>(
 //     }
 
 //     if (config.method === 'POST') {
-//       const responseData = (await res.json()) as DefaultSuccessResponse & Response
+//       const resData = (await res.json()) as DefaultSuccessResponse & Response
 
-//       const { status = 'success', msg = '' } = responseData
+//       const { status = 'success', msg = '' } = resData
 
-//       return { msg, status, data: responseData }
+//       return { msg, status, data: resData }
 //     }
 
-//     const responseData = (await res.json()) as Response
+//     const resData = (await res.json()) as Response
 
-//     return responseData
+//     return resData
 //   } catch (e) {
 //     if (e instanceof Error) {
 //       console.error(e)

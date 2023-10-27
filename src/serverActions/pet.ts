@@ -30,10 +30,10 @@ export async function createPet(prevState: any, formData: FormData) {
     return errorResponse
   }
 
-  const response = await actionRequest('pet-store', {
+  const res = await actionRequest('pet-store', {
     method: 'POST',
     body: formData,
   })
 
-  return response
+  return res
 }

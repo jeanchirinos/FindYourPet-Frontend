@@ -29,12 +29,12 @@ export async function register(formData: FormData) {
     return errorResponse
   }
 
-  const response = await actionRequest('register', {
+  const res = await actionRequest('register', {
     method: 'POST',
     body: data,
   })
 
-  return response
+  return res
 }
 
 export async function login(prevState: any, formData: FormData) {
@@ -92,12 +92,12 @@ export async function forgotPassword(formData: FormData) {
     return errorResponse
   }
 
-  const response = await actionRequest('forgot-password', {
+  const res = await actionRequest('forgot-password', {
     method: 'POST',
     body: data,
   })
 
-  return response
+  return res
 }
 
 export async function resetPassword(prevState: any, formData: FormData) {
@@ -124,12 +124,12 @@ export async function resetPassword(prevState: any, formData: FormData) {
     return errorResponse
   }
 
-  const response = await actionRequest('reset-password', {
+  const res = await actionRequest('reset-password', {
     method: 'POST',
     body: data,
   })
 
-  return response
+  return res
 }
 
 export async function disconnectGoogle() {

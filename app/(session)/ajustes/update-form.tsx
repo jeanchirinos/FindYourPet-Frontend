@@ -72,9 +72,9 @@ function ProfileImage(props: { user: User }) {
 
     formData.set('image', image)
 
-    const response = await updateUserImageProfile(formData)
+    const res = await updateUserImageProfile(formData)
 
-    manageActionResponse(response, {
+    manageActionResponse(res, {
       onSuccess() {
         profileImageModal.close()
       },

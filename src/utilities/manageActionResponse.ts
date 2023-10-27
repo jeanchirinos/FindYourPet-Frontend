@@ -16,26 +16,26 @@ type ActionParams<SuccessRes = {}, ErrorRes = {}> = {
 }
 
 export function manageActionResponse<S = {}, E = {}>(
-  response: MyResponse,
+  res: MyResponse,
   manageParams?: ActionParams<S, E>,
 ) {
   const { onSuccess, onError, showSuccessToast = false, showErrorToast = true } = manageParams ?? {}
 
-  if (response.ok) {
-    onSuccess?.(response as S & MySuccessRes)
+  if (res.ok) {
+    onSuccess?.(res as S & MySuccessRes)
 
     if (showSuccessToast) {
-      toast.success(response.msg ?? '')
+      toast.success(res.msg ?? '')
     }
   }
 
-  if (!response.ok) {
-    onError?.(response as E & MyErrorRes)
+  if (!res.ok) {
+    onError?.(res as E & MyErrorRes)
 
     if (showErrorToast) {
-      toast.error(response.msg)
+      toast.error(res.msg)
     }
   }
 
-  return response
+  return res
 }

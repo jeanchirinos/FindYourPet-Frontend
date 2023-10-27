@@ -22,29 +22,29 @@ export async function updateUser(prevState: any, formData: FormData) {
     return errorResponse
   }
 
-  const response = await actionRequest('user-update', {
+  const res = await actionRequest('user-update', {
     method: 'POST',
     body: data,
   })
 
-  if (response.ok) {
+  if (res.ok) {
     revalidatePath('/')
   }
 
-  return response
+  return res
 }
 
 export async function updateUserImageProfile(formData: FormData) {
-  const response = await actionRequest('user-profile', {
+  const res = await actionRequest('user-profile', {
     method: 'POST',
     body: formData,
   })
 
-  if (response.ok) {
+  if (res.ok) {
     revalidatePath('/')
   }
 
-  return response
+  return res
 }
 
 export async function updateMobile({ mobile }: { mobile: string }) {
@@ -70,12 +70,12 @@ export async function updateMobile({ mobile }: { mobile: string }) {
 
   type Res = { seconds: number }
 
-  const response = await actionRequest<Res>('update-mobile', {
+  const res = await actionRequest<Res>('update-mobile', {
     method: 'POST',
     body: data,
   })
 
-  return response
+  return res
 }
 
 export async function verifyMobile({ code }: { code: string }) {
@@ -93,10 +93,10 @@ export async function verifyMobile({ code }: { code: string }) {
     return errorResponse
   }
 
-  const response = await actionRequest('verify-mobile', {
+  const res = await actionRequest('verify-mobile', {
     method: 'POST',
     body: data,
   })
 
-  return response
+  return res
 }

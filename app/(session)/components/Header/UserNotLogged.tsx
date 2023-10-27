@@ -70,9 +70,9 @@ function Register() {
   }
 
   async function formAction(formData: FormData) {
-    const response = await register(formData)
+    const res = await register(formData)
 
-    manageActionResponse(response, {
+    manageActionResponse(res, {
       onSuccess() {
         setEmailSent(true)
         formRef?.current?.reset()
