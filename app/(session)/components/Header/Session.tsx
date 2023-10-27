@@ -8,11 +8,11 @@ async function getSession() {
   const jwt = cookies().get('jwt')
   if (!jwt) return { auth: false } as const
 
-  const response = await actionRequest<SessionLogged>('session')
+  const res = await actionRequest<SessionLogged>('session')
 
-  if (response.status === 'error') return { auth: false } as const
+  if (!res.ok) return { auth: false } as const
 
-  return response.data
+  return res.data
 }
 
 export async function Session() {

@@ -1,32 +1,27 @@
 import '@/styles/globals.css'
 import { Livvic } from 'next/font/google'
 import { Providers } from './providers'
-import { Metadata } from 'next'
+import { Metadata, Viewport } from 'next'
+import { getClientTheme } from '@/lib/getClientTheme'
 
 const livvic = Livvic({ weight: ['400'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Encuentra tu mascota',
   description: 'Encuentra y adopta una mascota',
-  manifest: '/site.webmanifest',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
+  other: {
+    'msapplication-TileColor': '#FFFFFF',
   },
 }
 
-//  <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
-//   <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
-//   <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
-//   <link rel='manifest' href='/site.webmanifest' />
-//   <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
-//   <meta name='msapplication-TileColor' content='#da532c' />
-//   <meta name='theme-color' content='#ffffff' />
+export const viewport: Viewport = {
+  themeColor: '#FFFFFF',
+}
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
     <html lang='es' className={livvic.className}>
+      <head>{/* <script dangerouslySetInnerHTML={{ __html: getClientTheme }} /> */}</head>
       <body>
         <Providers>{props.children}</Providers>
       </body>

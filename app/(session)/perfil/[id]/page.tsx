@@ -16,7 +16,7 @@ export type User = {
 async function getUser(username: string) {
   const res = await actionRequest<User>(`user?username=${username}`)
 
-  if (res.status === 'error') return notFound()
+  if (!res.ok) return notFound()
 
   return res.data
 }

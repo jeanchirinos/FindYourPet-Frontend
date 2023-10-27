@@ -27,7 +27,7 @@ export async function updateUser(prevState: any, formData: FormData) {
     body: data,
   })
 
-  if (response.status === 'success') {
+  if (response.ok) {
     revalidatePath('/')
   }
 
@@ -40,14 +40,14 @@ export async function updateUserImageProfile(formData: FormData) {
     body: formData,
   })
 
-  if (response.status === 'success') {
+  if (response.ok) {
     revalidatePath('/')
   }
 
   return response
 }
 
-export async function updateMobile(formData: FormData) {
+export async function updateMobile({ mobile }: { mobile: string }) {
   const schema = z.object({
     mobile: z.union([
       z
@@ -62,13 +62,15 @@ export async function updateMobile(formData: FormData) {
 
   try {
     data = schema.parse({
-      mobile: formData.get('mobile'),
+      mobile,
     })
   } catch (error) {
     return errorResponse
   }
 
-  const response = await actionRequest('update-mobile', {
+  type Res = { seconds: number }
+
+  const response = await actionRequest<Res>('update-mobile', {
     method: 'POST',
     body: data,
   })
@@ -76,31 +78,25 @@ export async function updateMobile(formData: FormData) {
   return response
 }
 
-// export async function verifyMobile(formData: FormData) {
-//   const schema = z.object({
-//     mobile: z.union([
-//       z
-//         .string()
-//         .length(9)
-//         .regex(/^9[0-9]{8}$/),
-//       z.literal(''),
-//     ]),
-//   })
+export async function verifyMobile({ code }: { code: string }) {
+  const schema = z.object({
+    code: z.string().length(6),
+  })
 
-//   let data: z.infer<typeof schema>
+  let data: z.infer<typeof schema>
 
-//   try {
-//     data = schema.parse({
-//       mobile: formData.get('mobile'),
-//     })
-//   } catch (error) {
-//     return errorResponse
-//   }
+  try {
+    data = schema.parse({
+      code,
+    })
+  } catch (error) {
+    return errorResponse
+  }
 
-//   const response = await actionRequest('user-update-mobile', {
-//     method: 'POST',
-//     body: data,
-//   })
+  const response = await actionRequest('verify-mobile', {
+    method: 'POST',
+    body: data,
+  })
 
-//   return response
-// }
+  return response
+}

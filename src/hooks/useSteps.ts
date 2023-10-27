@@ -11,9 +11,16 @@ export function useSteps() {
     setCurrentStep(currentStep - 1)
   }
 
+  function resetSteps() {
+    setCurrentStep(1)
+  }
+
   return {
     currentStep,
+    resetSteps,
     nextStep,
     prevStep,
   }
 }
+
+export type TUseSteps = ReturnType<typeof useSteps>

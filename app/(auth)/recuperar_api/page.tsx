@@ -5,9 +5,9 @@ import { actionRequest } from '@/utilities/actionRequest'
 async function verifyToken(token: string | undefined) {
   if (!token) notFound()
 
-  const response = await actionRequest(`verify-token/${token}`)
+  const res = await actionRequest(`verify-token/${token}`)
 
-  if (response.status === 'error') notFound()
+  if (!res.ok) notFound()
 
   return token
 }

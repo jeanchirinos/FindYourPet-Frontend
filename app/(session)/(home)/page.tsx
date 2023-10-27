@@ -31,11 +31,11 @@ type Pet = {
 }
 
 async function getPets() {
-  const response = await actionRequest<Pet[]>('pet')
+  const res = await actionRequest<Pet[]>('pet')
 
-  if (response.status === 'error') return []
+  if (!res.ok) return []
 
-  return response.data
+  return res.data
 }
 
 export default async function Page() {

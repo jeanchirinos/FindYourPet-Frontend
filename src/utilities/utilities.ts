@@ -1,10 +1,10 @@
 import { clientRequest } from './clientRequest'
 
 export async function swrFetcher<Response>(url: string) {
-  const response = await clientRequest<Response>(url)
+  const res = await clientRequest<Response>(url)
 
-  if (response.status === 'success') {
-    return response.data
+  if (res.ok) {
+    return res.data
   }
 }
 

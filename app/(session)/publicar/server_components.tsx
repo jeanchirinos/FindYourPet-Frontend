@@ -6,11 +6,11 @@ import { PetInfo, StatusInfo } from './client_components'
 async function getStatusList() {
   type Response = { id: number; value: string }[]
 
-  const response = await actionRequest<Response>('pet-status')
+  const res = await actionRequest<Response>('pet-status')
 
-  if (response.status === 'error') return []
+  if (!res.ok) return []
 
-  return response.data
+  return res.data
 }
 
 export async function Status() {
@@ -21,11 +21,11 @@ export async function Status() {
 
 // Categories
 async function getCategories() {
-  const response = await actionRequest<Category[]>('category')
+  const res = await actionRequest<Category[]>('category')
 
-  if (response.status === 'error') return []
+  if (!res.ok) return []
 
-  return response.data
+  return res.data
 }
 
 export async function Categories() {

@@ -54,19 +54,19 @@ export async function login(prevState: any, formData: FormData) {
     return errorResponse
   }
 
-  const response = await actionRequest<{ token: string }>('login', {
+  const res = await actionRequest<{ token: string }>('login', {
     method: 'POST',
     body: data,
   })
 
-  if (response.status === 'success') {
+  if (res.ok) {
     const expires = new Date()
     expires.setDate(expires.getDate() + 7)
 
-    cookies().set('jwt', response.data.token, { expires })
+    cookies().set('jwt', res.data.token, { expires })
   }
 
-  return response
+  return res
 }
 
 export async function logout() {
@@ -133,13 +133,13 @@ export async function resetPassword(prevState: any, formData: FormData) {
 }
 
 export async function disconnectGoogle() {
-  const response = await actionRequest('user-google-disconnect', {
+  const res = await actionRequest('user-google-disconnect', {
     method: 'POST',
   })
 
-  if (response.status === 'success') {
+  if (res.ok) {
     revalidatePath('/')
   }
 
-  return response
+  return res
 }

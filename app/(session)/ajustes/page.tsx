@@ -11,11 +11,11 @@ async function getUser() {
   const jwt = cookies().get('jwt')
   if (!jwt) redirect('/')
 
-  const response = await actionRequest<User>('user')
+  const res = await actionRequest<User>('user')
 
-  if (response.status === 'error') redirect('/')
+  if (!res.ok) redirect('/')
 
-  return response.data
+  return res.data
 }
 
 export default async function Page() {
@@ -37,9 +37,11 @@ export default async function Page() {
 async function getGoogleData() {
   type Res = { isConnected: boolean; username: string | null }
 
-  const response = await actionRequest<Res>('user-google-data')
+  const res = await actionRequest<Res>('user-google-data')
 
-  return response.data
+  if (!res.ok) return null
+
+  return res.data
 }
 
 async function ConnectedAccounts() {

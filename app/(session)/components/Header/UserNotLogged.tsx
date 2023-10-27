@@ -77,7 +77,6 @@ function Register() {
         setEmailSent(true)
         formRef?.current?.reset()
       },
-      showSuccessToast: false,
     })
   }
 

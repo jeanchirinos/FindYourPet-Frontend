@@ -1,8 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import toast from 'react-hot-toast'
-//@ts-ignore
-import { experimental_useFormState as useFormState } from 'react-dom'
+import { useFormState } from 'react-dom'
 
 type Options = {
   onSuccess?(): void
