@@ -1,5 +1,9 @@
 'use client'
-import { updateUser, updateUserImageProfile } from '../../../src/serverActions/profile'
+import {
+  updateName,
+  updateUserImageProfile,
+  updateUsername,
+} from '../../../src/serverActions/profile'
 import { Input } from '@/components/Input'
 import { User } from '../perfil/[id]/page'
 
@@ -9,31 +13,21 @@ import React, { useRef, useState } from 'react'
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
 import Image from 'next/image'
-import { useFormAction } from '@/hooks/useFormAction'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, useModal } from '@/components/Modal'
 import { manageActionResponse } from '@/utilities/manageActionResponse'
 import { MobileForm } from './update-mobile'
+import { Button } from '@/components/Button'
 
 export function UpdateForm(props: { user: User }) {
   const { user } = props
-  const { formAction } = useFormAction(updateUser)
 
   return (
     <>
       <ProfileImage user={user} />
-      <form className='flex max-w-[350px] flex-col gap-3' action={formAction}>
-        <Input
-          type='text'
-          label='Nombre'
-          isRequired={false}
-          defaultValue={user.name ?? ''}
-          name='name'
-        />
-        <Input type='text' label='Usuario' defaultValue={user.username} name='username' />
-        <SubmitButton />
-      </form>
 
+      <NameForm initialName={user.name ?? ''} />
+      <UsernameForm initialUsername={user.username} />
       <MobileForm initialMobile={user.mobile ?? ''} />
     </>
   )
@@ -116,6 +110,125 @@ function ProfileImage(props: { user: User }) {
           <SubmitButton />
         </form>
       </Modal>
+    </>
+  )
+}
+
+function NameForm(props: { initialName: string }) {
+  const { initialName = '' } = props
+
+  // STATES
+  const [currentName, setCurrentName] = useState(initialName)
+  const [nameIsEditable, setNameIsEditable] = useState(false)
+
+  // FUNCTIONS
+  async function handleAction(formData: FormData) {
+    if (isDisabled) return
+
+    const name = formData.get('name') as string
+
+    const res = await updateName({ name })
+
+    manageActionResponse(res, {
+      showSuccessToast: true,
+    })
+  }
+
+  // VALUES
+  const isDisabled = initialName === currentName
+
+  // RENDER
+  return (
+    <>
+      <form action={handleAction} className='mt-4 flex items-center gap-x-2'>
+        <Input
+          type='text'
+          name='name'
+          label='Nombre'
+          value={currentName}
+          onChange={e => setCurrentName(e.target.value)}
+          readOnly={!nameIsEditable}
+        />
+
+        {nameIsEditable ? (
+          <div className='flex gap-x-1.5'>
+            <SubmitButton size='sm' isDisabled={isDisabled} />
+
+            <Button
+              size='sm'
+              onClick={() => {
+                setNameIsEditable(false)
+                setCurrentName(props.initialName)
+              }}
+            >
+              Cancelar
+            </Button>
+          </div>
+        ) : (
+          <Button size='sm' onClick={() => setNameIsEditable(true)}>
+            Editar
+          </Button>
+        )}
+      </form>
+    </>
+  )
+}
+
+function UsernameForm(props: { initialUsername: string }) {
+  const { initialUsername = '' } = props
+
+  // STATES
+  const [currentUsername, setCurrentUsername] = useState(initialUsername)
+  const [usernameIsEditable, setUsernameIsEditable] = useState(false)
+
+  // FUNCTIONS
+  async function handleAction(formData: FormData) {
+    if (isDisabled) return
+
+    const username = formData.get('username') as string
+
+    const res = await updateUsername({ username })
+
+    manageActionResponse(res, {
+      showSuccessToast: true,
+    })
+  }
+
+  // VALUES
+  const isDisabled = initialUsername === currentUsername
+
+  // RENDER
+  return (
+    <>
+      <form action={handleAction} className='mt-4 flex items-center gap-x-2'>
+        <Input
+          type='text'
+          name='username'
+          label='Usuario'
+          value={currentUsername}
+          onChange={e => setCurrentUsername(e.target.value)}
+          readOnly={!usernameIsEditable}
+        />
+
+        {usernameIsEditable ? (
+          <div className='flex gap-x-1.5'>
+            <SubmitButton size='sm' isDisabled={isDisabled} />
+            <Button
+              size='sm'
+              onClick={() => {
+                setUsernameIsEditable(false)
+                setCurrentUsername(props.initialUsername)
+              }}
+            >
+              Cancelar
+            </Button>
+          </div>
+        ) : (
+          <Button size='sm' onClick={() => setUsernameIsEditable(true)}>
+            Editar
+          </Button>
+        )}
+      </form>
     </>
   )
 }
