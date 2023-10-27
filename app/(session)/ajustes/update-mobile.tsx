@@ -91,6 +91,7 @@ export function MobileForm(props: { initialMobile: string }) {
             modal={updateMobileModal}
             secondsToResend={secondsToResend}
             setIsEditable={setPhoneIsEditable}
+            currentMobile={currentMobile}
           />
         )}
       </Modal>
@@ -136,8 +137,9 @@ function Step2(props: {
   modal: UseModal
   secondsToResend: number
   setIsEditable: SetState<boolean>
+  currentMobile: string
 }) {
-  const { modal, secondsToResend, setIsEditable } = props
+  const { modal, secondsToResend, setIsEditable, currentMobile } = props
 
   const [validationCode, setValidationCode] = useState(Array.from({ length: 6 }, () => ''))
 
@@ -164,7 +166,7 @@ function Step2(props: {
   async function handleVerifyMobileFormAction() {
     const code = validationCode.join('')
 
-    const res = await verifyMobile({ code })
+    const res = await verifyMobile({ code, mobile: currentMobile })
 
     manageActionResponse(res, {
       onSuccess() {

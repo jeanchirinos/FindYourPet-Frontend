@@ -131,6 +131,9 @@ function NameForm(props: { initialName: string }) {
 
     manageActionResponse(res, {
       showSuccessToast: true,
+      onSuccess() {
+        setNameIsEditable(false)
+      },
     })
   }
 
@@ -191,6 +194,9 @@ function UsernameForm(props: { initialUsername: string }) {
 
     manageActionResponse(res, {
       showSuccessToast: true,
+      onSuccess() {
+        setUsernameIsEditable(false)
+      },
     })
   }
 

@@ -130,9 +130,10 @@ export async function updateUsername({ username }: { username: string }) {
   return res
 }
 
-export async function verifyMobile({ code }: { code: string }) {
+export async function verifyMobile({ mobile, code }: { mobile: string; code: string }) {
   const schema = z.object({
     code: z.string().length(6),
+    mobile: z.string().length(9),
   })
 
   let data: z.infer<typeof schema>
@@ -140,6 +141,7 @@ export async function verifyMobile({ code }: { code: string }) {
   try {
     data = schema.parse({
       code,
+      mobile,
     })
   } catch (error) {
     return errorResponse
