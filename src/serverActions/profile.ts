@@ -78,58 +78,6 @@ export async function updateMobile({ mobile }: { mobile: string }) {
   return res
 }
 
-export async function updateName({ name }: { name: string }) {
-  const schema = z.object({
-    name: z.string().min(1),
-  })
-
-  try {
-    schema.parse({
-      name,
-    })
-  } catch (error) {
-    return errorResponse
-  }
-
-  const body = {
-    param: 'name',
-    value: name,
-  }
-
-  const res = await actionRequest('user-update', {
-    method: 'POST',
-    body,
-  })
-
-  return res
-}
-
-export async function updateUsername({ username }: { username: string }) {
-  const schema = z.object({
-    username: z.string().min(1),
-  })
-
-  try {
-    schema.parse({
-      username,
-    })
-  } catch (error) {
-    return errorResponse
-  }
-
-  const body = {
-    param: 'username',
-    value: username,
-  }
-
-  const res = await actionRequest('user-update', {
-    method: 'POST',
-    body,
-  })
-
-  return res
-}
-
 export async function verifyMobile({ mobile, code }: { mobile: string; code: string }) {
   const schema = z.object({
     code: z.string().length(6),
@@ -151,6 +99,36 @@ export async function verifyMobile({ mobile, code }: { mobile: string; code: str
     method: 'POST',
     body: data,
   })
+
+  return res
+}
+
+export async function updateValue({ param, value }: { param: string; value: string }) {
+  // const schema = z.object({
+  //   name: z.string().min(1),
+  // })
+
+  // try {
+  //   schema.parse({
+  //     name,
+  //   })
+  // } catch (error) {
+  //   return errorResponse
+  // }
+
+  const body = {
+    param,
+    value,
+  }
+
+  const res = await actionRequest('user-update', {
+    method: 'POST',
+    body,
+  })
+
+  if (res.ok) {
+    revalidatePath('/')
+  }
 
   return res
 }

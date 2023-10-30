@@ -1,5 +1,5 @@
 'use client'
-import { updateMobile, verifyMobile } from '../../../src/serverActions/profile'
+import { updateMobile, verifyMobile } from '@/serverActions/profile'
 import { Input } from '@/components/Input'
 import React, { useEffect, useState } from 'react'
 
@@ -35,7 +35,7 @@ export function MobileForm(props: { initialMobile: string }) {
   }
 
   // VALUES
-  const isDisabled = initialMobile === currentMobile
+  const isDisabled = initialMobile === currentMobile || !/^9[0-9]{8}$/.test(currentMobile)
 
   // RENDER
   return (
@@ -50,13 +50,23 @@ export function MobileForm(props: { initialMobile: string }) {
           minLength={9}
           maxLength={9}
           pattern='^9[0-9]{8}$'
-          onChange={e => setCurrentMobile(e.target.value)}
+          onChange={e => {
+            const value = e.target.value
+            if (isNaN(Number(value))) return
+
+            setCurrentMobile(e.target.value)
+          }}
           readOnly={!phoneIsEditable}
         />
 
         {phoneIsEditable ? (
           <div className='flex gap-x-1.5'>
-            <Button size='sm' isDisabled={isDisabled} type='submit'>
+            <Button
+              size='sm'
+              isDisabled={isDisabled}
+              className='bg-primary text-white disabled:opacity-60'
+              type='submit'
+            >
               Guardar
             </Button>
             <Button

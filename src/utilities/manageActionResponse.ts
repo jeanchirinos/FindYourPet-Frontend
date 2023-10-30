@@ -1,8 +1,5 @@
 import toast from 'react-hot-toast'
 
-// type MySuccessRes = { status: 'success'; msg: string }
-// type MyErrorRes = { status: 'error'; msg: string }
-
 type MySuccessRes = { ok: true; msg: string | undefined }
 type MyErrorRes = { ok: false; msg: string }
 

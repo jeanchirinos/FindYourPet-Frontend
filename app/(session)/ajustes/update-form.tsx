@@ -1,15 +1,9 @@
 'use client'
-import {
-  updateName,
-  updateUserImageProfile,
-  updateUsername,
-} from '../../../src/serverActions/profile'
+import { updateUserImageProfile, updateValue } from '@/serverActions/profile'
 import { Input } from '@/components/Input'
 import { User } from '../perfil/[id]/page'
-
 import { BiSolidCamera } from 'react-icons/bi'
-import React, { useRef, useState } from 'react'
-
+import { useRef, useState, useEffect } from 'react'
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
 import Image from 'next/image'
@@ -17,7 +11,8 @@ import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, useModal } from '@/components/Modal'
 import { manageActionResponse } from '@/utilities/manageActionResponse'
 import { MobileForm } from './update-mobile'
-import { Button } from '@/components/Button'
+import { useFormStatus } from 'react-dom'
+import { SetState } from '@/types'
 
 export function UpdateForm(props: { user: User }) {
   const { user } = props
@@ -26,8 +21,8 @@ export function UpdateForm(props: { user: User }) {
     <>
       <ProfileImage user={user} />
 
-      <NameForm initialName={user.name ?? ''} />
-      <UsernameForm initialUsername={user.username} />
+      <ParamForm initialValue={user.name ?? ''} label='Nombre' paramName='name' />
+      <ParamForm initialValue={user.username} label='Usuario' paramName='username' />
       <MobileForm initialMobile={user.mobile ?? ''} />
     </>
   )
@@ -114,127 +109,112 @@ function ProfileImage(props: { user: User }) {
   )
 }
 
-function NameForm(props: { initialName: string }) {
-  const { initialName = '' } = props
+function ParamForm(props: { initialValue: string; paramName: string; label: string }) {
+  const { initialValue = '', paramName, label } = props
 
   // STATES
-  const [currentName, setCurrentName] = useState(initialName)
-  const [nameIsEditable, setNameIsEditable] = useState(false)
+  const [currentValue, setCurrentValue] = useState(initialValue)
+  const [inputIsEditable, setInputIsEditable] = useState(false)
 
   // FUNCTIONS
   async function handleAction(formData: FormData) {
     if (isDisabled) return
 
-    const name = formData.get('name') as string
+    const value = formData.get(paramName) as string
 
-    const res = await updateName({ name })
+    const res = await updateValue({ param: paramName, value })
 
     manageActionResponse(res, {
       showSuccessToast: true,
       onSuccess() {
-        setNameIsEditable(false)
+        setInputIsEditable(false)
       },
     })
   }
 
   // VALUES
-  const isDisabled = initialName === currentName
+  const isDisabled = initialValue === currentValue
 
   // RENDER
   return (
-    <>
-      <form action={handleAction} className='mt-4 flex items-center gap-x-2'>
-        <Input
-          type='text'
-          name='name'
-          label='Nombre'
-          value={currentName}
-          onChange={e => setCurrentName(e.target.value)}
-          readOnly={!nameIsEditable}
-        />
-
-        {nameIsEditable ? (
-          <div className='flex gap-x-1.5'>
-            <SubmitButton size='sm' isDisabled={isDisabled} />
-
-            <Button
-              size='sm'
-              onClick={() => {
-                setNameIsEditable(false)
-                setCurrentName(props.initialName)
-              }}
-            >
-              Cancelar
-            </Button>
-          </div>
-        ) : (
-          <Button size='sm' onClick={() => setNameIsEditable(true)}>
-            Editar
-          </Button>
-        )}
-      </form>
-    </>
+    <form
+      action={handleAction}
+      className='mt-4 flex items-center gap-x-2'
+      onKeyDown={e => {
+        if (e.key === 'Escape') {
+          setInputIsEditable(false)
+          setCurrentValue(initialValue)
+        }
+      }}
+    >
+      <FormBody
+        initialValue={initialValue}
+        label={label}
+        currentValue={currentValue}
+        inputIsEditable={inputIsEditable}
+        paramName={paramName}
+        setCurrentValue={setCurrentValue}
+        setInputIsEditable={setInputIsEditable}
+      />
+    </form>
   )
 }
 
-function UsernameForm(props: { initialUsername: string }) {
-  const { initialUsername = '' } = props
+function FormBody(props: {
+  initialValue: string
+  label: string
+  inputIsEditable: boolean
+  setInputIsEditable: SetState<boolean>
+  paramName: string
+  currentValue: string
+  setCurrentValue: SetState<string>
+}) {
+  const { pending } = useFormStatus()
 
-  // STATES
-  const [currentUsername, setCurrentUsername] = useState(initialUsername)
-  const [usernameIsEditable, setUsernameIsEditable] = useState(false)
-
-  // FUNCTIONS
-  async function handleAction(formData: FormData) {
-    if (isDisabled) return
-
-    const username = formData.get('username') as string
-
-    const res = await updateUsername({ username })
-
-    manageActionResponse(res, {
-      showSuccessToast: true,
-      onSuccess() {
-        setUsernameIsEditable(false)
-      },
-    })
-  }
+  const {
+    initialValue = '',
+    label,
+    inputIsEditable,
+    setInputIsEditable,
+    currentValue,
+    paramName,
+    setCurrentValue,
+  } = props
 
   // VALUES
-  const isDisabled = initialUsername === currentUsername
+  const isDisabled = initialValue === currentValue
+  const inputRef = useRef<HTMLInputElement>(null)
+  const submitButtonRef = useRef<HTMLButtonElement>(null)
+  const submittingRef = useRef(pending)
+
+  useEffect(() => {
+    submittingRef.current = pending
+  }, [pending])
 
   // RENDER
   return (
     <>
-      <form action={handleAction} className='mt-4 flex items-center gap-x-2'>
-        <Input
-          type='text'
-          name='username'
-          label='Usuario'
-          value={currentUsername}
-          onChange={e => setCurrentUsername(e.target.value)}
-          readOnly={!usernameIsEditable}
-        />
+      <Input
+        type='text'
+        name={paramName}
+        label={label}
+        value={currentValue}
+        onChange={e => setCurrentValue(e.target.value)}
+        readOnly={!inputIsEditable}
+        ref={inputRef}
+        onFocus={() => setInputIsEditable(true)}
+        onBlur={() => {
+          setTimeout(() => {
+            if (document.activeElement === submitButtonRef.current) return
+            if (submittingRef.current) return
 
-        {usernameIsEditable ? (
-          <div className='flex gap-x-1.5'>
-            <SubmitButton size='sm' isDisabled={isDisabled} />
-            <Button
-              size='sm'
-              onClick={() => {
-                setUsernameIsEditable(false)
-                setCurrentUsername(props.initialUsername)
-              }}
-            >
-              Cancelar
-            </Button>
-          </div>
-        ) : (
-          <Button size='sm' onClick={() => setUsernameIsEditable(true)}>
-            Editar
-          </Button>
-        )}
-      </form>
+            setInputIsEditable(false)
+            setCurrentValue(initialValue)
+          }, 1)
+        }}
+      />
+
+      {inputIsEditable && <SubmitButton size='sm' isDisabled={isDisabled} ref={submitButtonRef} />}
     </>
   )
 }
