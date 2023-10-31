@@ -139,7 +139,7 @@ function ParamForm(props: { initialValue: string; paramName: string; label: stri
   return (
     <form
       action={handleAction}
-      className='mt-4 flex items-center gap-x-2'
+      className='group mt-4 flex items-center gap-x-2'
       onKeyDown={e => {
         if (e.key === 'Escape') {
           setInputIsEditable(false)
@@ -214,7 +214,14 @@ function FormBody(props: {
         }}
       />
 
-      {inputIsEditable && <SubmitButton size='sm' isDisabled={isDisabled} ref={submitButtonRef} />}
+      {inputIsEditable && (
+        <SubmitButton
+          size='sm'
+          isDisabled={isDisabled}
+          disabled={isDisabled}
+          ref={submitButtonRef}
+        />
+      )}
     </>
   )
 }

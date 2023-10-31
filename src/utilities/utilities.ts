@@ -11,3 +11,7 @@ export async function swrFetcher<Response>(url: string) {
 export async function waitFor(seconds: number) {
   return new Promise(resolve => setTimeout(resolve, seconds * 1000))
 }
+
+export function getFormEntries(formData: FormData) {
+  return Object.fromEntries(formData.entries())
+}

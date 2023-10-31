@@ -1,12 +1,25 @@
 'use server'
 import { actionRequest } from '@/utilities/actionRequest'
 import { errorResponse } from '@/utilities/request'
+import { getFormEntries } from '@/utilities/utilities'
 import { z } from 'zod'
+
+const MAX_FILE_SIZE = 500000
+const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 
 export async function createPet(prevState: any, formData: FormData) {
   const schema = z.object({
     breed_id: z.string(),
-    image: z.any(),
+    image: z
+      .instanceof(File)
+      .refine(
+        file => file.size <= MAX_FILE_SIZE && file.size > 0,
+        `El peso de la imagen debe ser mayor a 0MB y menor a 5MB.`,
+      )
+      .refine(
+        file => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+        'Solo se permiten .jpg, .jpeg, .png and .webp',
+      ),
     description: z.string(),
     estate: z.string(),
     city: z.string(),
@@ -15,21 +28,16 @@ export async function createPet(prevState: any, formData: FormData) {
     status: z.string(),
   })
 
+  const pet = getFormEntries(formData)
+
   try {
-    schema.parse({
-      breed_id: formData.get('breed_id'),
-      image: formData.get('image'),
-      description: formData.get('description'),
-      estate: formData.get('estate'),
-      city: formData.get('city'),
-      district: formData.get('district'),
-      location: formData.get('location'),
-      status: formData.get('status'),
-    })
+    // console.log({ petImage: pet.image })
+    schema.parse(pet)
   } catch (error) {
     return errorResponse
   }
 
+  // return { ok: true, data: { hola: 'hola' } }
   const res = await actionRequest('pet-store', {
     method: 'POST',
     body: formData,

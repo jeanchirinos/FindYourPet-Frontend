@@ -42,6 +42,7 @@ export function PetImage() {
               className='absolute z-10 opacity-0'
               accept='image/*'
               onChange={handleInputImage}
+              required
             />
             <Button className='pointer-events-none w-full'>Editar</Button>
           </label>
@@ -62,6 +63,7 @@ export function PetImage() {
             className='absolute opacity-0'
             accept='image/*'
             onChange={handleInputImage}
+            required
           />
         </label>
       )}
