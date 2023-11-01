@@ -1,12 +1,12 @@
 import { Category } from '@/types'
-import { actionRequest } from '@/utilities/actionRequest'
 import { PetInfo, StatusInfo } from './client_components'
+import { request } from '@/utilities/request'
 
 // Status
 async function getStatusList() {
   type Response = { id: number; value: string }[]
 
-  const res = await actionRequest<Response>('pet-status')
+  const res = await request<Response>('pet-status')
 
   if (!res.ok) return []
 
@@ -21,11 +21,9 @@ export async function Status() {
 
 // Categories
 async function getCategories() {
-  const res = await actionRequest<Category[]>('category')
+  const res = await request<Category[]>('category')
 
-  if (!res.ok) return []
-
-  return res.data
+  return res.ok ? res.data : []
 }
 
 export async function Categories() {
