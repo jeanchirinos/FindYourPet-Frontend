@@ -1,8 +1,8 @@
 import { Category } from '@/types'
-import { request } from '@/utilities/request'
+import { actionRequest } from '@/utilities/actionRequest'
 
 export default async function Page() {
-  const res = await request<Category[]>('category', { cache: 'force-cache' })
+  const res = await actionRequest<Category[]>('category')
 
   if (!res.ok) return null
 

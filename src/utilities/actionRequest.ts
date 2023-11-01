@@ -8,11 +8,7 @@ import { ZodRawShape, z } from 'zod'
 export async function actionRequest<Response>(...params: RequestParamsWithoutCookies) {
   const [url, config = {}] = params
 
-  const myConfig = { ...config, cookies: '' }
-
-  if (config.cache !== 'force-cache') {
-    myConfig.cookies = cookies().toString()
-  }
+  const myConfig = { ...config, cookies: cookies().toString() }
 
   return request<Response>(url, myConfig)
 }
