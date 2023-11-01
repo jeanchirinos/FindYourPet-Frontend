@@ -6,7 +6,6 @@ import { SubmitButton } from '@/components/SubmitButton'
 import { Input } from '@/components/Input'
 import { PetImage, Place } from './client_components'
 import { useFormAction } from '@/hooks/useFormAction'
-import { getFormEntries } from '@/utilities/utilities'
 
 type Props = {
   StatusComponent: React.ReactNode
@@ -16,18 +15,11 @@ type Props = {
 export function Form(props: Props) {
   const { StatusComponent, CategoryComponent } = props
 
-  const { formAction } = useFormAction(createPet)
-
-  // function handleAction(formData: FormData) {
-  //   const data = getFormEntries(formData)
-
-  //   console.log({ data })
-  // }
+  const { formAction } = useFormAction(createPet, { onSuccess() {} })
 
   // RENDER
   return (
     <form action={formAction} className='flex gap-4 max-md:flex-col'>
-      {/* <form action={handleAction} className='flex gap-4 max-md:flex-col'> */}
       <PetImage />
       <section className='flex flex-col gap-y-3'>
         {StatusComponent}

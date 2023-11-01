@@ -23,9 +23,6 @@ export function PetImage() {
 
     if (!file) return
     if (!file.type.includes('image')) return
-    // if(file.size > 1024 * 1024 * 2) return
-
-    // how to get file dimensions
 
     setImagePreview(imagePreview)
   }
@@ -68,6 +65,31 @@ export function PetImage() {
         </label>
       )}
     </>
+  )
+}
+
+export function StatusInfo(props: { statusList: { id: number; value: string }[] }) {
+  const { statusList } = props
+
+  return (
+    <RadioGroup name='status' defaultValue={statusList[0]?.id.toString()}>
+      <div className='flex gap-2 max-sm:flex-col'>
+        {statusList.map(item => (
+          <RadioGroup.Option
+            key={item.id}
+            value={item.id.toString()}
+            className={({ checked }) =>
+              twJoin(
+                'flex w-full cursor-pointer items-center justify-center rounded-lg px-4 py-3 text-sm shadow-md focus:outline-none',
+                checked && 'bg-orange-100 text-orange-600',
+              )
+            }
+          >
+            <RadioGroup.Label as='p'>{item.value}</RadioGroup.Label>
+          </RadioGroup.Option>
+        ))}
+      </div>
+    </RadioGroup>
   )
 }
 
@@ -151,30 +173,5 @@ export function Place() {
         placeholder='Distrito'
       />
     </>
-  )
-}
-
-export function StatusInfo(props: { statusList: { id: number; value: string }[] }) {
-  const { statusList } = props
-
-  return (
-    <RadioGroup name='status' defaultValue={statusList[0]?.id.toString()}>
-      <div className='flex gap-2 max-sm:flex-col'>
-        {statusList.map(item => (
-          <RadioGroup.Option
-            key={item.id}
-            value={item.id.toString()}
-            className={({ checked }) =>
-              twJoin(
-                'flex w-full cursor-pointer items-center justify-center rounded-lg px-4 py-3 text-sm shadow-md focus:outline-none',
-                checked && 'bg-orange-100 text-orange-600',
-              )
-            }
-          >
-            <RadioGroup.Label as='p'>{item.value}</RadioGroup.Label>
-          </RadioGroup.Option>
-        ))}
-      </div>
-    </RadioGroup>
   )
 }

@@ -9,7 +9,7 @@ export function ForgotForm(props: { initialEmail: string }) {
   const { initialEmail } = props
   const { formAction, state } = useFormAction(forgotPassword, { showSuccessToast: false })
 
-  if (state.status === 'success')
+  if (state.ok)
     return (
       <div className='flex flex-col gap-y-2 text-center'>
         <p>Correo enviado</p>

@@ -1,6 +1,6 @@
 export interface Config extends Omit<RequestInit, 'body'> {
   body?: object
-  cookies: string
+  cookies?: string
 }
 
 export type RequestParams = [url: string, config?: Config]
@@ -33,7 +33,9 @@ export async function request<Response>(
 
   const backendApiUrl = process.env.NEXT_PUBLIC_BACKEND_API
 
-  headers.Cookie = cookies
+  if (cookies) {
+    headers.Cookie = cookies
+  }
 
   try {
     const res = await fetch(backendApiUrl + url, {

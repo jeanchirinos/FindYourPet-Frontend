@@ -12,7 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@nextui-org/react": "^2.1.13",
-    "@types/node": "20.8.9",
+    "@types/node": "20.8.10",
     "@types/react": "^18.2.33",
     "@types/react-dom": "18.2.14",
     "autoprefixer": "10.4.16",
@@ -20,7 +20,7 @@
     "eslint-config-next": "14.0.1",
     "framer-motion": "^10.16.4",
     "next": "^14.0.1",
-    "nextjs-toploader": "^1.5.3",
+    "nextjs-toploader": "^1.6.4",
     "postcss": "8.4.31",
     "react": "18.2.0",
     "react-advanced-cropper": "^0.19.4",

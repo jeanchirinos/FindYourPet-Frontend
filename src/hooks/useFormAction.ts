@@ -12,27 +12,23 @@ type Options = {
 export function useFormAction(action: any, options?: Options) {
   const { onSuccess, onError, showSuccessToast = true } = options ?? {}
 
-  const [state, formAction] = useFormState(action, { status: null, msg: null })
+  const [state, formAction] = useFormState(action, { ok: null, msg: null })
 
   useEffect(() => {
-    const { status, msg } = state as
-      | { status: 'success' | 'error'; msg: string }
-      | { status: null; msg: null }
+    const { ok, msg } = state as { ok: boolean; msg: string } | { ok: null; msg: null }
+    if (ok !== null) {
+      if (!ok || showSuccessToast) {
+        const status = ok ? 'success' : 'error'
 
-    if (status) {
-      if (status === 'error' || showSuccessToast) {
         toast[status](msg)
       }
-
-      if (status === 'success') {
+      if (ok) {
         onSuccess?.()
       }
-
-      if (status === 'error') {
+      if (!ok) {
         onError?.()
       }
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
 

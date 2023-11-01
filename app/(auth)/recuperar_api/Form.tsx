@@ -8,7 +8,7 @@ import Link from 'next/link'
 export function Form(props: { token: string }) {
   const { formAction, state } = useFormAction(resetPassword, { showSuccessToast: false })
 
-  if (state.status === 'success') {
+  if (state.ok) {
     return (
       <div className='flex flex-col gap-y-2 text-center'>
         <p>Contraseña restablecida</p>
