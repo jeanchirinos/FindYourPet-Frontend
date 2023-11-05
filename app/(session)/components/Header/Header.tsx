@@ -9,7 +9,7 @@ export function Header() {
   return (
     <header className='fixed inset-0 z-20 mx-auto flex h-[40px] w-[1600px] max-w-full justify-between bg-white/70 px-1.5 backdrop-blur-md'>
       <Link href='/' aria-label='Inicio'>
-        <Image src={Logo} alt='Logo' width={40} loading='eager' priority />
+        <Image src={Logo} alt='Logo' width={40} priority />
       </Link>
       <aside className='flex items-center gap-x-4'>
         <PublishButton />

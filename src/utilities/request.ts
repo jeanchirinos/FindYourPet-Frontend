@@ -1,4 +1,4 @@
-export interface Config extends Omit<RequestInit, 'body'> {
+export interface Config extends Omit<RequestInit, 'body' | 'headers'> {
   body?: object
   cookies?: string
 }
@@ -39,7 +39,7 @@ export async function request<Response>(
 
   try {
     const res = await fetch(backendApiUrl + url, {
-      method: config.method,
+      ...config,
       headers,
       body,
     })
