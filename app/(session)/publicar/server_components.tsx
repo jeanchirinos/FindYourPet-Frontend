@@ -6,7 +6,7 @@ import { request } from '@/utilities/request'
 async function getStatusList() {
   type Response = { id: number; value: string }[]
 
-  const res = await request<Response>('pet-status')
+  const res = await request<Response>('pet-status', { cache: 'force-cache' })
   return res.ok ? res.data : []
 }
 
@@ -18,8 +18,8 @@ export async function Status() {
 
 // Categories
 async function getCategories() {
-  const res = await request<Category[]>('category')
-  console.log(res)
+  const res = await request<Category[]>('category', { cache: 'force-cache' })
+
   return res.ok ? res.data : []
 }
 
