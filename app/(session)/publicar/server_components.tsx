@@ -1,13 +1,14 @@
 import { Category } from '@/types'
 import { PetInfo, StatusInfo } from './client_components'
-import { request } from '@/utilities/request'
+import { request, requestNew } from '@/utilities/request'
 
 // Status
 async function getStatusList() {
   type Response = { id: number; value: string }[]
 
-  const res = await request<Response>('pet-status', { cache: 'force-cache' })
-  return res.ok ? res.data : []
+  const res = await requestNew<Response>('pet-status', { cache: 'force-cache' })
+
+  return res.data
 }
 
 export async function Status() {

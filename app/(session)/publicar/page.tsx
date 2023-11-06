@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+// import { Suspense } from 'react'
 import { Form } from './form'
 import { Categories, Status } from './server_components'
 
@@ -9,9 +9,9 @@ export default function Page() {
         <h2 className='mb-10 text-center text-lg font-semibold'>Registro de datos</h2>
         <Form
           StatusComponent={
-            <Suspense>
-              <Status />
-            </Suspense>
+            // <Suspense fallback={<p>Cargando</p>}>
+            <Status />
+            // </Suspense>
           }
           CategoryComponent={<Categories />}
         />
