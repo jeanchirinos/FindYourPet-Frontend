@@ -1,6 +1,5 @@
-// import { Suspense } from 'react'
 import { Form } from './form'
-import { Categories, Status } from './server_components'
+import { Categories, Place, Status } from './server_components'
 
 export default function Page() {
   return (
@@ -8,11 +7,8 @@ export default function Page() {
       <section className='mx-auto w-[768px] max-w-full px-4 py-4'>
         <h2 className='mb-10 text-center text-lg font-semibold'>Registro de datos</h2>
         <Form
-          StatusComponent={
-            // <Suspense fallback={<p>Cargando</p>}>
-            <Status />
-            // </Suspense>
-          }
+          StatusComponent={<Status />}
+          PlaceComponent={<Place />}
           CategoryComponent={<Categories />}
         />
       </section>

@@ -3,14 +3,12 @@
 import { BreedsData, Category } from '@/types'
 import { useEffect, useState } from 'react'
 import { Select } from '@/components/Select'
-import departamentos from '@/data/departamentos.json'
-import provincias from '@/data/provincias.json'
-import distritos from '@/data/distritos.json'
 import { RadioGroup } from '@headlessui/react'
 import { twJoin } from 'tailwind-merge'
 import useSWR from 'swr'
 import { Button } from '@/components/Button'
 import { CiImageOn } from 'react-icons/ci'
+import { Location } from '@/mc/Place'
 
 export function PetImage() {
   const [imagePreview, setImagePreview] = useState<null | string>(null)
@@ -123,21 +121,23 @@ export function PetInfo(props: { categories: Category[] }) {
   )
 }
 
-export function Place() {
+export function PlaceInfo(props: {
+  departamentos: Location[]
+  provincias: Record<string, Location[]>
+  distritos: Record<string, Location[]>
+}) {
+  const { departamentos, provincias, distritos } = props
+
   // Departamento
-  const [selectedDepartamento, setSelectedDepartamento] = useState(
-    departamentos[0].id_ubigeo as keyof typeof provincias,
-  )
+  const [selectedDepartamento, setSelectedDepartamento] = useState(departamentos[0].id_ubigeo)
 
   // Provincia
   const provinciasArray = provincias[selectedDepartamento]
 
-  const [selectedProvincia, setSelectedProvincia] = useState(
-    provinciasArray[0].id_ubigeo as keyof typeof distritos,
-  )
+  const [selectedProvincia, setSelectedProvincia] = useState(provinciasArray[0].id_ubigeo)
 
   useEffect(() => {
-    const provinciaId = provinciasArray[0].id_ubigeo as keyof typeof distritos
+    const provinciaId = provinciasArray[0].id_ubigeo
 
     setSelectedProvincia(provinciaId)
   }, [selectedDepartamento, provinciasArray])

@@ -94,13 +94,17 @@ export async function requestNew<Response>(
     body = JSON.stringify(config.body)
   }
 
-  const backendApiUrl = process.env.NEXT_PUBLIC_BACKEND_API
+  let urlPath = url
+
+  if (!/^http/.test(url)) {
+    urlPath = process.env.NEXT_PUBLIC_BACKEND_API + url
+  }
 
   if (cookies) {
     headers.Cookie = cookies
   }
 
-  const res = await fetch(backendApiUrl + url, {
+  const res = await fetch(urlPath, {
     ...config,
     headers,
     body,
