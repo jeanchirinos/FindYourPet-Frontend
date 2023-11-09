@@ -1,7 +1,7 @@
 import { Category } from '@/types'
 import { PetInfo, PlaceInfo, StatusInfo } from './client_components'
 import { request, requestNew } from '@/utilities/request'
-import { getDepartamentos, getDistritos, getProvincias } from '@/mc/Place'
+import { getPlaces } from '@/mc/Place'
 
 // Status
 async function getStatusList() {
@@ -32,11 +32,7 @@ export async function Categories() {
 }
 
 export async function Place() {
-  const departamentos = await getDepartamentos()
-  const provincias = await getProvincias()
-  const distritos = await getDistritos()
+  const places = await getPlaces()
 
-  const data = { departamentos, provincias, distritos }
-
-  return <PlaceInfo {...data} />
+  return <PlaceInfo places={places} />
 }

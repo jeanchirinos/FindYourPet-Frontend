@@ -1,42 +1,29 @@
-'use server'
-
 import { requestNew } from '@/utilities/request'
 
 type GithubResponse = { payload: { blob: { rawLines: [string, string] } } }
 export type Location = { id_ubigeo: string; nombre_ubigeo: string; id_padre_ubigeo: string }
 
-function transformGithubData<T>(data: GithubResponse) {
-  return JSON.parse(data.payload.blob.rawLines[1]) as T
-}
+export async function getUbigeo<T>(type: 'departamentos' | 'provincias' | 'distritos') {
+  const res = await requestNew<GithubResponse>(
+    `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/${type}.json`,
+    {
+      cache: 'force-cache',
+    },
+  )
 
-const getRepoUrl = (name: 'departamentos' | 'distritos' | 'provincias') =>
-  `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/${name}.json`
-
-export async function getDepartamentos() {
-  const res = await requestNew<GithubResponse>(getRepoUrl('departamentos'), {
-    cache: 'force-cache',
-  })
-
-  const data = transformGithubData<Location[]>(res.data)
+  const data = JSON.parse(res.data.payload.blob.rawLines[1]) as T
 
   return data
 }
 
-export async function getProvincias() {
-  const res = await requestNew<GithubResponse>(getRepoUrl('provincias'), {
-    cache: 'force-cache',
-  })
+export async function getPlaces() {
+  const departamentos = await getUbigeo<Location[]>('departamentos')
+  const provincias = await getUbigeo<Record<string, Location[]>>('provincias')
+  const distritos = await getUbigeo<Record<string, Location[]>>('distritos')
 
-  const data = transformGithubData<Record<string, Location[]>>(res.data)
-
-  return data
-}
-
-export async function getDistritos() {
-  const res = await requestNew<GithubResponse>(getRepoUrl('distritos'), {
-    cache: 'force-cache',
-  })
-  const data = transformGithubData<Record<string, Location[]>>(res.data)
-
-  return data
+  return {
+    departamentos,
+    provincias,
+    distritos,
+  }
 }

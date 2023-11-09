@@ -8,7 +8,7 @@ import { twJoin } from 'tailwind-merge'
 import useSWR from 'swr'
 import { Button } from '@/components/Button'
 import { CiImageOn } from 'react-icons/ci'
-import { Location } from '@/mc/Place'
+import { getPlaces } from '@/mc/Place'
 
 export function PetImage() {
   const [imagePreview, setImagePreview] = useState<null | string>(null)
@@ -121,12 +121,9 @@ export function PetInfo(props: { categories: Category[] }) {
   )
 }
 
-export function PlaceInfo(props: {
-  departamentos: Location[]
-  provincias: Record<string, Location[]>
-  distritos: Record<string, Location[]>
-}) {
-  const { departamentos, provincias, distritos } = props
+export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>> }) {
+  const { places } = props
+  const { departamentos, provincias, distritos } = places
 
   // Departamento
   const [selectedDepartamento, setSelectedDepartamento] = useState(departamentos[0].id_ubigeo)

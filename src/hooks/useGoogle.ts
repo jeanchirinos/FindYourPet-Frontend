@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { setCookie } from 'typescript-cookie'
 
-export function useGoogle(params?: { loggedIn?: boolean }) {
+export function useGoogle(params?: { loggedIn: boolean }) {
   const { loggedIn = false } = params ?? {}
 
   const router = useRouter()
@@ -19,7 +19,6 @@ export function useGoogle(params?: { loggedIn?: boolean }) {
       }
 
       router.refresh()
-
       openedWindow.current?.close()
     }
 
