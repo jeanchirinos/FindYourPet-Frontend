@@ -1,8 +1,8 @@
 import { BreedsData } from '@/types'
-import { request } from '@/utilities/request'
+import { requestNew } from '@/utilities/request'
 
 export async function getBreeds() {
-  const res = await request<BreedsData[]>('breedList', { cache: 'force-cache' })
+  const res = await requestNew<BreedsData[]>('breedList', { cache: 'force-cache' })
 
   return res.data ?? []
 }
