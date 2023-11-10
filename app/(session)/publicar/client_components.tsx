@@ -90,20 +90,11 @@ export function StatusInfo(props: { statusList: { id: number; value: string }[] 
   )
 }
 
-export function PetInfo(props: { categories: Category[]; breedsData: BreedsData[] }) {
+export function PetInfo(props: { categories: Category[]; breedsData: BreedsData }) {
   const { categories, breedsData } = props
 
   // STATES
   const [selectedCategory, setSelectedCategory] = useState(categories[0].id.toString())
-  const [currentBreeds, setCurrentBreeds] = useState<BreedsData['breeds']>(
-    breedsData.find(data => data.id === Number(selectedCategory))?.breeds ?? [],
-  )
-
-  useEffect(() => {
-    const category = breedsData.find(data => data.id === Number(selectedCategory))
-
-    setCurrentBreeds(category!.breeds)
-  }, [selectedCategory, breedsData])
 
   // RENDER
   return (
@@ -117,7 +108,7 @@ export function PetInfo(props: { categories: Category[]; breedsData: BreedsData[
         placeholder='Especie'
       />
       <Select
-        array={currentBreeds}
+        array={breedsData[selectedCategory]}
         objectKey='name'
         objectId='id'
         name='breed_id'
