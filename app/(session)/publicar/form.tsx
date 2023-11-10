@@ -16,7 +16,7 @@ type Props = {
 export function Form(props: Props) {
   const { StatusComponent, CategoryComponent, PlaceComponent } = props
 
-  const { formAction } = useFormAction(createPet, { onSuccess() {} })
+  const { formAction } = useFormAction(createPet)
 
   // RENDER
   return (

@@ -2,6 +2,7 @@ import { Category } from '@/types'
 import { PetInfo, PlaceInfo, StatusInfo } from './client_components'
 import { request, requestNew } from '@/utilities/request'
 import { getPlaces } from '@/mc/Place'
+import { getBreeds } from '@/mc/Pet'
 
 // Status
 async function getStatusList() {
@@ -27,8 +28,9 @@ async function getCategories() {
 
 export async function Categories() {
   const categories = await getCategories()
+  const breedsData = await getBreeds()
 
-  return <PetInfo categories={categories} />
+  return <PetInfo categories={categories} breedsData={breedsData} />
 }
 
 export async function Place() {

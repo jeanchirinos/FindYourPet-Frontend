@@ -3,7 +3,7 @@ import { requestNew } from '@/utilities/request'
 type GithubResponse = { payload: { blob: { rawLines: [string, string] } } }
 export type Location = { id_ubigeo: string; nombre_ubigeo: string; id_padre_ubigeo: string }
 
-export async function getUbigeo<T>(type: 'departamentos' | 'provincias' | 'distritos') {
+export async function getData<T>(type: 'departamentos' | 'provincias' | 'distritos') {
   const res = await requestNew<GithubResponse>(
     `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/${type}.json`,
     {
@@ -17,9 +17,9 @@ export async function getUbigeo<T>(type: 'departamentos' | 'provincias' | 'distr
 }
 
 export async function getPlaces() {
-  const departamentos = await getUbigeo<Location[]>('departamentos')
-  const provincias = await getUbigeo<Record<string, Location[]>>('provincias')
-  const distritos = await getUbigeo<Record<string, Location[]>>('distritos')
+  const departamentos = await getData<Location[]>('departamentos')
+  const provincias = await getData<Record<string, Location[]>>('provincias')
+  const distritos = await getData<Record<string, Location[]>>('distritos')
 
   return {
     departamentos,

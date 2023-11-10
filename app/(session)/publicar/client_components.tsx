@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import { Select } from '@/components/Select'
 import { RadioGroup } from '@headlessui/react'
 import { twJoin } from 'tailwind-merge'
-import useSWR from 'swr'
 import { Button } from '@/components/Button'
 import { CiImageOn } from 'react-icons/ci'
 import { getPlaces } from '@/mc/Place'
@@ -91,12 +90,18 @@ export function StatusInfo(props: { statusList: { id: number; value: string }[] 
   )
 }
 
-export function PetInfo(props: { categories: Category[] }) {
-  const { categories } = props
+export function PetInfo(props: { categories: Category[]; breedsData: BreedsData[] }) {
+  const { categories, breedsData } = props
 
   // STATES
-  const [selectedCategory, setSelectedCategory] = useState(categories[0]?.id)
-  const { data } = useSWR<BreedsData>(`breedList/${selectedCategory}`)
+  const [selectedCategory, setSelectedCategory] = useState(categories[0].id.toString())
+  const [currentBreeds, setCurrentBreeds] = useState<BreedsData['breeds']>([])
+
+  useEffect(() => {
+    const category = breedsData.find(data => data.id === Number(selectedCategory))
+
+    setCurrentBreeds(category!.breeds)
+  }, [selectedCategory, breedsData])
 
   // RENDER
   return (
@@ -109,9 +114,8 @@ export function PetInfo(props: { categories: Category[] }) {
         objectId='id'
         placeholder='Especie'
       />
-
       <Select
-        array={data?.breeds}
+        array={currentBreeds}
         objectKey='name'
         objectId='id'
         name='breed_id'
