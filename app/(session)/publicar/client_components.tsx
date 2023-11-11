@@ -96,8 +96,6 @@ export function PetInfo(props: { categories: Category[]; breedsData: BreedsData 
   // STATES
   const [selectedCategory, setSelectedCategory] = useState(categories[0].id.toString())
 
-  console.log({ selectedCategory, breedsData, data: breedsData[selectedCategory] })
-
   // RENDER
   return (
     <>
