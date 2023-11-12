@@ -1,5 +1,6 @@
 import { BreedsData, PetPaginate } from '@/types'
 import { requestNew } from '@/utilities/request'
+import { waitFor } from '@/utilities/utilities'
 
 export async function getPets({ page = '1', limit = '5' }) {
   // const res = await requestNew<PetPaginate>(`pet/${limit}?page=${page}`)
