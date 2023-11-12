@@ -1,35 +1,38 @@
-import { RequestParamsWithoutCookies, request, errorResponse } from '@/utilities/request'
+import { RequestParamsWithoutCookies, errorResponse, requestNew } from '@/utilities/request'
 
-import { getFormEntries } from '@/utilities/utilities'
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 import { ZodRawShape, z } from 'zod'
+import { getFormEntries } from './utilities'
 
 export async function actionRequest<Response>(...params: RequestParamsWithoutCookies) {
   const [url, config = {}] = params
 
   const myConfig = { ...config, cookies: cookies().toString() }
 
-  return request<Response>(url, myConfig)
+  return requestNew<Response>(url, myConfig)
 }
 
 // POST
-export async function sendData<Response>(params: {
-  schemaValidation: ZodRawShape
-  data: object | FormData
+type Params<Response> = {
   url: string
-  revalidation?: boolean
-}) {
-  const { url, schemaValidation, data, revalidation = true } = params
+  data?: object | FormData
+  schema?: z.ZodObject<ZodRawShape> | z.ZodEffects<any>
+  revalidate?: boolean
+  onSuccess?: (data: Response) => void
+}
 
-  const schema = z.object(schemaValidation)
+export async function sendData<Response>(params: Params<Response>) {
+  const { url, revalidate = false, data, schema, onSuccess } = params
 
-  const dataToSend = data instanceof FormData ? getFormEntries(data) : data
+  if (data && schema) {
+    const dataToValidate = data instanceof FormData ? getFormEntries(data) : data
 
-  try {
-    schema.parse(dataToSend)
-  } catch (error) {
-    return errorResponse
+    try {
+      schema.parse(dataToValidate)
+    } catch (error) {
+      return errorResponse
+    }
   }
 
   const res = await actionRequest<Response>(url, {
@@ -37,8 +40,12 @@ export async function sendData<Response>(params: {
     body: data,
   })
 
-  if (revalidation && res.ok) {
+  if (revalidate && res.ok) {
     revalidatePath('/')
+  }
+
+  if (onSuccess && res.ok) {
+    onSuccess(res.data)
   }
 
   return res

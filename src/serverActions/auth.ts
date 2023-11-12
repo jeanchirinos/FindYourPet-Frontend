@@ -1,7 +1,5 @@
 'use server'
-import { actionRequest } from '@/utilities/actionRequest'
-import { errorResponse } from '@/utilities/request'
-import { revalidatePath } from 'next/cache'
+import { sendData } from '@/utilities/actionRequest'
 import { cookies } from 'next/headers'
 import { z } from 'zod'
 
@@ -17,24 +15,11 @@ export async function register(formData: FormData) {
       path: ['passwordConfirm'],
     })
 
-  let data: z.infer<typeof schema>
-
-  try {
-    data = schema.parse({
-      email: formData.get('email'),
-      password: formData.get('password'),
-      passwordConfirm: formData.get('passwordConfirm'),
-    })
-  } catch (error) {
-    return errorResponse
-  }
-
-  const res = await actionRequest('register', {
-    method: 'POST',
-    body: data,
+  return sendData({
+    url: 'register',
+    schema,
+    data: formData,
   })
-
-  return res
 }
 
 export async function login(prevState: any, formData: FormData) {
@@ -43,61 +28,41 @@ export async function login(prevState: any, formData: FormData) {
     password: z.string().min(8),
   })
 
-  let data: z.infer<typeof schema>
+  type Response = { token: string }
 
-  try {
-    data = schema.parse({
-      email: formData.get('email'),
-      password: formData.get('password'),
-    })
-  } catch (error) {
-    return errorResponse
-  }
-
-  const res = await actionRequest<{ token: string }>('login', {
-    method: 'POST',
-    body: data,
-  })
-
-  if (res.ok) {
+  function onSuccess(data: Response) {
     const expires = new Date()
     expires.setDate(expires.getDate() + 7)
 
-    cookies().set('jwt', res.data.token, { expires })
+    cookies().set('jwt', data.token, { expires })
   }
 
-  return res
+  return sendData({
+    url: 'login',
+    schema,
+    data: formData,
+    onSuccess,
+  })
 }
 
 export async function logout() {
-  await actionRequest('logout', {
-    method: 'POST',
+  sendData({
+    url: 'logout',
   })
 
   cookies().delete('jwt')
 }
 
-export async function forgotPassword(formData: FormData) {
+export async function forgotPassword(prevState: any, formData: FormData) {
   const schema = z.object({
     email: z.string().email(),
   })
 
-  let data: z.infer<typeof schema>
-
-  try {
-    data = schema.parse({
-      email: formData.get('email'),
-    })
-  } catch (error) {
-    return errorResponse
-  }
-
-  const res = await actionRequest('forgot-password', {
-    method: 'POST',
-    body: data,
+  return sendData({
+    url: 'forgot-password',
+    schema,
+    data: formData,
   })
-
-  return res
 }
 
 export async function resetPassword(prevState: any, formData: FormData) {
@@ -112,34 +77,16 @@ export async function resetPassword(prevState: any, formData: FormData) {
       path: ['passwordConfirm'],
     })
 
-  let data: z.infer<typeof schema>
-
-  try {
-    data = schema.parse({
-      password: formData.get('password'),
-      passwordConfirm: formData.get('passwordConfirm'),
-      token: formData.get('token'),
-    })
-  } catch (error) {
-    return errorResponse
-  }
-
-  const res = await actionRequest('reset-password', {
-    method: 'POST',
-    body: data,
+  return sendData({
+    url: 'reset-password',
+    schema,
+    data: formData,
   })
-
-  return res
 }
 
 export async function disconnectGoogle() {
-  const res = await actionRequest('user-google-disconnect', {
-    method: 'POST',
+  return sendData({
+    url: 'user-google-disconnect',
+    revalidate: true,
   })
-
-  if (res.ok) {
-    revalidatePath('/')
-  }
-
-  return res
 }

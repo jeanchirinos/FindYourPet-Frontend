@@ -1,9 +1,9 @@
 import { requestNew } from '@/utilities/request'
 
 type GithubResponse = { payload: { blob: { rawLines: [string, string] } } }
-export type Location = { id_ubigeo: string; nombre_ubigeo: string; id_padre_ubigeo: string }
+type Location = { id_ubigeo: string; nombre_ubigeo: string; id_padre_ubigeo: string }
 
-export async function getData<T>(type: 'departamentos' | 'provincias' | 'distritos') {
+async function getData<T>(type: 'departamentos' | 'provincias' | 'distritos') {
   const res = await requestNew<GithubResponse>(
     `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/${type}.json`,
     {

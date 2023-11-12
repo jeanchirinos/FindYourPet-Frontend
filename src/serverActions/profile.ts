@@ -1,8 +1,6 @@
 'use server'
 
-import { actionRequest } from '@/utilities/actionRequest'
-import { errorResponse } from '@/utilities/request'
-import { revalidatePath } from 'next/cache'
+import { sendData } from '@/utilities/actionRequest'
 import { z } from 'zod'
 
 export async function updateUser(prevState: any, formData: FormData) {
@@ -11,43 +9,28 @@ export async function updateUser(prevState: any, formData: FormData) {
     username: z.string().min(1),
   })
 
-  let data: z.infer<typeof schema>
-
-  try {
-    data = schema.parse({
-      name: formData.get('name'),
-      username: formData.get('username'),
-    })
-  } catch (error) {
-    return errorResponse
-  }
-
-  const res = await actionRequest('user-update', {
-    method: 'POST',
-    body: data,
+  return sendData({
+    url: 'user-update',
+    data: formData,
+    schema,
+    revalidate: true,
   })
-
-  if (res.ok) {
-    revalidatePath('/')
-  }
-
-  return res
 }
 
 export async function updateUserImageProfile(formData: FormData) {
-  const res = await actionRequest('user-profile', {
-    method: 'POST',
-    body: formData,
+  const schema = z.object({
+    image: z.string().min(1),
   })
 
-  if (res.ok) {
-    revalidatePath('/')
-  }
-
-  return res
+  return sendData({
+    url: 'user-profile',
+    data: formData,
+    schema,
+    revalidate: true,
+  })
 }
 
-export async function updateMobile({ mobile }: { mobile: string }) {
+export async function updateMobile(data: { mobile: string }) {
   const schema = z.object({
     mobile: z.union([
       z
@@ -58,77 +41,40 @@ export async function updateMobile({ mobile }: { mobile: string }) {
     ]),
   })
 
-  let data: z.infer<typeof schema>
-
-  try {
-    data = schema.parse({
-      mobile,
-    })
-  } catch (error) {
-    return errorResponse
-  }
-
   type Res = { seconds: number }
 
-  const res = await actionRequest<Res>('update-mobile', {
-    method: 'POST',
-    body: data,
+  return sendData<Res>({
+    url: 'update-mobile',
+    data,
+    schema,
+    revalidate: true,
   })
-
-  return res
 }
 
-export async function verifyMobile({ mobile, code }: { mobile: string; code: string }) {
+export async function verifyMobile(data: { mobile: string; code: string }) {
   const schema = z.object({
     code: z.string().length(6),
     mobile: z.string().length(9),
   })
 
-  let data: z.infer<typeof schema>
-
-  try {
-    data = schema.parse({
-      code,
-      mobile,
-    })
-  } catch (error) {
-    return errorResponse
-  }
-
-  const res = await actionRequest('verify-mobile', {
-    method: 'POST',
-    body: data,
+  return sendData({
+    url: 'verify-mobile',
+    data,
+    schema,
+    revalidate: true,
   })
-
-  return res
 }
 
-export async function updateValue({ param, value }: { param: string; value: string }) {
-  // const schema = z.object({
-  //   name: z.string().min(1),
-  // })
-
-  // try {
-  //   schema.parse({
-  //     name,
-  //   })
-  // } catch (error) {
-  //   return errorResponse
-  // }
-
-  const body = {
-    param,
-    value,
-  }
-
-  const res = await actionRequest('user-update', {
-    method: 'POST',
-    body,
+export async function updateValue(data: { param: string; value: string }) {
+  const schema = z.object({
+    param: z.string().min(1),
+    value: z.string().min(1),
   })
 
-  if (res.ok) {
-    revalidatePath('/')
-  }
-
-  return res
+  return sendData({
+    url: 'user-update',
+    data,
+    schema,
+    revalidate: true,
+  })
 }

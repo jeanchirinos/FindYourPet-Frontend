@@ -94,15 +94,9 @@ export async function requestNew<Response>(
     body = JSON.stringify(config.body)
   }
 
-  let urlPath = url
+  const urlPath = /^http/.test(url) ? url : process.env.NEXT_PUBLIC_BACKEND_API + url
 
-  if (!/^http/.test(url)) {
-    urlPath = process.env.NEXT_PUBLIC_BACKEND_API + url
-  }
-
-  if (cookies) {
-    headers.Cookie = cookies
-  }
+  cookies && (headers.Cookie = cookies)
 
   const res = await fetch(urlPath, {
     ...config,
@@ -110,21 +104,29 @@ export async function requestNew<Response>(
     body,
   })
 
-  if (!res.ok) {
-    const json = await res.json()
-    const msg = JSON.stringify(json.msg ?? json.message)
+  const json = await res.json()
 
-    throw new Error(msg ?? res.statusText, {
+  if (!res.ok) {
+    const { statusText, url, status } = res
+    const { msg, message } = json
+
+    const messageToShow = msg || message ? JSON.stringify(msg ?? message) : statusText
+
+    throw new Error(messageToShow, {
       cause: {
-        url: res.url,
-        status: res.status,
+        url,
+        status,
       },
     })
   }
 
-  const resData = (await res.json()) as { ok: true; msg: string | undefined; data: Response }
+  const {
+    ok = true,
+    msg = '',
+    data,
+  } = json as { ok: true; msg: string | undefined; data: Response }
 
-  const { ok = true, msg = '', data } = resData
+  const resData = data ?? (json as Response)
 
-  return { msg, ok, data: data ?? (resData as Response) }
+  return { msg, ok, data: resData }
 }

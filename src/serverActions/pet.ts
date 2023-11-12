@@ -6,7 +6,7 @@ const MAX_FILE_SIZE = 500000
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 
 export async function createPet(prevState: any, data: FormData) {
-  const schemaValidation = {
+  const schema = z.object({
     breed_id: z.string(),
     image: z
       .instanceof(File)
@@ -24,11 +24,12 @@ export async function createPet(prevState: any, data: FormData) {
     district: z.string(),
     location: z.string(),
     status: z.string(),
-  }
+  })
 
   return sendData({
     url: 'pet-store',
-    schemaValidation,
+    schema,
     data,
+    revalidate: true,
   })
 }
