@@ -1,4 +1,3 @@
-import { IoLocationSharp } from 'react-icons/io5'
 import { twJoin, twMerge } from 'tailwind-merge'
 import Image from 'next/image'
 import { Suspense } from 'react'
@@ -6,6 +5,7 @@ import { getPets } from '@/mc/Pet'
 import { PetPaginate } from '@/types'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import { HiOutlineLocationMarker } from 'react-icons/hi'
 
 export default function Page(props: { searchParams: { page: string | undefined } }) {
   const { page } = props.searchParams
@@ -77,14 +77,11 @@ async function PetMasonry(props: { page: string | undefined }) {
 function PetCard(props: { pet: PetPaginate['data'][0] }) {
   const { pet } = props
 
-  const colors = ['bg-pink-300', 'bg-red-300', 'bg-purple-300']
+  const colors = ['bg-[#79616F]', 'bg-[#AE6378]', 'bg-[#7E9680]']
   const cardColor = colors[pet.status - 1]
 
   return (
-    <div className='flex flex-col gap-2 rounded-xl border-3 border-[#9c9b9b] p-4'>
-      <header className={twJoin('rounded-lg p-3 text-center', cardColor)}>
-        <h2 className='text-lg font-semibold text-neutral-100'>{pet.status_name}</h2>
-      </header>
+    <div className='flex flex-col gap-2 overflow-hidden rounded-xl bg-[#FFF3E5] pb-4'>
       <Image
         className='aspect-square w-full object-cover'
         src={pet.image}
@@ -92,12 +89,22 @@ function PetCard(props: { pet: PetPaginate['data'][0] }) {
         height={pet.image_height}
         alt='Mascota'
       />
-      <footer className='flex items-center gap-1.5'>
-        <IoLocationSharp />
-        <p className='text-neutral-600'>
-          {pet.city}, {pet.district}
-        </p>
-      </footer>
+      <div className='space-y-3 px-4'>
+        <section
+          className={twJoin(
+            'rounded-3xl p-2 text-center text-lg font-semibold text-white',
+            cardColor,
+          )}
+        >
+          {pet.status_name}
+        </section>
+        <footer className='flex items-center gap-1.5'>
+          <HiOutlineLocationMarker />
+          <p className='text-neutral-600'>
+            {pet.city}, {pet.district}
+          </p>
+        </footer>
+      </div>
     </div>
   )
 }

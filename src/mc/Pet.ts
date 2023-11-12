@@ -1,8 +1,7 @@
 import { BreedsData, PetPaginate } from '@/types'
 import { requestNew } from '@/utilities/request'
-import { waitFor } from '@/utilities/utilities'
 
-export async function getPets({ page = '1', limit = '5' }) {
+export async function getPets({ page = '1', limit = '2' }) {
   // const res = await requestNew<PetPaginate>(`pet/${limit}?page=${page}`)
   const res = await fetch(`http://api-encuentratumascota.nijui.com/api/pet/${limit}?page=${page}`, {
     headers: {
