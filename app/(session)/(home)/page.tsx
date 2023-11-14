@@ -1,20 +1,20 @@
 import { twJoin, twMerge } from 'tailwind-merge'
 import Image from 'next/image'
 import { Suspense } from 'react'
-import { getPets } from '@/mc/Pet'
+import { TGetPetParams, getPets } from '@/mc/Pet'
 import { PetPaginate } from '@/types'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 
-export default function Page(props: { searchParams: { page: string | undefined } }) {
-  const { page } = props.searchParams
+type SearchProps = Partial<TGetPetParams>
 
+export default function Page(props: { searchParams: SearchProps }) {
   return (
     <main className='animate-fade px-2 pb-2 pt-12 animate-duration-200'>
       <div className='mx-auto w-[1600px] max-w-full'>
         <Suspense fallback={<GridSkeleton />}>
-          <PetMasonry page={page} />
+          <PetMasonry searchParams={props.searchParams} />
         </Suspense>
       </div>
     </main>
@@ -33,8 +33,8 @@ function GridSkeleton() {
   )
 }
 
-async function PetMasonry(props: { page: string | undefined }) {
-  const petsData = await getPets({ page: props.page })
+async function PetMasonry(props: { searchParams: SearchProps }) {
+  const petsData = await getPets(props.searchParams)
 
   const { data: pets, links, current_page } = petsData
 

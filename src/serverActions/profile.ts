@@ -11,7 +11,7 @@ export async function updateUser(prevState: any, formData: FormData) {
 
   return sendData({
     url: 'user-update',
-    data: formData,
+    body: formData,
     schema,
     revalidate: true,
   })
@@ -24,7 +24,7 @@ export async function updateUserImageProfile(formData: FormData) {
 
   return sendData({
     url: 'user-profile',
-    data: formData,
+    body: formData,
     schema,
     revalidate: true,
   })
@@ -45,7 +45,7 @@ export async function updateMobile(data: { mobile: string }) {
 
   return sendData<Res>({
     url: 'update-mobile',
-    data,
+    body: data,
     schema,
     revalidate: true,
   })
@@ -59,7 +59,7 @@ export async function verifyMobile(data: { mobile: string; code: string }) {
 
   return sendData({
     url: 'verify-mobile',
-    data,
+    body: data,
     schema,
     revalidate: true,
   })
@@ -73,7 +73,7 @@ export async function updateValue(data: { param: string; value: string }) {
 
   return sendData({
     url: 'user-update',
-    data,
+    body: data,
     schema,
     revalidate: true,
   })

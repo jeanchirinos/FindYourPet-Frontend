@@ -29,7 +29,7 @@ export async function createPet(prevState: any, data: FormData) {
   return sendData({
     url: 'pet-store',
     schema,
-    data,
+    body: data,
     revalidate: true,
   })
 }

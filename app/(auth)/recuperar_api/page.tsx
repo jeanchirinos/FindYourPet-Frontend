@@ -1,13 +1,14 @@
 import { Form } from './Form'
 import { notFound } from 'next/navigation'
-import { actionRequest } from '@/utilities/actionRequest'
+import { actionRequest, actionRequestGet } from '@/utilities/actionRequest'
 
 async function verifyToken(token: string | undefined) {
   if (!token) notFound()
 
-  const res = await actionRequest(`verify-token/${token}`)
+  // const res = await actionRequest(`verify-token/${token}`)
+  await actionRequestGet(`verify-token/${token}`)
 
-  if (!res.ok) notFound()
+  // if (!res.ok) notFound()
 
   return token
 }

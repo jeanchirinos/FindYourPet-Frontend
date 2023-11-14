@@ -18,7 +18,8 @@ export async function register(formData: FormData) {
   return sendData({
     url: 'register',
     schema,
-    data: formData,
+    body: formData,
+    auth: false,
   })
 }
 
@@ -40,8 +41,9 @@ export async function login(prevState: any, formData: FormData) {
   return sendData({
     url: 'login',
     schema,
-    data: formData,
+    body: formData,
     onSuccess,
+    auth: false,
   })
 }
 
@@ -61,7 +63,8 @@ export async function forgotPassword(prevState: any, formData: FormData) {
   return sendData({
     url: 'forgot-password',
     schema,
-    data: formData,
+    body: formData,
+    auth: false,
   })
 }
 
@@ -80,7 +83,8 @@ export async function resetPassword(prevState: any, formData: FormData) {
   return sendData({
     url: 'reset-password',
     schema,
-    data: formData,
+    body: formData,
+    auth: false,
   })
 }
 
