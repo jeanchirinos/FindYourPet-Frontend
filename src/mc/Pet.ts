@@ -1,5 +1,6 @@
 import { BreedsData, PetPaginate } from '@/types'
-import { getApiUrl, requestAll } from '@/utilities/request'
+import { actionRequestGet } from '@/utilities/actionRequest'
+import { getApiUrl } from '@/utilities/request'
 
 export type TGetPetParams = {
   page?: string
@@ -21,13 +22,13 @@ export async function getPets(params: TGetPetParams) {
   url.searchParams.set('status', status)
   breed && url.searchParams.set('breed', breed)
 
-  const data = requestAll<PetPaginate>(url)
+  const data = actionRequestGet<PetPaginate>(url)
 
   return data
 }
 
 export async function getBreeds() {
-  const data = await requestAll<BreedsData>('breedList', { cache: 'force-cache' })
+  const data = await actionRequestGet<BreedsData>('breedList', { cache: 'force-cache' })
 
   return data
 }

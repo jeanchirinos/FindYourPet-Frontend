@@ -1,26 +1,11 @@
-import {
-  RequestParamsWithoutCookies,
-  errorResponse,
-  requestAll,
-  requestNew,
-} from '@/utilities/request'
+import { requestAll } from '@/utilities/request'
 
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
-import { ZodRawShape, z } from 'zod'
+import { ZodError, ZodRawShape, z } from 'zod'
 import { getFormEntries } from './utilities'
 
-export async function actionRequest<Response>(...params: RequestParamsWithoutCookies) {
-  const [url, config = {}] = params
-
-  const myConfig = { ...config, cookies: cookies().toString() }
-
-  return requestNew<Response>(url, myConfig)
-}
-
-//
-
-export interface Config extends Omit<RequestInit, 'body'> {
+interface Config extends Omit<RequestInit, 'body'> {
   body?: object
   auth?: boolean
 }
@@ -33,6 +18,12 @@ export async function actionRequestGet<Response>(...params: RequestParams) {
   const headers: HeadersInit = {}
 
   if (config.auth) {
+    const jwt = cookies().get('jwt')
+
+    if (!jwt) {
+      throw new Error('No hay jwt')
+    }
+
     headers.Cookie = cookies().toString()
   }
 
@@ -44,9 +35,17 @@ export async function actionRequestGet<Response>(...params: RequestParams) {
 export async function actionRequestPost<Response>(...params: RequestParams) {
   const [url, config = {}] = params
 
+  const { auth = true } = config
+
   const headers: HeadersInit = {}
 
-  if (config.auth) {
+  if (auth) {
+    const jwt = cookies().get('jwt')
+
+    if (!jwt) {
+      throw new Error('No hay jwt')
+    }
+
     headers.Cookie = cookies().toString()
   }
 
@@ -59,19 +58,15 @@ export async function actionRequestPost<Response>(...params: RequestParams) {
   try {
     const res = await requestAll<Response>(url, myConfig)
 
-    const {
-      ok = true,
-      msg = '',
-      data,
-    } = res as { ok: boolean; msg: string; data: Response | undefined }
+    const { ok = true, msg = '', data } = res as { ok: true; msg: string; data: Response }
 
-    return { msg, ok, data }
+    return { msg, ok, data: data ?? res }
   } catch (e) {
     if (e instanceof Error) {
-      return { msg: e.message }
+      return { ok: false, msg: e.message, data: undefined } as const
     }
 
-    return { msg: 'Hubo un error en la petición' }
+    return { ok: false, msg: 'Hubo un error en la petición', data: undefined } as const
   }
 }
 
@@ -86,7 +81,7 @@ type Params<Response> = {
 }
 
 export async function sendData<Response>(params: Params<Response>) {
-  const { url, body, schema, onSuccess, revalidate = false, auth = true } = params
+  const { url, body, schema, onSuccess, revalidate = false, auth } = params
 
   if (body && schema) {
     const dataToValidate = body instanceof FormData ? getFormEntries(body) : body
@@ -94,7 +89,12 @@ export async function sendData<Response>(params: Params<Response>) {
     try {
       schema.parse(dataToValidate)
     } catch (error) {
-      return errorResponse
+      if (error instanceof ZodError) {
+        const message = error.issues[0].message
+
+        return { ok: false, msg: message, data: undefined } as const
+      }
+      return { ok: false, msg: 'Error en la validación de datos', data: undefined } as const
     }
   }
 
@@ -109,7 +109,7 @@ export async function sendData<Response>(params: Params<Response>) {
     }
 
     if (onSuccess) {
-      onSuccess(res.data as Response)
+      onSuccess(res.data)
     }
   }
 

@@ -1,16 +1,16 @@
 import { Category } from '@/types'
 import { PetInfo, PlaceInfo, StatusInfo } from './client_components'
-import { request, requestNew } from '@/utilities/request'
 import { getPlaces } from '@/mc/Place'
 import { getBreeds } from '@/mc/Pet'
+import { actionRequestGet } from '@/utilities/actionRequest'
 
 // Status
 async function getStatusList() {
   type Response = { id: number; value: string }[]
 
-  const res = await requestNew<Response>('pet-status', { cache: 'force-cache' })
+  const data = await actionRequestGet<Response>('pet-status', { cache: 'force-cache' })
 
-  return res.data
+  return data
 }
 
 export async function Status() {
@@ -21,9 +21,9 @@ export async function Status() {
 
 // Categories
 async function getCategories() {
-  const res = await request<Category[]>('category', { cache: 'force-cache' })
+  const data = await actionRequestGet<Category[]>('category', { cache: 'force-cache' })
 
-  return res.ok ? res.data : []
+  return data
 }
 
 export async function Categories() {

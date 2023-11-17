@@ -1,21 +1,19 @@
 import { User } from '../perfil/[id]/page'
 import { UpdateForm } from './update-form'
-import { redirect } from 'next/navigation'
-import { actionRequest } from '@/utilities/actionRequest'
+import { actionRequestGet } from '@/utilities/actionRequest'
 
 import { GoogleForm } from './google-form'
 import { Suspense } from 'react'
-import { cookies } from 'next/headers'
+import { notAuthorized } from '@/utilities/utilities'
 
 async function getUser() {
-  const jwt = cookies().get('jwt')
-  if (!jwt) redirect('/')
+  try {
+    const data = await actionRequestGet<User>('user', { auth: true })
 
-  const res = await actionRequest<User>('user')
-
-  if (!res.ok) redirect('/')
-
-  return res.data
+    return data
+  } catch (err) {
+    return notAuthorized()
+  }
 }
 
 export default async function Page() {
@@ -37,11 +35,12 @@ export default async function Page() {
 async function getGoogleData() {
   type Res = { isConnected: boolean; username: string | null }
 
-  const res = await actionRequest<Res>('user-google-data')
-
-  if (!res.ok) return null
-
-  return res.data
+  try {
+    const data = await actionRequestGet<Res>('user-google-data', { auth: true })
+    return data
+  } catch (e) {
+    return null
+  }
 }
 
 async function ConnectedAccounts() {

@@ -2,7 +2,7 @@
 import { sendData } from '@/utilities/actionRequest'
 import { z } from 'zod'
 
-const MAX_FILE_SIZE = 500000
+const MAX_FILE_SIZE = 1048576
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 
 export async function createPet(prevState: any, data: FormData) {
@@ -12,7 +12,7 @@ export async function createPet(prevState: any, data: FormData) {
       .instanceof(File)
       .refine(
         file => file.size <= MAX_FILE_SIZE && file.size > 0,
-        `El peso de la imagen debe ser mayor a 0MB y menor a 5MB.`,
+        `El peso de la imagen debe ser mayor a 0MB y menor a 1MB.`,
       )
       .refine(
         file => ACCEPTED_IMAGE_TYPES.includes(file.type),
@@ -31,5 +31,6 @@ export async function createPet(prevState: any, data: FormData) {
     schema,
     body: data,
     revalidate: true,
+    auth: false,
   })
 }

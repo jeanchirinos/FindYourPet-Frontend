@@ -1,9 +1,9 @@
 'use client'
 import { Input } from '@/components/Input'
-import { useFormAction } from '@/hooks/useFormAction'
 import { forgotPassword } from '@/serverActions/auth'
 import { SubmitButton } from '@/components/SubmitButton'
 import Link from 'next/link'
+import { useFormAction } from '@/hooks/useFormAction'
 
 export function ForgotForm(props: { initialEmail: string }) {
   const { initialEmail } = props

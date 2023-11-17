@@ -9,7 +9,7 @@ import 'react-advanced-cropper/dist/style.css'
 import Image from 'next/image'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, useModal } from '@/components/Modal'
-import { manageActionResponse } from '@/utilities/manageActionResponse'
+import { handleResponse } from '@/utilities/handleResponse'
 import { MobileForm } from './update-mobile'
 import { useFormStatus } from 'react-dom'
 import { SetState } from '@/types'
@@ -50,7 +50,6 @@ function ProfileImage(props: { user: User }) {
 
     if (!file) return
     if (!file.type.includes('image')) return
-    // if(file.size > 1024 * 1024 * 2) return
 
     setImagePreview(imagePreview)
     profileImageModal.open()
@@ -63,7 +62,7 @@ function ProfileImage(props: { user: User }) {
 
     const res = await updateUserImageProfile(formData)
 
-    manageActionResponse(res, {
+    handleResponse(res, {
       onSuccess() {
         profileImageModal.close()
       },
@@ -124,7 +123,7 @@ function ParamForm(props: { initialValue: string; paramName: string; label: stri
 
     const res = await updateValue({ param: paramName, value })
 
-    manageActionResponse(res, {
+    handleResponse(res, {
       showSuccessToast: true,
       onSuccess() {
         setInputIsEditable(false)

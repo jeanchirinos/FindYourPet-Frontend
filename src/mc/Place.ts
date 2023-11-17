@@ -1,17 +1,17 @@
-import { requestNew } from '@/utilities/request'
+import { actionRequestGet } from '@/utilities/actionRequest'
 
 type GithubResponse = { payload: { blob: { rawLines: [string, string] } } }
 type Location = { id_ubigeo: string; nombre_ubigeo: string; id_padre_ubigeo: string }
 
 async function getData<T>(type: 'departamentos' | 'provincias' | 'distritos') {
-  const res = await requestNew<GithubResponse>(
+  const res = await actionRequestGet<GithubResponse>(
     `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/${type}.json`,
     {
       cache: 'force-cache',
     },
   )
 
-  const data = JSON.parse(res.data.payload.blob.rawLines[1]) as T
+  const data = JSON.parse(res.payload.blob.rawLines[1]) as T
 
   return data
 }

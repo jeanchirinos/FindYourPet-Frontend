@@ -1,16 +1,15 @@
 import { Form } from './Form'
-import { notFound } from 'next/navigation'
-import { actionRequest, actionRequestGet } from '@/utilities/actionRequest'
+import { actionRequestGet } from '@/utilities/actionRequest'
+import { notAuthorized } from '@/utilities/utilities'
 
 async function verifyToken(token: string | undefined) {
-  if (!token) notFound()
+  if (!token) return null
 
-  // const res = await actionRequest(`verify-token/${token}`)
-  await actionRequestGet(`verify-token/${token}`)
-
-  // if (!res.ok) notFound()
-
-  return token
+  try {
+    await actionRequestGet(`verify-token/${token}`)
+  } catch (err) {
+    notAuthorized()
+  }
 }
 
 interface Props {

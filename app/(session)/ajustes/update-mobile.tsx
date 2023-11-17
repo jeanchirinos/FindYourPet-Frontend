@@ -9,7 +9,7 @@ import { Button } from '@/components/Button'
 import { TUseSteps, useSteps } from '@/hooks/useSteps'
 import { SetState } from '@/types'
 import { useCountdownTimer } from 'use-countdown-timer'
-import { manageActionResponse } from '@/utilities/manageActionResponse'
+import { handleResponse } from '@/utilities/handleResponse'
 
 export function MobileForm(props: { initialMobile: string }) {
   const { initialMobile } = props
@@ -178,7 +178,7 @@ function Step2(props: {
 
     const res = await verifyMobile({ code, mobile: currentMobile })
 
-    manageActionResponse(res, {
+    handleResponse(res, {
       onSuccess() {
         modal.close()
         setIsEditable(false)

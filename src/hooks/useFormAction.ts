@@ -3,34 +3,38 @@ import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useFormState } from 'react-dom'
 
-type Options = {
-  onSuccess?(): void
-  onError?(): void
+export type Options = {
+  onSuccess?: () => void
   showSuccessToast?: boolean
+  onError?: () => void
+  showErrorToast?: boolean
 }
 
 export function useFormAction(action: any, options?: Options) {
-  const { onSuccess, onError, showSuccessToast = true } = options ?? {}
+  const { onSuccess, showSuccessToast = true, onError, showErrorToast = true } = options ?? {}
 
-  const [state, formAction] = useFormState(action, { ok: null, msg: null })
+  const initialState = { ok: null, msg: '' }
+  const [state, formAction] = useFormState(action, initialState)
 
   useEffect(() => {
-    const { ok, msg } = state as { ok: boolean; msg: string } | { ok: null; msg: null }
-    if (ok !== null) {
-      if (!ok || showSuccessToast) {
-        const status = ok ? 'success' : 'error'
+    const { ok, msg } = state
 
-        toast[status](msg)
+    if (ok === null) return
+
+    if (ok) {
+      onSuccess?.()
+
+      if (showSuccessToast) {
+        toast.success(msg)
       }
-      if (ok) {
-        onSuccess?.()
-      }
-      if (!ok) {
-        onError?.()
+    } else {
+      onError?.()
+
+      if (showErrorToast) {
+        toast.error(msg)
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state])
+  }, [state, onSuccess, onError, showSuccessToast, showErrorToast])
 
   return { state, formAction }
 }

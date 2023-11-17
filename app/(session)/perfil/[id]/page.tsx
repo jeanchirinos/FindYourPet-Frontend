@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import Image from 'next/image'
 import { HiOutlineDeviceMobile, HiOutlineMail } from 'react-icons/hi'
-import { actionRequest } from '@/utilities/actionRequest'
+import { actionRequestGet } from '@/utilities/actionRequest'
 
 export type User = {
   username: string
@@ -14,11 +14,15 @@ export type User = {
 }
 
 async function getUser(username: string) {
-  const res = await actionRequest<User>(`user?username=${username}`)
+  let data
 
-  if (!res.ok) return notFound()
+  try {
+    data = await actionRequestGet<{ data: User }>(`user?username=${username}`)
+  } catch (err) {
+    return null
+  }
 
-  return res.data
+  return data.data
 }
 
 export default async function Page(props: { params: { id: string } }) {
@@ -35,6 +39,8 @@ async function Profile(props: { username: string }) {
   const { username } = props
 
   const user = await getUser(username)
+
+  if (!user) notFound()
 
   return (
     <div className='mx-auto w-[400px] max-w-full animate-fade space-y-3 px-2 py-6 animate-duration-200'>

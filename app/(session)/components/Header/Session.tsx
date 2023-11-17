@@ -1,22 +1,20 @@
-import { actionRequest } from '@/utilities/actionRequest'
+import { actionRequestGet } from '@/utilities/actionRequest'
 import { UserLogged } from './UserLogged/UserLogged'
 import { UserNotLogged } from './UserNotLogged'
 import { SessionLogged } from '@/types'
-import { cookies } from 'next/headers'
 
 async function getSession() {
-  const jwt = cookies().get('jwt')
-  if (!jwt) return { auth: false } as const
+  try {
+    const data = await actionRequestGet<SessionLogged>('session', { auth: true })
 
-  const res = await actionRequest<SessionLogged>('session')
-
-  if (!res.ok) return { auth: false } as const
-
-  return res.data
+    return data
+  } catch (err) {
+    return null
+  }
 }
 
 export async function Session() {
   const session = await getSession()
 
-  return session.auth ? <UserLogged session={session} /> : <UserNotLogged />
+  return session ? <UserLogged session={session} /> : <UserNotLogged />
 }
