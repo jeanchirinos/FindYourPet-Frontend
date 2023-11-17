@@ -1,6 +1,7 @@
 import { BreedsData, PetPaginate } from '@/types'
 import { actionRequestGet } from '@/utilities/actionRequest'
 import { getApiUrl } from '@/utilities/request'
+import { notFound } from 'next/navigation'
 
 export type TGetPetParams = {
   page?: string
@@ -22,7 +23,13 @@ export async function getPets(params: TGetPetParams) {
   url.searchParams.set('status', status)
   breed && url.searchParams.set('breed', breed)
 
-  const data = actionRequestGet<PetPaginate>(url)
+  const data = await actionRequestGet<PetPaginate>(url)
+
+  const { current_page, data: pets } = data
+
+  if (pets.length === 0 && current_page !== 1) {
+    notFound()
+  }
 
   return data
 }

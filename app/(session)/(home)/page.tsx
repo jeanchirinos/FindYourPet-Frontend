@@ -4,7 +4,6 @@ import { Suspense } from 'react'
 import { TGetPetParams, getPets } from '@/mc/Pet'
 import { PetPaginate } from '@/types'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 
 type SearchProps = Partial<TGetPetParams>
@@ -26,11 +25,7 @@ export default function Page(props: { searchParams: SearchProps }) {
 async function PetGrid(props: { searchParams: SearchProps }) {
   const petsData = await getPets(props.searchParams)
 
-  const { data: pets, links, current_page } = petsData
-
-  if (pets.length === 0 && current_page !== 1) {
-    notFound()
-  }
+  const { data: pets, links } = petsData
 
   return (
     <>

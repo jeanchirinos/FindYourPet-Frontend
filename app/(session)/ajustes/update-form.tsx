@@ -1,7 +1,7 @@
 'use client'
 import { updateUserImageProfile, updateValue } from '@/serverActions/profile'
 import { Input } from '@/components/Input'
-import { User } from '../perfil/[id]/page'
+import { User } from '@/mc/User'
 import { BiSolidCamera } from 'react-icons/bi'
 import { useRef, useState, useEffect } from 'react'
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
