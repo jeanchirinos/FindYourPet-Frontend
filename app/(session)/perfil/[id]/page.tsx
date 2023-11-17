@@ -1,31 +1,9 @@
-import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import Image from 'next/image'
 import { HiOutlineDeviceMobile, HiOutlineMail } from 'react-icons/hi'
-import { actionRequestGet } from '@/utilities/actionRequest'
+import { getUserProfile } from '@/mc/User'
 
-export type User = {
-  username: string
-  name: string | null
-  mobile: string | null
-  email: string
-  image: string
-  isUser: boolean
-}
-
-async function getUser(username: string) {
-  let data
-
-  try {
-    data = await actionRequestGet<{ data: User }>(`user?username=${username}`)
-  } catch (err) {
-    return null
-  }
-
-  return data.data
-}
-
-export default async function Page(props: { params: { id: string } }) {
+export default function Page(props: { params: { id: string } }) {
   const { id: username } = props.params
 
   return (
@@ -38,9 +16,7 @@ export default async function Page(props: { params: { id: string } }) {
 async function Profile(props: { username: string }) {
   const { username } = props
 
-  const user = await getUser(username)
-
-  if (!user) notFound()
+  const user = await getUserProfile(username)
 
   return (
     <div className='mx-auto w-[400px] max-w-full animate-fade space-y-3 px-2 py-6 animate-duration-200'>

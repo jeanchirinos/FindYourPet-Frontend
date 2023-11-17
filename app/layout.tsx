@@ -1,10 +1,11 @@
 import '@/styles/globals.css'
-import { Livvic } from 'next/font/google'
+import { Josefin_Sans } from 'next/font/google'
 import { Providers } from './providers'
 import { Metadata, Viewport } from 'next'
-import { getClientTheme } from '@/lib/getClientTheme'
+import NextTopLoader from 'nextjs-toploader'
+// import { getClientTheme } from '@/lib/getClientTheme'
 
-const livvic = Livvic({ weight: ['400'], subsets: ['latin'] })
+const livvic = Josefin_Sans({ weight: ['400'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Encuentra tu mascota',
@@ -26,6 +27,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
     <html lang='es' className={livvic.className}>
       <head>{/* <script dangerouslySetInnerHTML={{ __html: getClientTheme }} /> */}</head>
       <body>
+        <NextTopLoader color='#FF813F' height={1.5} showSpinner={false} />
         <Providers>{props.children}</Providers>
       </body>
     </html>

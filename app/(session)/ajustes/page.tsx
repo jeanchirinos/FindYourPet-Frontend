@@ -1,21 +1,10 @@
-import { User } from '../perfil/[id]/page'
 import { UpdateForm } from './update-form'
-import { actionRequestGet } from '@/utilities/actionRequest'
 
 import { GoogleForm } from './google-form'
 import { Suspense } from 'react'
-import { notAuthorized } from '@/utilities/utilities'
+import { getGoogleData, getUser } from '@/mc/User'
 
-async function getUser() {
-  try {
-    const data = await actionRequestGet<User>('user', { auth: true })
-
-    return data
-  } catch (err) {
-    return notAuthorized()
-  }
-}
-
+// MAIN COMPONENT
 export default async function Page() {
   const user = await getUser()
 
@@ -32,17 +21,7 @@ export default async function Page() {
   )
 }
 
-async function getGoogleData() {
-  type Res = { isConnected: boolean; username: string | null }
-
-  try {
-    const data = await actionRequestGet<Res>('user-google-data', { auth: true })
-    return data
-  } catch (e) {
-    return null
-  }
-}
-
+// COMPONENTS
 async function ConnectedAccounts() {
   const googleData = await getGoogleData()
 

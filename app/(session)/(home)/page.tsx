@@ -4,42 +4,32 @@ import { Suspense } from 'react'
 import { TGetPetParams, getPets } from '@/mc/Pet'
 import { PetPaginate } from '@/types'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 
 type SearchProps = Partial<TGetPetParams>
 
+// MAIN COMPONENT
 export default function Page(props: { searchParams: SearchProps }) {
   return (
     <main className='animate-fade px-2 pb-2 pt-12 animate-duration-200'>
       <div className='mx-auto w-[1600px] max-w-full'>
-        <Suspense fallback={<GridSkeleton />}>
-          <PetMasonry searchParams={props.searchParams} />
+        <Suspense fallback={<PetGridSkeleton />}>
+          <PetGrid searchParams={props.searchParams} />
         </Suspense>
       </div>
     </main>
   )
 }
 
-function GridSkeleton() {
-  return (
-    <>
-      <section className='templateColumns-[300px] grid gap-4'>
-        {Array.from({ length: 10 }).map((_, i) => (
-          <div key={i} className='aspect-square animate-pulse rounded-xl bg-neutral-200' />
-        ))}
-      </section>
-    </>
-  )
-}
-
-async function PetMasonry(props: { searchParams: SearchProps }) {
+// COMPONENTS
+async function PetGrid(props: { searchParams: SearchProps }) {
   const petsData = await getPets(props.searchParams)
 
   const { data: pets, links, current_page } = petsData
 
   if (pets.length === 0 && current_page !== 1) {
-    redirect('/404')
+    notFound()
   }
 
   return (
@@ -77,8 +67,13 @@ async function PetMasonry(props: { searchParams: SearchProps }) {
 function PetCard(props: { pet: PetPaginate['data'][0] }) {
   const { pet } = props
 
-  const colors = ['bg-[#79616F]', 'bg-[#AE6378]', 'bg-[#7E9680]']
-  const cardColor = colors[pet.status - 1]
+  const colors = {
+    SE_BUSCA: 'bg-[#79616F]',
+    PERDIDO: 'bg-[#AE6378]',
+    EN_ADOPCIÓN: 'bg-[#7E9680]',
+  }
+
+  const color = Object.values(colors)[pet.status - 1]
 
   return (
     <div className='flex flex-col gap-2 overflow-hidden rounded-xl bg-[#FFF3E5] pb-4'>
@@ -91,10 +86,7 @@ function PetCard(props: { pet: PetPaginate['data'][0] }) {
       />
       <div className='space-y-3 px-4'>
         <section
-          className={twJoin(
-            'rounded-3xl p-2 text-center text-lg font-semibold text-white',
-            cardColor,
-          )}
+          className={twJoin('rounded-3xl p-2 text-center text-lg font-semibold text-white', color)}
         >
           {pet.status_name}
         </section>
@@ -106,5 +98,18 @@ function PetCard(props: { pet: PetPaginate['data'][0] }) {
         </footer>
       </div>
     </div>
+  )
+}
+
+// SKELETONS
+function PetGridSkeleton() {
+  return (
+    <>
+      <section className='templateColumns-[300px] grid gap-4'>
+        {Array.from({ length: 10 }).map((_, i) => (
+          <div key={i} className='aspect-square animate-pulse rounded-xl bg-neutral-200' />
+        ))}
+      </section>
+    </>
   )
 }
