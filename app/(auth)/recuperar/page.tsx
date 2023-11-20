@@ -1,4 +1,4 @@
-import { ForgotForm } from './Form'
+import { ForgotForm } from './form'
 
 type Props = { searchParams: null | { email: string } }
 
