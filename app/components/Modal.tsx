@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState, useEffect, useRef } from 'react'
 
 interface Props extends React.PropsWithChildren {
   modal: UseModal
@@ -52,13 +52,24 @@ export function Modal(props: Props) {
 function Child(props: React.PropsWithChildren<{ onExitComplete?(): void }>) {
   const { onExitComplete } = props
 
+  const firstRender = useRef(true)
+
   useEffect(() => {
     return () => {
-      onExitComplete?.()
+      if (firstRender.current) {
+        firstRender.current = false
+      } else {
+        onExitComplete?.()
+      }
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // useEffect(() => {
+  //   // Code to run only on the first render
+  //   firstRender.current = false
+  // }, []) // Empty dependency array for the first render only
 
   return props.children
 }

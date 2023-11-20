@@ -2,7 +2,7 @@ import { UpdateForm } from './update-form'
 
 import { GoogleForm } from './google-form'
 import { Suspense } from 'react'
-import { getGoogleData, getUser } from '@/mc/User'
+import { getGoogleData, getUser } from '@/controllers/User'
 
 // MAIN COMPONENT
 export default async function Page() {

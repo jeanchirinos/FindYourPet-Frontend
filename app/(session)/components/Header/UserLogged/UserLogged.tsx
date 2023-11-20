@@ -1,9 +1,8 @@
-import { SessionLogged } from '@/types'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/Popover'
-import { ERole } from '@/enums'
 import Link from 'next/link'
 import Image from 'next/image'
 import { LogoutForm } from './logout-form'
+import { ERole, SessionLogged } from '@/models/Auth'
 
 export function UserLogged(props: { session: SessionLogged }) {
   const { session } = props

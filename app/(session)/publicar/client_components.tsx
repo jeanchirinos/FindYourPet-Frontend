@@ -1,13 +1,13 @@
 'use client'
 
-import { BreedsData, Category } from '@/types'
 import { useEffect, useState } from 'react'
 import { Select } from '@/components/Select'
 import { RadioGroup } from '@headlessui/react'
 import { twJoin } from 'tailwind-merge'
 import { Button } from '@/components/Button'
 import { CiImageOn } from 'react-icons/ci'
-import { getPlaces } from '@/mc/Place'
+import { getPlaces } from '@/controllers/Place'
+import { BreedsData, Category } from '@/models/Pet'
 
 export function PetImage() {
   const [imagePreview, setImagePreview] = useState<null | string>(null)
@@ -23,7 +23,7 @@ export function PetImage() {
 
     setImagePreview(imagePreview)
   }
-
+  // TODO: Edit photo with square cropper and in modal
   return (
     <>
       {imagePreview && (

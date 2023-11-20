@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import Image from 'next/image'
 import { HiOutlineDeviceMobile, HiOutlineMail } from 'react-icons/hi'
-import { getUserProfile } from '@/mc/User'
+import { getUserProfile } from '@/controllers/User'
 
 export default function Page(props: { params: { id: string } }) {
   const { id: username } = props.params

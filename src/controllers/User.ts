@@ -1,6 +1,9 @@
 'use server'
 
-import { sendData } from '@/utilities/actionRequest'
+import { User } from '@/models/User'
+import { actionRequestGet, sendData } from '@/utilities/actionRequest'
+import { notAuthorized } from '@/utilities/utilities'
+import { notFound } from 'next/navigation'
 import { z } from 'zod'
 
 export async function updateUser(prevState: any, formData: FormData) {
@@ -77,4 +80,37 @@ export async function updateValue(data: { param: string; value: string }) {
     schema,
     revalidate: true,
   })
+}
+
+// GET
+
+export async function getUser() {
+  try {
+    const data = await actionRequestGet<User>('user', { auth: true })
+
+    return data
+  } catch (err) {
+    return notAuthorized()
+  }
+}
+
+export async function getUserProfile(username: string) {
+  try {
+    const data = await actionRequestGet<{ data: User }>(`user?username=${username}`)
+
+    return data.data
+  } catch (err) {
+    notFound()
+  }
+}
+
+export async function getGoogleData() {
+  type Res = { isConnected: boolean; username: string | null }
+
+  try {
+    const data = await actionRequestGet<Res>('user-google-data', { auth: true })
+    return data
+  } catch (e) {
+    return null
+  }
 }

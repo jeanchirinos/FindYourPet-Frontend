@@ -1,7 +1,6 @@
 'use client'
-import { updateUserImageProfile, updateValue } from '@/serverActions/profile'
+import { updateUserImageProfile, updateValue } from '@/controllers/User'
 import { Input } from '@/components/Input'
-import { User } from '@/mc/User'
 import { BiSolidCamera } from 'react-icons/bi'
 import { useRef, useState, useEffect } from 'react'
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
@@ -13,6 +12,7 @@ import { handleResponse } from '@/utilities/handleResponse'
 import { MobileForm } from './update-mobile'
 import { useFormStatus } from 'react-dom'
 import { SetState } from '@/types'
+import { User } from '@/models/User'
 
 export function UpdateForm(props: { user: User }) {
   const { user } = props
@@ -108,12 +108,34 @@ function ProfileImage(props: { user: User }) {
   )
 }
 
-function ParamForm(props: { initialValue: string; paramName: string; label: string }) {
-  const { initialValue = '', paramName, label } = props
+function ParamForm(props: {
+  initialValue: string
+  paramName: string
+  label: string
+  children?: React.ReactNode
+}) {
+  const { initialValue = '', paramName, label, children } = props
+
+  // HOOKS
+
+  const useAutoInputHook = useAutoInput({ initialValue })
+
+  const {
+    currentValue,
+    setCurrentValue,
+    inputIsEditable,
+    setInputIsEditable,
+    // inputRef,
+    // submitButtonRef,
+    // submittingRef,
+    // handleBlur,
+    handleKeyDown,
+    isDisabled,
+  } = useAutoInputHook
 
   // STATES
-  const [currentValue, setCurrentValue] = useState(initialValue)
-  const [inputIsEditable, setInputIsEditable] = useState(false)
+  // const [currentValue, setCurrentValue] = useState(initialValue)
+  // const [inputIsEditable, setInputIsEditable] = useState(false)
 
   // FUNCTIONS
   async function handleAction(formData: FormData) {
@@ -131,22 +153,25 @@ function ParamForm(props: { initialValue: string; paramName: string; label: stri
     })
   }
 
+  // function handleKeyDown(e: React.KeyboardEvent) {
+  //   if (e.key === 'Escape') {
+  //     setInputIsEditable(false)
+  //     setCurrentValue(initialValue)
+  //   }
+  // }
+
   // VALUES
-  const isDisabled = initialValue === currentValue
+  // const isDisabled = initialValue === currentValue
 
   // RENDER
   return (
     <form
       action={handleAction}
       className='group mt-4 flex items-center gap-x-2'
-      onKeyDown={e => {
-        if (e.key === 'Escape') {
-          setInputIsEditable(false)
-          setCurrentValue(initialValue)
-        }
-      }}
+      onKeyDown={handleKeyDown}
     >
       <FormBody
+        {...useAutoInputHook}
         initialValue={initialValue}
         label={label}
         currentValue={currentValue}
@@ -154,12 +179,14 @@ function ParamForm(props: { initialValue: string; paramName: string; label: stri
         paramName={paramName}
         setCurrentValue={setCurrentValue}
         setInputIsEditable={setInputIsEditable}
-      />
+      >
+        {children}
+      </FormBody>
     </form>
   )
 }
 
-function FormBody(props: {
+type TFormBodyProps = ReturnType<typeof useAutoInput> & {
   initialValue: string
   label: string
   inputIsEditable: boolean
@@ -167,18 +194,62 @@ function FormBody(props: {
   paramName: string
   currentValue: string
   setCurrentValue: SetState<string>
-}) {
-  const { pending } = useFormStatus()
+  children?: React.ReactNode
+}
 
+function FormBody(props: TFormBodyProps) {
   const {
-    initialValue = '',
+    // initialValue = '',
     label,
     inputIsEditable,
     setInputIsEditable,
     currentValue,
     paramName,
     setCurrentValue,
+    handleButtonBlur,
   } = props
+
+  const { inputRef, handleBlur, isDisabled, submitButtonRef } = props
+
+  // RENDER
+  return (
+    <>
+      <Input
+        type='text'
+        name={paramName}
+        label={label}
+        value={currentValue}
+        onChange={e => setCurrentValue(e.target.value)}
+        ref={inputRef}
+        onFocus={() => setInputIsEditable(true)}
+        onBlur={handleBlur}
+      />
+
+      {inputIsEditable && (
+        <SubmitButton
+          size='sm'
+          isDisabled={isDisabled}
+          disabled={isDisabled}
+          ref={submitButtonRef}
+          onBlur={handleButtonBlur}
+        />
+      )}
+    </>
+  )
+}
+
+type TAutoInputProps = {
+  initialValue: string
+}
+
+export function useAutoInput(props: TAutoInputProps) {
+  const { initialValue = '' } = props
+
+  const { pending } = useFormStatus()
+
+  const [currentValue, setCurrentValue] = useState(initialValue)
+
+  const [inputIsEditable, setInputIsEditable] = useState(false)
 
   // VALUES
   const isDisabled = initialValue === currentValue
@@ -190,37 +261,40 @@ function FormBody(props: {
     submittingRef.current = pending
   }, [pending])
 
-  // RENDER
-  return (
-    <>
-      <Input
-        type='text'
-        name={paramName}
-        label={label}
-        value={currentValue}
-        onChange={e => setCurrentValue(e.target.value)}
-        readOnly={!inputIsEditable}
-        ref={inputRef}
-        onFocus={() => setInputIsEditable(true)}
-        onBlur={() => {
-          setTimeout(() => {
-            if (document.activeElement === submitButtonRef.current) return
-            if (submittingRef.current) return
+  function handleBlur() {
+    setTimeout(() => {
+      console.log('aa')
+      if (document.activeElement === submitButtonRef.current) return
+      if (submittingRef.current) return
 
-            setInputIsEditable(false)
-            setCurrentValue(initialValue)
-          }, 1)
-        }}
-      />
+      setInputIsEditable(false)
+      setCurrentValue(initialValue)
+    }, 1)
+  }
 
-      {inputIsEditable && (
-        <SubmitButton
-          size='sm'
-          isDisabled={isDisabled}
-          disabled={isDisabled}
-          ref={submitButtonRef}
-        />
-      )}
-    </>
-  )
+  function handleButtonBlur() {
+    setInputIsEditable(false)
+    setCurrentValue(initialValue)
+  }
+
+  function handleKeyDown(e: React.KeyboardEvent) {
+    if (e.key === 'Escape') {
+      setInputIsEditable(false)
+      setCurrentValue(initialValue)
+    }
+  }
+
+  return {
+    currentValue,
+    setCurrentValue,
+    inputIsEditable,
+    setInputIsEditable,
+    inputRef,
+    submitButtonRef,
+    submittingRef,
+    handleBlur,
+    handleKeyDown,
+    isDisabled,
+    handleButtonBlur,
+  }
 }

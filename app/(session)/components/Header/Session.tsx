@@ -1,17 +1,6 @@
-import { actionRequestGet } from '@/utilities/actionRequest'
+import { getSession } from '@/controllers/Auth'
 import { UserLogged } from './UserLogged/UserLogged'
 import { UserNotLogged } from './UserNotLogged'
-import { SessionLogged } from '@/types'
-
-async function getSession() {
-  try {
-    const data = await actionRequestGet<SessionLogged>('session', { auth: true })
-
-    return data
-  } catch (err) {
-    return null
-  }
-}
 
 export async function Session() {
   const session = await getSession()

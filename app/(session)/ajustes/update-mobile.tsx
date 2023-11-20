@@ -1,5 +1,5 @@
 'use client'
-import { updateMobile, verifyMobile } from '@/serverActions/profile'
+import { updateMobile, verifyMobile } from '@/controllers/User'
 import { Input } from '@/components/Input'
 import React, { useEffect, useState } from 'react'
 
@@ -10,16 +10,34 @@ import { TUseSteps, useSteps } from '@/hooks/useSteps'
 import { SetState } from '@/types'
 import { useCountdownTimer } from 'use-countdown-timer'
 import { handleResponse } from '@/utilities/handleResponse'
+import { useAutoInput } from './update-form'
 
 export function MobileForm(props: { initialMobile: string }) {
   const { initialMobile } = props
 
   // STATES
-  const [currentMobile, setCurrentMobile] = useState(initialMobile)
-  const [phoneIsEditable, setPhoneIsEditable] = useState(false)
+  // const [currentMobile, setCurrentMobile] = useState(initialMobile)
+  // const [phoneIsEditable, setPhoneIsEditable] = useState(false)
   const [secondsToResend, setSecondsToResend] = useState(0)
 
   // HOOKS
+
+  const useAutoInputHook = useAutoInput({ initialValue: initialMobile })
+
+  const {
+    currentValue,
+    setCurrentValue,
+    inputIsEditable,
+    setInputIsEditable,
+    inputRef,
+    submitButtonRef,
+    submittingRef,
+    handleBlur,
+    handleKeyDown,
+    // isDisabled,
+    handleButtonBlur,
+  } = useAutoInputHook
+
   const updateMobileModal = useModal()
 
   const useStepsHook = useSteps()
@@ -28,6 +46,7 @@ export function MobileForm(props: { initialMobile: string }) {
   // FUNCTIONS
 
   function handleSubmit(e: React.FormEvent) {
+    submittingRef.current = true
     e.preventDefault()
 
     if (isDisabled) return
@@ -35,18 +54,25 @@ export function MobileForm(props: { initialMobile: string }) {
   }
 
   // VALUES
-  const isDisabled = initialMobile === currentMobile || !/^9[0-9]{8}$/.test(currentMobile)
+  // const isDisabled = initialMobile === currentMobile || !/^9[0-9]{8}$/.test(currentMobile)
+
+  const isDisabled = initialMobile === currentValue || !/^9[0-9]{8}$/.test(currentValue)
 
   // RENDER
   return (
     <>
-      <form onSubmit={handleSubmit} className='mt-4 flex items-center gap-x-2'>
+      <form
+        onSubmit={handleSubmit}
+        className='mt-4 flex items-center gap-x-2'
+        onKeyDown={handleKeyDown}
+      >
         <Input
           type='text'
           name='mobile'
           label='Móvil'
           isRequired={false}
-          value={currentMobile}
+          // value={currentMobile}
+          value={currentValue}
           minLength={9}
           maxLength={9}
           pattern='^9[0-9]{8}$'
@@ -54,43 +80,63 @@ export function MobileForm(props: { initialMobile: string }) {
             const value = e.target.value
             if (isNaN(Number(value))) return
 
-            setCurrentMobile(e.target.value)
+            // setCurrentMobile(e.target.value)
+            setCurrentValue(e.target.value)
           }}
-          readOnly={!phoneIsEditable}
+          // readOnly={!phoneIsEditable}
+          // readOnly={!inputIsEditable}
+          onFocus={() => setInputIsEditable(true)}
+          onBlur={handleBlur}
+          ref={inputRef}
         />
 
-        {phoneIsEditable ? (
+        {/* {phoneIsEditable ? ( */}
+        {inputIsEditable && (
           <div className='flex gap-x-1.5'>
             <Button
               size='sm'
               isDisabled={isDisabled}
+              disabled={isDisabled}
               className='bg-primary text-white disabled:opacity-60'
               type='submit'
+              ref={submitButtonRef}
+              // onBlur={handleButtonBlur}
             >
               Guardar
             </Button>
-            <Button
+            {/* <Button
               size='sm'
               onClick={() => {
                 setPhoneIsEditable(false)
-                setCurrentMobile(props.initialMobile)
+                // setCurrentMobile(props.initialMobile)
+                setCurrentValue(props.initialMobile)
               }}
             >
               Cancelar
-            </Button>
+            </Button> */}
           </div>
-        ) : (
-          <Button size='sm' onClick={() => setPhoneIsEditable(true)}>
-            Editar
-          </Button>
         )}
       </form>
 
-      <Modal modal={updateMobileModal} onExitComplete={resetSteps}>
+      <Modal
+        modal={updateMobileModal}
+        onExitComplete={() => {
+          resetSteps()
+          setTimeout(() => {
+            setInputIsEditable(false)
+            setCurrentValue(initialMobile)
+            submittingRef.current = false
+          }, 1)
+
+          // console.log(inputRef.current?.blur())
+          // inputRef.current?.focus()
+        }}
+      >
         {currentStep === 1 && (
           <Step1
             useStepsHook={useStepsHook}
-            currentMobile={currentMobile}
+            // currentMobile={currentMobile}
+            currentMobile={currentValue}
             modal={updateMobileModal}
             setSecondsToResend={setSecondsToResend}
           />
@@ -100,8 +146,10 @@ export function MobileForm(props: { initialMobile: string }) {
           <Step2
             modal={updateMobileModal}
             secondsToResend={secondsToResend}
-            setIsEditable={setPhoneIsEditable}
-            currentMobile={currentMobile}
+            // setIsEditable={setPhoneIsEditable}
+            setIsEditable={setInputIsEditable}
+            // currentMobile={currentMobile}
+            currentMobile={currentValue}
           />
         )}
       </Modal>

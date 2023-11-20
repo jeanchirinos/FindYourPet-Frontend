@@ -1,11 +1,11 @@
 'use client'
 
-import { createPet } from '@/serverActions/pet'
 import { Textarea } from '@nextui-org/react'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Input } from '@/components/Input'
 import { PetImage } from './client_components'
 import { useFormAction } from '@/hooks/useFormAction'
+import { createPet } from '@/controllers/Pet'
 
 type Props = {
   StatusComponent: React.ReactNode

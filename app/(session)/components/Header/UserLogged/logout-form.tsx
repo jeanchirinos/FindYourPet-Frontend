@@ -1,7 +1,7 @@
 'use client'
 import { useFormAction } from '@/hooks/useFormAction'
-import { logout } from '@/serverActions/auth'
 import { SubmitButton } from '@/components/SubmitButton'
+import { logout } from '@/controllers/Auth'
 
 export function LogoutForm() {
   const { formAction } = useFormAction(logout)

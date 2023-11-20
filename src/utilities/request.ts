@@ -1,18 +1,8 @@
-export const getApiUrl = (url: string) => {
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_API
-
-  if (!baseUrl) {
-    throw new Error('No se ha definido la variable de entorno NEXT_PUBLIC_BACKEND_API')
-  }
-
-  return baseUrl + url
-}
-
-export interface ConfigAll extends Omit<RequestInit, 'body'> {
+export interface Config extends Omit<RequestInit, 'body'> {
   body?: object
 }
 
-export type RequestParamsAll = [url: Parameters<typeof fetch>['0'], config?: ConfigAll]
+export type RequestParamsAll = [url: Parameters<typeof fetch>['0'], config?: Config]
 
 export async function requestAll<Response>(...params: RequestParamsAll) {
   const [url, config] = params
@@ -56,4 +46,14 @@ export async function requestAll<Response>(...params: RequestParamsAll) {
   }
 
   return json as Response
+}
+
+export function getApiUrl(url: string) {
+  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_API
+
+  if (!baseUrl) {
+    throw new Error('No se ha definido la variable de entorno NEXT_PUBLIC_BACKEND_API')
+  }
+
+  return baseUrl + url
 }

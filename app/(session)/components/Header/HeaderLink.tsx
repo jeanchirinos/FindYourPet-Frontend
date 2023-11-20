@@ -7,8 +7,10 @@ export function HeaderLink(props: React.ComponentProps<typeof Link>) {
   const pathname = usePathname()
 
   const isActive = () => {
-    if (props.href === '/') return pathname === '/'
-    return pathname.includes(props.href as string)
+    const { href } = props
+
+    if (href === '/') return pathname === '/'
+    return pathname.includes(href as string)
   }
 
   return (

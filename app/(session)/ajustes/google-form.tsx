@@ -5,9 +5,11 @@ import { Button } from '@/components/Button'
 import { useGoogle } from '@/hooks/useGoogle'
 import { SubmitButton } from '@/components/SubmitButton'
 import { useFormAction } from '@/hooks/useFormAction'
-import { disconnectGoogle } from '@/serverActions/auth'
+import { disconnectGoogle } from '@/controllers/Auth'
 
-export function GoogleForm(props: { isConnected: boolean; username: string | null }) {
+type Props = { isConnected: boolean; username: string | null }
+
+export function GoogleForm(props: Props) {
   const { isConnected, username } = props
 
   const { openGoogleWindow } = useGoogle({ loggedIn: true })

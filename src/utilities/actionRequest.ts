@@ -1,3 +1,5 @@
+'use server'
+
 import { requestAll } from '@/utilities/request'
 
 import { revalidatePath } from 'next/cache'

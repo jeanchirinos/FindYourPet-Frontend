@@ -6,11 +6,11 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/Popover'
 import { Input } from 'app/components/Input'
 import { Tabs, Tab } from '@nextui-org/react'
 import { Button } from '@/components/Button'
-import { login, register } from '@/serverActions/auth'
 import { SubmitButton } from '@/components/SubmitButton'
 import { handleResponse } from '@/utilities/handleResponse'
 import { useGoogle } from '@/hooks/useGoogle'
 import { useFormAction } from '@/hooks/useFormAction'
+import { login, register } from '@/controllers/Auth'
 
 // MAIN COMPONENT
 export function UserNotLogged() {

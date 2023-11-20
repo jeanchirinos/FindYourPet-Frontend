@@ -1,10 +1,10 @@
 import { twJoin, twMerge } from 'tailwind-merge'
 import Image from 'next/image'
 import { Suspense } from 'react'
-import { TGetPetParams, getPets } from '@/mc/Pet'
-import { PetPaginate } from '@/types'
+import { TGetPetParams, getPets } from '@/controllers/Pet'
 import Link from 'next/link'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
+import { PetPaginate } from '@/models/Pet'
 
 type SearchProps = Partial<TGetPetParams>
 

@@ -3,6 +3,7 @@ import { Josefin_Sans } from 'next/font/google'
 import { Providers } from './providers'
 import { Metadata, Viewport } from 'next'
 import NextTopLoader from 'nextjs-toploader'
+import { twJoin } from 'tailwind-merge'
 // import { getClientTheme } from '@/lib/getClientTheme'
 
 const livvic = Josefin_Sans({ weight: ['400'], subsets: ['latin'] })
@@ -24,7 +25,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
-    <html lang='es' className={livvic.className}>
+    <html lang='es' className={twJoin(livvic.className, 'dark')}>
       <head>{/* <script dangerouslySetInnerHTML={{ __html: getClientTheme }} /> */}</head>
       <body>
         <NextTopLoader color='#FF813F' height={1.5} showSpinner={false} />

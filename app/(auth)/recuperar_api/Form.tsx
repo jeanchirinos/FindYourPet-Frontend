@@ -1,9 +1,9 @@
 'use client'
 import { Input } from 'app/components/Input'
-import { resetPassword } from '@/serverActions/auth'
 import { SubmitButton } from '@/components/SubmitButton'
 import { useFormAction } from '@/hooks/useFormAction'
 import Link from 'next/link'
+import { resetPassword } from '@/controllers/Auth'
 
 export function Form(props: { token: string }) {
   const { formAction, state } = useFormAction(resetPassword, { showSuccessToast: false })

@@ -1,6 +1,8 @@
 'use server'
-import { sendData } from '@/utilities/actionRequest'
+import { SessionLogged } from '@/models/Auth'
+import { actionRequestGet, sendData } from '@/utilities/actionRequest'
 import { cookies } from 'next/headers'
+import { notFound } from 'next/navigation'
 import { z } from 'zod'
 
 export async function register(formData: FormData) {
@@ -93,4 +95,25 @@ export async function disconnectGoogle() {
     url: 'user-google-disconnect',
     revalidate: true,
   })
+}
+
+export async function verifyToken(token: string | undefined) {
+  if (!token) notFound()
+
+  try {
+    await actionRequestGet(`verify-token/${token}`, { cache: 'no-store' })
+  } catch (err) {
+    notFound()
+  }
+}
+
+// GET
+export async function getSession() {
+  try {
+    const data = await actionRequestGet<SessionLogged>('session', { auth: true })
+
+    return data
+  } catch (err) {
+    return null
+  }
 }
