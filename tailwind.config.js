@@ -14,13 +14,13 @@ module.exports = {
       colors: {
         primary: '#FD8F52',
         // light
-        'l-fg-1': '#FFFBF7',
+        'l-fg-1': 'rgb(255, 251, 247)',
         'l-fg-2': '#FFEDD9',
         'l-txt-1': '#2F3C42',
         'l-txt-2': '#4B4B4B',
 
         // dark
-        'd-fg-1': '#181613',
+        'd-fg-1': 'rgb(24, 22, 19)',
         'd-fg-2': '#2D2A26',
         'd-txt-1': '#CCD6DA',
         'd-txt-2': '#B4B4B4',
