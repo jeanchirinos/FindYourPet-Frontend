@@ -9,8 +9,8 @@ import { twJoin } from 'tailwind-merge'
 const livvic = Josefin_Sans({ weight: ['400'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Encuentra tu mascota',
-  description: 'Encuentra y adopta una mascota',
+  title: 'Binarial App',
+  description: 'La primera plataforma de inversiones inmobiliarias del Perú con alta rentabilidad',
   other: {
     'msapplication-TileColor': '#FFFFFF',
   },
