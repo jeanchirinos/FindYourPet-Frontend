@@ -4,6 +4,7 @@ import { Providers } from './providers'
 import { Metadata, Viewport } from 'next'
 import NextTopLoader from 'nextjs-toploader'
 import { getClientTheme } from '@/lib/getClientTheme'
+import { twJoin } from 'tailwind-merge'
 
 const livvic = Josefin_Sans({ weight: ['400'], subsets: ['latin'] })
 
@@ -24,7 +25,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
-    <html lang='es' className={livvic.className}>
+    <html lang='es' className={twJoin(livvic.className, 'bg-th-fg-1 text-th-txt-1')}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: getClientTheme }} />
       </head>

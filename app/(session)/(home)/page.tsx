@@ -46,8 +46,8 @@ async function PetGrid(props: { searchParams: SearchProps }) {
               href={url}
               key={link.label}
               className={twMerge(
-                'rounded-lg bg-neutral-200 p-2',
-                link.active && 'bg-black text-white',
+                'rounded-lg bg-th-fg-2 p-2',
+                link.active && 'bg-primary text-white',
               )}
             >
               {link.label}
@@ -63,15 +63,15 @@ function PetCard(props: { pet: PetPaginate['data'][0] }) {
   const { pet } = props
 
   const colors = {
-    SE_BUSCA: 'bg-[#79616F]',
-    PERDIDO: 'bg-[#AE6378]',
-    EN_ADOPCIÓN: 'bg-[#7E9680]',
+    SE_BUSCA: 'bg-search',
+    PERDIDO: 'bg-lost',
+    EN_ADOPCIÓN: 'bg-adopt',
   }
 
   const color = Object.values(colors)[pet.status - 1]
 
   return (
-    <div className='flex flex-col gap-2 overflow-hidden rounded-xl bg-[#FFF3E5] pb-4'>
+    <div className='flex flex-col gap-2 overflow-hidden rounded-xl bg-th-fg-2 pb-4'>
       <Image
         className='aspect-square w-full object-cover'
         src={pet.image}
@@ -87,7 +87,7 @@ function PetCard(props: { pet: PetPaginate['data'][0] }) {
         </section>
         <footer className='flex items-center gap-1.5'>
           <HiOutlineLocationMarker />
-          <p className='text-neutral-600'>
+          <p>
             {pet.city}, {pet.district}
           </p>
         </footer>

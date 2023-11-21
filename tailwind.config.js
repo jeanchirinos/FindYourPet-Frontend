@@ -14,22 +14,27 @@ module.exports = {
       colors: {
         primary: '#FD8F52',
         // light
-        'l-fg-1': '#FFEDD9',
-        'l-fg-2': '#FFFBF7',
+        'l-fg-1': '#FFFBF7',
+        'l-fg-2': '#FFEDD9',
         'l-txt-1': '#2F3C42',
         'l-txt-2': '#4B4B4B',
 
         // dark
-        'd-fg-1': '#2D2A26',
-        'd-fg-2': '#181613',
+        'd-fg-1': '#181613',
+        'd-fg-2': '#2D2A26',
         'd-txt-1': '#CCD6DA',
         'd-txt-2': '#B4B4B4',
 
         // theme
-        'theme-fg-1': 'var(--th-fg-1)',
-        'theme-fg-2': 'var(--th-fg-2)',
-        'theme-txt-1': 'var(--th-txt-1)',
-        'theme-txt-2': 'var(--th-txt-2)',
+        'th-fg-1': 'var(--th-fg-1)',
+        'th-fg-2': 'var(--th-fg-2)',
+        'th-txt-1': 'var(--th-txt-1)',
+        'th-txt-2': 'var(--th-txt-2)',
+
+        // status colors
+        'lost': '#AE6378',
+        'search': '#79616F',
+        'adopt': '#D87F81',
       },
 
       backgroundImage: {
