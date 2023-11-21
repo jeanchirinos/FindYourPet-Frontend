@@ -12,7 +12,28 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#f27140',
+        primary: '#FD8F52',
+        // light
+        'l-fg-1': '#FFEDD9',
+        'l-fg-2': '#FFFBF7',
+        'l-txt-1': '#2F3C42',
+        'l-txt-2': '#4B4B4B',
+
+        // dark
+        'd-fg-1': '#2D2A26',
+        'd-fg-2': '#181613',
+        'd-txt-1': '#CCD6DA',
+        'd-txt-2': '#B4B4B4',
+
+        // theme
+        'theme-fg-1': 'var(--th-fg-1)',
+        'theme-fg-2': 'var(--th-fg-2)',
+        'theme-txt-1': 'var(--th-txt-1)',
+        'theme-txt-2': 'var(--th-txt-2)',
+      },
+
+      backgroundImage: {
+        'main-gradient': 'linear-gradient(180deg, #EF7828 0%, #FDA26B 50%, #FDBB64 100%)',
       },
     },
   },
