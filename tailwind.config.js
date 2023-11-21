@@ -30,11 +30,12 @@ module.exports = {
         'th-fg-2': 'var(--th-fg-2)',
         'th-txt-1': 'var(--th-txt-1)',
         'th-txt-2': 'var(--th-txt-2)',
+        'th-a': 'rgb(var(--th-a) / <alpha-value>)',
 
         // status colors
-        'lost': '#AE6378',
-        'search': '#79616F',
-        'adopt': '#D87F81',
+        lost: '#AE6378',
+        search: '#79616F',
+        adopt: '#D87F81',
       },
 
       backgroundImage: {

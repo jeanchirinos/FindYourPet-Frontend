@@ -2,16 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-html 
-{
+html {
+  --th-a: 255 251 247;
   --th-fg-1: theme(colors.l-fg-1);
   --th-fg-2: theme(colors.l-fg-2);
   --th-txt-1: theme(colors.l-txt-1);
   --th-txt-2: theme(colors.l-txt-2);
 }
 
-html.dark 
-{
+html.dark {
+  --th-a: 24 22 19;
   --th-fg-1: theme(colors.d-fg-1);
   --th-fg-2: theme(colors.d-fg-2);
   --th-txt-1: theme(colors.d-txt-1);
