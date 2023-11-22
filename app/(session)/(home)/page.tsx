@@ -102,7 +102,7 @@ function PetGridSkeleton() {
     <>
       <section className='templateColumns-[300px] grid gap-4'>
         {Array.from({ length: 10 }).map((_, i) => (
-          <div key={i} className='aspect-square animate-pulse rounded-xl bg-neutral-200' />
+          <div key={i} className='aspect-square animate-pulse rounded-xl bg-th-fg-2' />
         ))}
       </section>
     </>

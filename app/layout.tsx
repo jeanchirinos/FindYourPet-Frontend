@@ -2,15 +2,15 @@ import '@/styles/globals.css'
 import { Josefin_Sans } from 'next/font/google'
 import { Providers } from './providers'
 import { Metadata, Viewport } from 'next'
-import NextTopLoader from 'nextjs-toploader'
+// import NextTopLoader from 'nextjs-toploader'
 import { getClientTheme } from '@/lib/getClientTheme'
 import { twJoin } from 'tailwind-merge'
 
 const livvic = Josefin_Sans({ weight: ['400'], subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Binarial App',
-  description: 'La primera plataforma de inversiones inmobiliarias del Perú con alta rentabilidad',
+  title: 'Encuentra tu mascota',
+  description: 'Encuentra y adopta una mascota',
   other: {
     'msapplication-TileColor': '#FFFFFF',
   },
@@ -25,12 +25,16 @@ export const viewport: Viewport = {
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
-    <html lang='es' className={twJoin(livvic.className, 'bg-th-fg-1 text-th-txt-1')}>
+    <html
+      lang='es'
+      className={twJoin(livvic.className, 'bg-th-fg-1 text-th-txt-1')}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: getClientTheme }} />
       </head>
       <body>
-        <NextTopLoader color='#FF813F' height={1.5} showSpinner={false} />
+        {/* <NextTopLoader color='#FF813F' height={1.5} showSpinner={false} /> */}
         <Providers>{props.children}</Providers>
       </body>
     </html>

@@ -29,7 +29,7 @@ async function ConnectedAccounts() {
 
   return (
     <>
-      <h2 className='mb-4 mt-6 text-2xl font-black'>Cuenta conectadas</h2>
+      <h2 className='mb-4 mt-6 text-2xl font-black'>Cuentas conectadas</h2>
       <GoogleForm {...googleData} />
     </>
   )

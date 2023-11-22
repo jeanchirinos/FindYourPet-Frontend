@@ -39,7 +39,7 @@ export function Modal(props: Props) {
             leaveFrom='opacity-100 scale-100'
             leaveTo='opacity-0 scale-95'
           >
-            <Dialog.Panel className='max-h-full overflow-y-auto rounded-2xl bg-white p-6 shadow-xl'>
+            <Dialog.Panel className='max-h-full overflow-y-auto rounded-2xl bg-th-fg-2 p-6 shadow-xl'>
               <Child onExitComplete={onExitComplete}>{children}</Child>
             </Dialog.Panel>
           </Transition.Child>
@@ -65,11 +65,6 @@ function Child(props: React.PropsWithChildren<{ onExitComplete?(): void }>) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  // useEffect(() => {
-  //   // Code to run only on the first render
-  //   firstRender.current = false
-  // }, []) // Empty dependency array for the first render only
 
   return props.children
 }

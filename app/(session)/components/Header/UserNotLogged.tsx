@@ -24,8 +24,8 @@ export function UserNotLogged() {
   return (
     <Popover>
       <PopoverTrigger className='px-5 py-1'>Ingresa</PopoverTrigger>
-      <PopoverContent className='right-0 flex w-80 flex-col gap-y-2 border border-neutral-200 bg-white px-5 py-3'>
-        <div className='max-w-sm'>
+      <PopoverContent className='right-0 flex w-80 flex-col gap-y-2 border border-th-fg-1 bg-th-fg-1 px-5 py-3'>
+        <div className='max-w-sm space-y-2'>
           <Google />
           <Tabs fullWidth selectedKey={formState} onSelectionChange={setFormState as any}>
             <Tab key={EFormState.Login} title='Login'>
@@ -48,7 +48,7 @@ function Google() {
   return (
     <Button
       onPress={openGoogleWindow}
-      className='flex w-full items-center justify-center gap-x-1 rounded-md bg-white px-2 py-1 shadow-sm shadow-zinc-300'
+      className='flex w-full items-center justify-center gap-x-1 rounded-md bg-foreground-100 px-2 py-1 shadow-sm'
     >
       <FcGoogle />
       <span>Continuar con Google</span>

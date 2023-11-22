@@ -117,7 +117,6 @@ function ParamForm(props: {
   const { initialValue = '', paramName, label, children } = props
 
   // HOOKS
-
   const useAutoInputHook = useAutoInput({ initialValue })
 
   const {
@@ -132,10 +131,6 @@ function ParamForm(props: {
     handleKeyDown,
     isDisabled,
   } = useAutoInputHook
-
-  // STATES
-  // const [currentValue, setCurrentValue] = useState(initialValue)
-  // const [inputIsEditable, setInputIsEditable] = useState(false)
 
   // FUNCTIONS
   async function handleAction(formData: FormData) {
@@ -152,16 +147,6 @@ function ParamForm(props: {
       },
     })
   }
-
-  // function handleKeyDown(e: React.KeyboardEvent) {
-  //   if (e.key === 'Escape') {
-  //     setInputIsEditable(false)
-  //     setCurrentValue(initialValue)
-  //   }
-  // }
-
-  // VALUES
-  // const isDisabled = initialValue === currentValue
 
   // RENDER
   return (
@@ -263,7 +248,6 @@ export function useAutoInput(props: TAutoInputProps) {
 
   function handleBlur() {
     setTimeout(() => {
-      console.log('aa')
       if (document.activeElement === submitButtonRef.current) return
       if (submittingRef.current) return
 

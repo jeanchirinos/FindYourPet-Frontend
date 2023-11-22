@@ -13,7 +13,7 @@ export function PetImage() {
   const [imagePreview, setImagePreview] = useState<null | string>(null)
 
   function handleInputImage(e: React.ChangeEvent<HTMLInputElement>) {
-    if (!e.target.files) return
+    if (!e.target.files?.length) return setImagePreview(null)
 
     const file = e.target.files[0]
     const imagePreview = URL.createObjectURL(file)
@@ -24,44 +24,45 @@ export function PetImage() {
     setImagePreview(imagePreview)
   }
   // TODO: Edit photo with square cropper and in modal
+  // TODO: Do not reset file when rejecting file change
   return (
-    <>
-      {imagePreview && (
-        <div className='mx-auto flex w-[400px] max-w-full flex-col gap-y-3'>
-          <img src={imagePreview} alt='Mascota' className='max-h-[250px] self-center rounded-md' />
-          <label className='relative flex cursor-pointer justify-center overflow-hidden'>
-            <input
-              type='file'
-              name='image'
-              className='absolute z-10 opacity-0'
-              accept='image/*'
-              onChange={handleInputImage}
-              required
-            />
-            <Button className='pointer-events-none w-full'>Editar</Button>
-          </label>
+    <label
+      className={twJoin(
+        'relative mx-auto flex aspect-square w-full max-w-[400px] flex-col items-center justify-center rounded-md border',
+        imagePreview
+          ? 'border-transparent'
+          : 'border-dashed border-foreground-300 bg-foreground-100',
+      )}
+    >
+      {imagePreview ? (
+        <>
+          <img
+            src={imagePreview}
+            alt='Mascota'
+            className='aspect-square w-full rounded-md object-cover'
+          />
+
+          <Button className='pointer-events-none mt-2.5 w-full'>Editar</Button>
+        </>
+      ) : (
+        <div className='flex flex-col items-center gap-y-2.5'>
+          <CiImageOn size={28} className='text-neutral-500' />
+          <p className='max-w-[25ch] text-center text-xs leading-tight text-neutral-500 text-balance'>
+            Selecciona una imagen o arrástrala aquí
+          </p>
         </div>
       )}
 
-      {!imagePreview && (
-        <label className='mx-auto flex h-[300px] w-[400px] max-w-full items-center justify-center rounded-md border border-dashed border-neutral-300 bg-neutral-100/30'>
-          <div className='flex flex-col items-center gap-y-2.5'>
-            <CiImageOn size={28} className='text-neutral-500' />
-            <p className='max-w-[25ch] text-center text-xs leading-tight text-neutral-500 text-balance'>
-              Selecciona una imagen o arrástrala aquí
-            </p>
-          </div>
-          <input
-            type='file'
-            name='image'
-            className='absolute opacity-0'
-            accept='image/*'
-            onChange={handleInputImage}
-            required
-          />
-        </label>
-      )}
-    </>
+      <input
+        id='image'
+        type='file'
+        name='image'
+        className='absolute inset-0 opacity-0'
+        accept='image/*'
+        onChange={handleInputImage}
+        required
+      />
+    </label>
   )
 }
 

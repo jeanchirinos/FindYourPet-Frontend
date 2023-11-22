@@ -20,7 +20,7 @@ export function Form(props: Props) {
 
   // RENDER
   return (
-    <form action={formAction} className='flex gap-4 max-md:flex-col'>
+    <form action={formAction} className='flex items-center gap-4 max-md:flex-col md:items-start'>
       <PetImage />
       <section className='flex flex-col gap-y-3'>
         {StatusComponent}

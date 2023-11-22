@@ -19,18 +19,18 @@ export function GoogleForm(props: Props) {
   return (
     <form
       action={formAction}
-      className='flex items-center justify-between rounded-md border border-neutral-200 px-2.5 py-2'
+      className='flex items-center justify-between rounded-md border border-th-fg-2 px-2.5 py-2'
     >
       <div className='flex items-center gap-x-2'>
         <FcGoogle size={24} />
         <div className='flex flex-col text-sm'>
           <p>Google</p>
-          {isConnected && <p className='text-sm text-neutral-500'>{username}</p>}
+          {isConnected && <p className='text-sm text-neutral-400'>{username}</p>}
         </div>
       </div>
 
       {isConnected ? (
-        <SubmitButton size='sm' className='rounded-md bg-zinc-300 text-sm'>
+        <SubmitButton size='sm' className='rounded-md bg-th-fg-2 text-sm text-th-txt-1'>
           Desconectar
         </SubmitButton>
       ) : (

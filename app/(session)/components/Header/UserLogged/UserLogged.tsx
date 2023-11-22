@@ -10,7 +10,7 @@ export function UserLogged(props: { session: SessionLogged }) {
   // RENDER
   return (
     <Popover>
-      <PopoverTrigger>
+      <PopoverTrigger className='flex items-center'>
         <Image
           src={session.image}
           alt='Perfil'
@@ -20,8 +20,8 @@ export function UserLogged(props: { session: SessionLogged }) {
           loading='eager'
         />
       </PopoverTrigger>
-      <PopoverContent className='right-0 flex flex-col border border-neutral-200 bg-white'>
-        <div className='flex flex-col border-b border-neutral-100 px-4 py-2'>
+      <PopoverContent className='right-0 flex flex-col border border-th-fg-2 bg-th-fg-1 '>
+        <div className='flex flex-col border-b border-th-fg-2 px-4 py-2'>
           <span className='text-sm font-semibold'>{session.username}</span>
           <span className='text-xs'>{session.email}</span>
         </div>

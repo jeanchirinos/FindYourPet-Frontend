@@ -16,12 +16,9 @@ export function MobileForm(props: { initialMobile: string }) {
   const { initialMobile } = props
 
   // STATES
-  // const [currentMobile, setCurrentMobile] = useState(initialMobile)
-  // const [phoneIsEditable, setPhoneIsEditable] = useState(false)
   const [secondsToResend, setSecondsToResend] = useState(0)
 
   // HOOKS
-
   const useAutoInputHook = useAutoInput({ initialValue: initialMobile })
 
   const {
@@ -34,8 +31,6 @@ export function MobileForm(props: { initialMobile: string }) {
     submittingRef,
     handleBlur,
     handleKeyDown,
-    // isDisabled,
-    handleButtonBlur,
   } = useAutoInputHook
 
   const updateMobileModal = useModal()
@@ -54,8 +49,6 @@ export function MobileForm(props: { initialMobile: string }) {
   }
 
   // VALUES
-  // const isDisabled = initialMobile === currentMobile || !/^9[0-9]{8}$/.test(currentMobile)
-
   const isDisabled = initialMobile === currentValue || !/^9[0-9]{8}$/.test(currentValue)
 
   // RENDER
@@ -71,7 +64,6 @@ export function MobileForm(props: { initialMobile: string }) {
           name='mobile'
           label='Móvil'
           isRequired={false}
-          // value={currentMobile}
           value={currentValue}
           minLength={9}
           maxLength={9}
@@ -79,18 +71,13 @@ export function MobileForm(props: { initialMobile: string }) {
           onChange={e => {
             const value = e.target.value
             if (isNaN(Number(value))) return
-
-            // setCurrentMobile(e.target.value)
             setCurrentValue(e.target.value)
           }}
-          // readOnly={!phoneIsEditable}
-          // readOnly={!inputIsEditable}
           onFocus={() => setInputIsEditable(true)}
           onBlur={handleBlur}
           ref={inputRef}
         />
 
-        {/* {phoneIsEditable ? ( */}
         {inputIsEditable && (
           <div className='flex gap-x-1.5'>
             <Button
@@ -100,20 +87,9 @@ export function MobileForm(props: { initialMobile: string }) {
               className='bg-primary text-white disabled:opacity-60'
               type='submit'
               ref={submitButtonRef}
-              // onBlur={handleButtonBlur}
             >
               Guardar
             </Button>
-            {/* <Button
-              size='sm'
-              onClick={() => {
-                setPhoneIsEditable(false)
-                // setCurrentMobile(props.initialMobile)
-                setCurrentValue(props.initialMobile)
-              }}
-            >
-              Cancelar
-            </Button> */}
           </div>
         )}
       </form>
@@ -127,15 +103,11 @@ export function MobileForm(props: { initialMobile: string }) {
             setCurrentValue(initialMobile)
             submittingRef.current = false
           }, 1)
-
-          // console.log(inputRef.current?.blur())
-          // inputRef.current?.focus()
         }}
       >
         {currentStep === 1 && (
           <Step1
             useStepsHook={useStepsHook}
-            // currentMobile={currentMobile}
             currentMobile={currentValue}
             modal={updateMobileModal}
             setSecondsToResend={setSecondsToResend}
@@ -146,9 +118,7 @@ export function MobileForm(props: { initialMobile: string }) {
           <Step2
             modal={updateMobileModal}
             secondsToResend={secondsToResend}
-            // setIsEditable={setPhoneIsEditable}
             setIsEditable={setInputIsEditable}
-            // currentMobile={currentMobile}
             currentMobile={currentValue}
           />
         )}

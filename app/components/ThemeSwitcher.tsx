@@ -49,7 +49,7 @@ export function ThemeSwitcher() {
 
   // RENDER
   return (
-    <fieldset className='flex text-xl text-white'>
+    <fieldset className='flex text-xl text-foreground-400'>
       <label>
         <input
           type='radio'
@@ -59,7 +59,7 @@ export function ThemeSwitcher() {
           className='peer'
           hidden
         />
-        <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600'>
+        <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
           {icons[Theme.LIGHT]}
         </div>
       </label>
@@ -73,7 +73,7 @@ export function ThemeSwitcher() {
           className='peer'
           hidden
         />
-        <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600'>
+        <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
           {icons[Theme.SYSTEM]}
         </div>
       </label>
@@ -87,7 +87,7 @@ export function ThemeSwitcher() {
           className='peer'
           hidden
         />
-        <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600'>
+        <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
           {icons[Theme.DARK]}
         </div>
       </label>
