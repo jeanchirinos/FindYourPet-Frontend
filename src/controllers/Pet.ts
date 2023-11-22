@@ -65,7 +65,7 @@ export async function createPet(prevState: any, data: FormData) {
   const schema = z.object({
     breed_id: z.string(),
     image: z
-      .instanceof(File)
+      .any()
       .refine(
         file => file.size <= MAX_FILE_SIZE && file.size > 0,
         `El peso de la imagen debe ser mayor a 0MB y menor a 1MB.`,
