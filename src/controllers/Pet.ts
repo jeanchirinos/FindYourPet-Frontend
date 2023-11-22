@@ -80,6 +80,7 @@ export async function createPet(prevState: any, data: FormData) {
     district: z.string(),
     location: z.string(),
     status: z.string(),
+    plan: z.string(),
   })
 
   return sendData({
@@ -87,6 +88,5 @@ export async function createPet(prevState: any, data: FormData) {
     schema,
     body: data,
     revalidate: true,
-    auth: false,
   })
 }

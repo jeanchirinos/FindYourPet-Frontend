@@ -34,6 +34,7 @@ export function Form(props: Props) {
         {CategoryComponent}
         {PlaceComponent}
 
+        <input type='text' defaultValue='1' name='plan' hidden />
         <SubmitButton>Publicar</SubmitButton>
       </section>
     </form>
