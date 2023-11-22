@@ -28,7 +28,7 @@ export function Select(props: Props) {
         {...otherProps}
         onChange={handleChange}
         value={selected?.toString()}
-        className='cursor-pointer bg-transparent pt-4 text-sm focus:outline-none'
+        className='cursor-pointer bg-default-100 pt-4 text-sm focus:outline-none'
       >
         {array?.map(a => (
           <option key={a[objectId]} value={a[objectId].toString()}>
