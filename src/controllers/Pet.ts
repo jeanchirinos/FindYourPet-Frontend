@@ -82,7 +82,7 @@ export async function createPet(prevState: any, data: FormData) {
     status: z.string(),
   })
 
-  return await sendData({
+  return sendData({
     url: 'pet-store',
     schema,
     body: data,
