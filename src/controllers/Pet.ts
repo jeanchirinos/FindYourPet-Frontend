@@ -15,7 +15,7 @@ export type TGetPetParams = {
 
 export async function getPets(params: TGetPetParams) {
   const { page = '1', order = 'desc', status = '0', breed } = params
-  const limit = '2'
+  const limit = '8'
 
   const url = new URL(getApiUrl('pet'))
 
