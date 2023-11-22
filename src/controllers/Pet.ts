@@ -1,3 +1,5 @@
+'use server'
+
 import { BreedsData, Category, PetPaginate } from '@/models/Pet'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
 import { getApiUrl } from '@/utilities/request'
@@ -80,7 +82,7 @@ export async function createPet(prevState: any, data: FormData) {
     status: z.string(),
   })
 
-  return sendData({
+  return await sendData({
     url: 'pet-store',
     schema,
     body: data,
