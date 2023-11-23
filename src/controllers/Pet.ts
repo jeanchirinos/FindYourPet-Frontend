@@ -1,6 +1,6 @@
 'use server'
 
-import { BreedsData, Category, PetPaginate } from '@/models/Pet'
+import { BreedsData, Category, PetPaginate, StatusList } from '@/models/Pet'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
 import { getApiUrl } from '@/utilities/request'
 import { notFound } from 'next/navigation'
@@ -8,23 +8,25 @@ import { z } from 'zod'
 
 export type TGetPetParams = {
   page?: string
-  breed?: string
-  order?: string
   status?: string
+  category_id?: string
+  breed_id?: string
+  order?: string
 }
 
 export async function getPets(params: TGetPetParams) {
-  const { page = '1', order = 'desc', status = '0', breed } = params
-  const limit = '8'
+  const { page = '1', order = 'desc', status, category_id, breed_id } = params
+  const limit = '10'
 
   const url = new URL(getApiUrl('pet'))
 
   url.pathname += `/${limit}`
 
   url.searchParams.set('page', page)
+  category_id && url.searchParams.set('category_id', category_id)
+  status && url.searchParams.set('status', status)
+  breed_id && url.searchParams.set('breed_id', breed_id)
   url.searchParams.set('order', order)
-  url.searchParams.set('status', status)
-  breed && url.searchParams.set('breed', breed)
 
   const data = await actionRequestGet<PetPaginate>(url)
 
@@ -44,9 +46,7 @@ export async function getBreeds() {
 }
 
 export async function getStatusList() {
-  type Response = { id: number; value: string }[]
-
-  const data = await actionRequestGet<Response>('pet-status', { cache: 'force-cache' })
+  const data = await actionRequestGet<StatusList>('pet-status', { cache: 'force-cache' })
 
   return data
 }

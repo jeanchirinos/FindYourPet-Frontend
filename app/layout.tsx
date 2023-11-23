@@ -2,7 +2,6 @@ import '@/styles/globals.css'
 import { Josefin_Sans } from 'next/font/google'
 import { Providers } from './providers'
 import { Metadata, Viewport } from 'next'
-// import NextTopLoader from 'nextjs-toploader'
 import { getClientTheme } from '@/lib/getClientTheme'
 import { twJoin } from 'tailwind-merge'
 
@@ -34,7 +33,6 @@ export default function RootLayout(props: React.PropsWithChildren) {
         <script dangerouslySetInnerHTML={{ __html: getClientTheme }} />
       </head>
       <body>
-        {/* <NextTopLoader color='#FF813F' height={1.5} showSpinner={false} /> */}
         <Providers>{props.children}</Providers>
       </body>
     </html>

@@ -1,10 +1,11 @@
 import { twJoin, twMerge } from 'tailwind-merge'
 import Image from 'next/image'
 import { Suspense } from 'react'
-import { TGetPetParams, getPets } from '@/controllers/Pet'
+import { TGetPetParams, getPets, getStatusList } from '@/controllers/Pet'
 import Link from 'next/link'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { PetPaginate } from '@/models/Pet'
+import { StatusInfo } from './client_components'
 
 type SearchProps = Partial<TGetPetParams>
 
@@ -12,10 +13,13 @@ type SearchProps = Partial<TGetPetParams>
 export default function Page(props: { searchParams: SearchProps }) {
   return (
     <main className='animate-fade px-2 pb-2 pt-12 animate-duration-200'>
-      <div className='mx-auto w-[1600px] max-w-full'>
-        <Suspense fallback={<PetGridSkeleton />}>
-          <PetGrid searchParams={props.searchParams} />
-        </Suspense>
+      <div className='mx-auto flex w-[1600px] max-w-full gap-x-6'>
+        <FiltersComponentServer />
+        <div className='flex w-full flex-col'>
+          <Suspense fallback={<PetGridSkeleton />}>
+            <PetGrid searchParams={props.searchParams} />
+          </Suspense>
+        </div>
       </div>
     </main>
   )
@@ -106,5 +110,19 @@ function PetGridSkeleton() {
         ))}
       </section>
     </>
+  )
+}
+
+async function FiltersComponentServer() {
+  const statusList = await getStatusList()
+
+  return (
+    <aside>
+      <section className='space-y-2'>
+        <p>Estado</p>
+
+        <StatusInfo statusList={statusList} />
+      </section>
+    </aside>
   )
 }
