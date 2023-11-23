@@ -5,10 +5,12 @@ import { Toaster } from 'react-hot-toast'
 
 export function Providers(props: React.PropsWithChildren) {
   return (
-    <NextUIProvider>
+    // <NextUIProvider>
+    <>
       {props.children}
       <AppProgressBar height='1.5px' color='#FF813F' options={{ showSpinner: false }} />
       <Toaster />
-    </NextUIProvider>
+    </>
+    // </NextUIProvider>
   )
 }
