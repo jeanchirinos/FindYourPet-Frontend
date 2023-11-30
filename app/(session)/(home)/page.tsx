@@ -9,6 +9,8 @@ import { StatusInfo } from './client_components'
 
 type SearchProps = Partial<TGetPetParams>
 
+// export const dynamic = 'force-dynamic'
+
 // MAIN COMPONENT
 export default function Page(props: { searchParams: SearchProps }) {
   return (

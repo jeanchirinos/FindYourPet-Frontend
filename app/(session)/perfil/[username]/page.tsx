@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { HiOutlineDeviceMobile, HiOutlineMail } from 'react-icons/hi'
 import { getUserProfile } from '@/controllers/User'
 
-export default function Page(props: { params: { id: string } }) {
-  const { id: username } = props.params
+export default function Page(props: { params: { username: string } }) {
+  const { username } = props.params
 
   return (
     <Suspense>

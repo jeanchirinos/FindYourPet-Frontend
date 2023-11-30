@@ -101,7 +101,7 @@ export async function verifyToken(token: string | undefined) {
   if (!token) notFound()
 
   try {
-    await actionRequestGet(`verify-token/${token}`, { cache: 'no-store' })
+    await actionRequestGet(`verify-token/${token}`)
   } catch (err) {
     notFound()
   }

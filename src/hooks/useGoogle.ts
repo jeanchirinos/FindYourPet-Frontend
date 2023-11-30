@@ -32,10 +32,28 @@ export function useGoogle(params?: { loggedIn: boolean }) {
 
   // FUNCTIONS
   function openGoogleWindow() {
-    // TODO: URL BASE ON ENVIRONMENT : DEVELOPMENT | PRODUCTION OR BASE ON URL PASSED
-    const url = new URL(getApiUrl('auth/google/redirect'))
+    const url = getApiUrl('auth/google/redirect')
+    url.searchParams.set('url', window.location.href + 'social_auth')
 
-    openedWindow.current = window.open(url, '_blank', 'width=400,height=700')
+    function popupWindow(url: string | URL, w: number, h: number) {
+      if (!window.top) return
+
+      const { screenX, screenY, outerWidth, outerHeight } = window.top
+
+      const y = outerHeight / 2 + screenY - h / 2
+      const x = outerWidth / 2 + screenX - w / 2
+
+      openedWindow.current = window.open(
+        url,
+        '_blank',
+        `width=${w}, height=${h}, top=${y}, left=${x}`,
+      )
+    }
+
+    const width = 450
+    const height = 550
+
+    popupWindow(url, width, height)
   }
 
   // VALUES

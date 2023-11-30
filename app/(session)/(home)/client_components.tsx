@@ -15,7 +15,9 @@ export function StatusInfo(props: { statusList: StatusList }) {
   const searchParams = useSearchParams()
 
   function handleChange(value: string) {
-    router.push(`?status=${value}`)
+    const newSearchParams = new URLSearchParams({ status: value, page: '1' })
+
+    router.replace('?' + newSearchParams.toString())
   }
 
   const defaultValue = searchParams.get('status')

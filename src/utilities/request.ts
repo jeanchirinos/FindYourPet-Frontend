@@ -55,5 +55,5 @@ export function getApiUrl(url: string) {
     throw new Error('No se ha definido la variable de entorno NEXT_PUBLIC_BACKEND_API')
   }
 
-  return baseUrl + url
+  return new URL(url, baseUrl)
 }

@@ -15,20 +15,22 @@ export type TGetPetParams = {
 }
 
 export async function getPets(params: TGetPetParams) {
-  const { page = '1', order = 'desc', status, category_id, breed_id } = params
+  const { page, order, status, category_id, breed_id } = params
   const limit = '10'
 
-  const url = new URL(getApiUrl('pet'))
+  const url = getApiUrl('pet')
 
   url.pathname += `/${limit}`
 
-  url.searchParams.set('page', page)
+  page && url.searchParams.set('page', page)
   category_id && url.searchParams.set('category_id', category_id)
   status && url.searchParams.set('status', status)
   breed_id && url.searchParams.set('breed_id', breed_id)
-  url.searchParams.set('order', order)
+  order && url.searchParams.set('order', order)
 
-  const data = await actionRequestGet<PetPaginate>(url)
+  const data = await actionRequestGet<PetPaginate>(url, {
+    cache: 'no-store',
+  })
 
   const { current_page, data: pets } = data
 
