@@ -1,9 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { HiMiniComputerDesktop, HiOutlineMoon, HiOutlineSun } from 'react-icons/hi2'
-import { Popover, PopoverContent, PopoverTrigger } from './Popover'
-// import { Listbox } from '@headlessui/react'
+import { Listbox, Transition } from '@headlessui/react'
 
 enum Theme {
   DARK = 'dark',
@@ -11,115 +10,76 @@ enum Theme {
   SYSTEM = 'system',
 }
 
-// const themes = [
-//   { id: 1, icon: <HiMiniComputerDesktop /> },
-//   { id: 2, name: <HiOutlineMoon /> },
-//   { id: 3, name: <HiOutlineSun /> },
-// ]
+const themes = [
+  { id: 1, icon: <HiMiniComputerDesktop />, value: Theme.SYSTEM },
+  { id: 2, icon: <HiOutlineMoon />, value: Theme.DARK },
+  { id: 3, icon: <HiOutlineSun />, value: Theme.LIGHT },
+]
 
 export function ThemeSwitcher() {
   // STATES
-  const [currentTheme, setCurrentTheme] = useState<Theme | undefined>()
+  const [selectedTheme, setSelectedTheme] = useState(themes[0])
 
   // EFFECTS
   useEffect(() => {
     const getCurrentTheme = () => {
       const localTheme = localStorage.getItem('theme')
 
-      if (!localTheme || !Object.values(Theme).includes(localTheme as Theme)) return Theme.SYSTEM
+      const defaulTheme = themes[0]
 
-      return localTheme as Theme
+      if (!localTheme) return defaulTheme
+
+      const theme = themes.find(theme => theme.value === localTheme)
+
+      if (theme) {
+        return theme
+      } else {
+        return defaulTheme
+      }
     }
 
-    setCurrentTheme(getCurrentTheme())
+    setSelectedTheme(getCurrentTheme())
   }, [])
 
   // FUNCTIONS
-  function handleChangeTheme(e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) {
-    setCurrentTheme(e.target.value as Theme)
+  function handleChangeTheme(theme: (typeof themes)[0]) {
+    setSelectedTheme(theme)
+
     const html = document.documentElement.classList
 
-    localStorage.setItem('theme', e.target.value)
+    localStorage.setItem('theme', theme.value)
     html.remove(Theme.DARK, Theme.LIGHT, Theme.SYSTEM)
-    html.add(e.target.value)
+    html.add(theme.value)
 
-    if (e.target.value === Theme.SYSTEM) {
+    if (theme.value === Theme.SYSTEM) {
       window.matchMedia('(prefers-color-scheme: dark)').matches && html.add(Theme.DARK)
     }
   }
 
-  // VALUES
-  const icons = {
-    [Theme.SYSTEM]: <HiMiniComputerDesktop />,
-    [Theme.DARK]: <HiOutlineMoon />,
-    [Theme.LIGHT]: <HiOutlineSun />,
-  }
-
-  // const [selectedTheme, setSelectedTheme] = useState(themes[0])
-
   // RENDER
   return (
-    <>
-      <fieldset className='flex text-xl text-foreground-400 max-md:hidden'>
-        <Popover>
-          <PopoverTrigger>
-            <label>
-              <input
-                type='radio'
-                checked={currentTheme === Theme.SYSTEM}
-                value={Theme.SYSTEM}
-                onChange={handleChangeTheme}
-                className='peer'
-                hidden
-              />
-              <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
-                {icons[Theme.SYSTEM]}
-              </div>
-            </label>
-          </PopoverTrigger>
-          <PopoverContent className='-right-2 -mt-3 rounded-2xl bg-th-fg-1 p-1.5'>
-            <div className='flex flex-col gap-y-2'>
-              <label>
-                <input
-                  type='radio'
-                  checked={currentTheme === Theme.LIGHT}
-                  value={Theme.LIGHT}
-                  onChange={handleChangeTheme}
-                  className='peer'
-                  hidden
-                />
-                <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
-                  {icons[Theme.LIGHT]}
-                </div>
-              </label>
-              <label>
-                <input
-                  type='radio'
-                  checked={currentTheme === Theme.DARK}
-                  value={Theme.DARK}
-                  onChange={handleChangeTheme}
-                  className='peer'
-                  hidden
-                />
-                <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
-                  {icons[Theme.DARK]}
-                </div>
-              </label>
-            </div>
-          </PopoverContent>
-        </Popover>
-      </fieldset>
-
-      {/* <Listbox value={selectedTheme} onChange={setSelectedTheme} >
-        <Listbox.Button>{selectedTheme.icon}</Listbox.Button>
-        <Listbox.Options>
-          {themes.map(person => (
-            <Listbox.Option key={person.id} value={person}>
-              {person.name}
-            </Listbox.Option>
-          ))}
-        </Listbox.Options>
-      </Listbox> */}
-    </>
+    <Listbox value={selectedTheme} onChange={newTheme => handleChangeTheme(newTheme)}>
+      <div className='relative'>
+        <Listbox.Button className='relative flex items-center px-2'>
+          <span>{selectedTheme.icon}</span>
+        </Listbox.Button>
+        <Transition
+          as={Fragment}
+          leave='transition ease-in duration-100'
+          leaveFrom='opacity-100'
+          leaveTo='opacity-0'
+        >
+          <Listbox.Options className='absolute mt-1 rounded-b-lg bg-th-fg-1'>
+            {themes
+              .filter(theme => theme.id !== selectedTheme.id)
+              .map(theme => (
+                <Listbox.Option key={theme.id} className='px-2 py-2' value={theme}>
+                  <span>{theme.icon}</span>
+                </Listbox.Option>
+              ))}
+          </Listbox.Options>
+        </Transition>
+      </div>
+    </Listbox>
   )
 }
