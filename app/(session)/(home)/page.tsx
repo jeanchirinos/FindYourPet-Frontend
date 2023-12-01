@@ -119,7 +119,7 @@ async function FiltersComponentServer() {
   const statusList = await getStatusList()
 
   return (
-    <aside>
+    <aside className='max-lg:hidden'>
       <section className='space-y-2'>
         <p>Estado</p>
 

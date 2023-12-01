@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { HiMiniComputerDesktop, HiOutlineMoon, HiOutlineSun } from 'react-icons/hi2'
+import { Popover, PopoverContent, PopoverTrigger } from './Popover'
+// import { Listbox } from '@nextui-org/react'
 
 enum Theme {
   DARK = 'dark',
@@ -47,50 +49,71 @@ export function ThemeSwitcher() {
     [Theme.LIGHT]: <HiOutlineSun />,
   }
 
+  // const [selectedTheme, setSelectedPerson] = useState(people[0])
+
   // RENDER
   return (
-    <fieldset className='flex text-xl text-foreground-400'>
-      <label>
-        <input
-          type='radio'
-          checked={currentTheme === Theme.LIGHT}
-          value={Theme.LIGHT}
-          onChange={handleChangeTheme}
-          className='peer'
-          hidden
-        />
-        <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
-          {icons[Theme.LIGHT]}
-        </div>
-      </label>
+    <>
+      <fieldset className='flex text-xl text-foreground-400 max-md:hidden'>
+        <Popover>
+          <PopoverTrigger>
+            <label>
+              <input
+                type='radio'
+                checked={currentTheme === Theme.SYSTEM}
+                value={Theme.SYSTEM}
+                onChange={handleChangeTheme}
+                className='peer'
+                hidden
+              />
+              <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
+                {icons[Theme.SYSTEM]}
+              </div>
+            </label>
+          </PopoverTrigger>
+          <PopoverContent className='-right-2 -mt-3 rounded-2xl bg-th-fg-1 p-1.5'>
+            <div className='flex flex-col gap-y-2'>
+              <label>
+                <input
+                  type='radio'
+                  checked={currentTheme === Theme.LIGHT}
+                  value={Theme.LIGHT}
+                  onChange={handleChangeTheme}
+                  className='peer'
+                  hidden
+                />
+                <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
+                  {icons[Theme.LIGHT]}
+                </div>
+              </label>
+              <label>
+                <input
+                  type='radio'
+                  checked={currentTheme === Theme.DARK}
+                  value={Theme.DARK}
+                  onChange={handleChangeTheme}
+                  className='peer'
+                  hidden
+                />
+                <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
+                  {icons[Theme.DARK]}
+                </div>
+              </label>
+            </div>
+          </PopoverContent>
+        </Popover>
+      </fieldset>
 
-      <label>
-        <input
-          type='radio'
-          checked={currentTheme === Theme.SYSTEM}
-          value={Theme.SYSTEM}
-          onChange={handleChangeTheme}
-          className='peer'
-          hidden
-        />
-        <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
-          {icons[Theme.SYSTEM]}
-        </div>
-      </label>
-
-      <label>
-        <input
-          type='radio'
-          checked={currentTheme === Theme.DARK}
-          value={Theme.DARK}
-          onChange={handleChangeTheme}
-          className='peer'
-          hidden
-        />
-        <div className='cursor-pointer rounded-full p-1.5 peer-checked:bg-neutral-600 peer-checked:text-d-txt-1'>
-          {icons[Theme.DARK]}
-        </div>
-      </label>
-    </fieldset>
+      {/* <Listbox value={selectedPerson} onChange={setSelectedPerson}>
+        <Listbox.Button>{selectedPerson.name}</Listbox.Button>
+        <Listbox.Options>
+          {people.map(person => (
+            <Listbox.Option key={person.id} value={person} disabled={person.unavailable}>
+              {person.name}
+            </Listbox.Option>
+          ))}
+        </Listbox.Options>
+      </Listbox> */}
+    </>
   )
 }
