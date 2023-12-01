@@ -3,13 +3,19 @@
 import { useEffect, useState } from 'react'
 import { HiMiniComputerDesktop, HiOutlineMoon, HiOutlineSun } from 'react-icons/hi2'
 import { Popover, PopoverContent, PopoverTrigger } from './Popover'
-// import { Listbox } from '@nextui-org/react'
+// import { Listbox } from '@headlessui/react'
 
 enum Theme {
   DARK = 'dark',
   LIGHT = 'light',
   SYSTEM = 'system',
 }
+
+// const themes = [
+//   { id: 1, icon: <HiMiniComputerDesktop /> },
+//   { id: 2, name: <HiOutlineMoon /> },
+//   { id: 3, name: <HiOutlineSun /> },
+// ]
 
 export function ThemeSwitcher() {
   // STATES
@@ -49,7 +55,7 @@ export function ThemeSwitcher() {
     [Theme.LIGHT]: <HiOutlineSun />,
   }
 
-  // const [selectedTheme, setSelectedPerson] = useState(people[0])
+  // const [selectedTheme, setSelectedTheme] = useState(themes[0])
 
   // RENDER
   return (
@@ -104,11 +110,11 @@ export function ThemeSwitcher() {
         </Popover>
       </fieldset>
 
-      {/* <Listbox value={selectedPerson} onChange={setSelectedPerson}>
-        <Listbox.Button>{selectedPerson.name}</Listbox.Button>
+      {/* <Listbox value={selectedTheme} onChange={setSelectedTheme} >
+        <Listbox.Button>{selectedTheme.icon}</Listbox.Button>
         <Listbox.Options>
-          {people.map(person => (
-            <Listbox.Option key={person.id} value={person} disabled={person.unavailable}>
+          {themes.map(person => (
+            <Listbox.Option key={person.id} value={person}>
               {person.name}
             </Listbox.Option>
           ))}

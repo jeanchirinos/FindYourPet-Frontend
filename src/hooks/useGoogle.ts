@@ -33,7 +33,7 @@ export function useGoogle(params?: { loggedIn: boolean }) {
   // FUNCTIONS
   function openGoogleWindow() {
     const url = getApiUrl('auth/google/redirect')
-    // url.searchParams.set('url', window.location.href + 'social_auth')
+    url.searchParams.set('url', window.location.href + 'social_auth')
 
     function popupWindow(url: string | URL, w: number, h: number) {
       if (!window.top) return
