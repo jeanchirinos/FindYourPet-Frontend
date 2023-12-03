@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 import { Select } from '@/components/Select'
 import { RadioGroup } from '@headlessui/react'
@@ -9,13 +8,11 @@ import { BreedsData, Category, StatusList } from '@/models/Pet'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 export function StatusInfo(props: { statusList: StatusList }) {
-  const { statusList } = props
-
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  function handleChange(value: string) {
-    const newSearchParams = new URLSearchParams({ status: value, page: '1' })
+  function handleChange(status: string) {
+    const newSearchParams = new URLSearchParams({ status, page: '1' })
 
     router.replace('?' + newSearchParams.toString())
   }
@@ -25,7 +22,7 @@ export function StatusInfo(props: { statusList: StatusList }) {
   return (
     <RadioGroup name='status' defaultValue={defaultValue} onChange={handleChange}>
       <div className='flex flex-col gap-y-2'>
-        {statusList.map(item => (
+        {props.statusList.map(item => (
           <RadioGroup.Option
             key={item.id}
             value={item.id.toString()}
@@ -36,9 +33,7 @@ export function StatusInfo(props: { statusList: StatusList }) {
               )
             }
           >
-            <RadioGroup.Label as='p' className='w-max'>
-              {item.value}
-            </RadioGroup.Label>
+            <RadioGroup.Label className='w-max'>{item.value}</RadioGroup.Label>
           </RadioGroup.Option>
         ))}
       </div>

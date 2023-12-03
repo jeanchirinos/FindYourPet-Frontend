@@ -7,31 +7,33 @@ export type BreedsData = Record<
   }[]
 >
 
+export type Pet = {
+  id: number
+  breed_id: number
+  user_id: number
+  image: string
+  image_width: number
+  image_height: number
+  description: string
+  city: string
+  district: string
+  location: string
+  status: number
+  status_name: string
+  breed: {
+    id: number
+    name: string
+    user: {
+      id: number
+      username: string
+      image: string
+    }
+  }
+}
+
 export type PetPaginate = {
   current_page: number
-  data: {
-    id: number
-    breed_id: number
-    user_id: number
-    image: string
-    image_width: number
-    image_height: number
-    description: string
-    city: string
-    district: string
-    location: string
-    status: number
-    status_name: string
-    breed: {
-      id: number
-      name: string
-      user: {
-        id: number
-        username: string
-        image: string
-      }
-    }
-  }[]
+  data: Pet[]
   first_page_url: string
   from: number
   last_page: number

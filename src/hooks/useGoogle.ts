@@ -34,6 +34,7 @@ export function useGoogle(params?: { loggedIn: boolean }) {
   function openGoogleWindow() {
     const url = getApiUrl('auth/google/redirect')
     url.searchParams.set('url', window.location.href + 'social_auth')
+    url.searchParams.set('environment', process.env.NODE_ENV)
 
     function popupWindow(url: string | URL, w: number, h: number) {
       if (!window.top) return

@@ -12,7 +12,6 @@
     "**/.project": true,
     "**/.settings": true,
     "**/*.crswap": true,
-    "next-env.d.ts": true,
     "postcss.config.js": true,
     "node_modules": true,
     "yarn.lock": true,
@@ -40,10 +39,10 @@
     ".gitignore": true,
     ".next": true,
     ".prettierrc.json": true,
-    ".eslintrc.json": true
+    ".eslintrc.json": true,
+    "next-env.d.ts": true
   },
   "hide-files.files": [
-    "next-env.d.ts",
     "postcss.config.js",
     "node_modules",
     "yarn.lock",
@@ -71,7 +70,8 @@
     ".gitignore",
     ".next",
     ".prettierrc.json",
-    ".eslintrc.json"
+    ".eslintrc.json",
+    "next-env.d.ts"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {

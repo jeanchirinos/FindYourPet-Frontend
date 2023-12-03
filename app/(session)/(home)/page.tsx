@@ -4,21 +4,21 @@ import { Suspense } from 'react'
 import { TGetPetParams, getPets, getStatusList } from '@/controllers/Pet'
 import Link from 'next/link'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
-import { PetPaginate } from '@/models/Pet'
+import { Pet } from '@/models/Pet'
 import { StatusInfo } from './client_components'
+import { BackIcon, ForwardIcon } from '@/icons'
+import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
 
-type SearchProps = Partial<TGetPetParams>
-
-// export const dynamic = 'force-dynamic'
+type Props = { searchParams: TGetPetParams }
 
 // MAIN COMPONENT
-export default function Page(props: { searchParams: SearchProps }) {
+export default function Page(props: Props) {
   return (
     <main className='animate-fade px-2 pb-2 pt-12 animate-duration-200'>
       <div className='mx-auto flex w-[1600px] max-w-full gap-x-6'>
         <FiltersComponentServer />
         <div className='flex w-full flex-col'>
-          <Suspense fallback={<PetGridSkeleton />}>
+          <Suspense fallback={<PetGridSkeleton />} key={props.searchParams.status}>
             <PetGrid searchParams={props.searchParams} />
           </Suspense>
         </div>
@@ -28,7 +28,7 @@ export default function Page(props: { searchParams: SearchProps }) {
 }
 
 // COMPONENTS
-async function PetGrid(props: { searchParams: SearchProps }) {
+async function PetGrid(props: Props) {
   const petsData = await getPets(props.searchParams)
 
   const { data: pets, links } = petsData
@@ -42,10 +42,12 @@ async function PetGrid(props: { searchParams: SearchProps }) {
       </div>
 
       <div className='flex justify-center gap-x-2 py-5'>
-        {links.map(link => {
+        <BackIcon />
+
+        {links.slice(0, -2).map(link => {
           if (link.url === null) return null
 
-          const url = '?' + link.url.split('?')[1]
+          const url = '?' + new URL(link.url).searchParams.get('page')
 
           return (
             <Link
@@ -60,12 +62,26 @@ async function PetGrid(props: { searchParams: SearchProps }) {
             </Link>
           )
         })}
+
+        <Link
+          href={links.at(-2)!.url!}
+          key={links.at(-2)!.url}
+          className={twMerge(
+            'rounded-lg bg-th-fg-2 p-2',
+            links.at(-2)!.active && 'bg-primary text-white',
+          )}
+        >
+          {links.at(-2)?.label}
+        </Link>
+
+        {}
+        <ForwardIcon />
       </div>
     </>
   )
 }
 
-function PetCard(props: { pet: PetPaginate['data'][0] }) {
+function PetCard(props: { pet: Pet }) {
   const { pet } = props
 
   const colors = {
@@ -99,19 +115,6 @@ function PetCard(props: { pet: PetPaginate['data'][0] }) {
         </footer>
       </div>
     </div>
-  )
-}
-
-// SKELETONS
-function PetGridSkeleton() {
-  return (
-    <>
-      <section className='templateColumns-[300px] grid gap-4'>
-        {Array.from({ length: 10 }).map((_, i) => (
-          <div key={i} className='aspect-square animate-pulse rounded-xl bg-th-fg-2' />
-        ))}
-      </section>
-    </>
   )
 }
 
