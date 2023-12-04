@@ -25,11 +25,14 @@ export async function actionRequestGet<Response>(...params: RequestParams) {
     if (!jwt) {
       throw new Error('No hay jwt')
     }
-
     headers.Cookie = cookies().toString()
   }
 
   const myConfig = { ...config, headers: { ...config.headers, ...headers } }
+
+  if (process.env.NODE_ENV === 'development') {
+    config.cache = 'force-cache'
+  }
 
   return requestAll<Response>(url, myConfig)
 }
