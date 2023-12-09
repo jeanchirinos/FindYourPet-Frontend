@@ -17,7 +17,7 @@ export default function Page() {
   }
 
   return (
-    <main className='flex h-screen flex-col items-center justify-center'>
+    <main className='flex-center min-h-screen'>
       <p className='text-balance'>El correo ya se encuentra vinculado</p>
       <p className='text-xs'> Inicie sesión y agregue su correo como método de inicio de sesión </p>
       <Button className='mt-5' onClick={handleBack}>

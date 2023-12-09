@@ -6,20 +6,25 @@ import Link from 'next/link'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { Pet } from '@/models/Pet'
 import { StatusInfo } from './client_components'
-import { BackIcon, ForwardIcon } from '@/icons'
+import { IconBack, IconForward } from '@/icons'
 import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
+import { PageProps } from '@/types'
 
-type Props = { searchParams: TGetPetParams }
+type Props = PageProps<{}, TGetPetParams>
 
 // MAIN COMPONENT
 export default function Page(props: Props) {
+  const { searchParams } = props
+
   return (
     <main className='animate-fade px-2 pb-2 pt-12 animate-duration-200'>
       <div className='mx-auto flex w-[1600px] max-w-full gap-x-6'>
-        <FiltersComponentServer />
+        <Suspense>
+          <FiltersComponentServer />
+        </Suspense>
         <div className='flex w-full flex-col'>
-          <Suspense fallback={<PetGridSkeleton />} key={props.searchParams.status}>
-            <PetGrid searchParams={props.searchParams} />
+          <Suspense fallback={<PetGridSkeleton />} key={searchParams.status}>
+            <PetGrid searchParams={searchParams} />
           </Suspense>
         </div>
       </div>
@@ -28,7 +33,7 @@ export default function Page(props: Props) {
 }
 
 // COMPONENTS
-async function PetGrid(props: Props) {
+async function PetGrid(props: { searchParams: TGetPetParams }) {
   const petsData = await getPets(props.searchParams)
 
   const { data: pets, links } = petsData
@@ -42,7 +47,7 @@ async function PetGrid(props: Props) {
       </div>
 
       <div className='flex justify-center gap-x-2 py-5'>
-        <BackIcon />
+        <IconBack />
 
         {links.slice(0, -2).map(link => {
           if (link.url === null) return null
@@ -74,8 +79,7 @@ async function PetGrid(props: Props) {
           {links.at(-2)?.label}
         </Link>
 
-        {}
-        <ForwardIcon />
+        <IconForward />
       </div>
     </>
   )

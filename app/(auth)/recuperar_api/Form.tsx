@@ -5,7 +5,7 @@ import { useFormAction } from '@/hooks/useFormAction'
 import Link from 'next/link'
 import { resetPassword } from '@/controllers/Auth'
 
-export function Form(props: { token: string }) {
+export function Form(props: { token?: string }) {
   const { formAction, state } = useFormAction(resetPassword, { showSuccessToast: false })
 
   if (state.ok) {

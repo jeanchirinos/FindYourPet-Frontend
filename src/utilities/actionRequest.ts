@@ -31,7 +31,7 @@ export async function actionRequestGet<Response>(...params: RequestParams) {
   const myConfig = { ...config, headers: { ...config.headers, ...headers } }
 
   if (process.env.NODE_ENV === 'development') {
-    config.cache = 'force-cache'
+    // config.cache = 'force-cache'
   }
 
   return requestAll<Response>(url, myConfig)

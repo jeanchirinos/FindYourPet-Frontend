@@ -205,7 +205,7 @@ function FormBody(props: TFormBodyProps) {
         label={label}
         value={currentValue}
         onChange={e => setCurrentValue(e.target.value)}
-        ref={inputRef}
+        // ref={inputRef}
         onFocus={() => setInputIsEditable(true)}
         onBlur={handleBlur}
       />

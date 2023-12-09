@@ -1,26 +1,20 @@
 'use client'
-import { Button as BaseButton, Spinner } from '@nextui-org/react'
+import { Button as NextUiButton, Spinner } from '@nextui-org/react'
 import { twMerge } from 'tailwind-merge'
-import { forwardRef } from 'react'
 
-type Props = React.ComponentProps<typeof BaseButton> & {
-  /**
-   * Temporal implementation since isLoading seems to add isDisabled prop which may cause Popover to close.
-   */
-  safeIsLoading?: boolean
-}
+type Props = React.ComponentProps<typeof NextUiButton> & { innerRef?: React.Ref<HTMLButtonElement> }
 
-export const Button = forwardRef<HTMLButtonElement, Props>(function Button(props, ref) {
-  const { safeIsLoading, className, ...componentProps } = props
+export function Button(props: Props) {
+  const { isLoading, className, innerRef, children, ...componentProps } = props
 
   return (
-    <BaseButton
-      className={twMerge(safeIsLoading && 'pointer-events-none', className)}
+    <NextUiButton
       {...componentProps}
-      ref={ref}
+      className={twMerge(isLoading && 'pointer-events-none', className)}
+      ref={innerRef}
     >
-      {safeIsLoading && <Spinner color='default' size='sm' />}
-      {props.children}
-    </BaseButton>
+      {isLoading && <Spinner color='default' size='sm' />}
+      {children}
+    </NextUiButton>
   )
-})
+}

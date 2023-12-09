@@ -38,9 +38,9 @@
     "app/safari-pinned-tab.svg": true,
     ".gitignore": true,
     ".next": true,
-    ".prettierrc.json": true,
     ".eslintrc.json": true,
-    "next-env.d.ts": true
+    "next-env.d.ts": true,
+    ".prettierrc.json": true
   },
   "hide-files.files": [
     "postcss.config.js",
@@ -69,9 +69,9 @@
     "app/safari-pinned-tab.svg",
     ".gitignore",
     ".next",
-    ".prettierrc.json",
     ".eslintrc.json",
-    "next-env.d.ts"
+    "next-env.d.ts",
+    ".prettierrc.json"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {

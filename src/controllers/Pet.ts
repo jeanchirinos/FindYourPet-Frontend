@@ -6,13 +6,13 @@ import { getApiUrl } from '@/utilities/request'
 import { notFound } from 'next/navigation'
 import { z } from 'zod'
 
-export type TGetPetParams = {
-  page?: string
-  status?: string
-  category_id?: string
-  breed_id?: string
-  order?: string
-}
+export type TGetPetParams = Partial<{
+  page: string
+  status: string
+  category_id: string
+  breed_id: string
+  order: string
+}>
 
 export async function getPets(params: TGetPetParams) {
   const { page, order, status, category_id, breed_id } = params

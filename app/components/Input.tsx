@@ -1,19 +1,22 @@
 'use client'
-import { Input as BaseInput } from '@nextui-org/react'
-import { forwardRef } from 'react'
+import { Input as NextUiInput } from '@nextui-org/react'
 
-export const Input = forwardRef<HTMLInputElement, React.ComponentProps<typeof BaseInput>>(
-  function Input(props, ref) {
-    return (
-      <BaseInput
-        isRequired
-        {...props}
-        classNames={{
-          inputWrapper: 'group-data-[focus-visible=true]:ring-transparent',
-          label: 'after:hidden',
-        }}
-        ref={ref}
-      />
-    )
-  },
-)
+type Props = React.ComponentProps<typeof NextUiInput> & { innerRef?: React.Ref<HTMLInputElement> }
+
+export function Input(props: Props) {
+  const { className, innerRef, children, ...componentProps } = props
+
+  return (
+    <NextUiInput
+      {...componentProps}
+      isRequired
+      classNames={{
+        inputWrapper: 'group-data-[focus-visible=true]:ring-transparent',
+        label: 'after:hidden',
+      }}
+      ref={innerRef}
+    >
+      {children}
+    </NextUiInput>
+  )
+}
