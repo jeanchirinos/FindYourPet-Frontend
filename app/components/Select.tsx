@@ -6,6 +6,7 @@ type Props = React.ComponentProps<'select'> & {
   objectId: string
   selected?: any
   setSelected?: SetState<any>
+  placeholder: string
 }
 
 export function Select(props: Props) {

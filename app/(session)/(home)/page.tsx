@@ -49,10 +49,10 @@ async function PetGrid(props: { searchParams: TGetPetParams }) {
       <div className='flex justify-center gap-x-2 py-5'>
         <IconBack />
 
-        {links.slice(0, -2).map(link => {
+        {links.slice(0, -1).map(link => {
           if (link.url === null) return null
 
-          const url = '?' + new URL(link.url).searchParams.get('page')
+          const url = '?page=' + link.label
 
           return (
             <Link
@@ -67,17 +67,6 @@ async function PetGrid(props: { searchParams: TGetPetParams }) {
             </Link>
           )
         })}
-
-        <Link
-          href={links.at(-2)!.url!}
-          key={links.at(-2)!.url}
-          className={twMerge(
-            'rounded-lg bg-th-fg-2 p-2',
-            links.at(-2)!.active && 'bg-primary text-white',
-          )}
-        >
-          {links.at(-2)?.label}
-        </Link>
 
         <IconForward />
       </div>
