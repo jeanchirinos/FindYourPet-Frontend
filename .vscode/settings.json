@@ -20,7 +20,9 @@
     ".gitignore": true,
     ".next": true,
     "next-env.d.ts": true,
-    "app/favicon.ico": true
+    "app/favicon.ico": true,
+    ".eslintrc.json": true,
+    ".prettierrc.json": true
   },
   "hide-files.files": [
     "postcss.config.js",
@@ -31,7 +33,9 @@
     ".gitignore",
     ".next",
     "next-env.d.ts",
-    "app/favicon.ico"
+    "app/favicon.ico",
+    ".eslintrc.json",
+    ".prettierrc.json"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {

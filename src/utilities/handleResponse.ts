@@ -1,4 +1,4 @@
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import { sendData } from './actionRequest'
 import { Options } from '@/hooks/useFormAction'
 

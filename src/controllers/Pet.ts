@@ -90,5 +90,6 @@ export async function createPet(prevState: any, data: FormData) {
     schema,
     body: data,
     revalidate: true,
+    auth: false,
   })
 }

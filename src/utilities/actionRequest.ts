@@ -25,6 +25,7 @@ export async function actionRequestGet<Response>(...params: RequestParams) {
     if (!jwt) {
       throw new Error('No hay jwt')
     }
+
     headers.Cookie = cookies().toString()
   }
 
