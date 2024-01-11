@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     ? new URL(process.env.NEXT_PUBLIC_APP_URL)
     : undefined,
   alternates: {
-    canonical: '/',
+    canonical: 'https://encuentratumascota.nijui.com',
   },
 }
 
