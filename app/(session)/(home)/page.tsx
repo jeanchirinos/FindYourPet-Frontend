@@ -22,9 +22,9 @@ export default function Page(props: Props) {
           <FiltersComponentServer />
         </Suspense>
         <div className='flex w-full flex-col'>
-          <Suspense fallback={<PetGridSkeleton />} key={searchParams.status}>
+          {/* <Suspense fallback={<PetGridSkeleton />} key={searchParams.status}>
             <PetGrid searchParams={searchParams} />
-          </Suspense>
+          </Suspense> */}
         </div>
       </div>
     </main>
