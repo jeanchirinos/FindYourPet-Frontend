@@ -1,7 +1,6 @@
 'use server'
 import { SessionLogged } from '@/models/Auth'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
-import { getFormEntries } from '@/utilities/utilities'
 import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { z } from 'zod'

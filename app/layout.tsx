@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   metadataBase: process.env.NEXT_PUBLIC_APP_URL
     ? new URL(process.env.NEXT_PUBLIC_APP_URL)
     : undefined,
+  alternates: {
+    canonical: '/',
+  },
 }
 
 export default function RootLayout(props: React.PropsWithChildren) {
