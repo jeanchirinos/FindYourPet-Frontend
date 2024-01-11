@@ -28,7 +28,7 @@ export function PetImage() {
   return (
     <label
       className={twJoin(
-        'relative mx-auto flex size-full max-w-[400px] flex-col items-center justify-center rounded-md border',
+        'relative mx-auto flex aspect-square size-full max-w-[400px] flex-col items-center justify-center rounded-md border',
         imagePreview
           ? 'border-transparent'
           : 'border-dashed border-foreground-300 bg-foreground-100',
