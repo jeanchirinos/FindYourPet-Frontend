@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://encuentratumascota.nijui.com',
   },
+  openGraph: {
+    url: 'https://encuentratumascota.nijui.com',
+  },
 }
 
 export default function RootLayout(props: React.PropsWithChildren) {
