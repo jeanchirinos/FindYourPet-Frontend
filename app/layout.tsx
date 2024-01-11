@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: 'https://encuentratumascota.nijui.com',
   },
   openGraph: {
-    url: 'https://encuentratumascota.nijui.com',
+    url: '/',
   },
 }
 
