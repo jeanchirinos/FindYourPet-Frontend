@@ -2,7 +2,7 @@ import { verifyToken } from '@/controllers/Auth'
 import { Form } from './Form'
 import { PageProps } from '@/types'
 
-type Props = PageProps<{}, { token: string }>
+type Props = PageProps<{}, 'token'>
 
 export default async function Page(props: Props) {
   const { token } = props.searchParams
@@ -11,7 +11,7 @@ export default async function Page(props: Props) {
 
   // RENDER
   return (
-    <div className='flex-center min-h-screen'>
+    <div className='min-h-screen flex-center'>
       <Form token={token} />
     </div>
   )

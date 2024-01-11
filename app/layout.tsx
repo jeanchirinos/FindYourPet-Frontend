@@ -1,30 +1,23 @@
 import '@/styles/globals.css'
-import { Josefin_Sans } from 'next/font/google'
 import { Providers } from './providers'
-import { Metadata, Viewport } from 'next'
+import { Metadata } from 'next'
 import { getClientTheme } from '@/lib/getClientTheme'
 import { twJoin } from 'tailwind-merge'
-
-const livvic = Josefin_Sans({ weight: ['400'], subsets: ['latin'] })
+import { font } from './font'
 
 export const metadata: Metadata = {
-  title: 'Encuentra tu mascota',
-  description: 'Encuentra y adopta una mascota',
-  other: {
-    'msapplication-TileColor': '#FFFFFF',
+  title: {
+    template: '%s | Encuentra tu mascota',
+    default: 'Encuentra tu mascota',
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL!),
-}
-
-export const viewport: Viewport = {
-  themeColor: '#FFFFFF',
+  description: 'Encuentra y adopta una mascota',
 }
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
     <html
       lang='es'
-      className={twJoin(livvic.className, 'bg-th-fg-1 text-th-txt-1')}
+      className={twJoin(font.className, 'bg-th-fg-1 text-th-txt-1')}
       suppressHydrationWarning
     >
       <head>

@@ -3,10 +3,8 @@ const { nextui } = require('@nextui-org/react')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
@@ -37,7 +35,6 @@ module.exports = {
         search: '#79616F',
         adopt: '#D87F81',
       },
-
       backgroundImage: {
         'main-gradient': 'linear-gradient(180deg, #EF7828 0%, #FDA26B 50%, #FDBB64 100%)',
       },
@@ -48,9 +45,6 @@ module.exports = {
     require('tailwindcss-animated'),
     plugin => {
       const { addVariant, matchUtilities, addUtilities, matchComponents, matchVariant } = plugin
-
-      addVariant('child', '& > *')
-      addVariant('child-hover', '& > *:hover')
 
       matchUtilities(
         {
@@ -91,9 +85,6 @@ module.exports = {
       })
 
       addUtilities({
-        '.text-balance': {
-          textWrap: 'balance',
-        },
         '.scrollbar-transparent': {
           '&::-webkit-scrollbar': {
             backgroundColor: 'transparent',

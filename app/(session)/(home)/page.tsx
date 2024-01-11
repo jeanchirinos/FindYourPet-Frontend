@@ -8,9 +8,8 @@ import { Pet } from '@/models/Pet'
 import { StatusInfo } from './client_components'
 import { IconBack, IconForward } from '@/icons'
 import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
-import { PageProps } from '@/types'
 
-type Props = PageProps<{}, TGetPetParams>
+type Props = { searchParams: TGetPetParams }
 
 // MAIN COMPONENT
 export default function Page(props: Props) {

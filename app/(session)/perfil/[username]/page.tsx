@@ -4,7 +4,7 @@ import { HiOutlineDeviceMobile, HiOutlineMail } from 'react-icons/hi'
 import { getUserProfile } from '@/controllers/User'
 import { PageProps } from '@/types'
 
-type Props = PageProps<{ username: string }>
+type Props = PageProps<'username'>
 
 export default function Page(props: Props) {
   const { username } = props.params

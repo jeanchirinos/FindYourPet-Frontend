@@ -15,7 +15,7 @@ export function Header() {
           <Link href='/' aria-label='Inicio'>
             <Image src={Logo} alt='Logo' width={40} priority />
           </Link>
-          <div className='flex child:flex child:items-center child:px-3 max-md:hidden'>
+          <div className='flex *:flex *:items-center *:px-3 max-md:hidden'>
             <HeaderLink href='/' className=''>
               Mascotas
             </HeaderLink>

@@ -47,7 +47,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/lib/getCategories.js",
   ],
   "exclude": [
     "node_modules"
