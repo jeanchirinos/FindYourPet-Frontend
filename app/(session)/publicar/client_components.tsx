@@ -28,7 +28,7 @@ export function PetImage() {
   return (
     <label
       className={twJoin(
-        'relative mx-auto flex aspect-square w-full max-w-[400px] flex-col items-center justify-center rounded-md border',
+        'relative mx-auto flex size-full max-w-[400px] flex-col items-center justify-center rounded-md border',
         imagePreview
           ? 'border-transparent'
           : 'border-dashed border-foreground-300 bg-foreground-100',
@@ -36,18 +36,14 @@ export function PetImage() {
     >
       {imagePreview ? (
         <>
-          <img
-            src={imagePreview}
-            alt='Mascota'
-            className='aspect-square w-full rounded-md object-cover'
-          />
+          <img src={imagePreview} alt='Mascota' className='size-full rounded-md object-cover' />
 
           <Button className='pointer-events-none mt-2.5 w-full'>Editar</Button>
         </>
       ) : (
         <div className='flex flex-col items-center gap-y-2.5'>
           <CiImageOn size={28} className='text-neutral-500' />
-          <p className='max-w-[25ch] text-center text-xs leading-tight text-neutral-500 text-balance'>
+          <p className='max-w-[25ch] text-balance text-center text-xs leading-tight text-neutral-500'>
             Selecciona una imagen o arrástrala aquí
           </p>
         </div>

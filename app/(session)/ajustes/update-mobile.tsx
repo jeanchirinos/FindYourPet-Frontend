@@ -310,7 +310,7 @@ function CodeInput(
   return (
     <input
       {...otherProps}
-      className='aspect-square h-10 rounded-full bg-foreground-200 text-center'
+      className='size-10 rounded-full bg-foreground-200 text-center'
       onChange={handleChange}
       onKeyDown={handleKeydown}
       type='number'

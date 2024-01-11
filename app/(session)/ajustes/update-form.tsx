@@ -73,7 +73,7 @@ function ProfileImage(props: { user: User }) {
   // RENDER
   return (
     <>
-      <section className='relative mb-5 aspect-square w-[250px] max-w-full'>
+      <section className='relative mb-5 size-[250px] max-w-full'>
         <Image
           className='rounded-full object-cover'
           src={user.image}
@@ -89,7 +89,7 @@ function ProfileImage(props: { user: User }) {
           <input
             ref={inputImageRef}
             type='file'
-            className='aspect-square w-[2rem] opacity-0'
+            className='size-[2rem] opacity-0'
             accept='image/*'
             onChange={handleInputImage}
           />

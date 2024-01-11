@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Session } from './Session'
-import { Suspense } from 'react'
+import { Suspense } from '@/components/other/CustomSuspense'
 import Logo from '@/public/img/logo.svg'
 import { PublishButton } from './PublishButton'
 import { HeaderLink } from './HeaderLink'

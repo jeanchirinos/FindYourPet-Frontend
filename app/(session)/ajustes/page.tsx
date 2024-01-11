@@ -1,7 +1,7 @@
 import { UpdateForm } from './update-form'
 
 import { GoogleForm } from './google-form'
-import { Suspense } from 'react'
+import { Suspense } from '@/components/other/CustomSuspense'
 import { getGoogleData, getUser } from '@/controllers/User'
 
 // MAIN COMPONENT

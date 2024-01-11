@@ -1,6 +1,6 @@
 import { twJoin, twMerge } from 'tailwind-merge'
 import Image from 'next/image'
-import { Suspense } from 'react'
+import { Suspense } from '@/components/other/CustomSuspense'
 import { TGetPetParams, getPets, getStatusList } from '@/controllers/Pet'
 import Link from 'next/link'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
@@ -87,7 +87,7 @@ function PetCard(props: { pet: Pet }) {
   return (
     <div className='flex flex-col gap-2 overflow-hidden rounded-xl bg-th-fg-2 pb-4'>
       <Image
-        className='aspect-square w-full object-cover'
+        className='size-full object-cover'
         src={pet.image}
         width={pet.image_width}
         height={pet.image_height}
