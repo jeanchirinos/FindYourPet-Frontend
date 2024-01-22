@@ -46,20 +46,7 @@ module.exports = {
     nextui(),
     require('tailwindcss-animated'),
     plugin => {
-      const { addVariant, matchUtilities, addUtilities, matchComponents, matchVariant } = plugin
-
-      matchUtilities(
-        {
-          transform: value => ({
-            transform: value,
-          }),
-        },
-        {
-          values: {
-            '': '',
-          },
-        },
-      )
+      const { addUtilities, matchComponents, matchVariant } = plugin
 
       matchComponents(
         {

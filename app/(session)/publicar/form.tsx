@@ -22,14 +22,9 @@ export function Form(props: Props) {
   return (
     <form action={formAction} className='flex items-center gap-4 max-md:flex-col md:items-start'>
       <PetImage />
-      <section className='flex flex-col gap-y-3'>
+      <section className='flex w-[400px] max-w-full shrink-0 flex-col gap-y-3'>
         {StatusComponent}
-        <Textarea
-          name='description'
-          label='Descripción'
-          isRequired
-          className='w-[400px] max-w-full'
-        />
+        <Textarea name='description' label='Descripción' isRequired />
         <Input label='Ubicación' isRequired={false} name='location' />
         {CategoryComponent}
         {PlaceComponent}

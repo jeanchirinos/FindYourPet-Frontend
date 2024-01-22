@@ -23,7 +23,7 @@ async function Profile(props: { username: string }) {
 
   return (
     <div className='mx-auto w-[400px] max-w-full animate-fade space-y-3 px-2 py-6 animate-duration-200'>
-      <section className='relative mx-auto size-[250px] max-w-full'>
+      <section className='relative mx-auto aspect-square w-[250px] max-w-full'>
         <Image
           className='rounded-full object-cover'
           src={user.image}
