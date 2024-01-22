@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing: {
+        header: 'var(--header-height)',
+      },
       colors: {
         primary: '#FD8F52',
         // light

@@ -68,9 +68,9 @@ export async function actionRequestPost<Response>(...params: RequestParams) {
 
     return { msg, ok, data: data ?? res }
   } catch (e) {
-    if (e instanceof Error) {
-      return { ok: false, msg: e.message, data: undefined } as const
-    }
+    // if (e instanceof Error) {
+    //   return { ok: false, msg: e.message, data: undefined } as const
+    // }
 
     return { ok: false, msg: 'Hubo un error en la petición', data: undefined } as const
   }

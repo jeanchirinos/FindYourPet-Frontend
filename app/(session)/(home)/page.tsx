@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { Pet } from '@/models/Pet'
 import { StatusInfo } from './client_components'
-import { IconBack, IconForward } from '@/icons'
+import { IconBack, IconForward, IconPet } from '@/icons'
 import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
 
 type Props = { searchParams: TGetPetParams }
@@ -16,30 +16,39 @@ export default function Page(props: Props) {
   const { searchParams } = props
 
   return (
-    <main className='animate-fade px-2 pb-2 pt-12 animate-duration-200'>
-      <div className='mx-auto flex w-[1600px] max-w-full gap-x-6'>
-        <Suspense>
-          <FiltersComponentServer />
+    <main className='mx-auto flex w-[1600px] max-w-full animate-fade gap-x-6 px-2 pb-2 animate-duration-200'>
+      <Suspense>
+        <FiltersComponentServer />
+      </Suspense>
+      <div className='flex w-full flex-col'>
+        <Suspense fallback={<PetGridSkeleton />} keyProp={searchParams.status}>
+          <PetGrid searchParams={searchParams} />
         </Suspense>
-        <div className='flex w-full flex-col'>
-          <Suspense fallback={<PetGridSkeleton />} key={searchParams.status}>
-            <PetGrid searchParams={searchParams} />
-          </Suspense>
-        </div>
       </div>
     </main>
   )
 }
 
 // COMPONENTS
+
 async function PetGrid(props: { searchParams: TGetPetParams }) {
-  const petsData = await getPets(props.searchParams)
+  const { status = '1', ...restSearchParams } = props.searchParams
+
+  const petsData = await getPets({ ...restSearchParams, status })
 
   const { data: pets, links } = petsData
 
+  if (pets.length === 0)
+    return (
+      <div className='h-44 flex-col gap-y-4 flex-center'>
+        <IconPet className='animate-wiggle text-5xl' />
+        <p className='text-center text-xl'>No se encontraron mascotas</p>
+      </div>
+    )
+
   return (
     <>
-      <div className='templateColumns-[300px] grid gap-4'>
+      <div className='templateColumns-[300px] grid grow gap-4'>
         {pets.map(pet => (
           <PetCard key={pet.id} pet={pet} />
         ))}

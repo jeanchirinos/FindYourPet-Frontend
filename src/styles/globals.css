@@ -20,7 +20,7 @@ html.dark {
 }
 
 :root {
-  --header-height: 50px;
+  --header-height: 40px;
 }
 
 input::-webkit-outer-spin-button,

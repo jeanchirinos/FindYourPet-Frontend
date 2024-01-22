@@ -5,8 +5,17 @@ import Link from 'next/link'
 import { useFormAction } from '@/hooks/useFormAction'
 import { forgotPassword } from '@/controllers/Auth'
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 
 export default function Page() {
+  return (
+    <Suspense>
+      <Content />
+    </Suspense>
+  )
+}
+
+function Content() {
   const searchParams = useSearchParams()
   const initialEmail = searchParams.get('email') ?? undefined
 
@@ -18,7 +27,7 @@ export default function Page() {
       {state.ok ? (
         <div className='flex flex-col gap-y-2 text-center'>
           <p>Correo enviado</p>
-          <p className='text-xs text-balance'>Revisa tu correo para restablecer tu contraseña</p>
+          <p className='text-balance text-xs'>Revisa tu correo para restablecer tu contraseña</p>
 
           <Link replace href='/' className='mt-2 rounded-md bg-primary py-1.5 text-white'>
             Ir a inicio

@@ -4,7 +4,7 @@ export default async function RootLayout(props: React.PropsWithChildren) {
   return (
     <>
       <Header />
-      <main className='pt-[var(--header-height)]'>{props.children}</main>
+      <div className='flex min-h-dvh pt-[calc(var(--header-height)+3rem)]'>{props.children}</div>
     </>
   )
 }

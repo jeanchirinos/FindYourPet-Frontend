@@ -17,7 +17,7 @@ export function StatusInfo(props: { statusList: StatusList }) {
     router.replace('?' + newSearchParams.toString())
   }
 
-  const defaultValue = searchParams.get('status')
+  const defaultValue = searchParams.get('status') ?? '1'
 
   return (
     <RadioGroup name='status' defaultValue={defaultValue} onChange={handleChange}>
@@ -53,17 +53,17 @@ export function PetInfo(props: { categories: Category[]; breedsData: BreedsData 
       <Select
         selected={selectedCategory}
         setSelected={setSelectedCategory}
-        array={categories}
-        objectKey='name'
-        objectId='id'
-        placeholder='Especie'
+        options={categories}
+        optionKeyText='name'
+        optionKeyValue='id'
+        label='Especie'
       />
       <Select
-        array={breedsData[selectedCategory]}
-        objectKey='name'
-        objectId='id'
+        options={breedsData[selectedCategory]}
+        optionKeyText='name'
+        optionKeyValue='id'
         name='breed_id'
-        placeholder='Raza'
+        label='Raza'
       />
     </>
   )
@@ -95,27 +95,27 @@ export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>>
     <>
       <Select
         name='estate'
-        array={departamentos}
-        objectId='id_ubigeo'
-        objectKey='nombre_ubigeo'
+        options={departamentos}
+        optionKeyValue='id_ubigeo'
+        optionKeyText='nombre_ubigeo'
         setSelected={setSelectedDepartamento}
-        placeholder='Departamento'
+        label='Departamento'
       />
       <Select
         name='city'
-        array={provinciasArray}
-        objectId='id_ubigeo'
-        objectKey='nombre_ubigeo'
+        options={provinciasArray}
+        optionKeyValue='id_ubigeo'
+        optionKeyText='nombre_ubigeo'
         setSelected={setSelectedProvincia}
-        placeholder='Provincia'
+        label='Provincia'
       />
 
       <Select
         name='district'
-        array={distritosArray}
-        objectId='id_ubigeo'
-        objectKey='nombre_ubigeo'
-        placeholder='Distrito'
+        options={distritosArray}
+        optionKeyValue='id_ubigeo'
+        optionKeyText='nombre_ubigeo'
+        label='Distrito'
       />
     </>
   )
