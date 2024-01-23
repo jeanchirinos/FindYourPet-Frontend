@@ -48,7 +48,7 @@ async function PetGrid(props: { searchParams: TGetPetParams }) {
 
   return (
     <>
-      <div className='templateColumns-[300px] grid grow gap-4'>
+      <div className='templateColumns-[300px] grid grow auto-rows-min gap-4'>
         {pets.map(pet => (
           <PetCard key={pet.id} pet={pet} />
         ))}
@@ -96,7 +96,7 @@ function PetCard(props: { pet: Pet }) {
   return (
     <div className='flex flex-col gap-2 overflow-hidden rounded-xl bg-th-fg-2 pb-4'>
       <Image
-        className='size-full object-cover'
+        className='h-[300px] object-cover'
         src={pet.image}
         width={pet.image_width}
         height={pet.image_height}

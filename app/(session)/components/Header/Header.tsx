@@ -9,7 +9,7 @@ import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 
 export function Header() {
   return (
-    <header className='fixed inset-0 z-20 h-header w-full bg-th-a/70 backdrop-blur-md'>
+    <header className='fixed inset-0 z-20 h-header w-screen bg-th-a/70 backdrop-blur-md'>
       <div className='mx-auto flex w-[1600px] max-w-full justify-between px-1.5'>
         <aside className='flex'>
           <Link href='/' aria-label='Inicio'>
