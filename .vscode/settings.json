@@ -12,6 +12,7 @@
     "**/.project": true,
     "**/.settings": true,
     "**/*.crswap": true,
+    ".next": true,
     "postcss.config.js": true,
     "README.md": true,
     "app/opengraph-image.png": true,
@@ -20,8 +21,8 @@
     "app/favicon.ico": true,
     ".eslintrc.json": true,
     ".prettierrc.json": true,
-    ".next": true,
-    ".npmrc": true
+    ".npmrc": true,
+    "node_modules": true
   },
   "hide-files.files": [
     "postcss.config.js",
@@ -32,7 +33,8 @@
     "app/favicon.ico",
     ".eslintrc.json",
     ".prettierrc.json",
-    ".npmrc"
+    ".npmrc",
+    "node_modules"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {

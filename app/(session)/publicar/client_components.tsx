@@ -8,6 +8,7 @@ import { Button } from '@/components/Button'
 import { CiImageOn } from 'react-icons/ci'
 import { getPlaces } from '@/controllers/Place'
 import { BreedsData, Category } from '@/models/Pet'
+import { SelectCustom } from '@/components/Select/SelectCustom'
 
 export function PetImage() {
   const [imagePreview, setImagePreview] = useState<null | string>(null)
@@ -96,12 +97,18 @@ export function PetInfo(props: { categories: Category[]; breedsData: BreedsData 
   // RENDER
   return (
     <>
-      <Select
+      {/* <Select
         selected={selectedCategory}
         setSelected={setSelectedCategory}
         options={categories}
         optionKeyText='name'
         optionKeyValue='id'
+        label='Especie'
+      /> */}
+
+      <SelectCustom
+        options={categories}
+        state={{ selected: selectedCategory, onSelectChange: setSelectedCategory }}
         label='Especie'
       />
       <Select
