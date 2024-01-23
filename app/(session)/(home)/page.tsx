@@ -32,6 +32,7 @@ export default function Page(props: Props) {
 // COMPONENTS
 
 async function PetGrid(props: { searchParams: TGetPetParams }) {
+  // await waitFor(5)
   const { status = '1', ...restSearchParams } = props.searchParams
 
   const petsData = await getPets({ ...restSearchParams, status })
@@ -48,7 +49,7 @@ async function PetGrid(props: { searchParams: TGetPetParams }) {
 
   return (
     <>
-      <div className='templateColumns-[300px] grid grow auto-rows-min gap-4'>
+      <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[250px]'>
         {pets.map(pet => (
           <PetCard key={pet.id} pet={pet} />
         ))}
@@ -94,17 +95,17 @@ function PetCard(props: { pet: Pet }) {
   const color = Object.values(colors)[pet.status - 1]
 
   return (
-    <div className='flex flex-col gap-2 overflow-hidden rounded-xl bg-th-fg-2 pb-4'>
+    <div className='flex flex-col overflow-hidden rounded-xl bg-th-fg-2'>
       <Image
-        className='h-[300px] object-cover'
+        className='aspect-square w-full object-cover'
         src={pet.image}
         width={pet.image_width}
         height={pet.image_height}
         alt='Mascota'
       />
-      <div className='space-y-3 px-4'>
+      <div className='space-y-2.5 px-2 pb-2 pt-3'>
         <section
-          className={twJoin('rounded-3xl p-2 text-center text-lg font-semibold text-white', color)}
+          className={twJoin('rounded-lg p-1.5 text-center text-lg font-semibold text-white', color)}
         >
           {pet.status_name}
         </section>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-  scrollbar-gutter: stable;
+  /* scrollbar-gutter: stable; */
   --th-a: 255 251 247;
   --th-fg-1: theme(colors.l-fg-1);
   --th-fg-2: theme(colors.l-fg-2);
@@ -36,4 +36,32 @@ input:-webkit-autofill:is(:hover, :focus, :active) {
 
 input[type='file']::-webkit-file-upload-button {
   cursor: pointer;
+}
+
+/* SONNER */
+@media (max-width: 600px) {
+  [data-sonner-toaster][data-x-position='center'] {
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+  }
+
+  [data-sonner-toaster] [data-sonner-toast] {
+    width: fit-content !important;
+    left: 50% !important;
+    translate: -50% !important;
+  }
+}
+
+[data-sonner-toast][data-styled='true'] {
+  width: fit-content !important;
+  left: 50% !important;
+  translate: -50% !important;
+}
+
+[data-sonner-toaster][data-x-position='center'] {
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  transform: none !important;
 }

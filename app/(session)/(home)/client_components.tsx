@@ -6,6 +6,7 @@ import { twJoin } from 'tailwind-merge'
 import { getPlaces } from '@/controllers/Place'
 import { BreedsData, Category, StatusList } from '@/models/Pet'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { toast } from 'sonner'
 
 export function StatusInfo(props: { statusList: StatusList }) {
   const router = useRouter()
@@ -119,4 +120,8 @@ export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>>
       />
     </>
   )
+}
+
+export function Hola() {
+  return <button onClick={() => toast.success('Hola')}>Toast</button>
 }
