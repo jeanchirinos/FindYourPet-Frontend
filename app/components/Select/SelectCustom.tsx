@@ -39,12 +39,9 @@ export function SelectCustom(props: Props) {
   // const isTouchableDevice0 = useMediaQuery('(hover: none) and (max-width: 1023px)')
 
   useEffect(() => {
-    // setIsTouchableDevice(isTouchableDevice0)
     const userAgent = navigator.userAgent.toLowerCase()
 
     userAgent.includes('mobile') ? setIsTouchableDevice(true) : setIsTouchableDevice(false)
-
-    // console.log('isTouchableDevice0', isTouchableDevice0)
   }, [])
   // STATES
   const [auxSelected, setAuxSelected] = useState<string | undefined>(undefined)

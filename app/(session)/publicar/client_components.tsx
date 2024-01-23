@@ -1,14 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Select } from '@/components/Select'
 import { RadioGroup } from '@headlessui/react'
 import { twJoin } from 'tailwind-merge'
 import { Button } from '@/components/Button'
 import { CiImageOn } from 'react-icons/ci'
 import { getPlaces } from '@/controllers/Place'
 import { BreedsData, Category } from '@/models/Pet'
-import { SelectCustom } from '@/components/Select/SelectCustom'
+import { SelectNative } from '@/components/Select/SelectNative'
 
 export function PetImage() {
   const [imagePreview, setImagePreview] = useState<null | string>(null)
@@ -92,29 +91,18 @@ export function PetInfo(props: { categories: Category[]; breedsData: BreedsData 
   const { categories, breedsData } = props
 
   // STATES
-  const [selectedCategory, setSelectedCategory] = useState(categories[0].id.toString())
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined)
 
   // RENDER
   return (
     <>
-      {/* <Select
-        selected={selectedCategory}
-        setSelected={setSelectedCategory}
-        options={categories}
-        optionKeyText='name'
-        optionKeyValue='id'
-        label='Especie'
-      /> */}
-
-      <SelectCustom
+      <SelectNative
         options={categories}
         state={{ selected: selectedCategory, onSelectChange: setSelectedCategory }}
         label='Especie'
       />
-      <Select
-        options={breedsData[selectedCategory]}
-        optionKeyText='name'
-        optionKeyValue='id'
+      <SelectNative
+        options={selectedCategory ? breedsData[selectedCategory] : undefined}
         name='breed_id'
         label='Raza'
       />
@@ -127,43 +115,43 @@ export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>>
   const { departamentos, provincias, distritos } = places
 
   // Departamento
-  const [selectedDepartamento, setSelectedDepartamento] = useState(departamentos[0].id_ubigeo)
+  const [selectedDepartamento, setSelectedDepartamento] = useState<undefined | string>(undefined)
 
   // Provincia
-  const provinciasArray = provincias[selectedDepartamento]
+  const provinciasArray = selectedDepartamento ? provincias[selectedDepartamento] : undefined
 
-  const [selectedProvincia, setSelectedProvincia] = useState(provinciasArray[0].id_ubigeo)
+  const [selectedProvincia, setSelectedProvincia] = useState<undefined | string>(undefined)
 
   useEffect(() => {
-    const provinciaId = provinciasArray[0].id_ubigeo
+    const provinciaId = provinciasArray?.[0].id_ubigeo
 
     setSelectedProvincia(provinciaId)
   }, [selectedDepartamento, provinciasArray])
 
   // Distrito
-  const distritosArray = distritos[selectedProvincia]
+  const distritosArray = selectedProvincia ? distritos[selectedProvincia] : undefined
 
   // RENDER
   return (
     <>
-      <Select
+      <SelectNative
         name='estate'
         options={departamentos}
         optionKeyValue='id_ubigeo'
         optionKeyText='nombre_ubigeo'
-        setSelected={setSelectedDepartamento}
+        state={{ selected: selectedDepartamento, onSelectChange: setSelectedDepartamento }}
         label='Departamento'
       />
-      <Select
+      <SelectNative
         name='city'
         options={provinciasArray}
         optionKeyValue='id_ubigeo'
         optionKeyText='nombre_ubigeo'
-        setSelected={setSelectedProvincia}
+        state={{ selected: selectedProvincia, onSelectChange: setSelectedProvincia }}
         label='Provincia'
       />
 
-      <Select
+      <SelectNative
         name='district'
         options={distritosArray}
         optionKeyValue='id_ubigeo'

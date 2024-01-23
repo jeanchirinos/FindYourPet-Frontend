@@ -32,6 +32,7 @@ export function SelectNative(props: React.ComponentProps<'select'> & SelectProps
     className,
     state,
     stateNumber,
+    required = true,
     ...otherProps
   } = props
 
@@ -63,9 +64,10 @@ export function SelectNative(props: React.ComponentProps<'select'> & SelectProps
         </label>
       )}
       <select
-        required
+        disabled={!options}
+        required={required}
         className={twMerge(
-          'w-full cursor-pointer rounded-sm border-r-4 border-r-transparent bg-neutral-100 pb-1 pl-1.5 text-sm text-secondary-foreground focus:outline-none dark:bg-zinc-700',
+          'w-full cursor-pointer rounded-lg border-r-4 border-r-transparent bg-default-100 pb-1 pl-1.5 text-sm focus:outline-none',
           label ? 'pt-6' : 'py-2',
           classNames?.select,
         )}
@@ -73,7 +75,7 @@ export function SelectNative(props: React.ComponentProps<'select'> & SelectProps
         onChange={handleChange}
         {...otherProps}
       >
-        <option className='hidden' value=''>
+        <option className={twJoin(required && 'hidden')} value=''>
           Selecciona una opción
         </option>
         {options?.map(option => (
