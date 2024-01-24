@@ -96,7 +96,9 @@ export async function getUser() {
 
 export async function getUserProfile(username: string) {
   try {
-    const data = await actionRequestGet<{ data: User }>(`user?username=${username}`)
+    const data = await actionRequestGet<{ data: User }>(`user?username=${username}`, {
+      cache: 'no-store',
+    })
 
     return data.data
   } catch (err) {

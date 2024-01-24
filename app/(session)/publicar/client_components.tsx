@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { twJoin } from 'tailwind-merge'
 import { Button } from '@/components/Button'
@@ -114,22 +114,15 @@ export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>>
   const { places } = props
   const { departamentos, provincias, distritos } = places
 
-  // Departamento
-  const [selectedDepartamento, setSelectedDepartamento] = useState<undefined | string>(undefined)
-
-  // Provincia
-  const provinciasArray = selectedDepartamento ? provincias[selectedDepartamento] : undefined
-
+  // STATES
+  const [selectedDepartamento, setSelectedDepartamento] = useState<undefined | string>(
+    departamentos[0].id_ubigeo.toString(),
+  )
   const [selectedProvincia, setSelectedProvincia] = useState<undefined | string>(undefined)
 
-  useEffect(() => {
-    const provinciaId = provinciasArray?.[0].id_ubigeo
-
-    setSelectedProvincia(provinciaId)
-  }, [selectedDepartamento, provinciasArray])
-
-  // Distrito
-  const distritosArray = selectedProvincia ? distritos[selectedProvincia] : undefined
+  // VALUES
+  const provinciasList = selectedDepartamento ? provincias[selectedDepartamento] : undefined
+  const distritosList = selectedProvincia ? distritos[selectedProvincia] : undefined
 
   // RENDER
   return (
@@ -144,7 +137,7 @@ export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>>
       />
       <SelectNative
         name='city'
-        options={provinciasArray}
+        options={provinciasList}
         optionKeyValue='id_ubigeo'
         optionKeyText='nombre_ubigeo'
         state={{ selected: selectedProvincia, onSelectChange: setSelectedProvincia }}
@@ -153,7 +146,7 @@ export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>>
 
       <SelectNative
         name='district'
-        options={distritosArray}
+        options={distritosList}
         optionKeyValue='id_ubigeo'
         optionKeyText='nombre_ubigeo'
         label='Distrito'
