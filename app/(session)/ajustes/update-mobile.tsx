@@ -1,7 +1,7 @@
 'use client'
 import { updateMobile, verifyMobile } from '@/controllers/User'
 import { Input } from '@/components/Input'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, UseModal, useModal } from '@/components/Modal'
@@ -18,9 +18,6 @@ export function MobileForm(props: { initialMobile: string | null }) {
   // STATES
   const [secondsToResend, setSecondsToResend] = useState(0)
 
-  // HOOKS
-  const useAutoInputHook = useAutoInput({ initialValue: initialMobile })
-
   const {
     currentValue,
     setCurrentValue,
@@ -28,11 +25,11 @@ export function MobileForm(props: { initialMobile: string | null }) {
     setInputIsEditable,
     inputRef,
     submitButtonRef,
-    // submittingRef,
     handleBlur,
     handleKeyDown,
-  } = useAutoInputHook
+  } = useAutoInput({ initialValue: initialMobile })
 
+  // HOOKS
   const updateMobileModal = useModal()
 
   const useStepsHook = useSteps()
@@ -41,7 +38,6 @@ export function MobileForm(props: { initialMobile: string | null }) {
   // FUNCTIONS
 
   function handleSubmit(e: React.FormEvent) {
-    // submittingRef.current = true
     e.preventDefault()
 
     if (isDisabled) return
@@ -75,7 +71,7 @@ export function MobileForm(props: { initialMobile: string | null }) {
           }}
           onFocus={() => setInputIsEditable(true)}
           onBlur={handleBlur}
-          ref={inputRef}
+          innerRef={inputRef}
         />
 
         {inputIsEditable && (

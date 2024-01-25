@@ -152,6 +152,7 @@ function FormBody(props: TFormBodyProps) {
     setCurrentValue,
     inputIsEditable,
     setInputIsEditable,
+    inputRef,
     submitButtonRef,
     handleBlur,
     isDisabled,
@@ -164,6 +165,7 @@ function FormBody(props: TFormBodyProps) {
     <>
       <Input
         type='text'
+        innerRef={inputRef}
         disabled={pending}
         name={paramName}
         label={label}
@@ -237,6 +239,7 @@ export function useAutoInput(props: TAutoInputProps) {
     if (e.key === 'Escape') {
       setInputIsEditable(false)
       setCurrentValue(initialValue)
+      inputRef.current?.blur()
     }
   }
 
