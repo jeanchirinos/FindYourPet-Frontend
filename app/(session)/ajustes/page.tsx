@@ -8,6 +8,8 @@ import { getGoogleData, getUser } from '@/controllers/User'
 export default async function Page() {
   const user = await getUser()
 
+  // console.log({ user })
+
   return (
     <main className='mx-auto w-[1600px] max-w-full animate-fade px-6 py-12 animate-duration-200'>
       <div className='flex w-[350px] max-w-full flex-col'>

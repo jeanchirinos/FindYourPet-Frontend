@@ -11,7 +11,6 @@ import { Modal, useModal } from '@/components/Modal'
 import { handleResponse } from '@/utilities/handleResponse'
 import { MobileForm } from './update-mobile'
 import { useFormStatus } from 'react-dom'
-import { SetState } from '@/types'
 import { User } from '@/models/User'
 
 export function UpdateForm(props: { user: User }) {
@@ -21,9 +20,9 @@ export function UpdateForm(props: { user: User }) {
     <>
       <ProfileImage user={user} />
 
-      <ParamForm initialValue={user.name ?? ''} label='Nombre' paramName='name' />
+      <ParamForm initialValue={user.name} label='Nombre' paramName='name' />
       <ParamForm initialValue={user.username} label='Usuario' paramName='username' />
-      <MobileForm initialMobile={user.mobile ?? ''} />
+      <MobileForm initialMobile={user.mobile} />
     </>
   )
 }
@@ -109,32 +108,16 @@ function ProfileImage(props: { user: User }) {
 }
 
 function ParamForm(props: {
-  initialValue: string
+  initialValue: string | null
   paramName: string
   label: string
   children?: React.ReactNode
 }) {
-  const { initialValue = '', paramName, label, children } = props
-
-  // HOOKS
-  const useAutoInputHook = useAutoInput({ initialValue })
-
-  const {
-    currentValue,
-    setCurrentValue,
-    inputIsEditable,
-    setInputIsEditable,
-    // inputRef,
-    // submitButtonRef,
-    // submittingRef,
-    // handleBlur,
-    handleKeyDown,
-    isDisabled,
-  } = useAutoInputHook
+  const initialValue = props.initialValue ?? ''
 
   // FUNCTIONS
   async function handleAction(formData: FormData) {
-    if (isDisabled) return
+    const { paramName } = props
 
     const value = formData.get(paramName) as string
 
@@ -142,72 +125,53 @@ function ParamForm(props: {
 
     handleResponse(res, {
       showSuccessToast: true,
-      onSuccess() {
-        setInputIsEditable(false)
-      },
     })
   }
 
   // RENDER
   return (
-    <form
-      action={handleAction}
-      className='group mt-4 flex items-center gap-x-2'
-      onKeyDown={handleKeyDown}
-    >
-      <FormBody
-        {...useAutoInputHook}
-        initialValue={initialValue}
-        label={label}
-        currentValue={currentValue}
-        inputIsEditable={inputIsEditable}
-        paramName={paramName}
-        setCurrentValue={setCurrentValue}
-        setInputIsEditable={setInputIsEditable}
-      >
-        {children}
-      </FormBody>
+    <form action={handleAction} className='group mt-4 flex items-center gap-x-2'>
+      <FormBody {...props} initialValue={initialValue} />
     </form>
   )
 }
 
-type TFormBodyProps = ReturnType<typeof useAutoInput> & {
+type TFormBodyProps = {
   initialValue: string
   label: string
-  inputIsEditable: boolean
-  setInputIsEditable: SetState<boolean>
   paramName: string
-  currentValue: string
-  setCurrentValue: SetState<string>
   children?: React.ReactNode
 }
 
 function FormBody(props: TFormBodyProps) {
+  const { initialValue, label, paramName } = props
+
+  // HOOKS
   const {
-    // initialValue = '',
-    label,
+    currentValue,
+    setCurrentValue,
     inputIsEditable,
     setInputIsEditable,
-    currentValue,
-    paramName,
-    setCurrentValue,
-    handleButtonBlur,
-  } = props
-
-  const { inputRef, handleBlur, isDisabled, submitButtonRef } = props
+    submitButtonRef,
+    handleBlur,
+    isDisabled,
+    pending,
+    handleKeyDown,
+  } = useAutoInput({ initialValue })
 
   // RENDER
   return (
     <>
       <Input
         type='text'
+        disabled={pending}
         name={paramName}
         label={label}
         value={currentValue}
         onChange={e => setCurrentValue(e.target.value)}
-        // ref={inputRef}
         onFocus={() => setInputIsEditable(true)}
         onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
       />
 
       {inputIsEditable && (
@@ -215,8 +179,9 @@ function FormBody(props: TFormBodyProps) {
           size='sm'
           isDisabled={isDisabled}
           disabled={isDisabled}
-          ref={submitButtonRef}
-          onBlur={handleButtonBlur}
+          innerRef={submitButtonRef}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
         />
       )}
     </>
@@ -230,35 +195,42 @@ type TAutoInputProps = {
 export function useAutoInput(props: TAutoInputProps) {
   const { initialValue = '' } = props
 
+  // HOOKS
   const { pending } = useFormStatus()
 
+  // STATES
   const [currentValue, setCurrentValue] = useState(initialValue)
-
   const [inputIsEditable, setInputIsEditable] = useState(false)
 
   // VALUES
-  const isDisabled = initialValue === currentValue
   const inputRef = useRef<HTMLInputElement>(null)
   const submitButtonRef = useRef<HTMLButtonElement>(null)
   const submittingRef = useRef(pending)
+  const isDisabled = initialValue === currentValue || pending
 
+  // EFFECTS
   useEffect(() => {
     submittingRef.current = pending
-  }, [pending])
 
+    if (!pending) {
+      setInputIsEditable(false)
+      setCurrentValue(initialValue)
+    }
+  }, [pending, initialValue])
+
+  useEffect(() => {
+    setCurrentValue(initialValue)
+  }, [initialValue])
+
+  // FUNCTIONS
   function handleBlur() {
     setTimeout(() => {
-      if (document.activeElement === submitButtonRef.current) return
       if (submittingRef.current) return
+      if (document.activeElement === submitButtonRef.current) return
 
       setInputIsEditable(false)
       setCurrentValue(initialValue)
-    }, 1)
-  }
-
-  function handleButtonBlur() {
-    setInputIsEditable(false)
-    setCurrentValue(initialValue)
+    }, 100)
   }
 
   function handleKeyDown(e: React.KeyboardEvent) {
@@ -275,10 +247,9 @@ export function useAutoInput(props: TAutoInputProps) {
     setInputIsEditable,
     inputRef,
     submitButtonRef,
-    submittingRef,
     handleBlur,
     handleKeyDown,
     isDisabled,
-    handleButtonBlur,
+    pending,
   }
 }

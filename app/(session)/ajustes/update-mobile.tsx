@@ -12,8 +12,8 @@ import { useCountdownTimer } from 'use-countdown-timer'
 import { handleResponse } from '@/utilities/handleResponse'
 import { useAutoInput } from './update-form'
 
-export function MobileForm(props: { initialMobile: string }) {
-  const { initialMobile } = props
+export function MobileForm(props: { initialMobile: string | null }) {
+  const initialMobile = props.initialMobile ?? ''
 
   // STATES
   const [secondsToResend, setSecondsToResend] = useState(0)
