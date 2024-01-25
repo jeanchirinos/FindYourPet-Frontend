@@ -1,5 +1,5 @@
 'use client'
-import { Input } from 'app/components/Input'
+import { Input } from '@/components/Input'
 import { SubmitButton } from '@/components/SubmitButton'
 import { useFormAction } from '@/hooks/useFormAction'
 import Link from 'next/link'
@@ -12,7 +12,7 @@ export function Form(props: { token?: string }) {
     return (
       <div className='flex flex-col gap-y-2 text-center'>
         <p>Contraseña restablecida</p>
-        <p className='text-xs text-balance'>Ya puedes iniciar sesión con tu nueva contraseña</p>
+        <p className='text-balance text-xs'>Ya puedes iniciar sesión con tu nueva contraseña</p>
 
         <Link replace href='/' className='mt-2 rounded-md bg-primary py-1.5 text-white'>
           Ir a inicio
