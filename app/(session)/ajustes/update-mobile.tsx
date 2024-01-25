@@ -28,7 +28,7 @@ export function MobileForm(props: { initialMobile: string | null }) {
     setInputIsEditable,
     inputRef,
     submitButtonRef,
-    submittingRef,
+    // submittingRef,
     handleBlur,
     handleKeyDown,
   } = useAutoInputHook
@@ -41,7 +41,7 @@ export function MobileForm(props: { initialMobile: string | null }) {
   // FUNCTIONS
 
   function handleSubmit(e: React.FormEvent) {
-    submittingRef.current = true
+    // submittingRef.current = true
     e.preventDefault()
 
     if (isDisabled) return
@@ -101,7 +101,7 @@ export function MobileForm(props: { initialMobile: string | null }) {
           setTimeout(() => {
             setInputIsEditable(false)
             setCurrentValue(initialMobile)
-            submittingRef.current = false
+            // submittingRef.current = false
           }, 1)
         }}
       >
