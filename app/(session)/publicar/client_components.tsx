@@ -91,14 +91,14 @@ export function PetInfo(props: { categories: Category[]; breedsData: BreedsData 
   const { categories, breedsData } = props
 
   // STATES
-  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined)
+  const [selectedCategory, setSelectedCategory] = useState<number | undefined>(24)
 
   // RENDER
   return (
     <>
       <SelectNative
         options={categories}
-        state={{ selected: selectedCategory, onSelectChange: setSelectedCategory }}
+        stateNumber={{ selected: selectedCategory, onSelectChange: setSelectedCategory }}
         label='Especie'
       />
       <SelectNative
@@ -115,10 +115,8 @@ export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>>
   const { departamentos, provincias, distritos } = places
 
   // STATES
-  const [selectedDepartamento, setSelectedDepartamento] = useState<undefined | string>(
-    departamentos[0].id_ubigeo.toString(),
-  )
-  const [selectedProvincia, setSelectedProvincia] = useState<undefined | string>(undefined)
+  const [selectedDepartamento, setSelectedDepartamento] = useState<undefined | string>('3926')
+  const [selectedProvincia, setSelectedProvincia] = useState<undefined | string>('3927')
 
   // VALUES
   const provinciasList = selectedDepartamento ? provincias[selectedDepartamento] : undefined
@@ -140,7 +138,10 @@ export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>>
         options={provinciasList}
         optionKeyValue='id_ubigeo'
         optionKeyText='nombre_ubigeo'
-        state={{ selected: selectedProvincia, onSelectChange: setSelectedProvincia }}
+        state={{
+          selected: selectedProvincia,
+          onSelectChange: setSelectedProvincia,
+        }}
         label='Provincia'
       />
 
