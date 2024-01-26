@@ -10,7 +10,7 @@ export type TGetPetParams = Partial<{
   page: string
   status: string
   category_id: string
-  breed_id: string
+  breed_id: string | string[]
   order: string
 }>
 
@@ -23,9 +23,19 @@ export async function getPets(params: TGetPetParams) {
   url.pathname += `/${limit}`
 
   page && url.searchParams.set('page', page)
+
   category_id && url.searchParams.set('category_id', category_id)
+
+  if (breed_id) {
+    if (Array.isArray(breed_id)) {
+      const breeds = breed_id.join(',')
+      url.searchParams.set('breed_id', breeds)
+    } else {
+      url.searchParams.set('breed_id', breed_id)
+    }
+  }
+
   status && url.searchParams.set('status', status)
-  breed_id && url.searchParams.set('breed_id', breed_id)
   order && url.searchParams.set('order', order)
 
   const data = await actionRequestGet<PetPaginate>(url, {
