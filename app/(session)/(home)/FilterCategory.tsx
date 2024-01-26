@@ -6,7 +6,7 @@ export async function FilterCategory(props: { category: string | undefined }) {
 
   return (
     <section>
-      <p>Especie</p>
+      <p className='sticky top-14 bg-th-fg-1 font-semibold text-foreground-900'>Especie</p>
 
       <div className='flex flex-col gap-y-2'>
         {categoriesList.map(item => (
@@ -18,7 +18,7 @@ export async function FilterCategory(props: { category: string | undefined }) {
             }}
             selectedValue={props.category}
             value={item.id}
-            className='flex w-full min-w-max cursor-pointer items-center rounded-lg px-4 py-3 text-sm shadow-md'
+            className='flex w-full min-w-max cursor-pointer items-center rounded-lg px-2.5 py-1.5 text-sm shadow-md'
             classNames={{
               selected: 'bg-orange-100 text-orange-600',
               notSelected: 'hover:bg-foreground-100',

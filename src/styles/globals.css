@@ -4,6 +4,7 @@
 
 html {
   /* scrollbar-gutter: stable; */
+  scroll-behavior: smooth;
   --th-a: 255 251 247;
   --th-fg-1: theme(colors.l-fg-1);
   --th-fg-2: theme(colors.l-fg-2);
