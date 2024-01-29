@@ -21,6 +21,7 @@ export async function FilterPlace() {
 
   return (
     <FilterPlaceClient
+      key='hola'
       departamentos={departamentos}
       provincias={allProvincias}
       distritos={allDistritos}
