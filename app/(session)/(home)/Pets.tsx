@@ -20,7 +20,7 @@ export async function PetGrid(props: { searchParams: TGetPetParams }) {
     )
 
   return (
-    <div className='flex w-full flex-col'>
+    <div className='flex w-full grow flex-col'>
       <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[250px]'>
         {pets.map(pet => (
           <PetCard key={pet.id} pet={pet} />

@@ -6,7 +6,7 @@ import { PetGrid } from './Pets'
 import { FilterCategory } from './FilterCategory'
 import { FilterBreeds } from './FilterBreeds'
 import { Order } from './Order'
-// import { FilterPlace } from './FilterPlace/FilterPlace'
+import { FilterPlace } from './FilterPlace/FilterPlace'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -34,15 +34,17 @@ export default function Page(props: Props) {
                 />
               </Suspense>
             )}
-            {/* <Suspense>
-              <FilterPlace estate={searchParams.estate} city={searchParams.city} />
-            </Suspense> */}
           </section>
         </div>
       </aside>
-      <Suspense fallback={<PetGridSkeleton />} keyProp={JSON.stringify(searchParams)}>
-        <PetGrid searchParams={{ ...restSearchParams, status, order }} />
-      </Suspense>
+      <section className='flex w-full flex-col gap-y-10'>
+        <Suspense>
+          <FilterPlace />
+        </Suspense>
+        <Suspense fallback={<PetGridSkeleton />} keyProp={JSON.stringify(searchParams)}>
+          <PetGrid searchParams={{ ...restSearchParams, status, order }} />
+        </Suspense>
+      </section>
     </main>
   )
 }
