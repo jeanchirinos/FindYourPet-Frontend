@@ -18,9 +18,9 @@ export default function Page(props: Props) {
     <main className='mx-auto flex w-[1600px] max-w-full animate-fade gap-x-6 px-2 pb-2 animate-duration-200'>
       <aside className='max-h-[calc(100dvh-3rem-var(--header-height)-0.5rem)] w-60 shrink-0 overflow-y-auto pr-10 max-lg:hidden'>
         <section className='space-y-8 *:space-y-3'>
-          <Suspense keyProp={JSON.stringify(searchParams)}>
+          {/* <Suspense keyProp={JSON.stringify(searchParams)}>
             <FilterStatus status={status} />
-          </Suspense>
+          </Suspense> */}
           <Suspense keyProp={JSON.stringify(searchParams)}>
             <FilterCategory category={searchParams.category_id} />
           </Suspense>
