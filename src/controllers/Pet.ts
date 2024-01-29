@@ -12,10 +12,13 @@ export type TGetPetParams = Partial<{
   category_id: string
   breed_id: string | string[]
   order: string
+  estate: string
+  city: string
+  district: string
 }>
 
 export async function getPets(params: TGetPetParams) {
-  const { page, order, status, category_id, breed_id } = params
+  const { page, order, status, category_id, breed_id, estate, city, district } = params
   const limit = '10'
 
   const url = getApiUrl('pet')
@@ -37,6 +40,10 @@ export async function getPets(params: TGetPetParams) {
 
   status && url.searchParams.set('status', status)
   order && url.searchParams.set('order', order)
+
+  estate && url.searchParams.set('estate', estate)
+  city && url.searchParams.set('city', city)
+  district && url.searchParams.set('district', district)
 
   const data = await actionRequestGet<PetPaginate>(url, {
     cache: 'no-store',

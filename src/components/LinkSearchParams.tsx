@@ -21,6 +21,7 @@ type Props = Omit<React.ComponentProps<typeof Link>, 'href'> & {
   selectedValue: string | undefined | string[]
   searchParamKey?: string
   toggle?: boolean
+  keyToDelete?: string
 }
 
 export function LinkSearchParams(props: Props) {
@@ -32,6 +33,7 @@ export function LinkSearchParams(props: Props) {
     value,
     searchParamKey,
     toggle = false,
+    keyToDelete,
     ...restProps
   } = props
 
@@ -40,6 +42,8 @@ export function LinkSearchParams(props: Props) {
   // FUNCTIONS
   function getNewSearchParams() {
     let newSearchParams = new URLSearchParams(searchParams)
+
+    keyToDelete && newSearchParams.delete(keyToDelete)
 
     Object.entries(props.href).forEach(([key, value]) => {
       if (toggle && key === searchParamKey) {

@@ -1,7 +1,16 @@
 import { actionRequestGet } from '@/utilities/actionRequest'
 
 type GithubResponse = { payload: { blob: { rawLines: [string, string] } } }
-type Location = { id_ubigeo: string; nombre_ubigeo: string; id_padre_ubigeo: string }
+export type PlaceLocation = {
+  id_ubigeo: string
+  nombre_ubigeo: string
+  codigo_ubigeo: string
+  etiqueta_ubigeo: string
+  buscador_ubigeo: string
+  numero_hijos_ubigeo: string
+  nivel_ubigeo: '1' | '2' | '3'
+  id_padre_ubigeo: string
+}
 
 async function getData<T>(type: 'departamentos' | 'provincias' | 'distritos') {
   const res = await actionRequestGet<GithubResponse>(
@@ -17,9 +26,9 @@ async function getData<T>(type: 'departamentos' | 'provincias' | 'distritos') {
 }
 
 export async function getPlaces() {
-  const departamentos = await getData<Location[]>('departamentos')
-  const provincias = await getData<Record<string, Location[]>>('provincias')
-  const distritos = await getData<Record<string, Location[]>>('distritos')
+  const departamentos = await getData<PlaceLocation[]>('departamentos')
+  const provincias = await getData<Record<string, PlaceLocation[]>>('provincias')
+  const distritos = await getData<Record<string, PlaceLocation[]>>('distritos')
 
   return {
     departamentos,
@@ -27,3 +36,5 @@ export async function getPlaces() {
     distritos,
   }
 }
+
+export type Places = Awaited<ReturnType<typeof getPlaces>>

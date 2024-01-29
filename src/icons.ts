@@ -7,3 +7,4 @@ export {
   HiOutlineMoon as IconDarkTheme,
   HiOutlineSun as IconLightTheme,
 } from 'react-icons/hi2'
+export { GoChevronDown as IconArrowDown, GoCheck as IconCheck } from 'react-icons/go'

@@ -6,6 +6,7 @@ import { PetGrid } from './Pets'
 import { FilterCategory } from './FilterCategory'
 import { FilterBreeds } from './FilterBreeds'
 import { Order } from './Order'
+// import { FilterPlace } from './FilterPlace/FilterPlace'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -33,6 +34,9 @@ export default function Page(props: Props) {
                 />
               </Suspense>
             )}
+            {/* <Suspense>
+              <FilterPlace estate={searchParams.estate} city={searchParams.city} />
+            </Suspense> */}
           </section>
         </div>
       </aside>

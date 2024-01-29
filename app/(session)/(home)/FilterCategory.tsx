@@ -6,7 +6,7 @@ export async function FilterCategory(props: { category: string | undefined }) {
 
   return (
     <section>
-      <p className='sticky top-14 bg-th-fg-1 font-semibold text-foreground-900'>Especie</p>
+      {/* <p className='sticky top-14 bg-th-fg-1 font-semibold text-foreground-900'>Especie</p>
 
       <div className='flex flex-col gap-y-2'>
         {categoriesList.map(item => (
@@ -25,11 +25,12 @@ export async function FilterCategory(props: { category: string | undefined }) {
             }}
             toggle
             searchParamKey='category_id'
+            keyToDelete='breed_id'
           >
             {item.name}
           </LinkSearchParams>
         ))}
-      </div>
+      </div> */}
     </section>
   )
 }

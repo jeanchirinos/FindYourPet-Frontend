@@ -4,7 +4,7 @@ import * as Select from '@radix-ui/react-select'
 import { twJoin, twMerge } from 'tailwind-merge'
 import { SelectProps, SelectNative } from './SelectNative'
 import { useEffect, useState } from 'react'
-import { GoChevronDown, GoCheck } from 'react-icons/go'
+import { IconArrowDown, IconCheck } from '@/icons'
 // import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 type Props = SelectProps & {
@@ -130,7 +130,7 @@ export function SelectCustom(props: Props) {
 
         {showArrow && (
           <Select.Icon>
-            <GoChevronDown />
+            <IconArrowDown />
           </Select.Icon>
         )}
       </Select.Trigger>
@@ -183,7 +183,7 @@ function SelectItem(props: React.PropsWithChildren<React.ComponentProps<typeof S
     >
       <Select.ItemText>{children}</Select.ItemText>
       <Select.ItemIndicator className='inline-flex w-[25px] items-center justify-center'>
-        <GoCheck />
+        <IconCheck />
       </Select.ItemIndicator>
     </Select.Item>
   )
