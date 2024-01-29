@@ -21,10 +21,10 @@ export default function Page(props: Props) {
           <Suspense keyProp={JSON.stringify(searchParams)}>
             <FilterStatus status={status} />
           </Suspense>
-          {/* <Suspense>
+          <Suspense keyProp={JSON.stringify(searchParams)}>
             <FilterCategory category={searchParams.category_id} />
           </Suspense>
-          {searchParams.category_id && (
+          {/* {searchParams.category_id && (
             <Suspense>
               <FilterBreeds category_id={searchParams.category_id} />
             </Suspense>
@@ -38,9 +38,9 @@ export default function Page(props: Props) {
           </Suspense>
           <Order order={order} />
         </header> */}
-        {/* <Suspense fallback={<PetGridSkeleton />} keyProp={JSON.stringify(searchParams)}>
+        <Suspense fallback={<PetGridSkeleton />} keyProp={JSON.stringify(searchParams)}>
           <PetGrid searchParams={{ ...restSearchParams, status, order }} />
-        </Suspense> */}
+        </Suspense>
       </section>
     </main>
   )
