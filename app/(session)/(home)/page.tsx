@@ -32,12 +32,12 @@ export default function Page(props: Props) {
         </section>
       </aside>
       <section className='flex w-full flex-col gap-y-5'>
-        {/* <header className='flex justify-between'>
-          <Suspense>
+        <header className='flex justify-between'>
+          <Suspense keyProp={JSON.stringify(searchParams)}>
             <FilterPlace />
           </Suspense>
           <Order order={order} />
-        </header> */}
+        </header>
         <Suspense fallback={<PetGridSkeleton />} keyProp={JSON.stringify(searchParams)}>
           <PetGrid searchParams={{ ...restSearchParams, status, order }} />
         </Suspense>
