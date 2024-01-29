@@ -38,9 +38,9 @@ export default function Page(props: Props) {
           </Suspense>
           <Order order={order} />
         </header>
-        <Suspense fallback={<PetGridSkeleton />} keyProp={JSON.stringify(searchParams)}>
+        {/* <Suspense fallback={<PetGridSkeleton />} keyProp={JSON.stringify(searchParams)}>
           <PetGrid searchParams={{ ...restSearchParams, status, order }} />
-        </Suspense>
+        </Suspense> */}
       </section>
     </main>
   )
