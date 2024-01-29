@@ -144,23 +144,9 @@ export function FilterPlaceClient(props: Props) {
 
   // RENDER
   return (
-    <div className='z-10 flex w-96 max-w-full flex-col gap-y-5'>
-      {selected.length > 0 && (
-        <div className='flex gap-x-2.5'>
-          {selected.map(item => (
-            <Chip
-              onClose={() => handleRemove(item)}
-              key={item.id_ubigeo}
-              title={item.etiqueta_ubigeo}
-            >
-              {item.nombre_ubigeo}
-            </Chip>
-          ))}
-        </div>
-      )}
-
+    <div className='flex w-96 max-w-full flex-col gap-y-2.5'>
       <Combobox value={selected} onChange={handleChange} multiple>
-        <div className='relative mt-1 w-full'>
+        <div className='relative z-20 mt-1 w-full'>
           <div className='relative w-full cursor-default text-left shadow-md sm:text-sm'>
             {/* <Combobox.Button className='w-full '> */}
             <Combobox.Input
@@ -222,6 +208,18 @@ export function FilterPlaceClient(props: Props) {
           </Transition>
         </div>
       </Combobox>
+
+      <div className='flex h-7 gap-x-2.5'>
+        {selected.map(item => (
+          <Chip
+            onClose={() => handleRemove(item)}
+            key={item.id_ubigeo}
+            title={item.etiqueta_ubigeo}
+          >
+            {item.nombre_ubigeo}
+          </Chip>
+        ))}
+      </div>
     </div>
   )
 }

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { Session } from './Session'
 import { Suspense } from '@/components/other/CustomSuspense'
@@ -13,7 +12,7 @@ export function Header() {
       <div className='mx-auto flex w-[1600px] max-w-full justify-between px-1.5'>
         <aside className='flex'>
           <Link href='/' aria-label='Inicio'>
-            <Image src={Logo} alt='Logo' width={40} priority />
+            <Logo width={40} />
           </Link>
           <div className='flex *:flex *:items-center *:px-3 max-md:hidden'>
             <HeaderLink href='/' className=''>

@@ -24,7 +24,7 @@ export function Order(props: { order: string }) {
   }
 
   return (
-    <div className='sticky top-0 z-10 h-14 bg-th-fg-1'>
+    <div className='max-md:hidden'>
       <SelectNative
         state={{
           selected: order,

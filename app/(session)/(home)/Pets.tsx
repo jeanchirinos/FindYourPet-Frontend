@@ -13,7 +13,7 @@ export async function PetGrid(props: { searchParams: TGetPetParams }) {
 
   if (pets.length === 0)
     return (
-      <div className='h-44 w-full flex-col gap-y-4 flex-center'>
+      <div className='h-96 flex-col gap-y-4 flex-center'>
         <IconPet className='animate-wiggle text-5xl' />
         <p className='text-center text-xl'>No se encontraron mascotas</p>
       </div>

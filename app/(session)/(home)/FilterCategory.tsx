@@ -6,9 +6,9 @@ export async function FilterCategory(props: { category: string | undefined }) {
 
   return (
     <section>
-      {/* <p className='sticky top-14 bg-th-fg-1 font-semibold text-foreground-900'>Especie</p>
+      <p className='sticky top-0 bg-th-fg-1 font-semibold text-foreground-900'>Especie</p>
 
-      <div className='flex flex-col gap-y-2'>
+      <div className='grid w-full grid-cols-2 gap-2'>
         {categoriesList.map(item => (
           <LinkSearchParams
             key={item.id}
@@ -18,7 +18,7 @@ export async function FilterCategory(props: { category: string | undefined }) {
             }}
             selectedValue={props.category}
             value={item.id}
-            className='flex w-full min-w-max cursor-pointer items-center rounded-lg px-2.5 py-1.5 text-sm shadow-md'
+            className='flex-col gap-y-0.5 rounded-md border border-foreground-300 p-1 text-center flex-center'
             classNames={{
               selected: 'bg-orange-100 text-orange-600',
               notSelected: 'hover:bg-foreground-100',
@@ -27,10 +27,11 @@ export async function FilterCategory(props: { category: string | undefined }) {
             searchParamKey='category_id'
             keyToDelete='breed_id'
           >
-            {item.name}
+            <div className='*:size-4' dangerouslySetInnerHTML={{ __html: item.image }} />
+            <span>{item.name}</span>
           </LinkSearchParams>
         ))}
-      </div> */}
+      </div>
     </section>
   )
 }

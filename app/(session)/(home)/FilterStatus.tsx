@@ -6,7 +6,7 @@ export async function FilterStatus(props: { status: string }) {
 
   return (
     <section>
-      <p className='sticky top-14 bg-th-fg-1 font-semibold text-foreground-900'>Estado</p>
+      <p className='sticky top-0 bg-th-fg-1 font-semibold text-foreground-900'>Estado</p>
 
       <div className='flex flex-col gap-y-2'>
         {statusList.map(item => (
@@ -15,7 +15,7 @@ export async function FilterStatus(props: { status: string }) {
             href={{ status: item.id, page: 1 }}
             selectedValue={props.status}
             value={item.id}
-            className='flex w-full min-w-max cursor-pointer items-center rounded-lg px-2.5 py-1.5 text-sm shadow-md'
+            className='flex w-full min-w-max cursor-pointer items-center rounded-lg p-2.5 text-sm shadow-md'
             classNames={{
               selected: 'bg-orange-100 text-orange-600',
               notSelected: 'hover:bg-foreground-100',
