@@ -17,7 +17,7 @@ export async function FilterPlace() {
 
   console.log({ departamentos, provincias, distritos })
 
-  // const allProvincias = Object.values(provincias).flat()
+  const allProvincias = Object.values(provincias).flat()
 
   // const allDistritos = Object.values(distritos)
   //   .flat()
@@ -36,6 +36,6 @@ export async function FilterPlace() {
     //   provincias={allProvincias}
     //   distritos={allDistritos}
     // />
-    <FilterPlaceClient departamentos={departamentos} provincias={[]} distritos={[]} />
+    <FilterPlaceClient departamentos={departamentos} provincias={allProvincias} distritos={[]} />
   )
 }
