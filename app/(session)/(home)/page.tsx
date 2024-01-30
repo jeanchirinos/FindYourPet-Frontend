@@ -4,11 +4,11 @@ import { TGetPetParams } from '@/controllers/Pet'
 import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
 import { FilterStatus } from './FilterStatus'
 import { PetGrid } from './Pets'
-import { FilterCategory } from './FilterCategory'
+// import { FilterCategory } from './FilterCategory'
 // import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 // import { Order } from './Order'
-import { FilterPlace } from './FilterPlace/FilterPlace'
-import { FilterPlaceSkeleton } from '@/Skeletons/FilterPlaceSkeleton'
+// import { FilterPlace } from './FilterPlace/FilterPlace'
+// import { FilterPlaceSkeleton } from '@/Skeletons/FilterPlaceSkeleton'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -22,17 +22,16 @@ export default function Page(props: Props) {
         <section className='space-y-8 *:space-y-3'>
           {/* <Suspense keyProp={'status' + JSON.stringify(searchParams)}> */}
           {/* <Suspense key={'status' + JSON.stringify(searchParams)}> */}
-          <Suspense key='status'>
+          <Suspense>
             <FilterStatus status={status} />
           </Suspense>
-          <Suspense
-            key='category'
+          {/* <Suspense
             // keyProp={JSON.stringify(searchParams)}
             // key={JSON.stringify(searchParams)}
             fallback={<div className='aspect-square w-4 bg-red-500' />}
           >
             <FilterCategory category={searchParams.category_id} />
-          </Suspense>
+          </Suspense> */}
           {/* {searchParams.category_id && (
             <Suspense>
               <FilterBreeds category_id={searchParams.category_id} />
@@ -42,13 +41,12 @@ export default function Page(props: Props) {
       </aside>
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
-          <Suspense
-            key='place'
+          {/* <Suspense
             fallback={<FilterPlaceSkeleton />}
             //  keyProp={JSON.stringify(searchParams)}
           >
             <FilterPlace />
-          </Suspense>
+          </Suspense> */}
           {/* <Order order={order} /> */}
         </header>
         <Suspense
