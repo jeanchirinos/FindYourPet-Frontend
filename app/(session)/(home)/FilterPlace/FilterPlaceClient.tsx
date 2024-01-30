@@ -6,19 +6,22 @@ import { useRouter, useSearchParams } from 'next/navigation'
 
 import { PlaceLocation } from '@/controllers/Place'
 import { Chip } from '@nextui-org/react'
+import departamentos from '@/data/departamentos.json'
+import provincias from '@/data/provinciasConverted.json'
+import distritos from '@/data/distritosConverted.json'
+// type Props = {
+//   departamentos: PlaceLocation[]
+//   provincias: PlaceLocation[]
+//   distritos: PlaceLocation[]
+// }
 
-type Props = {
-  departamentos: PlaceLocation[]
-  provincias: PlaceLocation[]
-  distritos: PlaceLocation[]
-}
-
-export const FilterPlaceClient = memo(function FilterPlaceClient(props: Props) {
+// export const FilterPlaceClient = memo(function FilterPlaceClient(props: Props) {
+export const FilterPlaceClient = memo(function FilterPlaceClient() {
   console.log('render FilterPlaceClient')
   // })
 
   // export function FilterPlaceClient(props: Props) {
-  const { departamentos, provincias, distritos } = props
+  // const { departamentos, provincias, distritos } = props
 
   // STATES
   const [selected, setSelected] = useState<typeof distritos>([])
@@ -45,7 +48,8 @@ export const FilterPlaceClient = memo(function FilterPlaceClient(props: Props) {
     selected.push(...filteredDistritos)
 
     setSelected(selected)
-  }, [searchParams, distritos, provincias, departamentos])
+    // }, [searchParams, distritos, provincias, departamentos])
+  }, [searchParams])
 
   // VALUES
   const filteredPlaces = useMemo(() => {
@@ -77,7 +81,8 @@ export const FilterPlaceClient = memo(function FilterPlaceClient(props: Props) {
       .slice(0, 5)
 
     return query === '' ? [] : [...filteredEstates, ...filteredCities, ...filteredDistricts]
-  }, [query, distritos, provincias, departamentos])
+    // }, [query, distritos, provincias, departamentos])
+  }, [query])
 
   // FUNCTIONS
   function handleChange(value: PlaceLocation[]) {
@@ -216,7 +221,7 @@ export const FilterPlaceClient = memo(function FilterPlaceClient(props: Props) {
       <div className='flex h-7 gap-x-2.5'>
         {selected.map(item => (
           <Chip
-            onClose={() => handleRemove(item)}
+            onClose={() => handleRemove(item as any)}
             key={item.id_ubigeo}
             title={item.etiqueta_ubigeo}
           >

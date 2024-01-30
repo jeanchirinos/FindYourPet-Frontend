@@ -5,7 +5,7 @@ import { memo } from 'react'
 
 // export async function FilterPlace() {
 const FilterPlace = memo(async function FilterPlace() {
-  const { departamentos, provincias, distritos } = await getPlaces()
+  // const { departamentos, provincias, distritos } = await getPlaces()
 
   // console.log({ departamentos, provincias, distritos })
 
@@ -29,9 +29,9 @@ const FilterPlace = memo(async function FilterPlace() {
     //   distritos={allDistritos}
     // />
     <FilterPlaceClient
-      departamentos={departamentos}
-      provincias={provincias}
-      distritos={distritos}
+    // departamentos={departamentos}
+    // provincias={provincias}
+    // distritos={distritos}
     />
     // <h2>Hola</h2>
   )
