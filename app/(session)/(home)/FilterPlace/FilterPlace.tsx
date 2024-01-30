@@ -27,9 +27,9 @@ export async function FilterPlace() {
     //   distritos={allDistritos}
     // />
     <FilterPlaceClient
-      departamentos={departamentos.slice(0, 5)}
-      provincias={provincias.slice(0, 5)}
-      distritos={distritos.slice(0, 5)}
+      departamentos={departamentos}
+      provincias={provincias}
+      distritos={distritos}
     />
     // <h2>Hola</h2>
   )

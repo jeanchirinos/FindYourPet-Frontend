@@ -1,5 +1,5 @@
 'use client'
-import { Fragment, useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState, memo } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { IconArrowDown, IconCheck } from '@/icons'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -13,7 +13,10 @@ type Props = {
   distritos: PlaceLocation[]
 }
 
-export function FilterPlaceClient(props: Props) {
+export const FilterPlaceClient = memo(function FilterPlaceClient(props: Props) {
+  // })
+
+  // export function FilterPlaceClient(props: Props) {
   const { departamentos, provincias, distritos } = props
 
   // STATES
@@ -222,4 +225,4 @@ export function FilterPlaceClient(props: Props) {
       </div>
     </div>
   )
-}
+})

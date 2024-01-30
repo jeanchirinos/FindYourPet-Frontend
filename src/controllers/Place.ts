@@ -27,20 +27,6 @@ async function getData<T>(type: 'departamentos' | 'provincias' | 'distritos') {
   return data
 }
 
-// function flatten(arr: any) {
-//   const flattened = [] as any[]
-
-//   //@ts-nocheck
-//   !(function flat(arr) {
-//     arr.forEach(function (el: any) {
-//       if (Array.isArray(el)) flat(el)
-//       else flattened.push(el)
-//     })
-//   })(arr)
-
-//   return flattened
-// }
-
 export const getPlaces = cache(async () => {
   const departamentosData = getData<PlaceLocation[]>('departamentos')
   const provinciasData = getData<Record<string, PlaceLocation[]>>('provincias')
