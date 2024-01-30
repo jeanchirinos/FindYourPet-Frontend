@@ -11,8 +11,8 @@ import { PlaceLocation } from '@/controllers/Place'
 // import distritos from '@/data/distritosConverted.json'
 
 type Props = {
-  departamentos: PlaceLocation[]
-  provincias: PlaceLocation[]
+  // departamentos: PlaceLocation[]
+  // provincias: PlaceLocation[]
   distritos: PlaceLocation[]
 }
 
