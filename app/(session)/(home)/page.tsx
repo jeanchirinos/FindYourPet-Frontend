@@ -21,7 +21,7 @@ export default function Page(props: Props) {
           <Suspense keyProp={'status' + JSON.stringify(searchParams)}>
             <FilterStatus status={status} />
           </Suspense>
-          <Suspense keyProp={JSON.stringify(searchParams)}>
+          <Suspense fallback='LOADING'>
             <FilterCategory category={searchParams.category_id} />
           </Suspense>
           {/* {searchParams.category_id && (
