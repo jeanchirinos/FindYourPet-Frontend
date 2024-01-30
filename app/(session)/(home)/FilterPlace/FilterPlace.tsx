@@ -4,6 +4,9 @@ import { FilterPlaceClient } from './FilterPlaceClient'
 
 export async function FilterPlace() {
   const { departamentos, provincias, distritos } = await getPlaces()
+
+  console.log({ departamentos, provincias, distritos })
+
   // const distritosData = getPlaces()
   // const provinciasData = getPlaces2()
 
@@ -23,10 +26,11 @@ export async function FilterPlace() {
     //   provincias={allProvincias}
     //   distritos={allDistritos}
     // />
-    <FilterPlaceClient
-      departamentos={departamentos}
-      provincias={provincias}
-      distritos={distritos}
-    />
+    // <FilterPlaceClient
+    //   departamentos={departamentos}
+    //   provincias={provincias}
+    //   distritos={distritos}
+    // />
+    <h2>Hola</h2>
   )
 }

@@ -55,13 +55,13 @@ export const getPlaces = cache(async () => {
   const allProvincias = Object.values(provincias).flat()
   const allDistritos = Object.values(distritos).flat()
 
-  console.log({ allProvincias, allDistritos })
+  // console.log({ allProvincias, allDistritos })
 
   return {
     departamentos,
-    provincias: provincias['2534'],
-    distritos: distritos['2557'],
-    // provincias: allProvincias,
-    // distritos: allDistritos,
+    // provincias: provincias['2534'],
+    // distritos: distritos['2557'],
+    provincias: allProvincias,
+    distritos: allDistritos,
   }
 })
