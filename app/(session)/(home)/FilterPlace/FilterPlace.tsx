@@ -36,7 +36,7 @@ export async function FilterPlace() {
     <DynamicFilterPlaceClient
       // departamentos={departamentos}
       // provincias={allProvincias}
-      distritos={distritos}
+      distritos={distritos.slice(0, 250)}
     />
     // <FilterPlaceClient
     // departamentos={departamentos as any}
