@@ -1,14 +1,21 @@
-import { getPlaces } from '@/controllers/Place'
+import { getPlaces, getPlaces2 } from '@/controllers/Place'
 import { FilterPlaceClient } from './FilterPlaceClient'
 // import { FilterPlaceClient } from './FilterPlaceClient'
 
 export async function FilterPlace() {
   // const { departamentos, provincias, distritos } = await getPlaces()
-  const places = await getPlaces()
-  // const places2 = await getPlaces2()
+  const distritosData = getPlaces()
+  const provinciasData = getPlaces2()
 
-  console.log({ places })
-  // console.log({ departamentos, provincias, distritos })
+  // console.log({ places })
+
+  const [provincias, distritos] = await Promise.all([
+    // departamentosData,
+    provinciasData,
+    distritosData,
+  ])
+
+  console.log({ provincias, distritos })
 
   // const allProvincias = Object.values(provincias).flat()
 

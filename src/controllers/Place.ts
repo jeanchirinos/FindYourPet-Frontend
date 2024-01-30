@@ -74,17 +74,17 @@ export async function getPlaces() {
   // }
 }
 
-// export async function getPlaces2() {
-//   const res = await actionRequestGet<GithubResponse>(
-//     `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/provincias.json`,
-//     {
-//       cache: 'force-cache',
-//     },
-//   )
+export async function getPlaces2() {
+  const res = await actionRequestGet<GithubResponse>(
+    `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/provincias.json`,
+    {
+      cache: 'force-cache',
+    },
+  )
 
-//   const data = JSON.parse(res.payload.blob.rawLines[1])
+  const data = JSON.parse(res.payload.blob.rawLines[1])
 
-//   return data
-// }
+  return data
+}
 
 export type Places = Awaited<ReturnType<typeof getPlaces>>
