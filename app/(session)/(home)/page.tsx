@@ -1,5 +1,5 @@
 // import { Suspense } from '@/components/other/CustomSuspense'
-import { Suspense, memo } from 'react'
+import { Suspense } from 'react'
 import { TGetPetParams } from '@/controllers/Pet'
 import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
 // import { FilterStatus } from './FilterStatus'
@@ -7,7 +7,8 @@ import { PetGrid } from './Pets'
 // import { FilterCategory } from './FilterCategory'
 // import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 // import { Order } from './Order'
-import { FilterPlace } from './FilterPlace/FilterPlace'
+// import { FilterPlace } from './FilterPlace/FilterPlace'
+import FilterPlace from './FilterPlace/FilterPlace'
 import Link from 'next/link'
 // import dynamic from 'next/dynamic'
 // import { FilterPlaceSkeleton } from '@/Skeletons/FilterPlaceSkeleton'
@@ -16,7 +17,7 @@ type Props = { searchParams: TGetPetParams }
 
 // const FilterPlace = dynamic(() => import('./FilterPlace/FilterPlace'))
 
-const FilterPlaceMemo = memo(FilterPlace, () => true)
+// const FilterPlaceMemo = memo(FilterPlace, () => true)
 
 // const FilterPlaceMemo = memo(FilterPlace, (prevProps, nextProps) => {
 //   // do a comparison that ignores changes to searchParams
@@ -55,9 +56,9 @@ export default function Page(props: Props) {
       </aside>
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
-          <Suspense>
-            <FilterPlaceMemo />
-          </Suspense>
+          {/* <Suspense> */}
+          <FilterPlace />
+          {/* </Suspense> */}
           {/* <Order order={order} /> */}
         </header>
         <Suspense
