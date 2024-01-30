@@ -1,8 +1,10 @@
 import { getPlaces } from '@/controllers/Place'
 import { FilterPlaceClient } from './FilterPlaceClient'
+import { memo } from 'react'
 // import { FilterPlaceClient } from './FilterPlaceClient'
 
-export async function FilterPlace() {
+// export async function FilterPlace() {
+const FilterPlace = memo(async function FilterPlace() {
   const { departamentos, provincias, distritos } = await getPlaces()
 
   // console.log({ departamentos, provincias, distritos })
@@ -33,4 +35,6 @@ export async function FilterPlace() {
     />
     // <h2>Hola</h2>
   )
-}
+})
+
+export default FilterPlace

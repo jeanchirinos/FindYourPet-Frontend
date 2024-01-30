@@ -14,6 +14,7 @@ type Props = {
 }
 
 export const FilterPlaceClient = memo(function FilterPlaceClient(props: Props) {
+  console.log('render FilterPlaceClient')
   // })
 
   // export function FilterPlaceClient(props: Props) {

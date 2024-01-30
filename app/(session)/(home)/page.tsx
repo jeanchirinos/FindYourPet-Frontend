@@ -7,10 +7,13 @@ import { PetGrid } from './Pets'
 import { FilterCategory } from './FilterCategory'
 // import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { Order } from './Order'
-import { FilterPlace } from './FilterPlace/FilterPlace'
+// import { FilterPlace } from './FilterPlace/FilterPlace'
+import dynamic from 'next/dynamic'
 // import { FilterPlaceSkeleton } from '@/Skeletons/FilterPlaceSkeleton'
 
 type Props = { searchParams: TGetPetParams }
+
+const FilterPlace = dynamic(() => import('./FilterPlace/FilterPlace'))
 
 export default function Page(props: Props) {
   const { searchParams } = props
@@ -41,8 +44,8 @@ export default function Page(props: Props) {
       </aside>
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
-          <Suspense>
-            <FilterPlace />
+          <Suspense key='1'>
+            <FilterPlace key='2' />
           </Suspense>
           <Order order={order} />
         </header>
