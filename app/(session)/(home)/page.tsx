@@ -2,14 +2,15 @@
 import { Suspense } from 'react'
 import { TGetPetParams } from '@/controllers/Pet'
 import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
-// import { FilterStatus } from './FilterStatus'
+import { FilterStatus } from './FilterStatus'
 import { PetGrid } from './Pets'
-// import { FilterCategory } from './FilterCategory'
-// import { FilterBreeds } from './FilterBreeds/FilterBreeds'
-// import { Order } from './Order'
+import { FilterCategory } from './FilterCategory'
+import { FilterBreeds } from './FilterBreeds/FilterBreeds'
+import { Order } from './Order'
 // import { FilterPlace } from './FilterPlace/FilterPlace'
-import FilterPlace from './FilterPlace/FilterPlace'
-import Link from 'next/link'
+// import FilterPlace from './FilterPlace/FilterPlace'
+// import Link from 'next/link'
+import { FilterPlaceClient } from './FilterPlace/FilterPlaceClient'
 // import dynamic from 'next/dynamic'
 // import { FilterPlaceSkeleton } from '@/Skeletons/FilterPlaceSkeleton'
 
@@ -34,32 +35,29 @@ export default function Page(props: Props) {
         <section className='space-y-8 *:space-y-3'>
           {/* <Suspense keyProp={'status' + JSON.stringify(searchParams)}> */}
           {/* <Suspense key={'status' + JSON.stringify(searchParams)}> */}
-          {/* <Suspense>
+          <Suspense>
             <FilterStatus status={status} />
-          </Suspense> */}
-          <Link href='?status=1'>Status 1</Link>
-          <Link href='?status=2'>Status 2</Link>
-          <Link href='?status=3'>Status 3</Link>
-          {/* <Suspense
+          </Suspense>
+          <Suspense
           // keyProp={JSON.stringify(searchParams)}
           // key={JSON.stringify(searchParams)}
           // fallback={<div className='aspect-square w-4 bg-red-500' />}
           >
             <FilterCategory category={searchParams.category_id} />
-          </Suspense> */}
-          {/* {searchParams.category_id && (
+          </Suspense>
+          {searchParams.category_id && (
             <Suspense>
               <FilterBreeds category_id={searchParams.category_id} />
             </Suspense>
-          )} */}
+          )}
         </section>
       </aside>
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
-          {/* <Suspense> */}
-          <FilterPlace />
-          {/* </Suspense> */}
-          {/* <Order order={order} /> */}
+          <Suspense>
+            <FilterPlaceClient />
+          </Suspense>
+          <Order order={order} />
         </header>
         <Suspense
           fallback={<PetGridSkeleton />}
