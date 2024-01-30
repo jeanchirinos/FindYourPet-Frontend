@@ -7,6 +7,7 @@ import { FilterCategory } from './FilterCategory'
 // import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { Order } from './Order'
 import { FilterPlace } from './FilterPlace/FilterPlace'
+import { FilterPlaceSkeleton } from '@/Skeletons/FilterPlaceSkeleton'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -33,7 +34,7 @@ export default function Page(props: Props) {
       </aside>
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
-          <Suspense fallback='LOADING'>
+          <Suspense fallback={<FilterPlaceSkeleton />} keyProp={JSON.stringify(searchParams)}>
             <FilterPlace />
           </Suspense>
           <Order order={order} />
