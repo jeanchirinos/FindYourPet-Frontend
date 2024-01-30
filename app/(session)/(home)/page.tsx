@@ -6,7 +6,7 @@ import { FilterStatus } from './FilterStatus'
 import { PetGrid } from './Pets'
 import { FilterCategory } from './FilterCategory'
 // import { FilterBreeds } from './FilterBreeds/FilterBreeds'
-// import { Order } from './Order'
+import { Order } from './Order'
 // import { FilterPlace } from './FilterPlace/FilterPlace'
 // import { FilterPlaceSkeleton } from '@/Skeletons/FilterPlaceSkeleton'
 
@@ -47,7 +47,7 @@ export default function Page(props: Props) {
           >
             <FilterPlace />
           </Suspense> */}
-          {/* <Order order={order} /> */}
+          <Order order={order} />
         </header>
         <Suspense
           fallback={<PetGridSkeleton />}
