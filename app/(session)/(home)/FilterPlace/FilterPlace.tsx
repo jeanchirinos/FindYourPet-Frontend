@@ -1,4 +1,5 @@
 import { getPlaces } from '@/controllers/Place'
+import { FilterPlaceClient } from './FilterPlaceClient'
 // import { FilterPlaceClient } from './FilterPlaceClient'
 
 export async function FilterPlace() {
@@ -28,6 +29,6 @@ export async function FilterPlace() {
     //   provincias={allProvincias}
     //   distritos={allDistritos}
     // />
-    <h2>Hola</h2>
+    <FilterPlaceClient departamentos={[]} provincias={[]} distritos={[]} />
   )
 }
