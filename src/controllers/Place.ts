@@ -41,6 +41,19 @@ export async function getPlaces() {
     distritosData,
   ])
 
+  const allProvincias = Object.values(provincias).flat()
+
+  const allDistritos = Object.values(distritos)
+    .flat()
+    .map(d => {
+      const provincia = allProvincias.find(p => p.id_ubigeo === d.id_padre_ubigeo)
+      const departamento = departamentos.find(d => d.id_ubigeo === provincia?.id_padre_ubigeo)
+
+      const tag = `${d.etiqueta_ubigeo}, ${departamento?.nombre_ubigeo}`
+
+      return { ...d, etiqueta_ubigeo: tag }
+    })
+
   // const res = await actionRequestGet<GithubResponse>(
   //   // `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/${type}.json`,
   //   `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/distritos.json`,
@@ -69,8 +82,8 @@ export async function getPlaces() {
 
   return {
     departamentos,
-    provincias,
-    distritos,
+    provincias: allProvincias,
+    distritos: allDistritos,
   }
 }
 

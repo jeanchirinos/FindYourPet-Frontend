@@ -15,20 +15,7 @@ export async function FilterPlace() {
   //   distritosData,
   // ])
 
-  console.log({ departamentos, provincias, distritos })
-
-  const allProvincias = Object.values(provincias).flat()
-
-  const allDistritos = Object.values(distritos)
-    .flat()
-    .map(d => {
-      const provincia = allProvincias.find(p => p.id_ubigeo === d.id_padre_ubigeo)
-      const departamento = departamentos.find(d => d.id_ubigeo === provincia?.id_padre_ubigeo)
-
-      const tag = `${d.etiqueta_ubigeo}, ${departamento?.nombre_ubigeo}`
-
-      return { ...d, etiqueta_ubigeo: tag }
-    })
+  // console.log({ departamentos, provincias, distritos })
 
   return (
     // <FilterPlaceClient
@@ -38,8 +25,8 @@ export async function FilterPlace() {
     // />
     <FilterPlaceClient
       departamentos={departamentos}
-      provincias={allProvincias}
-      distritos={allDistritos}
+      provincias={provincias}
+      distritos={distritos}
     />
   )
 }
