@@ -4,7 +4,7 @@ import { TGetPetParams } from '@/controllers/Pet'
 import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
 import { FilterStatus } from './FilterStatus'
 import { PetGrid } from './Pets'
-// import { FilterCategory } from './FilterCategory'
+import { FilterCategory } from './FilterCategory'
 // import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 // import { Order } from './Order'
 // import { FilterPlace } from './FilterPlace/FilterPlace'
@@ -25,13 +25,13 @@ export default function Page(props: Props) {
           <Suspense>
             <FilterStatus status={status} />
           </Suspense>
-          {/* <Suspense
-            // keyProp={JSON.stringify(searchParams)}
-            // key={JSON.stringify(searchParams)}
-            fallback={<div className='aspect-square w-4 bg-red-500' />}
+          <Suspense
+          // keyProp={JSON.stringify(searchParams)}
+          // key={JSON.stringify(searchParams)}
+          // fallback={<div className='aspect-square w-4 bg-red-500' />}
           >
             <FilterCategory category={searchParams.category_id} />
-          </Suspense> */}
+          </Suspense>
           {/* {searchParams.category_id && (
             <Suspense>
               <FilterBreeds category_id={searchParams.category_id} />
