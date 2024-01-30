@@ -31,12 +31,12 @@ export async function getPlaces() {
   // const provincias = await getData<Record<string, PlaceLocation[]>>('provincias')
   // const distritos = await getData<Record<string, PlaceLocation[]>>('distritos')
 
-  // const departamentosData = getData<PlaceLocation[]>('departamentos')
+  const departamentosData = getData<PlaceLocation[]>('departamentos')
   const provinciasData = getData<Record<string, PlaceLocation[]>>('provincias')
   const distritosData = getData<Record<string, PlaceLocation[]>>('distritos')
 
-  const [provincias, distritos] = await Promise.all([
-    // departamentosData,
+  const [departamentos, provincias, distritos] = await Promise.all([
+    departamentosData,
     provinciasData,
     distritosData,
   ])
@@ -68,7 +68,7 @@ export async function getPlaces() {
   // return data
 
   return {
-    // departamentos,
+    departamentos,
     provincias,
     distritos,
   }
