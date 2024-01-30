@@ -112,20 +112,20 @@ export function PetInfo(props: { categories: Category[]; breedsData: BreedsData 
 
 export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>> }) {
   const { places } = props
-  const { departamentos, provincias, distritos } = places
+  // const { departamentos, provincias, distritos } = places
 
-  // STATES
-  const [selectedDepartamento, setSelectedDepartamento] = useState<undefined | string>('3926')
-  const [selectedProvincia, setSelectedProvincia] = useState<undefined | string>('3927')
+  // // STATES
+  // const [selectedDepartamento, setSelectedDepartamento] = useState<undefined | string>('3926')
+  // const [selectedProvincia, setSelectedProvincia] = useState<undefined | string>('3927')
 
-  // VALUES
-  const provinciasList = selectedDepartamento ? provincias[selectedDepartamento] : undefined
-  const distritosList = selectedProvincia ? distritos[selectedProvincia] : undefined
+  // // VALUES
+  // const provinciasList = selectedDepartamento ? provincias[selectedDepartamento] : undefined
+  // const distritosList = selectedProvincia ? distritos[selectedProvincia] : undefined
 
   // RENDER
   return (
     <>
-      <SelectNative
+      {/* <SelectNative
         name='estate'
         options={departamentos}
         optionKeyValue='id_ubigeo'
@@ -151,7 +151,7 @@ export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>>
         optionKeyValue='id_ubigeo'
         optionKeyText='nombre_ubigeo'
         label='Distrito'
-      />
+      /> */}
     </>
   )
 }
