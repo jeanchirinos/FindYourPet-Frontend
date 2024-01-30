@@ -1,5 +1,6 @@
 'use server'
 import { actionRequestGet } from '@/utilities/actionRequest'
+import { cache } from 'react'
 
 type GithubResponse = { payload: { blob: { rawLines: [string, string] } } }
 export type PlaceLocation = {
@@ -26,11 +27,7 @@ async function getData<T>(type: 'departamentos' | 'provincias' | 'distritos') {
   return data
 }
 
-export async function getPlaces() {
-  // const departamentos = await getData<PlaceLocation[]>('departamentos')
-  // const provincias = await getData<Record<string, PlaceLocation[]>>('provincias')
-  // const distritos = await getData<Record<string, PlaceLocation[]>>('distritos')
-
+export const getPlaces = cache(async () => {
   const departamentosData = getData<PlaceLocation[]>('departamentos')
   const provinciasData = getData<Record<string, PlaceLocation[]>>('provincias')
   const distritosData = getData<Record<string, PlaceLocation[]>>('distritos')
@@ -41,62 +38,14 @@ export async function getPlaces() {
     distritosData,
   ])
 
-  // const allProvincias = Object.values(provincias).flat()
-
-  // const allDistritos = Object.values(distritos).flat()
-  // .map(d => {
-  //   const provincia = allProvincias.find(p => p.id_ubigeo === d.id_padre_ubigeo)
-  //   const departamento = departamentos.find(d => d.id_ubigeo === provincia?.id_padre_ubigeo)
-
-  //   const tag = `${d.etiqueta_ubigeo}, ${departamento?.nombre_ubigeo}`
-
-  //   return { ...d, etiqueta_ubigeo: tag }
-  // })
-
-  // const res = await actionRequestGet<GithubResponse>(
-  //   // `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/${type}.json`,
-  //   `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/distritos.json`,
-  //   {
-  //     cache: 'force-cache',
-  //   },
-  // )
-
-  // const res2 = await actionRequestGet<GithubResponse>(
-  //   // `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/${type}.json`,
-  //   `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/provincias.json`,
-  //   {
-  //     cache: 'force-cache',
-  //   },
-  // )
-
-  // const data = JSON.parse(res.payload.blob.rawLines[1])
-  // const data2 = JSON.parse(res2.payload.blob.rawLines[1])
-
-  // return {
-  //   data,
-  //   data2,
-  // }
-
-  // return data
+  const allProvincias = Object.values(provincias).flat()
+  const allDistritos = Object.values(distritos).flat()
 
   return {
     departamentos,
-    provincias: provincias['2534'],
-    distritos: distritos['2557'],
+    // provincias: provincias['2534'],
+    // distritos: distritos['2557'],
+    provincias: allProvincias,
+    distritos: allDistritos,
   }
-}
-
-export async function getPlaces2() {
-  const res = await actionRequestGet<GithubResponse>(
-    `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/provincias.json`,
-    {
-      cache: 'force-cache',
-    },
-  )
-
-  const data = JSON.parse(res.payload.blob.rawLines[1])
-
-  return data
-}
-
-export type Places = Awaited<ReturnType<typeof getPlaces>>
+})
