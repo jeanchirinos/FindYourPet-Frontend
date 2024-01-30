@@ -34,7 +34,7 @@ const FilterPlace = memo(async function FilterPlace() {
     <FilterPlaceClient
       // departamentos={departamentos as any}
       // provincias={provincias as any}
-      distritos={distritos as any}
+      distritos={distritos.slice(0, 250) as any}
     />
     // <h2>Hola</h2>
   )
