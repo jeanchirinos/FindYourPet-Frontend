@@ -4,9 +4,10 @@ import { getPlaces } from '@/controllers/Place'
 
 export async function FilterPlace() {
   // await waitFor(3)
-  const { departamentos, provincias, distritos } = await getPlaces()
+  // const { departamentos, provincias, distritos } = await getPlaces()
+  const data = await getPlaces()
 
-  console.log({ departamentos, provincias, distritos })
+  console.log(data)
 
   // const allProvincias = Object.values(provincias).flat()
 
