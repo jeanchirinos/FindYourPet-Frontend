@@ -6,7 +6,7 @@ import { FilterStatus } from './FilterStatus'
 import { PetGrid } from './Pets'
 import { FilterCategory } from './FilterCategory'
 // import { FilterBreeds } from './FilterBreeds/FilterBreeds'
-import { Order } from './Order'
+// import { Order } from './Order'
 import { FilterPlace } from './FilterPlace/FilterPlace'
 import { FilterPlaceSkeleton } from '@/Skeletons/FilterPlaceSkeleton'
 
@@ -22,10 +22,11 @@ export default function Page(props: Props) {
         <section className='space-y-8 *:space-y-3'>
           {/* <Suspense keyProp={'status' + JSON.stringify(searchParams)}> */}
           {/* <Suspense key={'status' + JSON.stringify(searchParams)}> */}
-          <Suspense>
+          <Suspense key='status'>
             <FilterStatus status={status} />
           </Suspense>
           <Suspense
+            key='category'
             // keyProp={JSON.stringify(searchParams)}
             // key={JSON.stringify(searchParams)}
             fallback={<div className='aspect-square w-4 bg-red-500' />}
@@ -42,12 +43,13 @@ export default function Page(props: Props) {
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
           <Suspense
+            key='place'
             fallback={<FilterPlaceSkeleton />}
             //  keyProp={JSON.stringify(searchParams)}
           >
             <FilterPlace />
           </Suspense>
-          <Order order={order} />
+          {/* <Order order={order} /> */}
         </header>
         <Suspense
           fallback={<PetGridSkeleton />}
