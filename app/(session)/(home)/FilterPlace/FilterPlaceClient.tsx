@@ -1,4 +1,7 @@
 'use client'
+
+import { memo } from 'react'
+
 // import { Fragment, useEffect, useMemo, useState, memo } from 'react'
 // import { Combobox, Transition } from '@headlessui/react'
 // import { IconArrowDown, IconCheck } from '@/icons'
@@ -17,9 +20,22 @@
 //   distritos: any
 // }
 
-export default function FilterPlaceClient(props: any) {
-  return <h2>Hola</h2>
-}
+// export default function FilterPlaceClient(props: any) {
+//   return <h2>Hola</h2>
+// }
+
+const FilterPlaceClient = memo(
+  function FilterPlaceClient(props: any) {
+    console.log('render FilterPlaceClient')
+    return <h3>Hey</h3>
+  },
+  (prevProps, nextProps) => {
+    // do a comparison that ignores changes to searchParams
+    return prevProps.someOtherProp === nextProps.someOtherProp
+  },
+)
+
+export default FilterPlaceClient
 
 // export const FilterPlaceClient = memo(function FilterPlaceClient(props: Props) {
 // export const FilterPlaceClient = memo(function FilterPlaceClient() {
