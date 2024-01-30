@@ -52,8 +52,8 @@ export const getPlaces = cache(async () => {
     distritosData,
   ])
 
-  const allProvincias = Object.values(provincias)
-  const allDistritos = Object.values(distritos)
+  const allProvincias = Object.values(provincias).flat()
+  const allDistritos = Object.values(distritos).flat()
 
   console.log({ allProvincias, allDistritos })
 
