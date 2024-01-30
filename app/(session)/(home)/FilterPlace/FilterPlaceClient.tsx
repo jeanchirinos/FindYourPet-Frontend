@@ -4,19 +4,20 @@
 // import { IconArrowDown, IconCheck } from '@/icons'
 // import { useRouter, useSearchParams } from 'next/navigation'
 
-import { PlaceLocation } from '@/controllers/Place'
+// import { PlaceLocation } from '@/controllers/Place'
 // import { Chip } from '@nextui-org/react'
 // import departamentos from '@/data/departamentos.json'
 // import provincias from '@/data/provinciasConverted.json'
 // import distritos from '@/data/distritosConverted.json'
 
-type Props = {
-  // departamentos: PlaceLocation[]
-  // provincias: PlaceLocation[]
-  distritos: PlaceLocation[]
-}
+// type Props = {
+//   // departamentos: PlaceLocation[]
+//   // provincias: PlaceLocation[]
+//   // distritos: PlaceLocation[]
+//   distritos: any
+// }
 
-export function FilterPlaceClient(props: any) {
+export default function FilterPlaceClient(props: any) {
   return <h2>Hola</h2>
 }
 

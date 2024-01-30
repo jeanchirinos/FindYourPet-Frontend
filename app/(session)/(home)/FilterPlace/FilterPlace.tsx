@@ -1,10 +1,16 @@
 // import { getPlaces } from '@/controllers/Place'
 // import { FilterPlaceClient } from './FilterPlaceClient'
 // import { memo } from 'react'
-import { FilterPlaceClient } from './FilterPlaceClient'
+import dynamic from 'next/dynamic'
+// import { FilterPlaceClient } from './FilterPlaceClient'
+// import FilterPlaceClient  from './FilterPlaceClient'
 // import departamentos from '@/data/departamentos.json'
 // import provincias from '@/data/provinciasConverted.json'
 import distritos from '@/data/distritos.json'
+
+const DynamicFilterPlaceClient = dynamic(() => import('./FilterPlaceClient'), {
+  ssr: false,
+})
 
 export async function FilterPlace() {
   // const FilterPlace = memo(async function FilterPlace() {
@@ -27,10 +33,10 @@ export async function FilterPlace() {
 
   return (
     // <h2>Hola</h2>
-    <FilterPlaceClient
+    <DynamicFilterPlaceClient
       // departamentos={departamentos}
       // provincias={allProvincias}
-      distritos={distritos.slice(0, 100)}
+      distritos={distritos}
     />
     // <FilterPlaceClient
     // departamentos={departamentos as any}
