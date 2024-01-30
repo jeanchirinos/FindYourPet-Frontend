@@ -1,11 +1,12 @@
-import { getPlaces } from '@/controllers/Place'
+import { getPlaces, getPlaces2 } from '@/controllers/Place'
 // import { FilterPlaceClient } from './FilterPlaceClient'
 
 export async function FilterPlace() {
   // const { departamentos, provincias, distritos } = await getPlaces()
   const places = await getPlaces()
+  const places2 = await getPlaces2()
 
-  console.log({ places })
+  console.log({ places, places2 })
   // console.log({ departamentos, provincias, distritos })
 
   // const allProvincias = Object.values(provincias).flat()
