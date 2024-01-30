@@ -21,7 +21,7 @@ export default function Page(props: Props) {
           <Suspense keyProp={'status' + JSON.stringify(searchParams)}>
             <FilterStatus status={status} />
           </Suspense>
-          <Suspense fallback='LOADING'>
+          <Suspense keyProp={JSON.stringify(searchParams)}>
             <FilterCategory category={searchParams.category_id} />
           </Suspense>
           {/* {searchParams.category_id && (
@@ -33,7 +33,7 @@ export default function Page(props: Props) {
       </aside>
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
-          <Suspense keyProp={JSON.stringify(searchParams)}>
+          <Suspense fallback='LOADING'>
             <FilterPlace />
           </Suspense>
           <Order order={order} />
