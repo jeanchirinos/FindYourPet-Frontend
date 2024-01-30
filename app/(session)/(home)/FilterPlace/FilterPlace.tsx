@@ -7,7 +7,7 @@ import { memo } from 'react'
 import FilterPlaceClient from './FilterPlaceClient'
 // import departamentos from '@/data/departamentos.json'
 // import provincias from '@/data/provinciasConverted.json'
-// import distritos from '@/data/distritos.json'
+import distritos from '@/data/distritos.json'
 
 // const DynamicFilterPlaceClient = dynamic(() => import('./FilterPlaceClient'), {
 //   ssr: false,
@@ -16,7 +16,7 @@ import FilterPlaceClient from './FilterPlaceClient'
 const FilterPlace = memo(
   function FilterPlace(props: any) {
     console.log('render FilterPlaceServer')
-    return <FilterPlaceClient />
+    return <FilterPlaceClient distritos={distritos} />
   },
   () => true,
 )
