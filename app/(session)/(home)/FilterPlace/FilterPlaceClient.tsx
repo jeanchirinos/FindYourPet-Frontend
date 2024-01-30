@@ -29,10 +29,7 @@ const FilterPlaceClient = memo(
     console.log('render FilterPlaceClient')
     return <h3>Hey</h3>
   },
-  (prevProps, nextProps) => {
-    // do a comparison that ignores changes to searchParams
-    return prevProps.someOtherProp === nextProps.someOtherProp
-  },
+  () => true,
 )
 
 export default FilterPlaceClient

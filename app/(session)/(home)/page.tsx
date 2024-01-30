@@ -16,7 +16,7 @@ type Props = { searchParams: TGetPetParams }
 
 // const FilterPlace = dynamic(() => import('./FilterPlace/FilterPlace'))
 
-const FilterPlaceMemo = memo(FilterPlace)
+const FilterPlaceMemo = memo(FilterPlace, () => true)
 
 // const FilterPlaceMemo = memo(FilterPlace, (prevProps, nextProps) => {
 //   // do a comparison that ignores changes to searchParams
