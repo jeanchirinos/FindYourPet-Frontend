@@ -1,13 +1,13 @@
 // import { getPlaces } from '@/controllers/Place'
-import { FilterPlaceClient } from './FilterPlaceClient'
-import { memo } from 'react'
 // import { FilterPlaceClient } from './FilterPlaceClient'
-import departamentos from '@/data/departamentos.json'
-import provincias from '@/data/provinciasConverted.json'
-import distritos from '@/data/distritosConverted.json'
+// import { memo } from 'react'
+import { FilterPlaceClient } from './FilterPlaceClient'
+// import departamentos from '@/data/departamentos.json'
+// import provincias from '@/data/provinciasConverted.json'
+import distritos from '@/data/distritos.json'
 
-// export async function FilterPlace() {
-const FilterPlace = memo(async function FilterPlace() {
+export async function FilterPlace() {
+  // const FilterPlace = memo(async function FilterPlace() {
   // const { departamentos, provincias, distritos } = await getPlaces()
 
   // console.log({ departamentos, provincias, distritos })
@@ -26,22 +26,24 @@ const FilterPlace = memo(async function FilterPlace() {
   // console.log({ departamentos, provincias, distritos })
 
   return (
-    // <FilterPlaceClient
-    //   departamentos={departamentos}
-    //   provincias={allProvincias}
-    //   distritos={allDistritos}
-    // />
+    // <h2>Hola</h2>
     <FilterPlaceClient
-      // departamentos={departamentos as any}
-      // provincias={provincias as any}
-      distritos={distritos.slice(0, 250) as any}
-      distritos2={distritos.slice(250, 500) as any}
-      distritos3={distritos.slice(500, 750) as any}
-      distritos4={distritos.slice(750, 1000) as any}
-      distritos5={distritos.slice(1000, 1250) as any}
+      // departamentos={departamentos}
+      // provincias={allProvincias}
+      distritos={distritos}
     />
+    // <FilterPlaceClient
+    // departamentos={departamentos as any}
+    // provincias={provincias as any}
+    // distritos={distritos.slice(0, 250) as any}
+    // distritos2={distritos.slice(250, 500) as any}
+    // distritos3={distritos.slice(500, 750) as any}
+    // distritos4={distritos.slice(750, 1000) as any}
+    // distritos5={distritos.slice(1000, 1250) as any}
+    // />
     // <h2>Hola</h2>
   )
-})
+}
+// })
 
-export default FilterPlace
+// export default FilterPlace

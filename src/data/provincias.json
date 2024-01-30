@@ -1,1990 +1,1757 @@
-{
-  "2534": [
-    {
-      "id_ubigeo": "2557",
-      "nombre_ubigeo": "Bagua",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Bagua, Amazonas",
-      "buscador_ubigeo": "bagua amazonas",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2534"
-    },
-    {
-      "id_ubigeo": "2563",
-      "nombre_ubigeo": "Bongara",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Bongara, Amazonas",
-      "buscador_ubigeo": "bongara amazonas",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2534"
-    },
-    {
-      "id_ubigeo": "2535",
-      "nombre_ubigeo": "Chachapoyas",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Chachapoyas, Amazonas",
-      "buscador_ubigeo": "chachapoyas amazonas",
-      "numero_hijos_ubigeo": "21",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2534"
-    },
-    {
-      "id_ubigeo": "2576",
-      "nombre_ubigeo": "Condorcanqui",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Condorcanqui, Amazonas",
-      "buscador_ubigeo": "condorcanqui amazonas",
-      "numero_hijos_ubigeo": "3",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2534"
-    },
-    {
-      "id_ubigeo": "2580",
-      "nombre_ubigeo": "Luya",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Luya, Amazonas",
-      "buscador_ubigeo": "luya amazonas",
-      "numero_hijos_ubigeo": "23",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2534"
-    },
-    {
-      "id_ubigeo": "2604",
-      "nombre_ubigeo": "Rodriguez de Mendoza",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Rodriguez de Mendoza, Amazonas",
-      "buscador_ubigeo": "rodriguez de mendoza amazonas",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2534"
-    },
-    {
-      "id_ubigeo": "2617",
-      "nombre_ubigeo": "Utcubamba",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Utcubamba, Amazonas",
-      "buscador_ubigeo": "utcubamba amazonas",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2534"
+[
+  {
+    "code": "P-28",
+    "name": "Abancay",
+    "department_code": "D-3",
+    "tag": {
+      "short": "Abancay, Apurimac",
+      "long": "Abancay, Apurimac, Perú"
     }
-  ],
-  "2625": [
-    {
-      "id_ubigeo": "2639",
-      "nombre_ubigeo": "Aija",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Aija, Ancash",
-      "buscador_ubigeo": "aija ancash",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2645",
-      "nombre_ubigeo": "Antonio Raymondi",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Antonio Raymondi, Ancash",
-      "buscador_ubigeo": "antonio raymondi ancash",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2652",
-      "nombre_ubigeo": "Asuncion",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Asuncion, Ancash",
-      "buscador_ubigeo": "asuncion ancash",
-      "numero_hijos_ubigeo": "2",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2655",
-      "nombre_ubigeo": "Bolognesi",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Bolognesi, Ancash",
-      "buscador_ubigeo": "bolognesi ancash",
-      "numero_hijos_ubigeo": "15",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2671",
-      "nombre_ubigeo": "Carhuaz",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Carhuaz, Ancash",
-      "buscador_ubigeo": "carhuaz ancash",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2683",
-      "nombre_ubigeo": "Carlos Fermin Fitzcarrald",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Carlos Fermin Fitzcarrald, Ancash",
-      "buscador_ubigeo": "carlos fermin fitzcarrald ancash",
-      "numero_hijos_ubigeo": "3",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2687",
-      "nombre_ubigeo": "Casma",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "Casma, Ancash",
-      "buscador_ubigeo": "casma ancash",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2692",
-      "nombre_ubigeo": "Corongo",
-      "codigo_ubigeo": "09",
-      "etiqueta_ubigeo": "Corongo, Ancash",
-      "buscador_ubigeo": "corongo ancash",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2626",
-      "nombre_ubigeo": "Huaraz",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Huaraz, Ancash",
-      "buscador_ubigeo": "huaraz ancash",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2700",
-      "nombre_ubigeo": "Huari",
-      "codigo_ubigeo": "10",
-      "etiqueta_ubigeo": "Huari, Ancash",
-      "buscador_ubigeo": "huari ancash",
-      "numero_hijos_ubigeo": "16",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2717",
-      "nombre_ubigeo": "Huarmey",
-      "codigo_ubigeo": "11",
-      "etiqueta_ubigeo": "Huarmey, Ancash",
-      "buscador_ubigeo": "huarmey ancash",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2723",
-      "nombre_ubigeo": "Huaylas",
-      "codigo_ubigeo": "12",
-      "etiqueta_ubigeo": "Huaylas, Ancash",
-      "buscador_ubigeo": "huaylas ancash",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2734",
-      "nombre_ubigeo": "Mariscal Luzuriaga",
-      "codigo_ubigeo": "13",
-      "etiqueta_ubigeo": "Mariscal Luzuriaga, Ancash",
-      "buscador_ubigeo": "mariscal luzuriaga ancash",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2743",
-      "nombre_ubigeo": "Ocros",
-      "codigo_ubigeo": "14",
-      "etiqueta_ubigeo": "Ocros, Ancash",
-      "buscador_ubigeo": "ocros ancash",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2754",
-      "nombre_ubigeo": "Pallasca",
-      "codigo_ubigeo": "15",
-      "etiqueta_ubigeo": "Pallasca, Ancash",
-      "buscador_ubigeo": "pallasca ancash",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2766",
-      "nombre_ubigeo": "Pomabamba",
-      "codigo_ubigeo": "16",
-      "etiqueta_ubigeo": "Pomabamba, Ancash",
-      "buscador_ubigeo": "pomabamba ancash",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2771",
-      "nombre_ubigeo": "Recuay",
-      "codigo_ubigeo": "17",
-      "etiqueta_ubigeo": "Recuay, Ancash",
-      "buscador_ubigeo": "recuay ancash",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2782",
-      "nombre_ubigeo": "Santa",
-      "codigo_ubigeo": "18",
-      "etiqueta_ubigeo": "Santa, Ancash",
-      "buscador_ubigeo": "santa ancash",
-      "numero_hijos_ubigeo": "9",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2792",
-      "nombre_ubigeo": "Sihuas",
-      "codigo_ubigeo": "19",
-      "etiqueta_ubigeo": "Sihuas, Ancash",
-      "buscador_ubigeo": "sihuas ancash",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
-    },
-    {
-      "id_ubigeo": "2803",
-      "nombre_ubigeo": "Yungay",
-      "codigo_ubigeo": "20",
-      "etiqueta_ubigeo": "Yungay, Ancash",
-      "buscador_ubigeo": "yungay ancash",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2625"
+  },
+  {
+    "code": "P-80",
+    "name": "Acobamba",
+    "department_code": "D-8",
+    "tag": {
+      "short": "Acobamba, Huancavelica",
+      "long": "Acobamba, Huancavelica, Perú"
     }
-  ],
-  "2812": [
-    {
-      "id_ubigeo": "2813",
-      "nombre_ubigeo": "Abancay",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Abancay, Apurimac",
-      "buscador_ubigeo": "abancay apurimac",
-      "numero_hijos_ubigeo": "9",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2812"
-    },
-    {
-      "id_ubigeo": "2823",
-      "nombre_ubigeo": "Andahuaylas",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Andahuaylas, Apurimac",
-      "buscador_ubigeo": "andahuaylas apurimac",
-      "numero_hijos_ubigeo": "19",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2812"
-    },
-    {
-      "id_ubigeo": "2843",
-      "nombre_ubigeo": "Antabamba",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Antabamba, Apurimac",
-      "buscador_ubigeo": "antabamba apurimac",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2812"
-    },
-    {
-      "id_ubigeo": "2851",
-      "nombre_ubigeo": "Aymaraes",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Aymaraes, Apurimac",
-      "buscador_ubigeo": "aymaraes apurimac",
-      "numero_hijos_ubigeo": "17",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2812"
-    },
-    {
-      "id_ubigeo": "2876",
-      "nombre_ubigeo": "Chincheros",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Chincheros, Apurimac",
-      "buscador_ubigeo": "chincheros apurimac",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2812"
-    },
-    {
-      "id_ubigeo": "2869",
-      "nombre_ubigeo": "Cotabambas",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Cotabambas, Apurimac",
-      "buscador_ubigeo": "cotabambas apurimac",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2812"
-    },
-    {
-      "id_ubigeo": "2885",
-      "nombre_ubigeo": "Grau",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Grau, Apurimac",
-      "buscador_ubigeo": "grau apurimac",
-      "numero_hijos_ubigeo": "14",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2812"
+  },
+  {
+    "code": "P-67",
+    "name": "Acomayo",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Acomayo, Cusco",
+      "long": "Acomayo, Cusco, Perú"
     }
-  ],
-  "2900": [
-    {
-      "id_ubigeo": "2901",
-      "nombre_ubigeo": "Arequipa",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Arequipa, Arequipa, Arequipa",
-      "buscador_ubigeo": "arequipa arequipa arequipa",
-      "numero_hijos_ubigeo": "29",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2900"
-    },
-    {
-      "id_ubigeo": "2931",
-      "nombre_ubigeo": "Camana",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Camana, Arequipa",
-      "buscador_ubigeo": "camana arequipa",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2900"
-    },
-    {
-      "id_ubigeo": "2940",
-      "nombre_ubigeo": "Caraveli",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Caraveli, Arequipa",
-      "buscador_ubigeo": "caraveli arequipa",
-      "numero_hijos_ubigeo": "13",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2900"
-    },
-    {
-      "id_ubigeo": "2954",
-      "nombre_ubigeo": "Castilla",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Castilla, Arequipa",
-      "buscador_ubigeo": "castilla arequipa",
-      "numero_hijos_ubigeo": "16",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2900"
-    },
-    {
-      "id_ubigeo": "2971",
-      "nombre_ubigeo": "Caylloma",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Caylloma, Arequipa",
-      "buscador_ubigeo": "caylloma arequipa",
-      "numero_hijos_ubigeo": "20",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2900"
-    },
-    {
-      "id_ubigeo": "2992",
-      "nombre_ubigeo": "Condesuyos",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Condesuyos, Arequipa",
-      "buscador_ubigeo": "condesuyos arequipa",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2900"
-    },
-    {
-      "id_ubigeo": "3001",
-      "nombre_ubigeo": "Islay",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Islay, Arequipa",
-      "buscador_ubigeo": "islay arequipa",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2900"
-    },
-    {
-      "id_ubigeo": "3008",
-      "nombre_ubigeo": "La Union",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "La Union, Arequipa",
-      "buscador_ubigeo": "la union arequipa",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "2900"
+  },
+  {
+    "code": "P-8",
+    "name": "Aija",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Aija, Ancash",
+      "long": "Aija, Ancash, Perú"
     }
-  ],
-  "3020": [
-    {
-      "id_ubigeo": "3037",
-      "nombre_ubigeo": "Cangallo",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Cangallo, Ayacucho",
-      "buscador_ubigeo": "cangallo ayacucho",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3020"
-    },
-    {
-      "id_ubigeo": "3021",
-      "nombre_ubigeo": "Huamanga",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Huamanga, Ayacucho",
-      "buscador_ubigeo": "huamanga ayacucho",
-      "numero_hijos_ubigeo": "15",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3020"
-    },
-    {
-      "id_ubigeo": "3044",
-      "nombre_ubigeo": "Huanca Sancos",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Huanca Sancos, Ayacucho",
-      "buscador_ubigeo": "huanca sancos ayacucho",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3020"
-    },
-    {
-      "id_ubigeo": "3049",
-      "nombre_ubigeo": "Huanta",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Huanta, Ayacucho",
-      "buscador_ubigeo": "huanta ayacucho",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3020"
-    },
-    {
-      "id_ubigeo": "3058",
-      "nombre_ubigeo": "La Mar",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "La Mar, Ayacucho",
-      "buscador_ubigeo": "la mar ayacucho",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3020"
-    },
-    {
-      "id_ubigeo": "3067",
-      "nombre_ubigeo": "Lucanas",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Lucanas, Ayacucho",
-      "buscador_ubigeo": "lucanas ayacucho",
-      "numero_hijos_ubigeo": "21",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3020"
-    },
-    {
-      "id_ubigeo": "3089",
-      "nombre_ubigeo": "Parinacochas",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Parinacochas, Ayacucho",
-      "buscador_ubigeo": "parinacochas ayacucho",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3020"
-    },
-    {
-      "id_ubigeo": "3098",
-      "nombre_ubigeo": "Paucar del Sara Sara",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "Paucar del Sara Sara, Ayacucho",
-      "buscador_ubigeo": "paucar del sara sara ayacucho",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3020"
-    },
-    {
-      "id_ubigeo": "3109",
-      "nombre_ubigeo": "Sucre",
-      "codigo_ubigeo": "09",
-      "etiqueta_ubigeo": "Sucre, Ayacucho",
-      "buscador_ubigeo": "sucre ayacucho",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3020"
-    },
-    {
-      "id_ubigeo": "3121",
-      "nombre_ubigeo": "Victor Fajardo",
-      "codigo_ubigeo": "10",
-      "etiqueta_ubigeo": "Victor Fajardo, Ayacucho",
-      "buscador_ubigeo": "victor fajardo ayacucho",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3020"
-    },
-    {
-      "id_ubigeo": "3134",
-      "nombre_ubigeo": "Vilcas Huaman",
-      "codigo_ubigeo": "11",
-      "etiqueta_ubigeo": "Vilcas Huaman, Ayacucho",
-      "buscador_ubigeo": "vilcas huaman ayacucho",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3020"
+  },
+  {
+    "code": "P-138",
+    "name": "Alto Amazonas",
+    "department_code": "D-15",
+    "tag": {
+      "short": "Alto Amazonas, Loreto",
+      "long": "Alto Amazonas, Loreto, Perú"
     }
-  ],
-  "3143": [
-    {
-      "id_ubigeo": "3157",
-      "nombre_ubigeo": "Cajabamba",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Cajabamba, Cajamarca",
-      "buscador_ubigeo": "cajabamba cajamarca",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3144",
-      "nombre_ubigeo": "Cajamarca",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Cajamarca, Cajamarca, Cajamarca",
-      "buscador_ubigeo": "cajamarca cajamarca cajamarca",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3162",
-      "nombre_ubigeo": "Celendin",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Celendin, Cajamarca",
-      "buscador_ubigeo": "celendin cajamarca",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3175",
-      "nombre_ubigeo": "Chota",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Chota, Cajamarca",
-      "buscador_ubigeo": "chota cajamarca",
-      "numero_hijos_ubigeo": "19",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3195",
-      "nombre_ubigeo": "Contumaza",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Contumaza, Cajamarca",
-      "buscador_ubigeo": "contumaza cajamarca",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3204",
-      "nombre_ubigeo": "Cutervo",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Cutervo, Cajamarca",
-      "buscador_ubigeo": "cutervo cajamarca",
-      "numero_hijos_ubigeo": "15",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3220",
-      "nombre_ubigeo": "Hualgayoc",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Hualgayoc, Cajamarca",
-      "buscador_ubigeo": "hualgayoc cajamarca",
-      "numero_hijos_ubigeo": "3",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3224",
-      "nombre_ubigeo": "Jaen",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "Jaen, Cajamarca",
-      "buscador_ubigeo": "jaen cajamarca",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3237",
-      "nombre_ubigeo": "San Ignacio",
-      "codigo_ubigeo": "09",
-      "etiqueta_ubigeo": "San Ignacio, Cajamarca",
-      "buscador_ubigeo": "san ignacio cajamarca",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3245",
-      "nombre_ubigeo": "San Marcos",
-      "codigo_ubigeo": "10",
-      "etiqueta_ubigeo": "San Marcos, Cajamarca",
-      "buscador_ubigeo": "san marcos cajamarca",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3253",
-      "nombre_ubigeo": "San Miguel",
-      "codigo_ubigeo": "11",
-      "etiqueta_ubigeo": "San Miguel, Cajamarca",
-      "buscador_ubigeo": "san miguel cajamarca",
-      "numero_hijos_ubigeo": "13",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3267",
-      "nombre_ubigeo": "San Pablo",
-      "codigo_ubigeo": "12",
-      "etiqueta_ubigeo": "San Pablo, Cajamarca",
-      "buscador_ubigeo": "san pablo cajamarca",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
-    },
-    {
-      "id_ubigeo": "3272",
-      "nombre_ubigeo": "Santa Cruz",
-      "codigo_ubigeo": "13",
-      "etiqueta_ubigeo": "Santa Cruz, Cajamarca",
-      "buscador_ubigeo": "santa cruz cajamarca",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3143"
+  },
+  {
+    "code": "P-87",
+    "name": "Ambo",
+    "department_code": "D-9",
+    "tag": {
+      "short": "Ambo, Huanuco",
+      "long": "Ambo, Huanuco, Perú"
     }
-  ],
-  "3292": [
-    {
-      "id_ubigeo": "3302",
-      "nombre_ubigeo": "Acomayo",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Acomayo, Cusco",
-      "buscador_ubigeo": "acomayo cusco",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3310",
-      "nombre_ubigeo": "Anta",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Anta, Cusco",
-      "buscador_ubigeo": "anta cusco",
-      "numero_hijos_ubigeo": "9",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3320",
-      "nombre_ubigeo": "Calca",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Calca, Cusco",
-      "buscador_ubigeo": "calca cusco",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3329",
-      "nombre_ubigeo": "Canas",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Canas, Cusco",
-      "buscador_ubigeo": "canas cusco",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3338",
-      "nombre_ubigeo": "Canchis",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Canchis, Cusco",
-      "buscador_ubigeo": "canchis cusco",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3347",
-      "nombre_ubigeo": "Chumbivilcas",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Chumbivilcas, Cusco",
-      "buscador_ubigeo": "chumbivilcas cusco",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3293",
-      "nombre_ubigeo": "Cusco",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Cusco, Cusco, Cusco",
-      "buscador_ubigeo": "cusco cusco cusco",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3356",
-      "nombre_ubigeo": "Espinar",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "Espinar, Cusco",
-      "buscador_ubigeo": "espinar cusco",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3365",
-      "nombre_ubigeo": "La Convencion",
-      "codigo_ubigeo": "09",
-      "etiqueta_ubigeo": "La Convencion, Cusco",
-      "buscador_ubigeo": "la convencion cusco",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3376",
-      "nombre_ubigeo": "Paruro",
-      "codigo_ubigeo": "10",
-      "etiqueta_ubigeo": "Paruro, Cusco",
-      "buscador_ubigeo": "paruro cusco",
-      "numero_hijos_ubigeo": "9",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3386",
-      "nombre_ubigeo": "Paucartambo",
-      "codigo_ubigeo": "11",
-      "etiqueta_ubigeo": "Paucartambo, Cusco",
-      "buscador_ubigeo": "paucartambo cusco",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3393",
-      "nombre_ubigeo": "Quispicanchi",
-      "codigo_ubigeo": "12",
-      "etiqueta_ubigeo": "Quispicanchi, Cusco",
-      "buscador_ubigeo": "quispicanchi cusco",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
-    },
-    {
-      "id_ubigeo": "3406",
-      "nombre_ubigeo": "Urubamba",
-      "codigo_ubigeo": "13",
-      "etiqueta_ubigeo": "Urubamba, Cusco",
-      "buscador_ubigeo": "urubamba cusco",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3292"
+  },
+  {
+    "code": "P-29",
+    "name": "Andahuaylas",
+    "department_code": "D-3",
+    "tag": {
+      "short": "Andahuaylas, Apurimac",
+      "long": "Andahuaylas, Apurimac, Perú"
     }
-  ],
-  "3414": [
-    {
-      "id_ubigeo": "3435",
-      "nombre_ubigeo": "Acobamba",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Acobamba, Huancavelica",
-      "buscador_ubigeo": "acobamba huancavelica",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3414"
-    },
-    {
-      "id_ubigeo": "3444",
-      "nombre_ubigeo": "Angaraes",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Angaraes, Huancavelica",
-      "buscador_ubigeo": "angaraes huancavelica",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3414"
-    },
-    {
-      "id_ubigeo": "3457",
-      "nombre_ubigeo": "Castrovirreyna",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Castrovirreyna, Huancavelica",
-      "buscador_ubigeo": "castrovirreyna huancavelica",
-      "numero_hijos_ubigeo": "13",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3414"
-    },
-    {
-      "id_ubigeo": "3471",
-      "nombre_ubigeo": "Churcampa",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Churcampa, Huancavelica",
-      "buscador_ubigeo": "churcampa huancavelica",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3414"
-    },
-    {
-      "id_ubigeo": "3415",
-      "nombre_ubigeo": "Huancavelica",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Huancavelica, Huancavelica, Huancavelica",
-      "buscador_ubigeo": "huancavelica huancavelica huancavelica",
-      "numero_hijos_ubigeo": "19",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3414"
-    },
-    {
-      "id_ubigeo": "3482",
-      "nombre_ubigeo": "Huaytara",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Huaytara, Huancavelica",
-      "buscador_ubigeo": "huaytara huancavelica",
-      "numero_hijos_ubigeo": "16",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3414"
-    },
-    {
-      "id_ubigeo": "3499",
-      "nombre_ubigeo": "Tayacaja",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Tayacaja, Huancavelica",
-      "buscador_ubigeo": "tayacaja huancavelica",
-      "numero_hijos_ubigeo": "18",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3414"
+  },
+  {
+    "code": "P-81",
+    "name": "Angaraes",
+    "department_code": "D-8",
+    "tag": {
+      "short": "Angaraes, Huancavelica",
+      "long": "Angaraes, Huancavelica, Perú"
     }
-  ],
-  "3518": [
-    {
-      "id_ubigeo": "3531",
-      "nombre_ubigeo": "Ambo",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Ambo, Huanuco",
-      "buscador_ubigeo": "ambo huanuco",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3518"
-    },
-    {
-      "id_ubigeo": "3540",
-      "nombre_ubigeo": "Dos de Mayo",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Dos de Mayo, Huanuco",
-      "buscador_ubigeo": "dos de mayo huanuco",
-      "numero_hijos_ubigeo": "9",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3518"
-    },
-    {
-      "id_ubigeo": "3550",
-      "nombre_ubigeo": "Huacaybamba",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Huacaybamba, Huanuco",
-      "buscador_ubigeo": "huacaybamba huanuco",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3518"
-    },
-    {
-      "id_ubigeo": "3555",
-      "nombre_ubigeo": "Huamalies",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Huamalies, Huanuco",
-      "buscador_ubigeo": "huamalies huanuco",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3518"
-    },
-    {
-      "id_ubigeo": "3519",
-      "nombre_ubigeo": "Huanuco",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Huanuco, Huanuco, Huanuco",
-      "buscador_ubigeo": "huanuco huanuco huanuco",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3518"
-    },
-    {
-      "id_ubigeo": "3589",
-      "nombre_ubigeo": "Lauricocha",
-      "codigo_ubigeo": "10",
-      "etiqueta_ubigeo": "Lauricocha, Huanuco",
-      "buscador_ubigeo": "lauricocha huanuco",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3518"
-    },
-    {
-      "id_ubigeo": "3567",
-      "nombre_ubigeo": "Leoncio Prado",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Leoncio Prado, Huanuco",
-      "buscador_ubigeo": "leoncio prado huanuco",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3518"
-    },
-    {
-      "id_ubigeo": "3574",
-      "nombre_ubigeo": "Maraqon",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Maraqon, Huanuco",
-      "buscador_ubigeo": "maraqon huanuco",
-      "numero_hijos_ubigeo": "3",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3518"
-    },
-    {
-      "id_ubigeo": "3578",
-      "nombre_ubigeo": "Pachitea",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "Pachitea, Huanuco",
-      "buscador_ubigeo": "pachitea huanuco",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3518"
-    },
-    {
-      "id_ubigeo": "3583",
-      "nombre_ubigeo": "Puerto Inca",
-      "codigo_ubigeo": "09",
-      "etiqueta_ubigeo": "Puerto Inca, Huanuco",
-      "buscador_ubigeo": "puerto inca huanuco",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3518"
-    },
-    {
-      "id_ubigeo": "3597",
-      "nombre_ubigeo": "Yarowilca",
-      "codigo_ubigeo": "11",
-      "etiqueta_ubigeo": "Yarowilca, Huanuco",
-      "buscador_ubigeo": "yarowilca huanuco",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3518"
+  },
+  {
+    "code": "P-68",
+    "name": "Anta",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Anta, Cusco",
+      "long": "Anta, Cusco, Perú"
     }
-  ],
-  "3606": [
-    {
-      "id_ubigeo": "3622",
-      "nombre_ubigeo": "Chincha",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Chincha, Ica",
-      "buscador_ubigeo": "chincha ica",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3606"
-    },
-    {
-      "id_ubigeo": "3607",
-      "nombre_ubigeo": "Ica",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Ica, Ica, Ica",
-      "buscador_ubigeo": "ica ica ica",
-      "numero_hijos_ubigeo": "14",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3606"
-    },
-    {
-      "id_ubigeo": "3634",
-      "nombre_ubigeo": "Nazca",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Nazca, Ica",
-      "buscador_ubigeo": "nazca ica",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3606"
-    },
-    {
-      "id_ubigeo": "3640",
-      "nombre_ubigeo": "Palpa",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Palpa, Ica",
-      "buscador_ubigeo": "palpa ica",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3606"
-    },
-    {
-      "id_ubigeo": "3646",
-      "nombre_ubigeo": "Pisco",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Pisco, Ica",
-      "buscador_ubigeo": "pisco ica",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3606"
+  },
+  {
+    "code": "P-30",
+    "name": "Antabamba",
+    "department_code": "D-3",
+    "tag": {
+      "short": "Antabamba, Apurimac",
+      "long": "Antabamba, Apurimac, Perú"
     }
-  ],
-  "3655": [
-    {
-      "id_ubigeo": "3701",
-      "nombre_ubigeo": "Chanchamayo",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Chanchamayo, Junin",
-      "buscador_ubigeo": "chanchamayo junin",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3655"
-    },
-    {
-      "id_ubigeo": "3778",
-      "nombre_ubigeo": "Chupaca",
-      "codigo_ubigeo": "09",
-      "etiqueta_ubigeo": "Chupaca, Junin",
-      "buscador_ubigeo": "chupaca junin",
-      "numero_hijos_ubigeo": "9",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3655"
-    },
-    {
-      "id_ubigeo": "3685",
-      "nombre_ubigeo": "Concepcion",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Concepcion, Junin",
-      "buscador_ubigeo": "concepcion junin",
-      "numero_hijos_ubigeo": "15",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3655"
-    },
-    {
-      "id_ubigeo": "3656",
-      "nombre_ubigeo": "Huancayo",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Huancayo, Junin",
-      "buscador_ubigeo": "huancayo junin",
-      "numero_hijos_ubigeo": "28",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3655"
-    },
-    {
-      "id_ubigeo": "3708",
-      "nombre_ubigeo": "Jauja",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Jauja, Junin",
-      "buscador_ubigeo": "jauja junin",
-      "numero_hijos_ubigeo": "34",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3655"
-    },
-    {
-      "id_ubigeo": "3743",
-      "nombre_ubigeo": "Junin",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Junin, Junin, Junin",
-      "buscador_ubigeo": "junin junin junin",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3655"
-    },
-    {
-      "id_ubigeo": "3748",
-      "nombre_ubigeo": "Satipo",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Satipo, Junin",
-      "buscador_ubigeo": "satipo junin",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3655"
-    },
-    {
-      "id_ubigeo": "3757",
-      "nombre_ubigeo": "Tarma",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Tarma, Junin",
-      "buscador_ubigeo": "tarma junin",
-      "numero_hijos_ubigeo": "9",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3655"
-    },
-    {
-      "id_ubigeo": "3767",
-      "nombre_ubigeo": "Yauli",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "Yauli, Junin",
-      "buscador_ubigeo": "yauli junin",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3655"
+  },
+  {
+    "code": "P-9",
+    "name": "Antonio Raymondi",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Antonio Raymondi, Ancash",
+      "long": "Antonio Raymondi, Ancash, Perú"
     }
-  ],
-  "3788": [
-    {
-      "id_ubigeo": "3801",
-      "nombre_ubigeo": "Ascope",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Ascope, La Libertad",
-      "buscador_ubigeo": "ascope la libertad",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
-    },
-    {
-      "id_ubigeo": "3810",
-      "nombre_ubigeo": "Bolivar",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Bolivar, La Libertad",
-      "buscador_ubigeo": "bolivar la libertad",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
-    },
-    {
-      "id_ubigeo": "3817",
-      "nombre_ubigeo": "Chepen",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Chepen, La Libertad",
-      "buscador_ubigeo": "chepen la libertad",
-      "numero_hijos_ubigeo": "3",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
-    },
-    {
-      "id_ubigeo": "3875",
-      "nombre_ubigeo": "Gran Chimu",
-      "codigo_ubigeo": "11",
-      "etiqueta_ubigeo": "Gran Chimu, La Libertad",
-      "buscador_ubigeo": "gran chimu la libertad",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
-    },
-    {
-      "id_ubigeo": "3821",
-      "nombre_ubigeo": "Julcan",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Julcan, La Libertad",
-      "buscador_ubigeo": "julcan la libertad",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
-    },
-    {
-      "id_ubigeo": "3826",
-      "nombre_ubigeo": "Otuzco",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Otuzco, La Libertad",
-      "buscador_ubigeo": "otuzco la libertad",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
-    },
-    {
-      "id_ubigeo": "3837",
-      "nombre_ubigeo": "Pacasmayo",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Pacasmayo, La Libertad",
-      "buscador_ubigeo": "pacasmayo la libertad",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
-    },
-    {
-      "id_ubigeo": "3843",
-      "nombre_ubigeo": "Pataz",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "Pataz, La Libertad",
-      "buscador_ubigeo": "pataz la libertad",
-      "numero_hijos_ubigeo": "13",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
-    },
-    {
-      "id_ubigeo": "3857",
-      "nombre_ubigeo": "Sanchez Carrion",
-      "codigo_ubigeo": "09",
-      "etiqueta_ubigeo": "Sanchez Carrion, La Libertad",
-      "buscador_ubigeo": "sanchez carrion la libertad",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
-    },
-    {
-      "id_ubigeo": "3866",
-      "nombre_ubigeo": "Santiago de Chuco",
-      "codigo_ubigeo": "10",
-      "etiqueta_ubigeo": "Santiago de Chuco, La Libertad",
-      "buscador_ubigeo": "santiago de chuco la libertad",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
-    },
-    {
-      "id_ubigeo": "3789",
-      "nombre_ubigeo": "Trujillo",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Trujillo, La Libertad",
-      "buscador_ubigeo": "trujillo la libertad",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
-    },
-    {
-      "id_ubigeo": "3880",
-      "nombre_ubigeo": "Viru",
-      "codigo_ubigeo": "12",
-      "etiqueta_ubigeo": "Viru, La Libertad",
-      "buscador_ubigeo": "viru la libertad",
-      "numero_hijos_ubigeo": "3",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3788"
+  },
+  {
+    "code": "P-35",
+    "name": "Arequipa",
+    "department_code": "D-4",
+    "tag": {
+      "short": "Arequipa, Arequipa",
+      "long": "Arequipa, Arequipa, Perú"
     }
-  ],
-  "3884": [
-    {
-      "id_ubigeo": "3885",
-      "nombre_ubigeo": "Chiclayo",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Chiclayo, Lambayeque",
-      "buscador_ubigeo": "chiclayo lambayeque",
-      "numero_hijos_ubigeo": "20",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3884"
-    },
-    {
-      "id_ubigeo": "3906",
-      "nombre_ubigeo": "Ferreqafe",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Ferreqafe, Lambayeque",
-      "buscador_ubigeo": "ferreqafe lambayeque",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3884"
-    },
-    {
-      "id_ubigeo": "3913",
-      "nombre_ubigeo": "Lambayeque",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Lambayeque, Lambayeque, Lambayeque",
-      "buscador_ubigeo": "lambayeque lambayeque lambayeque",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3884"
+  },
+  {
+    "code": "P-112",
+    "name": "Ascope",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Ascope, La Libertad",
+      "long": "Ascope, La Libertad, Perú"
     }
-  ],
-  "3926": [
-    {
-      "id_ubigeo": "3971",
-      "nombre_ubigeo": "Barranca",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Barranca, Lima",
-      "buscador_ubigeo": "barranca lima",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3926"
-    },
-    {
-      "id_ubigeo": "3977",
-      "nombre_ubigeo": "Cajatambo",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Cajatambo, Lima",
-      "buscador_ubigeo": "cajatambo lima",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3926"
-    },
-    {
-      "id_ubigeo": "3285",
-      "nombre_ubigeo": "Callao",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Callao, Callao, Lima",
-      "buscador_ubigeo": "callao callao lima",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3926"
-    },
-    {
-      "id_ubigeo": "3991",
-      "nombre_ubigeo": "Ca\u00f1ete",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Ca\u00f1ete, Lima",
-      "buscador_ubigeo": "ca\u00f1ete lima",
-      "numero_hijos_ubigeo": "16",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3926"
-    },
-    {
-      "id_ubigeo": "3983",
-      "nombre_ubigeo": "Canta",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Canta, Lima",
-      "buscador_ubigeo": "canta lima",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3926"
-    },
-    {
-      "id_ubigeo": "4008",
-      "nombre_ubigeo": "Huaral",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Huaral, Lima",
-      "buscador_ubigeo": "huaral lima",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3926"
-    },
-    {
-      "id_ubigeo": "4021",
-      "nombre_ubigeo": "Huarochiri",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Huarochiri, Lima",
-      "buscador_ubigeo": "huarochiri lima",
-      "numero_hijos_ubigeo": "32",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3926"
-    },
-    {
-      "id_ubigeo": "4054",
-      "nombre_ubigeo": "Huaura",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "Huaura, Lima",
-      "buscador_ubigeo": "huaura lima",
-      "numero_hijos_ubigeo": "12",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3926"
-    },
-    {
-      "id_ubigeo": "3927",
-      "nombre_ubigeo": "Lima",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Lima, Lima, Lima",
-      "buscador_ubigeo": "lima lima lima",
-      "numero_hijos_ubigeo": "43",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3926"
-    },
-    {
-      "id_ubigeo": "4067",
-      "nombre_ubigeo": "Oyon",
-      "codigo_ubigeo": "09",
-      "etiqueta_ubigeo": "Oyon, Lima",
-      "buscador_ubigeo": "oyon lima",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3926"
-    },
-    {
-      "id_ubigeo": "4074",
-      "nombre_ubigeo": "Yauyos",
-      "codigo_ubigeo": "10",
-      "etiqueta_ubigeo": "Yauyos, Lima",
-      "buscador_ubigeo": "yauyos lima",
-      "numero_hijos_ubigeo": "33",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "3926"
+  },
+  {
+    "code": "P-10",
+    "name": "Asunción",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Asunción, Ancash",
+      "long": "Asunción, Ancash, Perú"
     }
-  ],
-  "4108": [
-    {
-      "id_ubigeo": "4123",
-      "nombre_ubigeo": "Alto Amazonas",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Alto Amazonas, Loreto",
-      "buscador_ubigeo": "alto amazonas loreto",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4108"
-    },
-    {
-      "id_ubigeo": "4135",
-      "nombre_ubigeo": "Loreto",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Loreto, Loreto",
-      "buscador_ubigeo": "loreto loreto",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4108"
-    },
-    {
-      "id_ubigeo": "4141",
-      "nombre_ubigeo": "Mariscal Ramon Castilla",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Mariscal Ramon Castilla, Loreto",
-      "buscador_ubigeo": "mariscal ramon castilla loreto",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4108"
-    },
-    {
-      "id_ubigeo": "4109",
-      "nombre_ubigeo": "Maynas",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Maynas, Loreto",
-      "buscador_ubigeo": "maynas loreto",
-      "numero_hijos_ubigeo": "13",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4108"
-    },
-    {
-      "id_ubigeo": "4146",
-      "nombre_ubigeo": "Requena",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Requena, Loreto",
-      "buscador_ubigeo": "requena loreto",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4108"
-    },
-    {
-      "id_ubigeo": "4158",
-      "nombre_ubigeo": "Ucayali",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Ucayali, Loreto",
-      "buscador_ubigeo": "ucayali loreto",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4108"
+  },
+  {
+    "code": "P-192",
+    "name": "Atalaya",
+    "department_code": "D-24",
+    "tag": {
+      "short": "Atalaya, Ucayali",
+      "long": "Atalaya, Ucayali, Perú"
     }
-  ],
-  "4165": [
-    {
-      "id_ubigeo": "4171",
-      "nombre_ubigeo": "Manu",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Manu, Madre de Dios",
-      "buscador_ubigeo": "manu madre de dios",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4165"
-    },
-    {
-      "id_ubigeo": "4176",
-      "nombre_ubigeo": "Tahuamanu",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Tahuamanu, Madre de Dios",
-      "buscador_ubigeo": "tahuamanu madre de dios",
-      "numero_hijos_ubigeo": "3",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4165"
-    },
-    {
-      "id_ubigeo": "4166",
-      "nombre_ubigeo": "Tambopata",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Tambopata, Madre de Dios",
-      "buscador_ubigeo": "tambopata madre de dios",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4165"
+  },
+  {
+    "code": "P-154",
+    "name": "Ayabaca",
+    "department_code": "D-19",
+    "tag": {
+      "short": "Ayabaca, Piura",
+      "long": "Ayabaca, Piura, Perú"
     }
-  ],
-  "4180": [
-    {
-      "id_ubigeo": "4188",
-      "nombre_ubigeo": "General Sanchez Cerro",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "General Sanchez Cerro, Moquegua",
-      "buscador_ubigeo": "general sanchez cerro moquegua",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4180"
-    },
-    {
-      "id_ubigeo": "4200",
-      "nombre_ubigeo": "Ilo",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Ilo, Moquegua",
-      "buscador_ubigeo": "ilo moquegua",
-      "numero_hijos_ubigeo": "3",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4180"
-    },
-    {
-      "id_ubigeo": "4181",
-      "nombre_ubigeo": "Mariscal Nieto",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Mariscal Nieto, Moquegua",
-      "buscador_ubigeo": "mariscal nieto moquegua",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4180"
+  },
+  {
+    "code": "P-31",
+    "name": "Aymaraes",
+    "department_code": "D-3",
+    "tag": {
+      "short": "Aymaraes, Apurimac",
+      "long": "Aymaraes, Apurimac, Perú"
     }
-  ],
-  "4204": [
-    {
-      "id_ubigeo": "4219",
-      "nombre_ubigeo": "Daniel Alcides Carrion",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Daniel Alcides Carrion, Pasco",
-      "buscador_ubigeo": "daniel alcides carrion pasco",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4204"
-    },
-    {
-      "id_ubigeo": "4228",
-      "nombre_ubigeo": "Oxapampa",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Oxapampa, Pasco",
-      "buscador_ubigeo": "oxapampa pasco",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4204"
-    },
-    {
-      "id_ubigeo": "4205",
-      "nombre_ubigeo": "Pasco",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Pasco, Pasco",
-      "buscador_ubigeo": "pasco pasco",
-      "numero_hijos_ubigeo": "13",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4204"
+  },
+  {
+    "code": "P-162",
+    "name": "Azángaro",
+    "department_code": "D-20",
+    "tag": {
+      "short": "Azángaro, Puno",
+      "long": "Azángaro, Puno, Perú"
     }
-  ],
-  "4236": [
-    {
-      "id_ubigeo": "4247",
-      "nombre_ubigeo": "Ayabaca",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Ayabaca, Piura",
-      "buscador_ubigeo": "ayabaca piura",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4236"
-    },
-    {
-      "id_ubigeo": "4258",
-      "nombre_ubigeo": "Huancabamba",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Huancabamba, Piura",
-      "buscador_ubigeo": "huancabamba piura",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4236"
-    },
-    {
-      "id_ubigeo": "4267",
-      "nombre_ubigeo": "Morropon",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Morropon, Piura",
-      "buscador_ubigeo": "morropon piura",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4236"
-    },
-    {
-      "id_ubigeo": "4278",
-      "nombre_ubigeo": "Paita",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Paita, Piura",
-      "buscador_ubigeo": "paita piura",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4236"
-    },
-    {
-      "id_ubigeo": "4237",
-      "nombre_ubigeo": "Piura",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Piura, Piura, Piura",
-      "buscador_ubigeo": "piura piura piura",
-      "numero_hijos_ubigeo": "9",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4236"
-    },
-    {
-      "id_ubigeo": "4302",
-      "nombre_ubigeo": "Sechura",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "Sechura, Piura",
-      "buscador_ubigeo": "sechura piura",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4236"
-    },
-    {
-      "id_ubigeo": "4286",
-      "nombre_ubigeo": "Sullana",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Sullana, Piura",
-      "buscador_ubigeo": "sullana piura",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4236"
-    },
-    {
-      "id_ubigeo": "4295",
-      "nombre_ubigeo": "Talara",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Talara, Piura",
-      "buscador_ubigeo": "talara piura",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4236"
+  },
+  {
+    "code": "P-1",
+    "name": "Bagua",
+    "department_code": "D-1",
+    "tag": {
+      "short": "Bagua, Amazonas",
+      "long": "Bagua, Amazonas, Perú"
     }
-  ],
-  "4309": [
-    {
-      "id_ubigeo": "4326",
-      "nombre_ubigeo": "Azangaro",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Azangaro, Puno",
-      "buscador_ubigeo": "azangaro puno",
-      "numero_hijos_ubigeo": "15",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4342",
-      "nombre_ubigeo": "Carabaya",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Carabaya, Puno",
-      "buscador_ubigeo": "carabaya puno",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4353",
-      "nombre_ubigeo": "Chucuito",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Chucuito, Puno",
-      "buscador_ubigeo": "chucuito puno",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4361",
-      "nombre_ubigeo": "El Collao",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "El Collao, Puno",
-      "buscador_ubigeo": "el collao puno",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4367",
-      "nombre_ubigeo": "Huancane",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Huancane, Puno",
-      "buscador_ubigeo": "huancane puno",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4376",
-      "nombre_ubigeo": "Lampa",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Lampa, Puno",
-      "buscador_ubigeo": "lampa puno",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4387",
-      "nombre_ubigeo": "Melgar",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "Melgar, Puno",
-      "buscador_ubigeo": "melgar puno",
-      "numero_hijos_ubigeo": "9",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4397",
-      "nombre_ubigeo": "Moho",
-      "codigo_ubigeo": "09",
-      "etiqueta_ubigeo": "Moho, Puno",
-      "buscador_ubigeo": "moho puno",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4310",
-      "nombre_ubigeo": "Puno",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Puno, Puno, Puno",
-      "buscador_ubigeo": "puno puno puno",
-      "numero_hijos_ubigeo": "15",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4402",
-      "nombre_ubigeo": "San Antonio de Putina",
-      "codigo_ubigeo": "10",
-      "etiqueta_ubigeo": "San Antonio de Putina, Puno",
-      "buscador_ubigeo": "san antonio de putina puno",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4408",
-      "nombre_ubigeo": "San Roman",
-      "codigo_ubigeo": "11",
-      "etiqueta_ubigeo": "San Roman, Puno",
-      "buscador_ubigeo": "san roman puno",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4413",
-      "nombre_ubigeo": "Sandia",
-      "codigo_ubigeo": "12",
-      "etiqueta_ubigeo": "Sandia, Puno",
-      "buscador_ubigeo": "sandia puno",
-      "numero_hijos_ubigeo": "9",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
-    },
-    {
-      "id_ubigeo": "4423",
-      "nombre_ubigeo": "Yunguyo",
-      "codigo_ubigeo": "13",
-      "etiqueta_ubigeo": "Yunguyo, Puno",
-      "buscador_ubigeo": "yunguyo puno",
-      "numero_hijos_ubigeo": "7",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4309"
+  },
+  {
+    "code": "P-127",
+    "name": "Barranca",
+    "department_code": "D-14",
+    "tag": {
+      "short": "Barranca, Lima",
+      "long": "Barranca, Lima, Perú"
     }
-  ],
-  "4431": [
-    {
-      "id_ubigeo": "4439",
-      "nombre_ubigeo": "Bellavista",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Bellavista, San Martin",
-      "buscador_ubigeo": "bellavista san martin",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4431"
-    },
-    {
-      "id_ubigeo": "4446",
-      "nombre_ubigeo": "El Dorado",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "El Dorado, San Martin",
-      "buscador_ubigeo": "el dorado san martin",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4431"
-    },
-    {
-      "id_ubigeo": "4452",
-      "nombre_ubigeo": "Huallaga",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Huallaga, San Martin",
-      "buscador_ubigeo": "huallaga san martin",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4431"
-    },
-    {
-      "id_ubigeo": "4459",
-      "nombre_ubigeo": "Lamas",
-      "codigo_ubigeo": "05",
-      "etiqueta_ubigeo": "Lamas, San Martin",
-      "buscador_ubigeo": "lamas san martin",
-      "numero_hijos_ubigeo": "11",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4431"
-    },
-    {
-      "id_ubigeo": "4471",
-      "nombre_ubigeo": "Mariscal Caceres",
-      "codigo_ubigeo": "06",
-      "etiqueta_ubigeo": "Mariscal Caceres, San Martin",
-      "buscador_ubigeo": "mariscal caceres san martin",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4431"
-    },
-    {
-      "id_ubigeo": "4432",
-      "nombre_ubigeo": "Moyobamba",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Moyobamba, San Martin",
-      "buscador_ubigeo": "moyobamba san martin",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4431"
-    },
-    {
-      "id_ubigeo": "4477",
-      "nombre_ubigeo": "Picota",
-      "codigo_ubigeo": "07",
-      "etiqueta_ubigeo": "Picota, San Martin",
-      "buscador_ubigeo": "picota san martin",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4431"
-    },
-    {
-      "id_ubigeo": "4488",
-      "nombre_ubigeo": "Rioja",
-      "codigo_ubigeo": "08",
-      "etiqueta_ubigeo": "Rioja, San Martin",
-      "buscador_ubigeo": "rioja san martin",
-      "numero_hijos_ubigeo": "9",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4431"
-    },
-    {
-      "id_ubigeo": "4498",
-      "nombre_ubigeo": "San Martin",
-      "codigo_ubigeo": "09",
-      "etiqueta_ubigeo": "San Martin, San Martin",
-      "buscador_ubigeo": "san martin san martin",
-      "numero_hijos_ubigeo": "14",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4431"
-    },
-    {
-      "id_ubigeo": "4513",
-      "nombre_ubigeo": "Tocache",
-      "codigo_ubigeo": "10",
-      "etiqueta_ubigeo": "Tocache, San Martin",
-      "buscador_ubigeo": "tocache san martin",
-      "numero_hijos_ubigeo": "5",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4431"
+  },
+  {
+    "code": "P-175",
+    "name": "Bellavista",
+    "department_code": "D-21",
+    "tag": {
+      "short": "Bellavista, San Martin",
+      "long": "Bellavista, San Martin, Perú"
     }
-  ],
-  "4519": [
-    {
-      "id_ubigeo": "4531",
-      "nombre_ubigeo": "Candarave",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Candarave, Tacna",
-      "buscador_ubigeo": "candarave tacna",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4519"
-    },
-    {
-      "id_ubigeo": "4538",
-      "nombre_ubigeo": "Jorge Basadre",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Jorge Basadre, Tacna",
-      "buscador_ubigeo": "jorge basadre tacna",
-      "numero_hijos_ubigeo": "3",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4519"
-    },
-    {
-      "id_ubigeo": "4520",
-      "nombre_ubigeo": "Tacna",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Tacna, Tacna, Tacna",
-      "buscador_ubigeo": "tacna tacna tacna",
-      "numero_hijos_ubigeo": "10",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4519"
-    },
-    {
-      "id_ubigeo": "4542",
-      "nombre_ubigeo": "Tarata",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Tarata, Tacna",
-      "buscador_ubigeo": "tarata tacna",
-      "numero_hijos_ubigeo": "8",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4519"
+  },
+  {
+    "code": "P-113",
+    "name": "Bolívar",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Bolívar, La Libertad",
+      "long": "Bolívar, La Libertad, Perú"
     }
-  ],
-  "4551": [
-    {
-      "id_ubigeo": "4559",
-      "nombre_ubigeo": "Contralmirante Villar",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Contralmirante Villar, Tumbes",
-      "buscador_ubigeo": "contralmirante villar tumbes",
-      "numero_hijos_ubigeo": "2",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4551"
-    },
-    {
-      "id_ubigeo": "4552",
-      "nombre_ubigeo": "Tumbes",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Tumbes, Tumbes, Tumbes",
-      "buscador_ubigeo": "tumbes tumbes tumbes",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4551"
-    },
-    {
-      "id_ubigeo": "4562",
-      "nombre_ubigeo": "Zarumilla",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Zarumilla, Tumbes",
-      "buscador_ubigeo": "zarumilla tumbes",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4551"
+  },
+  {
+    "code": "P-11",
+    "name": "Bolognesi",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Bolognesi, Ancash",
+      "long": "Bolognesi, Ancash, Perú"
     }
-  ],
-  "4567": [
-    {
-      "id_ubigeo": "4575",
-      "nombre_ubigeo": "Atalaya",
-      "codigo_ubigeo": "02",
-      "etiqueta_ubigeo": "Atalaya, Ucayali",
-      "buscador_ubigeo": "atalaya ucayali",
-      "numero_hijos_ubigeo": "4",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4567"
-    },
-    {
-      "id_ubigeo": "4568",
-      "nombre_ubigeo": "Coronel Portillo",
-      "codigo_ubigeo": "01",
-      "etiqueta_ubigeo": "Coronel Portillo, Ucayali",
-      "buscador_ubigeo": "coronel portillo ucayali",
-      "numero_hijos_ubigeo": "6",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4567"
-    },
-    {
-      "id_ubigeo": "4580",
-      "nombre_ubigeo": "Padre Abad",
-      "codigo_ubigeo": "03",
-      "etiqueta_ubigeo": "Padre Abad, Ucayali",
-      "buscador_ubigeo": "padre abad ucayali",
-      "numero_hijos_ubigeo": "3",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4567"
-    },
-    {
-      "id_ubigeo": "4584",
-      "nombre_ubigeo": "Purus",
-      "codigo_ubigeo": "04",
-      "etiqueta_ubigeo": "Purus, Ucayali",
-      "buscador_ubigeo": "purus ucayali",
-      "numero_hijos_ubigeo": "1",
-      "nivel_ubigeo": "2",
-      "id_padre_ubigeo": "4567"
+  },
+  {
+    "code": "P-2",
+    "name": "Bongara",
+    "department_code": "D-1",
+    "tag": {
+      "short": "Bongara, Amazonas",
+      "long": "Bongara, Amazonas, Perú"
     }
-  ]
-}
+  },
+  {
+    "code": "P-54",
+    "name": "Cajabamba",
+    "department_code": "D-6",
+    "tag": {
+      "short": "Cajabamba, Cajamarca",
+      "long": "Cajabamba, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-55",
+    "name": "Cajamarca",
+    "department_code": "D-6",
+    "tag": {
+      "short": "Cajamarca, Cajamarca",
+      "long": "Cajamarca, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-128",
+    "name": "Cajatambo",
+    "department_code": "D-14",
+    "tag": {
+      "short": "Cajatambo, Lima",
+      "long": "Cajatambo, Lima, Perú"
+    }
+  },
+  {
+    "code": "P-69",
+    "name": "Calca",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Calca, Cusco",
+      "long": "Calca, Cusco, Perú"
+    }
+  },
+  {
+    "code": "P-129",
+    "name": "Callao",
+    "department_code": "D-14",
+    "tag": {
+      "short": "Callao, Lima",
+      "long": "Callao, Lima, Perú"
+    }
+  },
+  {
+    "code": "P-36",
+    "name": "Camaná",
+    "department_code": "D-4",
+    "tag": {
+      "short": "Camaná, Arequipa",
+      "long": "Camaná, Arequipa, Perú"
+    }
+  },
+  {
+    "code": "P-70",
+    "name": "Canas",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Canas, Cusco",
+      "long": "Canas, Cusco, Perú"
+    }
+  },
+  {
+    "code": "P-71",
+    "name": "Canchis",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Canchis, Cusco",
+      "long": "Canchis, Cusco, Perú"
+    }
+  },
+  {
+    "code": "P-185",
+    "name": "Candarave",
+    "department_code": "D-22",
+    "tag": {
+      "short": "Candarave, Tacna",
+      "long": "Candarave, Tacna, Perú"
+    }
+  },
+  {
+    "code": "P-131",
+    "name": "Cañete",
+    "department_code": "D-14",
+    "tag": {
+      "short": "Cañete, Lima",
+      "long": "Cañete, Lima, Perú"
+    }
+  },
+  {
+    "code": "P-43",
+    "name": "Cangallo",
+    "department_code": "D-5",
+    "tag": {
+      "short": "Cangallo, Ayacucho",
+      "long": "Cangallo, Ayacucho, Perú"
+    }
+  },
+  {
+    "code": "P-130",
+    "name": "Canta",
+    "department_code": "D-14",
+    "tag": {
+      "short": "Canta, Lima",
+      "long": "Canta, Lima, Perú"
+    }
+  },
+  {
+    "code": "P-163",
+    "name": "Carabaya",
+    "department_code": "D-20",
+    "tag": {
+      "short": "Carabaya, Puno",
+      "long": "Carabaya, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-37",
+    "name": "Caravelí",
+    "department_code": "D-4",
+    "tag": {
+      "short": "Caravelí, Arequipa",
+      "long": "Caravelí, Arequipa, Perú"
+    }
+  },
+  {
+    "code": "P-12",
+    "name": "Carhuaz",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Carhuaz, Ancash",
+      "long": "Carhuaz, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-13",
+    "name": "Carlos Fermín Fitzcarrald",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Carlos Fermín Fitzcarrald, Ancash",
+      "long": "Carlos Fermín Fitzcarrald, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-14",
+    "name": "Casma",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Casma, Ancash",
+      "long": "Casma, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-38",
+    "name": "Castilla",
+    "department_code": "D-4",
+    "tag": {
+      "short": "Castilla, Arequipa",
+      "long": "Castilla, Arequipa, Perú"
+    }
+  },
+  {
+    "code": "P-82",
+    "name": "Castrovirreyna",
+    "department_code": "D-8",
+    "tag": {
+      "short": "Castrovirreyna, Huancavelica",
+      "long": "Castrovirreyna, Huancavelica, Perú"
+    }
+  },
+  {
+    "code": "P-39",
+    "name": "Caylloma",
+    "department_code": "D-4",
+    "tag": {
+      "short": "Caylloma, Arequipa",
+      "long": "Caylloma, Arequipa, Perú"
+    }
+  },
+  {
+    "code": "P-56",
+    "name": "Celendín",
+    "department_code": "D-6",
+    "tag": {
+      "short": "Celendín, Cajamarca",
+      "long": "Celendín, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-3",
+    "name": "Chachapoyas",
+    "department_code": "D-1",
+    "tag": {
+      "short": "Chachapoyas, Amazonas",
+      "long": "Chachapoyas, Amazonas, Perú"
+    }
+  },
+  {
+    "code": "P-103",
+    "name": "Chanchamayo",
+    "department_code": "D-11",
+    "tag": {
+      "short": "Chanchamayo, Junin",
+      "long": "Chanchamayo, Junin, Perú"
+    }
+  },
+  {
+    "code": "P-114",
+    "name": "Chepén",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Chepén, La Libertad",
+      "long": "Chepén, La Libertad, Perú"
+    }
+  },
+  {
+    "code": "P-124",
+    "name": "Chiclayo",
+    "department_code": "D-13",
+    "tag": {
+      "short": "Chiclayo, Lambayeque",
+      "long": "Chiclayo, Lambayeque, Perú"
+    }
+  },
+  {
+    "code": "P-98",
+    "name": "Chincha",
+    "department_code": "D-10",
+    "tag": {
+      "short": "Chincha, Ica",
+      "long": "Chincha, Ica, Perú"
+    }
+  },
+  {
+    "code": "P-33",
+    "name": "Chincheros",
+    "department_code": "D-3",
+    "tag": {
+      "short": "Chincheros, Apurimac",
+      "long": "Chincheros, Apurimac, Perú"
+    }
+  },
+  {
+    "code": "P-57",
+    "name": "Chota",
+    "department_code": "D-6",
+    "tag": {
+      "short": "Chota, Cajamarca",
+      "long": "Chota, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-164",
+    "name": "Chucuito",
+    "department_code": "D-20",
+    "tag": {
+      "short": "Chucuito, Puno",
+      "long": "Chucuito, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-72",
+    "name": "Chumbivilcas",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Chumbivilcas, Cusco",
+      "long": "Chumbivilcas, Cusco, Perú"
+    }
+  },
+  {
+    "code": "P-104",
+    "name": "Chupaca",
+    "department_code": "D-11",
+    "tag": {
+      "short": "Chupaca, Junin",
+      "long": "Chupaca, Junin, Perú"
+    }
+  },
+  {
+    "code": "P-83",
+    "name": "Churcampa",
+    "department_code": "D-8",
+    "tag": {
+      "short": "Churcampa, Huancavelica",
+      "long": "Churcampa, Huancavelica, Perú"
+    }
+  },
+  {
+    "code": "P-105",
+    "name": "Concepción",
+    "department_code": "D-11",
+    "tag": {
+      "short": "Concepción, Junin",
+      "long": "Concepción, Junin, Perú"
+    }
+  },
+  {
+    "code": "P-40",
+    "name": "Condesuyos",
+    "department_code": "D-4",
+    "tag": {
+      "short": "Condesuyos, Arequipa",
+      "long": "Condesuyos, Arequipa, Perú"
+    }
+  },
+  {
+    "code": "P-4",
+    "name": "Condorcanqui",
+    "department_code": "D-1",
+    "tag": {
+      "short": "Condorcanqui, Amazonas",
+      "long": "Condorcanqui, Amazonas, Perú"
+    }
+  },
+  {
+    "code": "P-189",
+    "name": "Contralmirante Villar",
+    "department_code": "D-23",
+    "tag": {
+      "short": "Contralmirante Villar, Tumbes",
+      "long": "Contralmirante Villar, Tumbes, Perú"
+    }
+  },
+  {
+    "code": "P-58",
+    "name": "Contumazá",
+    "department_code": "D-6",
+    "tag": {
+      "short": "Contumazá, Cajamarca",
+      "long": "Contumazá, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-193",
+    "name": "Coronel Portillo",
+    "department_code": "D-24",
+    "tag": {
+      "short": "Coronel Portillo, Ucayali",
+      "long": "Coronel Portillo, Ucayali, Perú"
+    }
+  },
+  {
+    "code": "P-15",
+    "name": "Corongo",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Corongo, Ancash",
+      "long": "Corongo, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-32",
+    "name": "Cotabambas",
+    "department_code": "D-3",
+    "tag": {
+      "short": "Cotabambas, Apurimac",
+      "long": "Cotabambas, Apurimac, Perú"
+    }
+  },
+  {
+    "code": "P-73",
+    "name": "Cusco",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Cusco, Cusco",
+      "long": "Cusco, Cusco, Perú"
+    }
+  },
+  {
+    "code": "P-59",
+    "name": "Cutervo",
+    "department_code": "D-6",
+    "tag": {
+      "short": "Cutervo, Cajamarca",
+      "long": "Cutervo, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-151",
+    "name": "Daniel Alcides Carrión",
+    "department_code": "D-18",
+    "tag": {
+      "short": "Daniel Alcides Carrión, Pasco",
+      "long": "Daniel Alcides Carrión, Pasco, Perú"
+    }
+  },
+  {
+    "code": "P-139",
+    "name": "Datem del Marañón",
+    "department_code": "D-15",
+    "tag": {
+      "short": "Datem del Marañón, Loreto",
+      "long": "Datem del Marañón, Loreto, Perú"
+    }
+  },
+  {
+    "code": "P-88",
+    "name": "Dos de Mayo",
+    "department_code": "D-9",
+    "tag": {
+      "short": "Dos de Mayo, Huanuco",
+      "long": "Dos de Mayo, Huanuco, Perú"
+    }
+  },
+  {
+    "code": "P-165",
+    "name": "El Collao",
+    "department_code": "D-20",
+    "tag": {
+      "short": "El Collao, Puno",
+      "long": "El Collao, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-176",
+    "name": "El Dorado",
+    "department_code": "D-21",
+    "tag": {
+      "short": "El Dorado, San Martin",
+      "long": "El Dorado, San Martin, Perú"
+    }
+  },
+  {
+    "code": "P-74",
+    "name": "Espinar",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Espinar, Cusco",
+      "long": "Espinar, Cusco, Perú"
+    }
+  },
+  {
+    "code": "P-125",
+    "name": "Ferreñafe",
+    "department_code": "D-13",
+    "tag": {
+      "short": "Ferreñafe, Lambayeque",
+      "long": "Ferreñafe, Lambayeque, Perú"
+    }
+  },
+  {
+    "code": "P-148",
+    "name": "General Sánchez Cerro",
+    "department_code": "D-17",
+    "tag": {
+      "short": "General Sánchez Cerro, Moquegua",
+      "long": "General Sánchez Cerro, Moquegua, Perú"
+    }
+  },
+  {
+    "code": "P-115",
+    "name": "Gran Chimú",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Gran Chimú, La Libertad",
+      "long": "Gran Chimú, La Libertad, Perú"
+    }
+  },
+  {
+    "code": "P-34",
+    "name": "Grau",
+    "department_code": "D-3",
+    "tag": {
+      "short": "Grau, Apurimac",
+      "long": "Grau, Apurimac, Perú"
+    }
+  },
+  {
+    "code": "P-89",
+    "name": "Huacaybamba",
+    "department_code": "D-9",
+    "tag": {
+      "short": "Huacaybamba, Huanuco",
+      "long": "Huacaybamba, Huanuco, Perú"
+    }
+  },
+  {
+    "code": "P-60",
+    "name": "Hualgayoc",
+    "department_code": "D-6",
+    "tag": {
+      "short": "Hualgayoc, Cajamarca",
+      "long": "Hualgayoc, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-177",
+    "name": "Huallaga",
+    "department_code": "D-21",
+    "tag": {
+      "short": "Huallaga, San Martin",
+      "long": "Huallaga, San Martin, Perú"
+    }
+  },
+  {
+    "code": "P-90",
+    "name": "Huamalíes",
+    "department_code": "D-9",
+    "tag": {
+      "short": "Huamalíes, Huanuco",
+      "long": "Huamalíes, Huanuco, Perú"
+    }
+  },
+  {
+    "code": "P-44",
+    "name": "Huamanga",
+    "department_code": "D-5",
+    "tag": {
+      "short": "Huamanga, Ayacucho",
+      "long": "Huamanga, Ayacucho, Perú"
+    }
+  },
+  {
+    "code": "P-45",
+    "name": "Huanca Sancos",
+    "department_code": "D-5",
+    "tag": {
+      "short": "Huanca Sancos, Ayacucho",
+      "long": "Huanca Sancos, Ayacucho, Perú"
+    }
+  },
+  {
+    "code": "P-155",
+    "name": "Huancabamba",
+    "department_code": "D-19",
+    "tag": {
+      "short": "Huancabamba, Piura",
+      "long": "Huancabamba, Piura, Perú"
+    }
+  },
+  {
+    "code": "P-166",
+    "name": "Huancané",
+    "department_code": "D-20",
+    "tag": {
+      "short": "Huancané, Puno",
+      "long": "Huancané, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-84",
+    "name": "Huancavelica",
+    "department_code": "D-8",
+    "tag": {
+      "short": "Huancavelica, Huancavelica",
+      "long": "Huancavelica, Huancavelica, Perú"
+    }
+  },
+  {
+    "code": "P-106",
+    "name": "Huancayo",
+    "department_code": "D-11",
+    "tag": {
+      "short": "Huancayo, Junin",
+      "long": "Huancayo, Junin, Perú"
+    }
+  },
+  {
+    "code": "P-46",
+    "name": "Huanta",
+    "department_code": "D-5",
+    "tag": {
+      "short": "Huanta, Ayacucho",
+      "long": "Huanta, Ayacucho, Perú"
+    }
+  },
+  {
+    "code": "P-91",
+    "name": "Huánuco",
+    "department_code": "D-9",
+    "tag": {
+      "short": "Huánuco, Huanuco",
+      "long": "Huánuco, Huanuco, Perú"
+    }
+  },
+  {
+    "code": "P-132",
+    "name": "Huaral",
+    "department_code": "D-14",
+    "tag": {
+      "short": "Huaral, Lima",
+      "long": "Huaral, Lima, Perú"
+    }
+  },
+  {
+    "code": "P-16",
+    "name": "Huaraz",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Huaraz, Ancash",
+      "long": "Huaraz, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-17",
+    "name": "Huari",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Huari, Ancash",
+      "long": "Huari, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-18",
+    "name": "Huarmey",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Huarmey, Ancash",
+      "long": "Huarmey, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-133",
+    "name": "Huarochirí",
+    "department_code": "D-14",
+    "tag": {
+      "short": "Huarochirí, Lima",
+      "long": "Huarochirí, Lima, Perú"
+    }
+  },
+  {
+    "code": "P-134",
+    "name": "Huaura",
+    "department_code": "D-14",
+    "tag": {
+      "short": "Huaura, Lima",
+      "long": "Huaura, Lima, Perú"
+    }
+  },
+  {
+    "code": "P-19",
+    "name": "Huaylas",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Huaylas, Ancash",
+      "long": "Huaylas, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-85",
+    "name": "Huaytará",
+    "department_code": "D-8",
+    "tag": {
+      "short": "Huaytará, Huancavelica",
+      "long": "Huaytará, Huancavelica, Perú"
+    }
+  },
+  {
+    "code": "P-99",
+    "name": "Ica",
+    "department_code": "D-10",
+    "tag": {
+      "short": "Ica, Ica",
+      "long": "Ica, Ica, Perú"
+    }
+  },
+  {
+    "code": "P-149",
+    "name": "Ilo",
+    "department_code": "D-17",
+    "tag": {
+      "short": "Ilo, Moquegua",
+      "long": "Ilo, Moquegua, Perú"
+    }
+  },
+  {
+    "code": "P-41",
+    "name": "Islay",
+    "department_code": "D-4",
+    "tag": {
+      "short": "Islay, Arequipa",
+      "long": "Islay, Arequipa, Perú"
+    }
+  },
+  {
+    "code": "P-61",
+    "name": "Jaén",
+    "department_code": "D-6",
+    "tag": {
+      "short": "Jaén, Cajamarca",
+      "long": "Jaén, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-107",
+    "name": "Jauja",
+    "department_code": "D-11",
+    "tag": {
+      "short": "Jauja, Junin",
+      "long": "Jauja, Junin, Perú"
+    }
+  },
+  {
+    "code": "P-186",
+    "name": "Jorge Basadre",
+    "department_code": "D-22",
+    "tag": {
+      "short": "Jorge Basadre, Tacna",
+      "long": "Jorge Basadre, Tacna, Perú"
+    }
+  },
+  {
+    "code": "P-116",
+    "name": "Julcán",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Julcán, La Libertad",
+      "long": "Julcán, La Libertad, Perú"
+    }
+  },
+  {
+    "code": "P-108",
+    "name": "Junín",
+    "department_code": "D-11",
+    "tag": {
+      "short": "Junín, Junin",
+      "long": "Junín, Junin, Perú"
+    }
+  },
+  {
+    "code": "P-75",
+    "name": "La Convención",
+    "department_code": "D-7",
+    "tag": {
+      "short": "La Convención, Cusco",
+      "long": "La Convención, Cusco, Perú"
+    }
+  },
+  {
+    "code": "P-47",
+    "name": "La Mar",
+    "department_code": "D-5",
+    "tag": {
+      "short": "La Mar, Ayacucho",
+      "long": "La Mar, Ayacucho, Perú"
+    }
+  },
+  {
+    "code": "P-42",
+    "name": "La Uniòn",
+    "department_code": "D-4",
+    "tag": {
+      "short": "La Uniòn, Arequipa",
+      "long": "La Uniòn, Arequipa, Perú"
+    }
+  },
+  {
+    "code": "P-178",
+    "name": "Lamas",
+    "department_code": "D-21",
+    "tag": {
+      "short": "Lamas, San Martin",
+      "long": "Lamas, San Martin, Perú"
+    }
+  },
+  {
+    "code": "P-126",
+    "name": "Lambayeque",
+    "department_code": "D-13",
+    "tag": {
+      "short": "Lambayeque, Lambayeque",
+      "long": "Lambayeque, Lambayeque, Perú"
+    }
+  },
+  {
+    "code": "P-167",
+    "name": "Lampa",
+    "department_code": "D-20",
+    "tag": {
+      "short": "Lampa, Puno",
+      "long": "Lampa, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-92",
+    "name": "Lauricocha",
+    "department_code": "D-9",
+    "tag": {
+      "short": "Lauricocha, Huanuco",
+      "long": "Lauricocha, Huanuco, Perú"
+    }
+  },
+  {
+    "code": "P-93",
+    "name": "Leoncio Prado",
+    "department_code": "D-9",
+    "tag": {
+      "short": "Leoncio Prado, Huanuco",
+      "long": "Leoncio Prado, Huanuco, Perú"
+    }
+  },
+  {
+    "code": "P-135",
+    "name": "Lima",
+    "department_code": "D-14",
+    "tag": {
+      "short": "Lima, Lima",
+      "long": "Lima, Lima, Perú"
+    }
+  },
+  {
+    "code": "P-140",
+    "name": "Loreto",
+    "department_code": "D-15",
+    "tag": {
+      "short": "Loreto, Loreto",
+      "long": "Loreto, Loreto, Perú"
+    }
+  },
+  {
+    "code": "P-48",
+    "name": "Lucanas",
+    "department_code": "D-5",
+    "tag": {
+      "short": "Lucanas, Ayacucho",
+      "long": "Lucanas, Ayacucho, Perú"
+    }
+  },
+  {
+    "code": "P-5",
+    "name": "Luya",
+    "department_code": "D-1",
+    "tag": {
+      "short": "Luya, Amazonas",
+      "long": "Luya, Amazonas, Perú"
+    }
+  },
+  {
+    "code": "P-145",
+    "name": "Manu",
+    "department_code": "D-16",
+    "tag": {
+      "short": "Manu, Madre de Dios",
+      "long": "Manu, Madre de Dios, Perú"
+    }
+  },
+  {
+    "code": "P-94",
+    "name": "Marañón",
+    "department_code": "D-9",
+    "tag": {
+      "short": "Marañón, Huanuco",
+      "long": "Marañón, Huanuco, Perú"
+    }
+  },
+  {
+    "code": "P-179",
+    "name": "Mariscal Cáceres",
+    "department_code": "D-21",
+    "tag": {
+      "short": "Mariscal Cáceres, San Martin",
+      "long": "Mariscal Cáceres, San Martin, Perú"
+    }
+  },
+  {
+    "code": "P-20",
+    "name": "Mariscal Luzuriaga",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Mariscal Luzuriaga, Ancash",
+      "long": "Mariscal Luzuriaga, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-150",
+    "name": "Mariscal Nieto",
+    "department_code": "D-17",
+    "tag": {
+      "short": "Mariscal Nieto, Moquegua",
+      "long": "Mariscal Nieto, Moquegua, Perú"
+    }
+  },
+  {
+    "code": "P-141",
+    "name": "Mariscal Ramón Castilla",
+    "department_code": "D-15",
+    "tag": {
+      "short": "Mariscal Ramón Castilla, Loreto",
+      "long": "Mariscal Ramón Castilla, Loreto, Perú"
+    }
+  },
+  {
+    "code": "P-142",
+    "name": "Maynas",
+    "department_code": "D-15",
+    "tag": {
+      "short": "Maynas, Loreto",
+      "long": "Maynas, Loreto, Perú"
+    }
+  },
+  {
+    "code": "P-168",
+    "name": "Melgar",
+    "department_code": "D-20",
+    "tag": {
+      "short": "Melgar, Puno",
+      "long": "Melgar, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-169",
+    "name": "Moho",
+    "department_code": "D-20",
+    "tag": {
+      "short": "Moho, Puno",
+      "long": "Moho, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-156",
+    "name": "Morropón",
+    "department_code": "D-19",
+    "tag": {
+      "short": "Morropón, Piura",
+      "long": "Morropón, Piura, Perú"
+    }
+  },
+  {
+    "code": "P-180",
+    "name": "Moyobamba",
+    "department_code": "D-21",
+    "tag": {
+      "short": "Moyobamba, San Martin",
+      "long": "Moyobamba, San Martin, Perú"
+    }
+  },
+  {
+    "code": "P-100",
+    "name": "Nazca",
+    "department_code": "D-10",
+    "tag": {
+      "short": "Nazca, Ica",
+      "long": "Nazca, Ica, Perú"
+    }
+  },
+  {
+    "code": "P-21",
+    "name": "Ocros",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Ocros, Ancash",
+      "long": "Ocros, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-117",
+    "name": "Otuzco",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Otuzco, La Libertad",
+      "long": "Otuzco, La Libertad, Perú"
+    }
+  },
+  {
+    "code": "P-152",
+    "name": "Oxapampa",
+    "department_code": "D-18",
+    "tag": {
+      "short": "Oxapampa, Pasco",
+      "long": "Oxapampa, Pasco, Perú"
+    }
+  },
+  {
+    "code": "P-136",
+    "name": "Oyón",
+    "department_code": "D-14",
+    "tag": {
+      "short": "Oyón, Lima",
+      "long": "Oyón, Lima, Perú"
+    }
+  },
+  {
+    "code": "P-118",
+    "name": "Pacasmayo",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Pacasmayo, La Libertad",
+      "long": "Pacasmayo, La Libertad, Perú"
+    }
+  },
+  {
+    "code": "P-95",
+    "name": "Pachitea",
+    "department_code": "D-9",
+    "tag": {
+      "short": "Pachitea, Huanuco",
+      "long": "Pachitea, Huanuco, Perú"
+    }
+  },
+  {
+    "code": "P-194",
+    "name": "Padre Abad",
+    "department_code": "D-24",
+    "tag": {
+      "short": "Padre Abad, Ucayali",
+      "long": "Padre Abad, Ucayali, Perú"
+    }
+  },
+  {
+    "code": "P-157",
+    "name": "Paita",
+    "department_code": "D-19",
+    "tag": {
+      "short": "Paita, Piura",
+      "long": "Paita, Piura, Perú"
+    }
+  },
+  {
+    "code": "P-22",
+    "name": "Pallasca",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Pallasca, Ancash",
+      "long": "Pallasca, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-101",
+    "name": "Palpa",
+    "department_code": "D-10",
+    "tag": {
+      "short": "Palpa, Ica",
+      "long": "Palpa, Ica, Perú"
+    }
+  },
+  {
+    "code": "P-49",
+    "name": "Parinacochas",
+    "department_code": "D-5",
+    "tag": {
+      "short": "Parinacochas, Ayacucho",
+      "long": "Parinacochas, Ayacucho, Perú"
+    }
+  },
+  {
+    "code": "P-76",
+    "name": "Paruro",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Paruro, Cusco",
+      "long": "Paruro, Cusco, Perú"
+    }
+  },
+  {
+    "code": "P-153",
+    "name": "Pasco",
+    "department_code": "D-18",
+    "tag": {
+      "short": "Pasco, Pasco",
+      "long": "Pasco, Pasco, Perú"
+    }
+  },
+  {
+    "code": "P-119",
+    "name": "Pataz",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Pataz, La Libertad",
+      "long": "Pataz, La Libertad, Perú"
+    }
+  },
+  {
+    "code": "P-50",
+    "name": "Pàucar del Sara Sara",
+    "department_code": "D-5",
+    "tag": {
+      "short": "Pàucar del Sara Sara, Ayacucho",
+      "long": "Pàucar del Sara Sara, Ayacucho, Perú"
+    }
+  },
+  {
+    "code": "P-77",
+    "name": "Paucartambo",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Paucartambo, Cusco",
+      "long": "Paucartambo, Cusco, Perú"
+    }
+  },
+  {
+    "code": "P-181",
+    "name": "Picota",
+    "department_code": "D-21",
+    "tag": {
+      "short": "Picota, San Martin",
+      "long": "Picota, San Martin, Perú"
+    }
+  },
+  {
+    "code": "P-102",
+    "name": "Pisco",
+    "department_code": "D-10",
+    "tag": {
+      "short": "Pisco, Ica",
+      "long": "Pisco, Ica, Perú"
+    }
+  },
+  {
+    "code": "P-158",
+    "name": "Piura",
+    "department_code": "D-19",
+    "tag": {
+      "short": "Piura, Piura",
+      "long": "Piura, Piura, Perú"
+    }
+  },
+  {
+    "code": "P-23",
+    "name": "Pomabamba",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Pomabamba, Ancash",
+      "long": "Pomabamba, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-96",
+    "name": "Puerto Inca",
+    "department_code": "D-9",
+    "tag": {
+      "short": "Puerto Inca, Huanuco",
+      "long": "Puerto Inca, Huanuco, Perú"
+    }
+  },
+  {
+    "code": "P-170",
+    "name": "Puno",
+    "department_code": "D-20",
+    "tag": {
+      "short": "Puno, Puno",
+      "long": "Puno, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-195",
+    "name": "Purús",
+    "department_code": "D-24",
+    "tag": {
+      "short": "Purús, Ucayali",
+      "long": "Purús, Ucayali, Perú"
+    }
+  },
+  {
+    "code": "P-78",
+    "name": "Quispicanchi",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Quispicanchi, Cusco",
+      "long": "Quispicanchi, Cusco, Perú"
+    }
+  },
+  {
+    "code": "P-24",
+    "name": "Recuay",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Recuay, Ancash",
+      "long": "Recuay, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-143",
+    "name": "Requena",
+    "department_code": "D-15",
+    "tag": {
+      "short": "Requena, Loreto",
+      "long": "Requena, Loreto, Perú"
+    }
+  },
+  {
+    "code": "P-182",
+    "name": "Rioja",
+    "department_code": "D-21",
+    "tag": {
+      "short": "Rioja, San Martin",
+      "long": "Rioja, San Martin, Perú"
+    }
+  },
+  {
+    "code": "P-6",
+    "name": "Rodriguez de Mendoza",
+    "department_code": "D-1",
+    "tag": {
+      "short": "Rodriguez de Mendoza, Amazonas",
+      "long": "Rodriguez de Mendoza, Amazonas, Perú"
+    }
+  },
+  {
+    "code": "P-171",
+    "name": "San Antonio de Putina",
+    "department_code": "D-20",
+    "tag": {
+      "short": "San Antonio de Putina, Puno",
+      "long": "San Antonio de Putina, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-62",
+    "name": "San Ignacio",
+    "department_code": "D-6",
+    "tag": {
+      "short": "San Ignacio, Cajamarca",
+      "long": "San Ignacio, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-63",
+    "name": "San Marcos",
+    "department_code": "D-6",
+    "tag": {
+      "short": "San Marcos, Cajamarca",
+      "long": "San Marcos, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-183",
+    "name": "San Martín",
+    "department_code": "D-21",
+    "tag": {
+      "short": "San Martín, San Martin",
+      "long": "San Martín, San Martin, Perú"
+    }
+  },
+  {
+    "code": "P-64",
+    "name": "San Miguel",
+    "department_code": "D-6",
+    "tag": {
+      "short": "San Miguel, Cajamarca",
+      "long": "San Miguel, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-65",
+    "name": "San Pablo",
+    "department_code": "D-6",
+    "tag": {
+      "short": "San Pablo, Cajamarca",
+      "long": "San Pablo, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-172",
+    "name": "San Román",
+    "department_code": "D-20",
+    "tag": {
+      "short": "San Román, Puno",
+      "long": "San Román, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-120",
+    "name": "Sánchez Carrión",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Sánchez Carrión, La Libertad",
+      "long": "Sánchez Carrión, La Libertad, Perú"
+    }
+  },
+  {
+    "code": "P-173",
+    "name": "Sandia",
+    "department_code": "D-20",
+    "tag": {
+      "short": "Sandia, Puno",
+      "long": "Sandia, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-25",
+    "name": "Santa",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Santa, Ancash",
+      "long": "Santa, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-66",
+    "name": "Santa Cruz",
+    "department_code": "D-6",
+    "tag": {
+      "short": "Santa Cruz, Cajamarca",
+      "long": "Santa Cruz, Cajamarca, Perú"
+    }
+  },
+  {
+    "code": "P-121",
+    "name": "Santiago de Chuco",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Santiago de Chuco, La Libertad",
+      "long": "Santiago de Chuco, La Libertad, Perú"
+    }
+  },
+  {
+    "code": "P-109",
+    "name": "Satipo",
+    "department_code": "D-11",
+    "tag": {
+      "short": "Satipo, Junin",
+      "long": "Satipo, Junin, Perú"
+    }
+  },
+  {
+    "code": "P-159",
+    "name": "Sechura",
+    "department_code": "D-19",
+    "tag": {
+      "short": "Sechura, Piura",
+      "long": "Sechura, Piura, Perú"
+    }
+  },
+  {
+    "code": "P-26",
+    "name": "Sihuas",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Sihuas, Ancash",
+      "long": "Sihuas, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-51",
+    "name": "Sucre",
+    "department_code": "D-5",
+    "tag": {
+      "short": "Sucre, Ayacucho",
+      "long": "Sucre, Ayacucho, Perú"
+    }
+  },
+  {
+    "code": "P-160",
+    "name": "Sullana",
+    "department_code": "D-19",
+    "tag": {
+      "short": "Sullana, Piura",
+      "long": "Sullana, Piura, Perú"
+    }
+  },
+  {
+    "code": "P-187",
+    "name": "Tacna",
+    "department_code": "D-22",
+    "tag": {
+      "short": "Tacna, Tacna",
+      "long": "Tacna, Tacna, Perú"
+    }
+  },
+  {
+    "code": "P-146",
+    "name": "Tahuamanu",
+    "department_code": "D-16",
+    "tag": {
+      "short": "Tahuamanu, Madre de Dios",
+      "long": "Tahuamanu, Madre de Dios, Perú"
+    }
+  },
+  {
+    "code": "P-161",
+    "name": "Talara",
+    "department_code": "D-19",
+    "tag": {
+      "short": "Talara, Piura",
+      "long": "Talara, Piura, Perú"
+    }
+  },
+  {
+    "code": "P-147",
+    "name": "Tambopata",
+    "department_code": "D-16",
+    "tag": {
+      "short": "Tambopata, Madre de Dios",
+      "long": "Tambopata, Madre de Dios, Perú"
+    }
+  },
+  {
+    "code": "P-188",
+    "name": "Tarata",
+    "department_code": "D-22",
+    "tag": {
+      "short": "Tarata, Tacna",
+      "long": "Tarata, Tacna, Perú"
+    }
+  },
+  {
+    "code": "P-110",
+    "name": "Tarma",
+    "department_code": "D-11",
+    "tag": {
+      "short": "Tarma, Junin",
+      "long": "Tarma, Junin, Perú"
+    }
+  },
+  {
+    "code": "P-86",
+    "name": "Tayacaja",
+    "department_code": "D-8",
+    "tag": {
+      "short": "Tayacaja, Huancavelica",
+      "long": "Tayacaja, Huancavelica, Perú"
+    }
+  },
+  {
+    "code": "P-184",
+    "name": "Tocache",
+    "department_code": "D-21",
+    "tag": {
+      "short": "Tocache, San Martin",
+      "long": "Tocache, San Martin, Perú"
+    }
+  },
+  {
+    "code": "P-122",
+    "name": "Trujillo",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Trujillo, La Libertad",
+      "long": "Trujillo, La Libertad, Perú"
+    }
+  },
+  {
+    "code": "P-190",
+    "name": "Tumbes",
+    "department_code": "D-23",
+    "tag": {
+      "short": "Tumbes, Tumbes",
+      "long": "Tumbes, Tumbes, Perú"
+    }
+  },
+  {
+    "code": "P-144",
+    "name": "Ucayali",
+    "department_code": "D-15",
+    "tag": {
+      "short": "Ucayali, Loreto",
+      "long": "Ucayali, Loreto, Perú"
+    }
+  },
+  {
+    "code": "P-79",
+    "name": "Urubamba",
+    "department_code": "D-7",
+    "tag": {
+      "short": "Urubamba, Cusco",
+      "long": "Urubamba, Cusco, Perú"
+    }
+  },
+  {
+    "code": "P-7",
+    "name": "Utcubamba",
+    "department_code": "D-1",
+    "tag": {
+      "short": "Utcubamba, Amazonas",
+      "long": "Utcubamba, Amazonas, Perú"
+    }
+  },
+  {
+    "code": "P-52",
+    "name": "Víctor Fajardo",
+    "department_code": "D-5",
+    "tag": {
+      "short": "Víctor Fajardo, Ayacucho",
+      "long": "Víctor Fajardo, Ayacucho, Perú"
+    }
+  },
+  {
+    "code": "P-53",
+    "name": "Vilcas Huamán",
+    "department_code": "D-5",
+    "tag": {
+      "short": "Vilcas Huamán, Ayacucho",
+      "long": "Vilcas Huamán, Ayacucho, Perú"
+    }
+  },
+  {
+    "code": "P-123",
+    "name": "Virú",
+    "department_code": "D-12",
+    "tag": {
+      "short": "Virú, La Libertad",
+      "long": "Virú, La Libertad, Perú"
+    }
+  },
+  {
+    "code": "P-97",
+    "name": "Yarowilca",
+    "department_code": "D-9",
+    "tag": {
+      "short": "Yarowilca, Huanuco",
+      "long": "Yarowilca, Huanuco, Perú"
+    }
+  },
+  {
+    "code": "P-111",
+    "name": "Yauli",
+    "department_code": "D-11",
+    "tag": {
+      "short": "Yauli, Junin",
+      "long": "Yauli, Junin, Perú"
+    }
+  },
+  {
+    "code": "P-137",
+    "name": "Yauyos",
+    "department_code": "D-14",
+    "tag": {
+      "short": "Yauyos, Lima",
+      "long": "Yauyos, Lima, Perú"
+    }
+  },
+  {
+    "code": "P-27",
+    "name": "Yungay",
+    "department_code": "D-2",
+    "tag": {
+      "short": "Yungay, Ancash",
+      "long": "Yungay, Ancash, Perú"
+    }
+  },
+  {
+    "code": "P-174",
+    "name": "Yunguyo",
+    "department_code": "D-20",
+    "tag": {
+      "short": "Yunguyo, Puno",
+      "long": "Yunguyo, Puno, Perú"
+    }
+  },
+  {
+    "code": "P-191",
+    "name": "Zarumilla",
+    "department_code": "D-23",
+    "tag": {
+      "short": "Zarumilla, Tumbes",
+      "long": "Zarumilla, Tumbes, Perú"
+    }
+  }
+]

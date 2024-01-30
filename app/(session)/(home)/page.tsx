@@ -1,5 +1,5 @@
 // import { Suspense } from '@/components/other/CustomSuspense'
-import { Suspense } from 'react'
+import { Suspense, memo } from 'react'
 import { TGetPetParams } from '@/controllers/Pet'
 import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
 import { FilterStatus } from './FilterStatus'
@@ -7,20 +7,30 @@ import { PetGrid } from './Pets'
 import { FilterCategory } from './FilterCategory'
 // import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { Order } from './Order'
-// import { FilterPlace } from './FilterPlace/FilterPlace'
-import dynamic from 'next/dynamic'
+import { FilterPlace } from './FilterPlace/FilterPlace'
+// import dynamic from 'next/dynamic'
 // import { FilterPlaceSkeleton } from '@/Skeletons/FilterPlaceSkeleton'
 
 type Props = { searchParams: TGetPetParams }
 
-const FilterPlace = dynamic(() => import('./FilterPlace/FilterPlace'))
+// const FilterPlace = dynamic(() => import('./FilterPlace/FilterPlace'))
+
+const FilterPlaceMemo = memo(FilterPlace)
+
+// const FilterPlaceMemo = memo(FilterPlace, (prevProps, nextProps) => {
+//   // do a comparison that ignores changes to searchParams
+//   return prevProps.someOtherProp === nextProps.someOtherProp
+// })
 
 export default function Page(props: Props) {
   const { searchParams } = props
   const { status = '1', order = 'asc', ...restSearchParams } = searchParams
 
   return (
-    <main className='mx-auto flex w-[1600px] max-w-full animate-fade gap-x-6 px-2 pb-2 animate-duration-200'>
+    <main
+      className='mx-auto flex w-[1600px] max-w-full animate-fade gap-x-6 px-2 pb-2 animate-duration-200'
+      key='e'
+    >
       <aside className='max-h-[calc(100dvh-3rem-var(--header-height)-0.5rem)] w-60 shrink-0 overflow-y-auto pr-10 max-lg:hidden'>
         <section className='space-y-8 *:space-y-3'>
           {/* <Suspense keyProp={'status' + JSON.stringify(searchParams)}> */}
@@ -44,9 +54,9 @@ export default function Page(props: Props) {
       </aside>
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
-          <Suspense key='1'>
-            <FilterPlace key='2' />
-          </Suspense>
+          {/* <Suspense key='1'> */}
+          <FilterPlaceMemo key='a' />
+          {/* </Suspense> */}
           <Order order={order} />
         </header>
         <Suspense
