@@ -1,5 +1,5 @@
-import { Form } from './form'
-import { Categories, Place, Status } from './server_components'
+// import { Form } from './form'
+// import { Categories, Place, Status } from './server_components'
 
 export default function Page() {
   return (
