@@ -3,17 +3,17 @@ import { FilterPlaceClient } from './FilterPlaceClient'
 // import { FilterPlaceClient } from './FilterPlaceClient'
 
 export async function FilterPlace() {
-  // const { departamentos, provincias, distritos } = await getPlaces()
-  const distritosData = getPlaces()
-  const provinciasData = getPlaces2()
+  const { provincias, distritos } = await getPlaces()
+  // const distritosData = getPlaces()
+  // const provinciasData = getPlaces2()
 
   // console.log({ places })
 
-  const [provincias, distritos] = await Promise.all([
-    // departamentosData,
-    provinciasData,
-    distritosData,
-  ])
+  // const [provincias, distritos] = await Promise.all([
+  //   // departamentosData,
+  //   provinciasData,
+  //   distritosData,
+  // ])
 
   console.log({ provincias, distritos })
 
