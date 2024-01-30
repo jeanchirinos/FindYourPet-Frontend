@@ -1,5 +1,5 @@
 import { getPlaces } from '@/controllers/Place'
-import { FilterPlaceClient } from './FilterPlaceClient'
+// import { FilterPlaceClient } from './FilterPlaceClient'
 // import { waitFor } from '@/utilities/utilities'
 
 export async function FilterPlace() {
@@ -20,10 +20,11 @@ export async function FilterPlace() {
     })
 
   return (
-    <FilterPlaceClient
-      departamentos={departamentos}
-      provincias={allProvincias}
-      distritos={allDistritos}
-    />
+    // <FilterPlaceClient
+    //   departamentos={departamentos}
+    //   provincias={allProvincias}
+    //   distritos={allDistritos}
+    // />
+    <h2>Hola</h2>
   )
 }
