@@ -16,7 +16,7 @@ type Props = {
   distritos: PlaceLocation[]
 }
 
-export function FilterPlaceClient(props: Props) {
+export function FilterPlaceClient(props: any) {
   return <h2>Hola</h2>
 }
 

@@ -35,6 +35,10 @@ const FilterPlace = memo(async function FilterPlace() {
       // departamentos={departamentos as any}
       // provincias={provincias as any}
       distritos={distritos.slice(0, 250) as any}
+      distritos2={distritos.slice(250, 500) as any}
+      distritos3={distritos.slice(500, 750) as any}
+      distritos4={distritos.slice(750, 1000) as any}
+      distritos5={distritos.slice(1000, 1250) as any}
     />
     // <h2>Hola</h2>
   )
