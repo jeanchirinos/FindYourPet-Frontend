@@ -144,8 +144,8 @@ export function FilterPlaceClient(props: Props) {
 
   // RENDER
   return (
-    <div className='flex w-96 max-w-full flex-col gap-y-2.5' key='hey'>
-      <Combobox value={selected} onChange={handleChange} multiple>
+    <div className='flex w-96 max-w-full flex-col gap-y-2.5'>
+      <Combobox value={selected} onChange={handleChange} multiple key='hola'>
         <div className='relative z-20 mt-1 w-full'>
           <div className='relative w-full cursor-default text-left shadow-md sm:text-sm'>
             {/* <Combobox.Button className='w-full '> */}

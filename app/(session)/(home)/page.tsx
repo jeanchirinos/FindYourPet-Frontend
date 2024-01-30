@@ -4,7 +4,7 @@ import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
 import { FilterStatus } from './FilterStatus'
 import { PetGrid } from './Pets'
 import { FilterCategory } from './FilterCategory'
-import { FilterBreeds } from './FilterBreeds/FilterBreeds'
+// import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { Order } from './Order'
 import { FilterPlace } from './FilterPlace/FilterPlace'
 
@@ -34,7 +34,7 @@ export default function Page(props: Props) {
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
           <Suspense keyProp={JSON.stringify(searchParams)}>
-            <FilterPlace key='adios' />
+            <FilterPlace />
           </Suspense>
           <Order order={order} />
         </header>
