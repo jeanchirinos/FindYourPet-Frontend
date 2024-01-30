@@ -25,55 +25,57 @@ export function FilterPlaceClient(props: Props) {
   const searchParams = useSearchParams()
 
   // EFFECTS
-  useEffect(() => {
-    const filteredDepartamento = departamentos.find(d => d.id_ubigeo === searchParams.get('estate'))
+  // useEffect(() => {
+  //   const filteredDepartamento = departamentos.find(d => d.id_ubigeo === searchParams.get('estate'))
 
-    const filteredProvincia = provincias.find(c => c.id_ubigeo === searchParams.get('city'))
+  //   const filteredProvincia = provincias.find(c => c.id_ubigeo === searchParams.get('city'))
 
-    const filteredDistritos = distritos.filter(d =>
-      searchParams.get('district')?.split(',').includes(d.id_ubigeo),
-    )
+  //   const filteredDistritos = distritos.filter(d =>
+  //     searchParams.get('district')?.split(',').includes(d.id_ubigeo),
+  //   )
 
-    const selected = []
+  //   const selected = []
 
-    filteredDepartamento && selected.push(filteredDepartamento)
-    filteredProvincia && selected.push(filteredProvincia)
-    selected.push(...filteredDistritos)
+  //   filteredDepartamento && selected.push(filteredDepartamento)
+  //   filteredProvincia && selected.push(filteredProvincia)
+  //   selected.push(...filteredDistritos)
 
-    setSelected(selected)
-  }, [searchParams, distritos, provincias, departamentos])
+  //   setSelected(selected)
+  // }, [searchParams, distritos, provincias, departamentos])
 
   // VALUES
-  const filteredPlaces = useMemo(() => {
-    const filteredEstates = departamentos
-      .filter(estate =>
-        estate.nombre_ubigeo
-          .toLowerCase()
-          .replace(/\s+/g, '')
-          .includes(query.toLowerCase().replace(/\s+/g, '')),
-      )
-      .slice(0, 3)
+  // const filteredPlaces = useMemo(() => {
+  //   const filteredEstates = departamentos
+  //     .filter(estate =>
+  //       estate.nombre_ubigeo
+  //         .toLowerCase()
+  //         .replace(/\s+/g, '')
+  //         .includes(query.toLowerCase().replace(/\s+/g, '')),
+  //     )
+  //     .slice(0, 3)
 
-    const filteredCities = provincias
-      .filter(city =>
-        city.nombre_ubigeo
-          .toLowerCase()
-          .replace(/\s+/g, '')
-          .includes(query.toLowerCase().replace(/\s+/g, '')),
-      )
-      .slice(0, 3)
+  //   const filteredCities = provincias
+  //     .filter(city =>
+  //       city.nombre_ubigeo
+  //         .toLowerCase()
+  //         .replace(/\s+/g, '')
+  //         .includes(query.toLowerCase().replace(/\s+/g, '')),
+  //     )
+  //     .slice(0, 3)
 
-    const filteredDistricts = distritos
-      .filter(district =>
-        district.nombre_ubigeo
-          .toLowerCase()
-          .replace(/\s+/g, '')
-          .includes(query.toLowerCase().replace(/\s+/g, '')),
-      )
-      .slice(0, 5)
+  //   const filteredDistricts = distritos
+  //     .filter(district =>
+  //       district.nombre_ubigeo
+  //         .toLowerCase()
+  //         .replace(/\s+/g, '')
+  //         .includes(query.toLowerCase().replace(/\s+/g, '')),
+  //     )
+  //     .slice(0, 5)
 
-    return query === '' ? [] : [...filteredEstates, ...filteredCities, ...filteredDistricts]
-  }, [query, distritos, provincias, departamentos])
+  //   return query === '' ? [] : [...filteredEstates, ...filteredCities, ...filteredDistricts]
+  // }, [query, distritos, provincias, departamentos])
+
+  const filteredPlaces = [] as any
 
   // FUNCTIONS
   function handleChange(value: PlaceLocation[]) {
@@ -173,7 +175,7 @@ export function FilterPlaceClient(props: Props) {
                   Sin resultados
                 </div>
               ) : (
-                filteredPlaces.map(place => (
+                filteredPlaces.map((place: any) => (
                   <Combobox.Option
                     key={place.id_ubigeo}
                     className={({ active }) =>
