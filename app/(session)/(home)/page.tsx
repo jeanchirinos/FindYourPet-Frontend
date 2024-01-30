@@ -41,8 +41,8 @@ export default function Page(props: Props) {
       </aside>
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
-          <Suspense key='hola'>
-            <FilterPlace key='adios' />
+          <Suspense>
+            <FilterPlace />
           </Suspense>
           <Order order={order} />
         </header>

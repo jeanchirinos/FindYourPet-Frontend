@@ -27,6 +27,20 @@ async function getData<T>(type: 'departamentos' | 'provincias' | 'distritos') {
   return data
 }
 
+// function flatten(arr: any) {
+//   const flattened = [] as any[]
+
+//   //@ts-nocheck
+//   !(function flat(arr) {
+//     arr.forEach(function (el: any) {
+//       if (Array.isArray(el)) flat(el)
+//       else flattened.push(el)
+//     })
+//   })(arr)
+
+//   return flattened
+// }
+
 export const getPlaces = cache(async () => {
   const departamentosData = getData<PlaceLocation[]>('departamentos')
   const provinciasData = getData<Record<string, PlaceLocation[]>>('provincias')
@@ -38,14 +52,16 @@ export const getPlaces = cache(async () => {
     distritosData,
   ])
 
-  const allProvincias = Object.values(provincias).flat()
-  const allDistritos = Object.values(distritos).flat()
+  const allProvincias = Object.values(provincias)
+  const allDistritos = Object.values(distritos)
+
+  console.log({ allProvincias, allDistritos })
 
   return {
     departamentos,
-    // provincias: provincias['2534'],
-    // distritos: distritos['2557'],
-    provincias: allProvincias,
-    distritos: allDistritos,
+    provincias: provincias['2534'],
+    distritos: distritos['2557'],
+    // provincias: allProvincias,
+    // distritos: allDistritos,
   }
 })
