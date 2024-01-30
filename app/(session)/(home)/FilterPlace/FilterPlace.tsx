@@ -36,6 +36,6 @@ export async function FilterPlace() {
     //   provincias={allProvincias}
     //   distritos={allDistritos}
     // />
-    <FilterPlaceClient departamentos={[]} provincias={[]} distritos={[]} />
+    <FilterPlaceClient departamentos={departamentos} provincias={[]} distritos={[]} />
   )
 }
