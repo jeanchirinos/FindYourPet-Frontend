@@ -26,9 +26,19 @@ async function getData<T>(type: 'departamentos' | 'provincias' | 'distritos') {
 }
 
 export async function getPlaces() {
-  const departamentos = await getData<PlaceLocation[]>('departamentos')
-  const provincias = await getData<Record<string, PlaceLocation[]>>('provincias')
-  const distritos = await getData<Record<string, PlaceLocation[]>>('distritos')
+  // const departamentos = await getData<PlaceLocation[]>('departamentos')
+  // const provincias = await getData<Record<string, PlaceLocation[]>>('provincias')
+  // const distritos = await getData<Record<string, PlaceLocation[]>>('distritos')
+
+  const departamentosData = getData<PlaceLocation[]>('departamentos')
+  const provinciasData = getData<Record<string, PlaceLocation[]>>('provincias')
+  const distritosData = getData<Record<string, PlaceLocation[]>>('distritos')
+
+  const [departamentos, provincias, distritos] = await Promise.all([
+    departamentosData,
+    provinciasData,
+    distritosData,
+  ])
 
   return {
     departamentos,
