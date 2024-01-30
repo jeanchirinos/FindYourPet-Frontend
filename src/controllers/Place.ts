@@ -31,23 +31,23 @@ export async function getPlaces() {
   // const provincias = await getData<Record<string, PlaceLocation[]>>('provincias')
   // const distritos = await getData<Record<string, PlaceLocation[]>>('distritos')
 
-  const departamentosData = getData<PlaceLocation[]>('departamentos')
-  const provinciasData = getData<Record<string, PlaceLocation[]>>('provincias')
-  const distritosData = getData<Record<string, PlaceLocation[]>>('distritos')
+  // const departamentosData = getData<PlaceLocation[]>('departamentos')
+  // const provinciasData = getData<Record<string, PlaceLocation[]>>('provincias')
+  // const distritosData = getData<Record<string, PlaceLocation[]>>('distritos')
 
-  const [departamentos, provincias, distritos] = await Promise.all([
-    departamentosData,
-    provinciasData,
-    distritosData,
-  ])
+  // const [departamentos, provincias, distritos] = await Promise.all([
+  //   departamentosData,
+  //   provinciasData,
+  //   distritosData,
+  // ])
 
-  // const res = await actionRequestGet<GithubResponse>(
-  //   // `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/${type}.json`,
-  //   `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/departamentos.json`,
-  //   {
-  //     cache: 'force-cache',
-  //   },
-  // )
+  const res = await actionRequestGet<GithubResponse>(
+    // `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/${type}.json`,
+    `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/departamentos.json`,
+    {
+      cache: 'force-cache',
+    },
+  )
 
   // const res2 = await actionRequestGet<GithubResponse>(
   //   // `https://github.com/joseluisq/ubigeos-peru/blob/978097e9ce3e1bbd367f40d42a43e1e704f2a875/json/${type}.json`,
@@ -57,7 +57,7 @@ export async function getPlaces() {
   //   },
   // )
 
-  // const data = JSON.parse(res.payload.blob.rawLines[1])
+  const data = JSON.parse(res.payload.blob.rawLines[1])
   // const data2 = JSON.parse(res2.payload.blob.rawLines[1])
 
   // return {
@@ -65,13 +65,13 @@ export async function getPlaces() {
   //   data2,
   // }
 
-  // return data
+  return data
 
-  return {
-    departamentos,
-    provincias,
-    distritos,
-  }
+  // return {
+  //   departamentos,
+  //   provincias,
+  //   distritos,
+  // }
 }
 
 export type Places = Awaited<ReturnType<typeof getPlaces>>
