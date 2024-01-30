@@ -41,9 +41,9 @@ export async function getPlaces() {
     distritosData,
   ])
 
-  const allProvincias = Object.values(provincias).flat()
+  // const allProvincias = Object.values(provincias).flat()
 
-  const allDistritos = Object.values(distritos).flat()
+  // const allDistritos = Object.values(distritos).flat()
   // .map(d => {
   //   const provincia = allProvincias.find(p => p.id_ubigeo === d.id_padre_ubigeo)
   //   const departamento = departamentos.find(d => d.id_ubigeo === provincia?.id_padre_ubigeo)
@@ -81,8 +81,8 @@ export async function getPlaces() {
 
   return {
     departamentos,
-    provincias: allProvincias,
-    distritos: allDistritos,
+    provincias: provincias['2534'],
+    distritos: distritos['2557'],
   }
 }
 
