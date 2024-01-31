@@ -12,7 +12,7 @@ type Props = { searchParams: TGetPetParams }
 
 export default function Page(props: Props) {
   const { searchParams } = props
-  const { status = '1', order = 'asc', ...restSearchParams } = searchParams
+  const { status = '1', order = 'desc', ...restSearchParams } = searchParams
 
   return (
     <main className='mx-auto flex w-[1600px] max-w-full animate-fade gap-x-6 px-2 pb-2 animate-duration-200'>

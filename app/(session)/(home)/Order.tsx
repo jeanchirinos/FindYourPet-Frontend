@@ -38,8 +38,8 @@ export function Order(props: { order: string }) {
           onSelectChange: handleChange,
         }}
         options={[
-          { id: 'asc', name: 'Más reciente' },
-          { id: 'desc', name: 'Más antiguo' },
+          { id: 'desc', name: 'Más reciente' },
+          { id: 'asc', name: 'Más antiguo' },
         ]}
       />
     </div>
