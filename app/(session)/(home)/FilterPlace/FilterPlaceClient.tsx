@@ -1,7 +1,5 @@
 'use client'
 
-// import { memo } from 'react'
-
 import { Fragment, useEffect, useMemo, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { IconArrowDown, IconCheck } from '@/icons'
@@ -12,6 +10,7 @@ import { Chip } from '@nextui-org/react'
 import departamentos from '@/data/departamentos.json'
 import provincias from '@/data/provincias.json'
 import distritos from '@/data/distritos.json'
+import { getCategories } from '@/controllers/Pet'
 
 type PlaceLocation = {
   code: string
@@ -22,35 +21,30 @@ type PlaceLocation = {
   }
 }
 
-// type Props = {
-//   // departamentos: PlaceLocation[]
-//   // provincias: PlaceLocation[]
-//   // distritos: PlaceLocation[]
-//   distritos: any
+// export function FilterPlaceClient() {
+//   useEffect(() => {
+//     async function getPlaces() {
+//       const data = await getCategories()
+
+//       console.log(data)
+//     }
+
+//     getPlaces()
+//   }, [])
+
+//   return <h3>Hey</h3>
 // }
 
-// export default function FilterPlaceClient(props: any) {
-//   return <h2>Hola</h2>
-// }
-
-// const FilterPlaceClient = memo(
-//   function FilterPlaceClient(props: any) {
-//     console.log('render FilterPlaceClient')
-//     return <h3>Hey</h3>
-//   },
-//   () => true,
-// )
-
-// export default FilterPlaceClient
-
-// export const FilterPlaceClient = memo(function FilterPlaceClient(props: Props) {
-// export const FilterPlaceClient = memo(function FilterPlaceClient() {
-//   console.log('render FilterPlaceClient')
-//   // })
-
-// export function FilterPlaceClient(props: Props) {
 export function FilterPlaceClient() {
-  // const { departamentos, provincias, distritos } = props
+  useEffect(() => {
+    async function getPlaces() {
+      const data = await getCategories()
+
+      console.log(data)
+    }
+
+    getPlaces()
+  }, [])
 
   // STATES
   const [selected, setSelected] = useState<typeof distritos>([])
