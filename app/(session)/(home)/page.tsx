@@ -1,5 +1,4 @@
-// import { Suspense } from '@/components/other/CustomSuspense'
-import { Suspense } from 'react'
+import { Suspense } from '@/components/other/CustomSuspense'
 import { TGetPetParams } from '@/controllers/Pet'
 import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
 import { FilterStatus } from './FilterStatus'
@@ -7,23 +6,10 @@ import { PetGrid } from './Pets'
 import { FilterCategory } from './FilterCategory'
 import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { Order } from './Order'
-// import { FilterPlace } from './FilterPlace/FilterPlace'
-// import FilterPlace from './FilterPlace/FilterPlace'
-// import Link from 'next/link'
-import { FilterPlaceClient } from './FilterPlace/FilterPlaceClient'
-// import dynamic from 'next/dynamic'
-// import { FilterPlaceSkeleton } from '@/Skeletons/FilterPlaceSkeleton'
+
+import { FilterPlace } from './FilterPlace'
 
 type Props = { searchParams: TGetPetParams }
-
-// const FilterPlace = dynamic(() => import('./FilterPlace/FilterPlace'))
-
-// const FilterPlaceMemo = memo(FilterPlace, () => true)
-
-// const FilterPlaceMemo = memo(FilterPlace, (prevProps, nextProps) => {
-//   // do a comparison that ignores changes to searchParams
-//   return prevProps.someOtherProp === nextProps.someOtherProp
-// })
 
 export default function Page(props: Props) {
   const { searchParams } = props
@@ -33,16 +19,10 @@ export default function Page(props: Props) {
     <main className='mx-auto flex w-[1600px] max-w-full animate-fade gap-x-6 px-2 pb-2 animate-duration-200'>
       <aside className='max-h-[calc(100dvh-3rem-var(--header-height)-0.5rem)] w-60 shrink-0 overflow-y-auto pr-10 max-lg:hidden'>
         <section className='space-y-8 *:space-y-3'>
-          {/* <Suspense keyProp={'status' + JSON.stringify(searchParams)}> */}
-          {/* <Suspense key={'status' + JSON.stringify(searchParams)}> */}
           <Suspense>
             <FilterStatus status={status} />
           </Suspense>
-          <Suspense
-          // keyProp={JSON.stringify(searchParams)}
-          // key={JSON.stringify(searchParams)}
-          // fallback={<div className='aspect-square w-4 bg-red-500' />}
-          >
+          <Suspense>
             <FilterCategory category={searchParams.category_id} />
           </Suspense>
           {searchParams.category_id && (
@@ -55,15 +35,11 @@ export default function Page(props: Props) {
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
           <Suspense>
-            <FilterPlaceClient />
+            <FilterPlace />
           </Suspense>
           <Order order={order} />
         </header>
-        <Suspense
-          fallback={<PetGridSkeleton />}
-          // keyProp={JSON.stringify(searchParams)}
-          key={JSON.stringify(searchParams)}
-        >
+        <Suspense fallback={<PetGridSkeleton />} keyProp={JSON.stringify(searchParams)}>
           <PetGrid searchParams={{ ...restSearchParams, status, order }} />
         </Suspense>
       </section>

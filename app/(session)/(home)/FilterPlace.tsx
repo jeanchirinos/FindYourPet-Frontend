@@ -5,20 +5,10 @@ import { Combobox, Transition } from '@headlessui/react'
 import { IconArrowDown, IconCheck } from '@/icons'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-// import { PlaceLocation } from '@/controllers/Place'
+import { PlaceLocation, getPlaces } from '@/controllers/Place'
 import { Chip } from '@nextui-org/react'
-import { getPetsInfo, getPlaces } from '@/controllers/Place'
 
-type PlaceLocation = {
-  code: string
-  name: string
-  tag: {
-    short: string
-    long: string
-  }
-}
-
-export function FilterPlaceClient() {
+export function FilterPlace() {
   useEffect(() => {
     async function getPlacesFn() {
       const data = await getPlaces()
@@ -29,14 +19,6 @@ export function FilterPlaceClient() {
     }
 
     getPlacesFn()
-
-    async function getOtherInfo() {
-      const data = await getPetsInfo()
-
-      console.log({ data })
-    }
-
-    getOtherInfo()
   }, [])
 
   // STATES
@@ -68,7 +50,6 @@ export function FilterPlaceClient() {
     selected.push(...filteredDistritos)
 
     setSelected(selected)
-    // }, [searchParams, distritos, provincias, departamentos])
   }, [searchParams, departamentos, provincias, distritos])
 
   // VALUES
@@ -101,7 +82,6 @@ export function FilterPlaceClient() {
       .slice(0, 5)
 
     return query === '' ? [] : [...filteredEstates, ...filteredCities, ...filteredDistricts]
-    // }, [query, distritos, provincias, departamentos])
   }, [query, departamentos, provincias, distritos])
 
   const isDepartment = (item: PlaceLocation | undefined) =>

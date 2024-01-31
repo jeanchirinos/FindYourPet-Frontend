@@ -1,14 +1,14 @@
-// import { LinkSearchParams } from '@/components/LinkSearchParams'
-// import { getCategories } from '@/controllers/Pet'
+import { LinkSearchParams } from '@/components/LinkSearchParams'
+import { getCategories } from '@/controllers/Pet'
 
 export async function FilterCategory(props: { category: string | undefined }) {
-  // const categoriesList = await getCategories()
+  const categoriesList = await getCategories()
 
   return (
     <section>
       <p className='sticky top-0 bg-th-fg-1 font-semibold text-foreground-900'>Especie</p>
 
-      {/* <div className='grid w-full grid-cols-2 gap-2'>
+      <div className='grid w-full grid-cols-2 gap-2'>
         {categoriesList.map(item => (
           <LinkSearchParams
             key={item.id}
@@ -31,7 +31,7 @@ export async function FilterCategory(props: { category: string | undefined }) {
             <span>{item.name}</span>
           </LinkSearchParams>
         ))}
-      </div> */}
+      </div>
     </section>
   )
 }
