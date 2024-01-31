@@ -1,4 +1,5 @@
 'use server'
+import { BreedsData, Category } from '@/models/Pet'
 import { actionRequestGet } from '@/utilities/actionRequest'
 // import { cache } from 'react'
 
@@ -87,5 +88,25 @@ export async function getPlaces() {
     departamentos,
     provincias,
     distritos,
+  }
+}
+
+async function getData2(type: 'breedList' | 'category') {
+  const data = await actionRequestGet<any[]>(type, {
+    cache: 'force-cache',
+  })
+
+  return data
+}
+
+export async function getPetsInfo() {
+  const especiesData = getData2('category')
+  const razasData = getData2('breedList')
+
+  const [especies, razas] = await Promise.all([especiesData, razasData])
+
+  return {
+    especies,
+    razas,
   }
 }

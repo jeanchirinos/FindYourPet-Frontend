@@ -7,10 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 
 // import { PlaceLocation } from '@/controllers/Place'
 import { Chip } from '@nextui-org/react'
-// import departamentos from '@/data/departamentos.json'
-// import provincias from '@/data/provincias.json'
-// import distritos from '@/data/distritos.json'
-import { getPlaces } from '@/controllers/Place'
+import { getPetsInfo, getPlaces } from '@/controllers/Place'
 
 type PlaceLocation = {
   code: string
@@ -20,20 +17,6 @@ type PlaceLocation = {
     long: string
   }
 }
-
-// export function FilterPlaceClient() {
-//   useEffect(() => {
-//     async function getPlaces() {
-//       const data = await getCategories()
-
-//       console.log(data)
-//     }
-
-//     getPlaces()
-//   }, [])
-
-//   return <h3>Hey</h3>
-// }
 
 export function FilterPlaceClient() {
   useEffect(() => {
@@ -46,6 +29,14 @@ export function FilterPlaceClient() {
     }
 
     getPlacesFn()
+
+    async function getOtherInfo() {
+      const data = await getPetsInfo()
+
+      console.log({ data })
+    }
+
+    getOtherInfo()
   }, [])
 
   // STATES
