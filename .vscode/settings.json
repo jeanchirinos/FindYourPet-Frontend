@@ -12,7 +12,7 @@
     "**/.project": true,
     "**/.settings": true,
     "**/*.crswap": true,
-    ".next": false,
+    ".next": true,
     "postcss.config.js": true,
     "README.md": true,
     "app/opengraph-image.png": true,
@@ -36,7 +36,8 @@
     ".prettierrc.json",
     ".npmrc",
     "node_modules",
-    "pnpm-lock.yaml"
+    "pnpm-lock.yaml",
+    ".next"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {
