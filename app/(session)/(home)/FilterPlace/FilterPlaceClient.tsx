@@ -7,10 +7,10 @@ import { useRouter, useSearchParams } from 'next/navigation'
 
 // import { PlaceLocation } from '@/controllers/Place'
 import { Chip } from '@nextui-org/react'
-import departamentos from '@/data/departamentos.json'
-import provincias from '@/data/provincias.json'
-import distritos from '@/data/distritos.json'
-import { getCategories } from '@/controllers/Pet'
+// import departamentos from '@/data/departamentos.json'
+// import provincias from '@/data/provincias.json'
+// import distritos from '@/data/distritos.json'
+import { getPlaces } from '@/controllers/Place'
 
 type PlaceLocation = {
   code: string
@@ -37,16 +37,22 @@ type PlaceLocation = {
 
 export function FilterPlaceClient() {
   useEffect(() => {
-    async function getPlaces() {
-      const data = await getCategories()
+    async function getPlacesFn() {
+      const data = await getPlaces()
 
-      console.log(data)
+      setDepartamentos(data.departamentos)
+      setProvincias(data.provincias)
+      setDistritos(data.distritos)
     }
 
-    getPlaces()
+    getPlacesFn()
   }, [])
 
   // STATES
+  const [departamentos, setDepartamentos] = useState<any[]>([])
+  const [provincias, setProvincias] = useState<any[]>([])
+  const [distritos, setDistritos] = useState<any[]>([])
+
   const [selected, setSelected] = useState<typeof distritos>([])
   const [query, setQuery] = useState('')
 
@@ -72,7 +78,7 @@ export function FilterPlaceClient() {
 
     setSelected(selected)
     // }, [searchParams, distritos, provincias, departamentos])
-  }, [searchParams])
+  }, [searchParams, departamentos, provincias, distritos])
 
   // VALUES
   const filteredPlaces = useMemo(() => {
@@ -105,7 +111,7 @@ export function FilterPlaceClient() {
 
     return query === '' ? [] : [...filteredEstates, ...filteredCities, ...filteredDistricts]
     // }, [query, distritos, provincias, departamentos])
-  }, [query])
+  }, [query, departamentos, provincias, distritos])
 
   const isDepartment = (item: PlaceLocation | undefined) =>
     item?.code.startsWith('D-') && Number(item.code.slice(2)) < 100
@@ -247,7 +253,7 @@ export function FilterPlaceClient() {
 
       <div className='flex h-7 gap-x-2.5'>
         {selected.map(item => (
-          <Chip onClose={() => handleRemove(item as any)} key={item.code} title={item.tag.long}>
+          <Chip onClose={() => handleRemove(item)} key={item.code} title={item.tag.long}>
             {item.name}
           </Chip>
         ))}
