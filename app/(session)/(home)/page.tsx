@@ -7,8 +7,7 @@ import { FilterCategory } from './FilterCategory'
 import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { Order } from './Order'
 
-// import { FilterPlace } from './FilterPlace'
-import { FilterPlaceServer } from './FilterPlaceServer'
+import { FilterPlace } from './FilterPlace'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -35,11 +34,8 @@ export default function Page(props: Props) {
       </aside>
       <section className='flex w-full flex-col gap-y-5'>
         <header className='flex justify-between'>
-          {/* <Suspense>
-            <FilterPlace/>
-          </Suspense> */}
           <Suspense>
-            <FilterPlaceServer />
+            <FilterPlace />
           </Suspense>
           <Order order={order} />
         </header>

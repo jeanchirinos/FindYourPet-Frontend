@@ -5,30 +5,26 @@ import { Combobox, Transition } from '@headlessui/react'
 import { IconArrowDown, IconCheck } from '@/icons'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-// import { PlaceLocation, getPlaces } from '@/controllers/Place'
-import { PlaceLocation } from '@/controllers/Place'
+import { PlaceLocation, getPlaces } from '@/controllers/Place'
 import { Chip } from '@nextui-org/react'
 
-// export function FilterPlace() {
-export function FilterPlace(props: { departamentos: any[]; provincias: any[]; distritos: any[] }) {
-  const { departamentos, provincias, distritos } = props
+export function FilterPlace() {
+  useEffect(() => {
+    async function getPlacesFn() {
+      const data = await getPlaces()
 
-  // useEffect(() => {
-  //   async function getPlacesFn() {
-  //     const data = await getPlaces()
+      setDepartamentos(data.departamentos)
+      setProvincias(data.provincias)
+      setDistritos(data.distritos)
+    }
 
-  //     setDepartamentos(data.departamentos)
-  //     setProvincias(data.provincias)
-  //     setDistritos(data.distritos)
-  //   }
-
-  //   getPlacesFn()
-  // }, [])
+    getPlacesFn()
+  }, [])
 
   // STATES
-  // const [departamentos, setDepartamentos] = useState<any[]>([])
-  // const [provincias, setProvincias] = useState<any[]>([])
-  // const [distritos, setDistritos] = useState<any[]>([])
+  const [departamentos, setDepartamentos] = useState<any[]>([])
+  const [provincias, setProvincias] = useState<any[]>([])
+  const [distritos, setDistritos] = useState<any[]>([])
 
   const [selected, setSelected] = useState<typeof distritos>([])
   const [query, setQuery] = useState('')
