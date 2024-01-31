@@ -6,15 +6,21 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export function Order(props: { order: string }) {
-  const [order, setOrder] = useState(props.order)
+  const { order } = props
 
+  // STATES
+  const [currentOrder, setCurrentOrder] = useState(order)
+
+  // HOOKS
   const { replace } = useRouter()
   const searchParams = useSearchParams()
 
+  // EFFECTS
   useEffect(() => {
-    setOrder(props.order)
-  }, [props.order])
+    setCurrentOrder(order)
+  }, [order])
 
+  // FUNCTIONS
   function handleChange(value: string) {
     const newSearchParams = new URLSearchParams(searchParams)
 
@@ -23,11 +29,12 @@ export function Order(props: { order: string }) {
     replace('?' + newSearchParams.toString())
   }
 
+  // RENDER
   return (
     <div className='max-md:hidden'>
       <SelectNative
         state={{
-          selected: order,
+          selected: currentOrder,
           onSelectChange: handleChange,
         }}
         options={[

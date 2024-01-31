@@ -12,7 +12,7 @@ export type PlaceLocation = {
 
 async function getData(type: 'departments' | 'provinces' | 'districts') {
   const data = await actionRequestGet<PlaceLocation[]>(
-    `https://ubigeosperu.nijui.com/api/${type}`,
+    `https://ubigeosperu.nijui.com/api/${type}?order_by=is_capital`,
     {
       cache: 'force-cache',
     },

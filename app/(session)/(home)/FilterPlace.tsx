@@ -13,20 +13,20 @@ export function FilterPlace() {
     async function getPlacesFn() {
       const data = await getPlaces()
 
-      setDepartamentos(data.departamentos)
-      setProvincias(data.provincias)
-      setDistritos(data.distritos)
+      setPlaces(data)
     }
 
     getPlacesFn()
   }, [])
 
   // STATES
-  const [departamentos, setDepartamentos] = useState<any[]>([])
-  const [provincias, setProvincias] = useState<any[]>([])
-  const [distritos, setDistritos] = useState<any[]>([])
+  const [places, setPlaces] = useState<{
+    departamentos: PlaceLocation[]
+    provincias: PlaceLocation[]
+    distritos: PlaceLocation[]
+  }>({ departamentos: [], provincias: [], distritos: [] })
 
-  const [selected, setSelected] = useState<typeof distritos>([])
+  const [selected, setSelected] = useState<PlaceLocation[]>([])
   const [query, setQuery] = useState('')
 
   // HOOKS
@@ -35,11 +35,13 @@ export function FilterPlace() {
 
   // EFFECTS
   useEffect(() => {
-    const filteredDepartamento = departamentos.find(d => d.code === searchParams.get('estate'))
+    const filteredDepartamento = places.departamentos.find(
+      d => d.code === searchParams.get('estate'),
+    )
 
-    const filteredProvincia = provincias.find(c => c.code === searchParams.get('city'))
+    const filteredProvincia = places.provincias.find(c => c.code === searchParams.get('city'))
 
-    const filteredDistritos = distritos.filter(d =>
+    const filteredDistritos = places.distritos.filter(d =>
       searchParams.get('district')?.split(',').includes(d.code),
     )
 
@@ -50,11 +52,11 @@ export function FilterPlace() {
     selected.push(...filteredDistritos)
 
     setSelected(selected)
-  }, [searchParams, departamentos, provincias, distritos])
+  }, [searchParams, places])
 
   // VALUES
   const filteredPlaces = useMemo(() => {
-    const filteredEstates = departamentos
+    const filteredEstates = places.departamentos
       .filter(estate =>
         estate.name
           .toLowerCase()
@@ -63,7 +65,7 @@ export function FilterPlace() {
       )
       .slice(0, 3)
 
-    const filteredCities = provincias
+    const filteredCities = places.provincias
       .filter(city =>
         city.name
           .toLowerCase()
@@ -72,7 +74,7 @@ export function FilterPlace() {
       )
       .slice(0, 3)
 
-    const filteredDistricts = distritos
+    const filteredDistricts = places.distritos
       .filter(district =>
         district.name
           .toLowerCase()
@@ -82,7 +84,7 @@ export function FilterPlace() {
       .slice(0, 5)
 
     return query === '' ? [] : [...filteredEstates, ...filteredCities, ...filteredDistricts]
-  }, [query, departamentos, provincias, distritos])
+  }, [query, places])
 
   const isDepartment = (item: PlaceLocation | undefined) =>
     item?.code.startsWith('D-') && Number(item.code.slice(2)) < 100

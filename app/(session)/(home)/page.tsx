@@ -6,7 +6,6 @@ import { PetGrid } from './Pets'
 import { FilterCategory } from './FilterCategory'
 import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { Order } from './Order'
-
 import { FilterPlace } from './FilterPlace'
 
 type Props = { searchParams: TGetPetParams }

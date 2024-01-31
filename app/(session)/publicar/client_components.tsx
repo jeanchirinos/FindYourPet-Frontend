@@ -111,33 +111,38 @@ export function PetInfo(props: { categories: Category[]; breedsData: BreedsData 
 }
 
 export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>> }) {
-  const { places } = props
-  // const { departamentos, provincias, distritos } = places
+  const { departamentos, provincias, distritos } = props.places
 
-  // // STATES
-  // const [selectedDepartamento, setSelectedDepartamento] = useState<undefined | string>('3926')
-  // const [selectedProvincia, setSelectedProvincia] = useState<undefined | string>('3927')
+  // STATES
+  const [selectedDepartamento, setSelectedDepartamento] = useState<undefined | string>('D-14')
+  const [selectedProvincia, setSelectedProvincia] = useState<undefined | string>('P-135')
 
-  // // VALUES
-  // const provinciasList = selectedDepartamento ? provincias[selectedDepartamento] : undefined
-  // const distritosList = selectedProvincia ? distritos[selectedProvincia] : undefined
+  // VALUES
+  const provinciasList = selectedDepartamento
+    ? //@ts-ignore
+      provincias.filter(item => item.department_code === selectedDepartamento)
+    : undefined
+  const distritosList = selectedProvincia
+    ? //@ts-ignore
+      distritos.filter(item => item.province_code === selectedProvincia)
+    : undefined
 
   // RENDER
   return (
     <>
-      {/* <SelectNative
+      <SelectNative
         name='estate'
         options={departamentos}
-        optionKeyValue='id_ubigeo'
-        optionKeyText='nombre_ubigeo'
+        optionKeyValue='code'
+        optionKeyText='name'
         state={{ selected: selectedDepartamento, onSelectChange: setSelectedDepartamento }}
         label='Departamento'
       />
       <SelectNative
         name='city'
         options={provinciasList}
-        optionKeyValue='id_ubigeo'
-        optionKeyText='nombre_ubigeo'
+        optionKeyValue='code'
+        optionKeyText='name'
         state={{
           selected: selectedProvincia,
           onSelectChange: setSelectedProvincia,
@@ -148,10 +153,10 @@ export function PlaceInfo(props: { places: Awaited<ReturnType<typeof getPlaces>>
       <SelectNative
         name='district'
         options={distritosList}
-        optionKeyValue='id_ubigeo'
-        optionKeyText='nombre_ubigeo'
+        optionKeyValue='code'
+        optionKeyText='name'
         label='Distrito'
-      /> */}
+      />
     </>
   )
 }
