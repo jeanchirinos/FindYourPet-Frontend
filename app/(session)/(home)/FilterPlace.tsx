@@ -2,23 +2,13 @@
 
 import { Fragment, useEffect, useMemo, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
-import { IconArrowDown, IconCheck } from '@/icons'
+import { IconCheck, IconSearch } from '@/icons'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { PlaceLocation, getPlaces } from '@/controllers/Place'
 import { Chip } from '@nextui-org/react'
 
 export function FilterPlace() {
-  useEffect(() => {
-    async function getPlacesFn() {
-      const data = await getPlaces()
-
-      setPlaces(data)
-    }
-
-    getPlacesFn()
-  }, [])
-
   // STATES
   const [places, setPlaces] = useState<{
     departamentos: PlaceLocation[]
@@ -34,6 +24,16 @@ export function FilterPlace() {
   const searchParams = useSearchParams()
 
   // EFFECTS
+  useEffect(() => {
+    async function getPlacesFn() {
+      const data = await getPlaces()
+
+      setPlaces(data)
+    }
+
+    getPlacesFn()
+  }, [])
+
   useEffect(() => {
     const filteredDepartamento = places.departamentos.find(
       d => d.code === searchParams.get('estate'),
@@ -172,7 +172,7 @@ export function FilterPlace() {
               value={query}
             />
             <div className='absolute inset-y-0 right-0 flex items-center pr-2'>
-              <IconArrowDown className='size-5 text-gray-400' aria-hidden='true' />
+              <IconSearch className='size-5 text-gray-400' aria-hidden='true' />
             </div>
           </div>
           <Transition

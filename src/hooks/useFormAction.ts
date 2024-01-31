@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import { useFormState } from 'react-dom'
 
@@ -15,7 +15,13 @@ export function useFormAction(action: any, options?: Options) {
 
   const initialState = { ok: null, msg: '' } as { ok: boolean | null; msg: string }
 
-  const [state, formAction] = useFormState(action, initialState)
+  const [stateAction, formAction] = useFormState(action, initialState)
+
+  const [state, setState] = useState(initialState)
+
+  useEffect(() => {
+    setState(stateAction)
+  }, [stateAction])
 
   useEffect(() => {
     const { ok, msg } = state
@@ -37,5 +43,5 @@ export function useFormAction(action: any, options?: Options) {
     }
   }, [state, onSuccess, onError, showSuccessToast, showErrorToast])
 
-  return { state, formAction }
+  return { state, setState, formAction }
 }

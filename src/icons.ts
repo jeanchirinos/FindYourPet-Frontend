@@ -1,6 +1,10 @@
+export { AiOutlineSearch as IconSearch } from 'react-icons/ai'
 export { FcGoogle as IconGoogle } from 'react-icons/fc'
-export { IoIosArrowBack as IconBack } from 'react-icons/io'
-export { IoIosArrowForward as IconForward } from 'react-icons/io'
+export {
+  IoIosArrowBack as IconBack,
+  IoIosArrowForward as IconForward,
+  IoMdCheckmarkCircle as IconCheckFilled,
+} from 'react-icons/io'
 export { MdOutlinePets as IconPet } from 'react-icons/md'
 export {
   HiMiniComputerDesktop as IconSystemTheme,
