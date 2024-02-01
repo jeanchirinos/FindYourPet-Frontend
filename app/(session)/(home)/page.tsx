@@ -16,7 +16,7 @@ export default function Page(props: Props) {
 
   return (
     <main className='mx-auto flex h-full w-[1600px] max-w-full animate-fade items-start gap-x-10 px-2 animate-duration-200'>
-      <aside className='sticky top-[calc(var(--header-height)+1.25rem)] w-40 shrink-0 overflow-y-auto max-lg:hidden'>
+      <aside className='sticky top-[calc(var(--header-height)+1.25rem)] w-40 shrink-0 max-lg:hidden'>
         <section className='space-y-8 *:space-y-3'>
           <Suspense>
             <FilterStatus status={status} />
