@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+// import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 type Props = Omit<React.ComponentProps<typeof Link>, 'href'> & {
@@ -18,7 +19,7 @@ type Props = Omit<React.ComponentProps<typeof Link>, 'href'> & {
     notSelected?: string
   }
   value: string | number
-  selectedValue: string | undefined | string[]
+  selectedValue?: string | undefined | string[]
   searchParamKey?: string
   toggle?: boolean
   keyToDelete?: string
@@ -37,6 +38,10 @@ export function LinkSearchParams(props: Props) {
     ...restProps
   } = props
 
+  // STATE
+  // const [selectedValueState, setSelectedValueState] = useState(selectedValue)
+
+  // HOOKS
   const searchParams = useSearchParams()
 
   // FUNCTIONS
@@ -84,9 +89,13 @@ export function LinkSearchParams(props: Props) {
     selectedValue === value.toString() ||
     (Array.isArray(selectedValue) && selectedValue.includes(value.toString()))
 
+  // const isSelected = selectedValueState === value.toString()
+  // (Array.isArray(selectedValue) && selectedValue.includes(value.toString()))
+
   // RENDER
   return (
     <Link
+      // onClick={() => setSelectedValueState(value.toString())}
       href={getNewSearchParams()}
       replace
       className={twMerge(

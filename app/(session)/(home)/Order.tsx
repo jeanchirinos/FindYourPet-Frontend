@@ -4,8 +4,6 @@ import { SelectNative } from '@/components/Select/SelectNative'
 import { useSearchParams, useRouter } from 'next/navigation'
 
 export function Order(props: { order: string }) {
-  const { order } = props
-
   // HOOKS
   const { replace } = useRouter()
   const searchParams = useSearchParams()
@@ -26,7 +24,7 @@ export function Order(props: { order: string }) {
         state={{
           onSelectChange: handleChange,
         }}
-        defaultValue={order}
+        defaultValue={props.order}
         options={[
           { id: 'desc', name: 'Más reciente' },
           { id: 'asc', name: 'Más antiguo' },

@@ -87,16 +87,18 @@ export function FilterPlace() {
     const cities = value.filter(v => isProvince(v))
     const districts = value.filter(v => isDistrict(v))
 
-    const lastPlaceAdded = value.at(-1)
+    const lastPlaceAdded = value.at(-1)!
 
     if (estates.length === 0) {
       newSearchParams.delete('estate')
     }
 
     if (isDepartment(lastPlaceAdded)) {
-      newSearchParams.set('estate', lastPlaceAdded!.code)
+      newSearchParams.set('estate', lastPlaceAdded.code)
       newSearchParams.delete('city')
       newSearchParams.delete('district')
+
+      setSelected([lastPlaceAdded])
     }
 
     if (cities.length === 0) {
@@ -104,7 +106,7 @@ export function FilterPlace() {
     }
 
     if (isProvince(lastPlaceAdded)) {
-      newSearchParams.set('city', lastPlaceAdded!.code)
+      newSearchParams.set('city', lastPlaceAdded.code)
       newSearchParams.delete('estate')
       newSearchParams.delete('district')
     }
