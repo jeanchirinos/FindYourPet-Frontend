@@ -12,7 +12,7 @@ export function Order(props: { order: string }) {
   const [currentOrder, setCurrentOrder] = useState(order)
 
   // HOOKS
-  const { replace, prefetch } = useRouter()
+  const { replace } = useRouter()
   const searchParams = useSearchParams()
 
   // EFFECTS
@@ -26,7 +26,6 @@ export function Order(props: { order: string }) {
 
     newSearchParams.set('order', value)
 
-    prefetch('?' + newSearchParams.toString())
     replace('?' + newSearchParams.toString())
   }
 

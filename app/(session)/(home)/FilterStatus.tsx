@@ -11,7 +11,6 @@ export async function FilterStatus(props: { status: string }) {
       <div className='flex flex-col gap-y-2'>
         {statusList.map(item => (
           <LinkSearchParams
-            prefetch
             key={item.id}
             href={{ status: item.id, page: 1 }}
             selectedValue={props.status}

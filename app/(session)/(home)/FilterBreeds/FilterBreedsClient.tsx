@@ -54,7 +54,7 @@ export function FilterBreedsClient(props: Props) {
     setQuery('')
     replace('?' + newSearchParams.toString())
 
-    // setSelected(value)
+    setSelected(value)
   }
 
   function handleRemove(item: (typeof breeds)[0]) {
