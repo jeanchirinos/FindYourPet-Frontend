@@ -11,7 +11,7 @@ export default function Page(props: Props) {
 
   return (
     <>
-      <p>{props.searchParams.sort}</p>
+      <p key={sort + 'ago'}>{props.searchParams.sort}</p>
       <Suspense key={sort}>
         <ExampleClientComponent />
       </Suspense>
