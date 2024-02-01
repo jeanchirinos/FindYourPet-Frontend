@@ -12,7 +12,6 @@
     "**/.project": true,
     "**/.settings": true,
     "**/*.crswap": true,
-    ".next": true,
     "postcss.config.js": true,
     "README.md": true,
     "app/opengraph-image.png": true,
@@ -23,7 +22,9 @@
     ".prettierrc.json": true,
     ".npmrc": true,
     "node_modules": true,
-    "pnpm-lock.yaml": true
+    "pnpm-lock.yaml": true,
+    ".next": true,
+    "app/hola": true
   },
   "hide-files.files": [
     "postcss.config.js",
@@ -37,7 +38,8 @@
     ".npmrc",
     "node_modules",
     "pnpm-lock.yaml",
-    ".next"
+    ".next",
+    "app/hola"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {
