@@ -1,9 +1,12 @@
+import { Suspense } from 'react'
 import ExampleClientComponent from './example-client-component'
 
 export default function Page() {
   return (
     <>
-      <ExampleClientComponent />
+      <Suspense>
+        <ExampleClientComponent />
+      </Suspense>
     </>
   )
 }
