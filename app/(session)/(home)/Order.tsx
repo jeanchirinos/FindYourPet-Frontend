@@ -3,22 +3,12 @@
 import { SelectNative } from '@/components/Select/SelectNative'
 import { useSearchParams, useRouter } from 'next/navigation'
 
-import { useEffect, useState } from 'react'
-
 export function Order(props: { order: string }) {
   const { order } = props
-
-  // STATES
-  const [currentOrder, setCurrentOrder] = useState(order)
 
   // HOOKS
   const { replace } = useRouter()
   const searchParams = useSearchParams()
-
-  // EFFECTS
-  useEffect(() => {
-    setCurrentOrder(order)
-  }, [order])
 
   // FUNCTIONS
   function handleChange(value: string) {
@@ -34,9 +24,9 @@ export function Order(props: { order: string }) {
     <div className='max-md:hidden'>
       <SelectNative
         state={{
-          selected: currentOrder,
           onSelectChange: handleChange,
         }}
+        defaultValue={order}
         options={[
           { id: 'desc', name: 'Más reciente' },
           { id: 'asc', name: 'Más antiguo' },
