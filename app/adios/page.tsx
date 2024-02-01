@@ -12,7 +12,7 @@ export default function Page(props: Props) {
   return (
     <>
       <p>{props.searchParams.sort}</p>
-      <Suspense>
+      <Suspense key={sort}>
         <ExampleClientComponent />
       </Suspense>
     </>
