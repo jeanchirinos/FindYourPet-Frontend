@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { twMerge } from 'tailwind-merge'
+import { twJoin } from 'tailwind-merge'
 
 export function HeaderLink(props: React.ComponentProps<typeof Link>) {
   const pathname = usePathname()
@@ -16,7 +16,7 @@ export function HeaderLink(props: React.ComponentProps<typeof Link>) {
   return (
     <Link
       {...props}
-      className={twMerge(
+      className={twJoin(
         isActive() && 'text-primary',
         'transition-transform ease-linear hover:scale-105',
       )}

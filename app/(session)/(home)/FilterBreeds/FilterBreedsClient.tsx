@@ -75,7 +75,7 @@ export function FilterBreedsClient(props: Props) {
   return (
     <div className='flex w-full flex-col gap-y-5'>
       <Combobox value={selected} onChange={handleChange} multiple>
-        <div className='relative z-20 mt-1 w-full'>
+        <div className='relative z-20 w-full'>
           <div className='relative w-full cursor-default text-left shadow-md sm:text-sm'>
             <Combobox.Button className='w-full '>
               <Combobox.Input

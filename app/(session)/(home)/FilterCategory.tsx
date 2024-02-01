@@ -6,7 +6,7 @@ export async function FilterCategory(props: { category: string | undefined }) {
 
   return (
     <section>
-      <p className='sticky top-0 bg-th-fg-1 font-semibold text-foreground-900'>Especie</p>
+      <p className='font-semibold text-foreground-900'>Especie</p>
 
       <div className='grid w-full grid-cols-2 gap-2'>
         {categoriesList.map(item => (

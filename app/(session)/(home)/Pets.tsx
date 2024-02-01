@@ -20,14 +20,14 @@ export async function PetGrid(props: { searchParams: TGetPetParams }) {
     )
 
   return (
-    <div className='flex w-full grow flex-col'>
+    <div className='flex w-full grow flex-col gap-y-3.5'>
       <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[250px]'>
         {pets.map(pet => (
           <PetCard key={pet.id} pet={pet} />
         ))}
       </div>
 
-      <div className='flex items-center justify-center gap-x-2 py-5'>
+      <div className='flex items-center justify-center gap-x-2'>
         <IconBack />
 
         {links.slice(0, -1).map(link => {

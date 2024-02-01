@@ -7,11 +7,9 @@ import { PageProps } from '@/types'
 type Props = PageProps<'username'>
 
 export default function Page(props: Props) {
-  const { username } = props.params
-
   return (
     <Suspense>
-      <Profile username={username} />
+      <Profile username={props.params.username} />
     </Suspense>
   )
 }

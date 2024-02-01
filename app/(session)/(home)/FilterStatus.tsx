@@ -6,7 +6,7 @@ export async function FilterStatus(props: { status: string }) {
 
   return (
     <section>
-      <p className='sticky top-0 bg-th-fg-1 font-semibold text-foreground-900'>Estado</p>
+      <p className='font-semibold text-foreground-900'>Estado</p>
 
       <div className='flex flex-col gap-y-2'>
         {statusList.map(item => (
