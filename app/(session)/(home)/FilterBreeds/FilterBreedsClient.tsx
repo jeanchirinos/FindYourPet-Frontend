@@ -4,12 +4,12 @@ import { Combobox, Transition } from '@headlessui/react'
 import { IconArrowDown, IconCheck } from '@/icons'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Chip } from '@nextui-org/react'
-import { Breed, BreedsData } from '@/models/Pet'
-import { getBreeds } from '@/controllers/Pet'
+import { Breed } from '@/models/Pet'
 
-export function FilterBreeds() {
+export function FilterBreedsClient(props: { breeds: Breed[] }) {
+  const { breeds } = props
+
   // STATES
-  const [breedsData, setBreedsData] = useState<BreedsData>({})
   const [selectedBreeds, setSelectedBreeds] = useState<Breed[]>([])
   const [query, setQuery] = useState('')
 
@@ -17,21 +17,9 @@ export function FilterBreeds() {
   const { replace } = useRouter()
   const searchParams = useSearchParams()
 
-  const category_id = searchParams.get('category_id') as string
-  const breed_id = searchParams.get('breed_id') as string
+  const breed_id = searchParams.get('breed_id')
 
   // EFFECTS
-  useEffect(() => {
-    async function getBreedsData() {
-      const breedsData = await getBreeds()
-      setBreedsData(breedsData)
-    }
-
-    getBreedsData()
-  }, [])
-
-  const breeds = breedsData[category_id]
-
   useEffect(() => {
     const filteredBreeds = breeds.filter(breed =>
       breed_id?.split(',').includes(breed.id.toString()),

@@ -19,7 +19,7 @@ export type TGetPetParams = Partial<{
 
 export async function getPets(params: TGetPetParams) {
   const { page, order, status, category_id, breed_id, estate, city, district } = params
-  const limit = '10'
+  const limit = '20'
 
   const url = getApiUrl('pet')
 

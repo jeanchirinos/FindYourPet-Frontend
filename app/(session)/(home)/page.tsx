@@ -6,7 +6,7 @@ import { PetGrid } from './Pets'
 import { FilterCategory } from './FilterCategory'
 import { Order } from './Order'
 import { FilterPlace } from './FilterPlace'
-import { FilterBreeds } from './FilterBreeds'
+import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -26,7 +26,7 @@ export default function Page(props: Props) {
           </Suspense>
           {category_id && (
             <Suspense>
-              <FilterBreeds />
+              <FilterBreeds category_id={category_id} />
             </Suspense>
           )}
         </section>
