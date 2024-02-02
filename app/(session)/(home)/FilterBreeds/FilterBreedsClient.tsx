@@ -1,68 +1,16 @@
 'use client'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { IconArrowDown, IconCheck } from '@/icons'
-import { useRouter, useSearchParams } from 'next/navigation'
 import { Chip } from '@nextui-org/react'
 import { Breed } from '@/models/Pet'
+import { useFilterBreedsClient } from './useFilterBreedsClient'
 
-export function FilterBreedsClient(props: { breeds: Breed[] }) {
-  const { breeds } = props
+type Props = { breeds: Breed[] }
 
-  // STATES
-  const [selectedBreeds, setSelectedBreeds] = useState<Breed[]>([])
-  const [query, setQuery] = useState('')
-
-  // HOOKS
-  const { replace } = useRouter()
-  const searchParams = useSearchParams()
-
-  const breed_id = searchParams.get('breed_id')
-
-  // EFFECTS
-  useEffect(() => {
-    const filteredBreeds = breeds.filter(breed =>
-      breed_id?.split(',').includes(breed.id.toString()),
-    )
-
-    setSelectedBreeds(filteredBreeds)
-  }, [breed_id, breeds])
-
-  // VALUES
-  const filteredBreeds =
-    query === ''
-      ? breeds
-      : breeds.filter(breed =>
-          breed.name
-            .toLowerCase()
-            .replace(/\s+/g, '')
-            .includes(query.toLowerCase().replace(/\s+/g, '')),
-        )
-
-  // FUNCTIONS
-  function handleChange(value: typeof breeds) {
-    const newSearchParams = new URLSearchParams(searchParams)
-    newSearchParams.set('breed_id', value.map(v => v.id).join(','))
-
-    setSelectedBreeds(value)
-    setQuery('')
-
-    replace('?' + newSearchParams.toString())
-  }
-
-  function handleRemove(item: (typeof breeds)[0]) {
-    const newSearchParams = new URLSearchParams(searchParams)
-
-    const filteredBreeds = selectedBreeds.filter(b => b.id !== item.id)
-
-    if (filteredBreeds.length === 0) {
-      newSearchParams.delete('breed_id')
-    } else {
-      newSearchParams.set('breed_id', filteredBreeds.map(b => b.id).join(','))
-    }
-
-    replace('?' + newSearchParams.toString())
-  }
+export function FilterBreedsClient(props: Props) {
+  const { filteredBreeds, handleChange, handleRemove, query, selectedBreeds, setQuery } =
+    useFilterBreedsClient(props.breeds)
 
   // RENDER
   return (
