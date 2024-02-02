@@ -3,42 +3,41 @@ import { Fragment, useEffect, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { IconArrowDown, IconCheck } from '@/icons'
 import { useRouter, useSearchParams } from 'next/navigation'
-
 import { Chip } from '@nextui-org/react'
-import { Breed } from '@/models/Pet'
+import { Breed, BreedsData } from '@/models/Pet'
 import { getBreeds } from '@/controllers/Pet'
 
 export function FilterBreeds() {
   // STATES
-  const [breeds, setBreeds] = useState<Breed[]>([])
-  const [selected, setSelected] = useState<Breed[]>([])
+  const [breedsData, setBreedsData] = useState<BreedsData>({})
+  const [selectedBreeds, setSelectedBreeds] = useState<Breed[]>([])
   const [query, setQuery] = useState('')
 
   // HOOKS
   const { replace } = useRouter()
   const searchParams = useSearchParams()
 
-  const breed_id = searchParams.get('breed_id') as string
   const category_id = searchParams.get('category_id') as string
+  const breed_id = searchParams.get('breed_id') as string
 
   // EFFECTS
   useEffect(() => {
     async function getBreedsData() {
       const breedsData = await getBreeds()
-      const breeds = breedsData[category_id]
-
-      setBreeds(breeds)
+      setBreedsData(breedsData)
     }
 
     getBreedsData()
-  }, [category_id])
+  }, [])
+
+  const breeds = breedsData[category_id]
 
   useEffect(() => {
     const filteredBreeds = breeds.filter(breed =>
       breed_id?.split(',').includes(breed.id.toString()),
     )
 
-    setSelected(filteredBreeds)
+    setSelectedBreeds(filteredBreeds)
   }, [breed_id, breeds])
 
   // VALUES
@@ -55,19 +54,18 @@ export function FilterBreeds() {
   // FUNCTIONS
   function handleChange(value: typeof breeds) {
     const newSearchParams = new URLSearchParams(searchParams)
-
     newSearchParams.set('breed_id', value.map(v => v.id).join(','))
 
+    setSelectedBreeds(value)
     setQuery('')
-    replace('?' + newSearchParams.toString())
 
-    setSelected(value)
+    replace('?' + newSearchParams.toString())
   }
 
   function handleRemove(item: (typeof breeds)[0]) {
     const newSearchParams = new URLSearchParams(searchParams)
 
-    const filteredBreeds = selected.filter(b => b.id !== item.id)
+    const filteredBreeds = selectedBreeds.filter(b => b.id !== item.id)
 
     if (filteredBreeds.length === 0) {
       newSearchParams.delete('breed_id')
@@ -81,7 +79,7 @@ export function FilterBreeds() {
   // RENDER
   return (
     <div className='flex w-full flex-col gap-y-5'>
-      <Combobox value={selected} onChange={handleChange} multiple>
+      <Combobox value={selectedBreeds} onChange={handleChange} multiple>
         <div className='relative z-20 w-full'>
           <div className='relative w-full cursor-default text-left shadow-md sm:text-sm'>
             <Combobox.Button className='w-full '>
@@ -145,9 +143,9 @@ export function FilterBreeds() {
         </div>
       </Combobox>
 
-      {selected.length > 0 && (
+      {selectedBreeds.length > 0 && (
         <div className='flex flex-wrap gap-2.5'>
-          {selected.map(item => (
+          {selectedBreeds.map(item => (
             <Chip onClose={() => handleRemove(item)} key={item.id}>
               {item.name}
             </Chip>

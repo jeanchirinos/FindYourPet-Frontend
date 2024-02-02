@@ -5,13 +5,12 @@ import { useSearchParams, useRouter } from 'next/navigation'
 
 export function Order(props: { order: string }) {
   // HOOKS
-  const { replace } = useRouter()
   const searchParams = useSearchParams()
+  const { replace } = useRouter()
 
   // FUNCTIONS
   function handleChange(value: string) {
     const newSearchParams = new URLSearchParams(searchParams)
-
     newSearchParams.set('order', value)
 
     replace('?' + newSearchParams.toString())
