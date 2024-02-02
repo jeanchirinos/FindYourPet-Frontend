@@ -4,9 +4,9 @@ import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
 import { FilterStatus } from './FilterStatus'
 import { PetGrid } from './Pets'
 import { FilterCategory } from './FilterCategory'
-import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { Order } from './Order'
 import { FilterPlace } from './FilterPlace'
+import { FilterBreeds } from './FilterBreeds'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -26,7 +26,7 @@ export default function Page(props: Props) {
           </Suspense>
           {category_id && (
             <Suspense>
-              <FilterBreeds category_id={category_id} />
+              <FilterBreeds />
             </Suspense>
           )}
         </section>

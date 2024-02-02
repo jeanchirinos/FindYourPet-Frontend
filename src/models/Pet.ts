@@ -1,11 +1,10 @@
-export type BreedsData = Record<
-  string,
-  {
-    id: number
-    name: string
-    category_id: number
-  }[]
->
+export type Breed = {
+  id: number
+  name: string
+  category_id: number
+}
+
+export type BreedsData = Record<string, Breed[]>
 
 export type Pet = {
   id: number

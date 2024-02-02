@@ -5,34 +5,41 @@ import { IconArrowDown, IconCheck } from '@/icons'
 import { useRouter, useSearchParams } from 'next/navigation'
 
 import { Chip } from '@nextui-org/react'
+import { Breed } from '@/models/Pet'
+import { getBreeds } from '@/controllers/Pet'
 
-type Props = {
-  breeds: {
-    id: number
-    name: string
-    category_id: number
-  }[]
-}
-
-export function FilterBreedsClient(props: Props) {
-  const { breeds } = props
-
+export function FilterBreeds() {
   // STATES
-  const [selected, setSelected] = useState<typeof breeds>([])
+  const [breeds, setBreeds] = useState<Breed[]>([])
+  const [selected, setSelected] = useState<Breed[]>([])
   const [query, setQuery] = useState('')
 
   // HOOKS
   const { replace } = useRouter()
   const searchParams = useSearchParams()
 
+  const breed_id = searchParams.get('breed_id') as string
+  const category_id = searchParams.get('category_id') as string
+
   // EFFECTS
   useEffect(() => {
-    const filteredBreeds = breeds.filter(b =>
-      searchParams.get('breed_id')?.split(',').includes(b.id.toString()),
+    async function getBreedsData() {
+      const breedsData = await getBreeds()
+      const breeds = breedsData[category_id]
+
+      setBreeds(breeds)
+    }
+
+    getBreedsData()
+  }, [category_id])
+
+  useEffect(() => {
+    const filteredBreeds = breeds.filter(breed =>
+      breed_id?.split(',').includes(breed.id.toString()),
     )
 
     setSelected(filteredBreeds)
-  }, [searchParams, breeds])
+  }, [breed_id, breeds])
 
   // VALUES
   const filteredBreeds =
