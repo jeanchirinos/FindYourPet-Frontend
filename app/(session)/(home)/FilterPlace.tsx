@@ -109,6 +109,7 @@ export function FilterPlace() {
       newSearchParams.set('city', lastPlaceAdded.code)
       newSearchParams.delete('estate')
       newSearchParams.delete('district')
+      setSelected([lastPlaceAdded])
     }
 
     if (districts.length === 0) {
@@ -119,12 +120,11 @@ export function FilterPlace() {
       newSearchParams.set('district', districts.map(d => d.code).join(','))
       newSearchParams.delete('estate')
       newSearchParams.delete('city')
+      setSelected(districts)
     }
 
     setQuery('')
     replace('?' + newSearchParams.toString())
-
-    // setSelected(value)
   }
 
   function handleRemove(item: PlaceLocation) {
