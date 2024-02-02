@@ -15,12 +15,18 @@ export function FilterPlace() {
     distritos: PlaceLocation[]
   }>({ departamentos: [], provincias: [], distritos: [] })
 
-  const [selected, setSelected] = useState<PlaceLocation[]>([])
+  const [selectedPlacesState, setSelectedPlacesState] = useState<PlaceLocation[] | null>(null)
+  const selectedPlaces = selectedPlacesState ?? []
+
   const [query, setQuery] = useState('')
 
   // HOOKS
   const { replace } = useRouter()
   const searchParams = useSearchParams()
+
+  const departmentSearchParam = searchParams.get('estate')
+  const provinceSearchParam = searchParams.get('city')
+  const districtSearchParam = searchParams.get('district')
 
   // EFFECTS
   useEffect(() => {
@@ -34,24 +40,28 @@ export function FilterPlace() {
   }, [])
 
   useEffect(() => {
-    const filteredDepartamento = places.departamentos.find(
-      d => d.code === searchParams.get('estate'),
-    )
+    setSelectedPlacesState(prevState => {
+      if (prevState === null && places.departamentos.length > 0) {
+        const filteredDepartamento = places.departamentos.find(
+          d => d.code === departmentSearchParam,
+        )
+        const filteredProvincia = places.provincias.find(c => c.code === provinceSearchParam)
+        const filteredDistritos = places.distritos.filter(d =>
+          districtSearchParam?.split(',').includes(d.code),
+        )
 
-    const filteredProvincia = places.provincias.find(c => c.code === searchParams.get('city'))
+        const selected = []
 
-    const filteredDistritos = places.distritos.filter(d =>
-      searchParams.get('district')?.split(',').includes(d.code),
-    )
+        filteredDepartamento && selected.push(filteredDepartamento)
+        filteredProvincia && selected.push(filteredProvincia)
+        selected.push(...filteredDistritos)
 
-    const selected = [] as any[]
-
-    filteredDepartamento && selected.push(filteredDepartamento)
-    filteredProvincia && selected.push(filteredProvincia)
-    selected.push(...filteredDistritos)
-
-    setSelected(selected)
-  }, [searchParams, places])
+        return selected
+      } else {
+        return prevState
+      }
+    })
+  }, [departmentSearchParam, provinceSearchParam, districtSearchParam, places])
 
   // VALUES
   const filteredPlaces = useMemo(() => {
@@ -75,7 +85,9 @@ export function FilterPlace() {
 
   const isDepartment = (item: PlaceLocation | undefined) =>
     item?.code.startsWith('D-') && Number(item.code.slice(2)) < 100
+
   const isProvince = (item: PlaceLocation | undefined) => item?.code.startsWith('P-')
+
   const isDistrict = (item: PlaceLocation | undefined) =>
     item?.code.startsWith('D-') && Number(item.code.slice(2)) > 100
 
@@ -98,7 +110,7 @@ export function FilterPlace() {
       newSearchParams.delete('city')
       newSearchParams.delete('district')
 
-      setSelected([lastPlaceAdded])
+      setSelectedPlacesState([lastPlaceAdded])
     }
 
     if (cities.length === 0) {
@@ -109,7 +121,7 @@ export function FilterPlace() {
       newSearchParams.set('city', lastPlaceAdded.code)
       newSearchParams.delete('estate')
       newSearchParams.delete('district')
-      setSelected([lastPlaceAdded])
+      setSelectedPlacesState([lastPlaceAdded])
     }
 
     if (districts.length === 0) {
@@ -120,7 +132,8 @@ export function FilterPlace() {
       newSearchParams.set('district', districts.map(d => d.code).join(','))
       newSearchParams.delete('estate')
       newSearchParams.delete('city')
-      setSelected(districts)
+
+      setSelectedPlacesState(districts)
     }
 
     setQuery('')
@@ -132,16 +145,20 @@ export function FilterPlace() {
 
     if (isDepartment(item)) {
       newSearchParams.delete('estate')
+      setSelectedPlacesState([])
     } else if (isProvince(item)) {
       newSearchParams.delete('city')
+      setSelectedPlacesState([])
     } else {
-      const districts = selected.filter(v => isDistrict(v))
+      const districts = selectedPlaces.filter(v => isDistrict(v))
       const filteredDistricts = districts.filter(d => d.code !== item.code)
 
       if (filteredDistricts.length === 0) {
         newSearchParams.delete('district')
+        setSelectedPlacesState([])
       } else {
         newSearchParams.set('district', filteredDistricts.map(d => d.code).join(','))
+        setSelectedPlacesState(filteredDistricts)
       }
     }
 
@@ -151,7 +168,7 @@ export function FilterPlace() {
   // RENDER
   return (
     <div className='flex w-96 max-w-full flex-col gap-y-2.5'>
-      <Combobox value={selected} onChange={handleChange} multiple>
+      <Combobox value={selectedPlaces} onChange={handleChange} multiple>
         <div className='relative z-20 w-full'>
           <div className='relative w-full cursor-default text-left shadow-md sm:text-sm'>
             <Combobox.Input
@@ -212,7 +229,7 @@ export function FilterPlace() {
       </Combobox>
 
       <div className='flex h-7 gap-x-2.5'>
-        {selected.map(item => (
+        {selectedPlaces.map(item => (
           <Chip onClose={() => handleRemove(item)} key={item.code} title={item.tag.long}>
             {item.name}
           </Chip>
