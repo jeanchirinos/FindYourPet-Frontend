@@ -22,7 +22,8 @@
     ".next": true,
     "node_modules": true,
     "src/app/opengraph-image.png": true,
-    "src/app/favicon.ico": true
+    "src/app/favicon.ico": true,
+    "postcss.config.js": true
   },
   "hide-files.files": [
     "README.md",
@@ -35,7 +36,8 @@
     ".next",
     "node_modules",
     "src/app/opengraph-image.png",
-    "src/app/favicon.ico"
+    "src/app/favicon.ico",
+    "postcss.config.js"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {

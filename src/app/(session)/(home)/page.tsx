@@ -1,12 +1,13 @@
 import { Suspense } from '@/components/other/CustomSuspense'
 import { TGetPetParams } from '@/controllers/Pet'
 import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
-import { FilterStatus } from './FilterStatus'
+// import { FilterStatus } from './FilterStatus'
 import { PetGrid } from './Pets/PetGrid'
 import { FilterCategory } from './FilterCategory'
 import { Order } from './Order'
 import { FilterPlace } from './FilterPlace/FilterPlace'
 import { FilterBreeds } from './FilterBreeds/FilterBreeds'
+import { FilterStatus } from './FilterStatus/FilterStatus'
 
 type Props = { searchParams: TGetPetParams }
 
