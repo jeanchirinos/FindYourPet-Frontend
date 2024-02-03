@@ -1,4 +1,5 @@
-// const million = require('million/compiler')
+// import million from 'million/compiler'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -30,5 +31,11 @@ const nextConfig = {
   },
 }
 
-// module.exports = million.next(nextConfig, { auto: { rsc: true }, mute: true })
-module.exports = nextConfig
+// export default million.next(nextConfig, {
+//   auto: {
+//     rsc: true,
+//   },
+//   mute: true,
+// })
+
+export default nextConfig

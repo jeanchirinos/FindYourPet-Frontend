@@ -1,4 +1,4 @@
-import { Header } from 'app/(session)/components/Header/Header'
+import { Header } from '@/app/(session)/components/Header/Header'
 
 export default async function RootLayout(props: React.PropsWithChildren) {
   return (
