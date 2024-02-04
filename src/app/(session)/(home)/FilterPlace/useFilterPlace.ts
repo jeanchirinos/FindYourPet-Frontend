@@ -36,27 +36,19 @@ export function useFilterPlace() {
   }, [])
 
   useEffect(() => {
-    setSelectedPlacesState(prevState => {
-      if (prevState === null && places.departamentos.length > 0) {
-        const filteredDepartamento = places.departamentos.find(
-          d => d.code === departmentSearchParam,
-        )
-        const filteredProvincia = places.provincias.find(c => c.code === provinceSearchParam)
-        const filteredDistritos = places.distritos.filter(d =>
-          districtSearchParam?.split(',').includes(d.code),
-        )
+    const filteredDepartamento = places.departamentos.find(d => d.code === departmentSearchParam)
+    const filteredProvincia = places.provincias.find(c => c.code === provinceSearchParam)
+    const filteredDistritos = places.distritos.filter(d =>
+      districtSearchParam?.split(',').includes(d.code),
+    )
 
-        const selected = []
+    const selected = []
 
-        filteredDepartamento && selected.push(filteredDepartamento)
-        filteredProvincia && selected.push(filteredProvincia)
-        selected.push(...filteredDistritos)
+    filteredDepartamento && selected.push(filteredDepartamento)
+    filteredProvincia && selected.push(filteredProvincia)
+    selected.push(...filteredDistritos)
 
-        return selected
-      } else {
-        return prevState
-      }
-    })
+    setSelectedPlacesState(selected)
   }, [departmentSearchParam, provinceSearchParam, districtSearchParam, places])
 
   // VALUES

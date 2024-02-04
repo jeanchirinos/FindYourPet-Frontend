@@ -1,8 +1,6 @@
-// import { LinkSearchParams } from '@/components/LinkSearchParams'
 import { getCategories } from '@/controllers/Pet'
 import { FilterCategoryClient } from './FilterCategoryClient'
 
-// export async function FilterCategory(props: { category: string | undefined }) {
 export async function FilterCategory() {
   const categoriesList = await getCategories()
 
@@ -10,31 +8,7 @@ export async function FilterCategory() {
     <section>
       <p className='font-semibold text-foreground-900'>Especie</p>
 
-      {/* <div className='grid w-full grid-cols-2 gap-2'> */}
       <FilterCategoryClient categoryList={categoriesList} />
-      {/* {categoriesList.map(item => (
-          <LinkSearchParams
-            key={item.id}
-            href={{
-              category_id: item.id,
-              page: 1,
-            }}
-            selectedValue={props.category}
-            value={item.id}
-            className='flex-col gap-y-0.5 rounded-md border border-foreground-300 p-1 text-center flex-center'
-            classNames={{
-              selected: 'bg-orange-100 text-orange-600',
-              notSelected: 'hover:bg-foreground-100',
-            }}
-            toggle
-            searchParamKey='category_id'
-            keyToDelete='breed_id'
-          >
-            <div className='*:size-4' dangerouslySetInnerHTML={{ __html: item.image }} />
-            <span>{item.name}</span>
-          </LinkSearchParams>
-        ))} */}
-      {/* </div> */}
     </section>
   )
 }
