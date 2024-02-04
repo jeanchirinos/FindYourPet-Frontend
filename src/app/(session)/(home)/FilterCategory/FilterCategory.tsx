@@ -1,15 +1,18 @@
-import { LinkSearchParams } from '@/components/LinkSearchParams'
+// import { LinkSearchParams } from '@/components/LinkSearchParams'
 import { getCategories } from '@/controllers/Pet'
+import { FilterCategoryClient } from './FilterCategoryClient'
 
-export async function FilterCategory(props: { category: string | undefined }) {
+// export async function FilterCategory(props: { category: string | undefined }) {
+export async function FilterCategory() {
   const categoriesList = await getCategories()
 
   return (
     <section>
       <p className='font-semibold text-foreground-900'>Especie</p>
 
-      <div className='grid w-full grid-cols-2 gap-2'>
-        {categoriesList.map(item => (
+      {/* <div className='grid w-full grid-cols-2 gap-2'> */}
+      <FilterCategoryClient categoryList={categoriesList} />
+      {/* {categoriesList.map(item => (
           <LinkSearchParams
             key={item.id}
             href={{
@@ -30,8 +33,8 @@ export async function FilterCategory(props: { category: string | undefined }) {
             <div className='*:size-4' dangerouslySetInnerHTML={{ __html: item.image }} />
             <span>{item.name}</span>
           </LinkSearchParams>
-        ))}
-      </div>
+        ))} */}
+      {/* </div> */}
     </section>
   )
 }
