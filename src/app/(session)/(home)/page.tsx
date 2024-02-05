@@ -15,7 +15,7 @@ export default function Page(props: Props) {
   const { status = '1', order = 'desc', ...restSearchParams } = searchParams
 
   return (
-    <main className='mx-auto flex h-full w-[1600px] max-w-full animate-fade items-start gap-x-10 px-2 animate-duration-200'>
+    <main className='animate-fadea mx-auto flex h-full w-[1600px] max-w-full items-start gap-x-10 px-2 animate-duration-200'>
       <aside className='sticky top-[calc(var(--header-height)+1.25rem)] w-40 shrink-0 max-lg:hidden'>
         <section className='space-y-8 *:space-y-3'>
           <Suspense>

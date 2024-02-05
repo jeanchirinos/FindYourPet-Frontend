@@ -10,9 +10,6 @@ export function useFilterPlace() {
     distritos: PlaceLocation[]
   }>({ departamentos: [], provincias: [], distritos: [] })
 
-  const [selectedPlacesState, setSelectedPlacesState] = useState<PlaceLocation[] | null>(null)
-  const selectedPlaces = selectedPlacesState ?? []
-
   const [query, setQuery] = useState('')
 
   // HOOKS
@@ -35,7 +32,7 @@ export function useFilterPlace() {
     getPlacesData()
   }, [])
 
-  useEffect(() => {
+  const selectedPlaces = useMemo(() => {
     const filteredDepartamento = places.departamentos.find(d => d.code === departmentSearchParam)
     const filteredProvincia = places.provincias.find(c => c.code === provinceSearchParam)
     const filteredDistritos = places.distritos.filter(d =>
@@ -48,7 +45,7 @@ export function useFilterPlace() {
     filteredProvincia && selected.push(filteredProvincia)
     selected.push(...filteredDistritos)
 
-    setSelectedPlacesState(selected)
+    return selected
   }, [departmentSearchParam, provinceSearchParam, districtSearchParam, places])
 
   // VALUES
@@ -97,8 +94,6 @@ export function useFilterPlace() {
       newSearchParams.set('estate', lastPlaceAdded.code)
       newSearchParams.delete('city')
       newSearchParams.delete('district')
-
-      setSelectedPlacesState([lastPlaceAdded])
     }
 
     if (cities.length === 0) {
@@ -109,7 +104,6 @@ export function useFilterPlace() {
       newSearchParams.set('city', lastPlaceAdded.code)
       newSearchParams.delete('estate')
       newSearchParams.delete('district')
-      setSelectedPlacesState([lastPlaceAdded])
     }
 
     if (districts.length === 0) {
@@ -120,8 +114,6 @@ export function useFilterPlace() {
       newSearchParams.set('district', districts.map(d => d.code).join(','))
       newSearchParams.delete('estate')
       newSearchParams.delete('city')
-
-      setSelectedPlacesState(districts)
     }
 
     setQuery('')
@@ -133,20 +125,16 @@ export function useFilterPlace() {
 
     if (isDepartment(item)) {
       newSearchParams.delete('estate')
-      setSelectedPlacesState([])
     } else if (isProvince(item)) {
       newSearchParams.delete('city')
-      setSelectedPlacesState([])
     } else {
       const districts = selectedPlaces.filter(v => isDistrict(v))
       const filteredDistricts = districts.filter(d => d.code !== item.code)
 
       if (filteredDistricts.length === 0) {
         newSearchParams.delete('district')
-        setSelectedPlacesState([])
       } else {
         newSearchParams.set('district', filteredDistricts.map(d => d.code).join(','))
-        setSelectedPlacesState(filteredDistricts)
       }
     }
 
