@@ -1,6 +1,6 @@
 'use client'
 
-import { SelectNative } from '@/components/Select/SelectNative'
+// import { SelectNative } from '@/components/Select/SelectNative'
 import { useSearchParams, useRouter } from 'next/navigation'
 // import { useEffect, useState } from 'react'
 
@@ -30,7 +30,11 @@ export function Order(props: { order: string }) {
   // RENDER
   return (
     <div className='max-md:hidden'>
-      <SelectNative
+      <select value={order} onChange={e => handleChange(e.target.value)}>
+        <option value='desc'>Más reciente</option>
+        <option value='asc'>Más antiguo</option>
+      </select>
+      {/* <SelectNative
         state={{
           // selected: currentOrder,
           selected: order,
@@ -40,7 +44,7 @@ export function Order(props: { order: string }) {
           { id: 'desc', name: 'Más reciente' },
           { id: 'asc', name: 'Más antiguo' },
         ]}
-      />
+      /> */}
     </div>
   )
 }
