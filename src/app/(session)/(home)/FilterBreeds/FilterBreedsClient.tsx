@@ -39,9 +39,7 @@ export function FilterBreedsClient(props: Props) {
           >
             <Combobox.Options className='text- absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-foreground-200 shadow-lg focus:outline-none sm:text-sm'>
               {filteredBreeds.length === 0 && query !== '' ? (
-                <div className='relative cursor-default select-none px-4 py-2 text-gray-700'>
-                  Sin resultados
-                </div>
+                <div className='relative cursor-default select-none px-4 py-2'>Sin resultados</div>
               ) : (
                 filteredBreeds.map(breed => (
                   <Combobox.Option

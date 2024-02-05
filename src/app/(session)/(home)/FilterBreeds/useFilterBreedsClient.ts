@@ -51,8 +51,10 @@ export function useFilterBreedsClient(breeds: Breed[]) {
 
     if (filteredBreeds.length === 0) {
       newSearchParams.delete('breed_id')
+      setSelectedBreeds([])
     } else {
       newSearchParams.set('breed_id', filteredBreeds.map(b => b.id).join(','))
+      setSelectedBreeds(filteredBreeds)
     }
 
     replace('?' + newSearchParams.toString())
