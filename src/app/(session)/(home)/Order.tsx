@@ -1,6 +1,6 @@
 'use client'
 
-import { SelectNative } from '@/components/Select/SelectNative'
+// import { SelectNative } from '@/components/Select/SelectNative'
 import { useSearchParams, useRouter } from 'next/navigation'
 // import { useEffect, useState } from 'react'
 
@@ -34,7 +34,7 @@ export function Order(props: { order: string }) {
         <option value='desc'>Más reciente</option>
         <option value='asc'>Más antiguo</option>
       </select>
-      <SelectNative
+      {/* <SelectNative
         state={{
           // selected: currentOrder,
           selected: order,
@@ -44,7 +44,7 @@ export function Order(props: { order: string }) {
           { id: 'desc', name: 'Más reciente' },
           { id: 'asc', name: 'Más antiguo' },
         ]}
-      />
+      /> */}
     </div>
   )
 }
