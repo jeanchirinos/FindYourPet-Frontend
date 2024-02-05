@@ -9,7 +9,7 @@ export type BreedsData = Record<string, Breed[]>
 export type Pet = {
   id: number
   breed_id: number
-  user_id: number
+  user_id: null | number
   image: string
   image_width: number
   image_height: number
@@ -19,15 +19,25 @@ export type Pet = {
   location: string
   status: number
   status_name: string
+  district_name: string
   breed: {
     id: number
+    category_id: number
     name: string
-    user: {
+    image: null
+    created_at: string
+    updated_at: string
+    editable: number
+    category: {
       id: number
-      username: string
-      image: string
+      name: string
     }
   }
+  user: {
+    id: number
+    username: string
+    image: string
+  } | null
 }
 
 export type PetPaginate = {
