@@ -4,6 +4,7 @@ import { Category } from '@/models/Pet'
 import { useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 import Link from 'next/link'
+import { Button } from '@nextui-org/react'
 
 type Props = { categoryList: Category[] }
 
@@ -34,17 +35,20 @@ export function FilterCategoryClient(props: Props) {
   return (
     <div className='grid w-full grid-cols-2 gap-2'>
       {props.categoryList.map(item => (
-        <Link
+        <Button
+          as={Link}
           key={item.id}
           href={createQueryString(item.id.toString())}
           className={twJoin(
-            isSelected(item.id) ? 'bg-orange-100 text-orange-600' : 'hover:bg-foreground-100',
-            'cursor-pointer flex-col gap-y-0.5 rounded-md border border-foreground-300 p-1 text-center flex-center',
+            isSelected(item.id)
+              ? 'bg-orange-100 text-orange-600'
+              : 'bg-transparent hover:bg-foreground-100',
+            'h-fit cursor-pointer flex-col justify-start gap-y-0.5  rounded-md border border-foreground-300 p-1 text-center flex-center',
           )}
         >
           <div className='*:size-4' dangerouslySetInnerHTML={{ __html: item.image }} />
           <span>{item.name}</span>
-        </Link>
+        </Button>
       ))}
     </div>
   )

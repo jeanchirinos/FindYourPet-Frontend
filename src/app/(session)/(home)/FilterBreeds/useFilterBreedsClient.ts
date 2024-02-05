@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Breed } from '@/models/Pet'
 
 export function useFilterBreedsClient(breeds: Breed[]) {
   // STATES
-  const [selectedBreeds, setSelectedBreeds] = useState<Breed[]>([])
   const [query, setQuery] = useState('')
 
   // HOOKS
@@ -14,12 +13,12 @@ export function useFilterBreedsClient(breeds: Breed[]) {
   const breed_id = searchParams.get('breed_id')
 
   // EFFECTS
-  useEffect(() => {
+  const selectedBreeds = useMemo(() => {
     const filteredBreeds = breeds.filter(breed =>
       breed_id?.split(',').includes(breed.id.toString()),
     )
 
-    setSelectedBreeds(filteredBreeds)
+    return filteredBreeds
   }, [breed_id, breeds])
 
   // VALUES
@@ -38,9 +37,7 @@ export function useFilterBreedsClient(breeds: Breed[]) {
     const newSearchParams = new URLSearchParams(searchParams)
     newSearchParams.set('breed_id', value.map(v => v.id).join(','))
 
-    setSelectedBreeds(value)
     setQuery('')
-
     replace('?' + newSearchParams.toString())
   }
 
@@ -51,10 +48,8 @@ export function useFilterBreedsClient(breeds: Breed[]) {
 
     if (filteredBreeds.length === 0) {
       newSearchParams.delete('breed_id')
-      setSelectedBreeds([])
     } else {
       newSearchParams.set('breed_id', filteredBreeds.map(b => b.id).join(','))
-      setSelectedBreeds(filteredBreeds)
     }
 
     replace('?' + newSearchParams.toString())
