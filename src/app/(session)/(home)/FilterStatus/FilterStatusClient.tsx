@@ -31,7 +31,7 @@ export function FilterStatusClient(props: Props) {
   )
 
   // const isSelected = (id: number) => id.toString() === currentStatus
-  const isSelected = (id: number) => id.toString() === (searchParams.get('status') ?? '1')
+  const isSelected = (id: number) => id.toString() === props.status
 
   return (
     <div className='flex flex-col gap-y-2'>
