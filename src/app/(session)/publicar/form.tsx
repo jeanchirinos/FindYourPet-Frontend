@@ -33,7 +33,7 @@ export function Form(props: Props) {
 
   if (state.ok) {
     return (
-      <div className='h-full flex-col gap-y-4 flex-center'>
+      <div className='flex-col gap-y-4 flex-center lg:h-[648px]'>
         <header className='flex flex-col items-center gap-y-4'>
           <IconCheckFilled className='text-5xl' />
           <p>Se ha registrado correctamente</p>
