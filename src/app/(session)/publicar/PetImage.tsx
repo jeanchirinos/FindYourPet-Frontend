@@ -6,21 +6,26 @@ import { Button } from '@/components/Button'
 import { CiImageOn } from 'react-icons/ci'
 
 export function PetImage() {
+  // STATES
   const [imagePreview, setImagePreview] = useState<null | string>(null)
 
+  // FUNCTIONS
   function handleInputImage(e: React.ChangeEvent<HTMLInputElement>) {
-    if (!e.target.files?.length) return setImagePreview(null)
+    if (!e.target.files?.length) return
 
     const file = e.target.files[0]
-    const imagePreview = URL.createObjectURL(file)
+    const newImagePreview = URL.createObjectURL(file)
 
     if (!file) return
     if (!file.type.includes('image')) return
 
-    setImagePreview(imagePreview)
+    setImagePreview(newImagePreview)
   }
+
   // TODO: Edit photo with square cropper and in modal
   // TODO: Do not reset file when rejecting file change
+
+  // RENDER
   return (
     <label
       className={twJoin(
@@ -52,7 +57,7 @@ export function PetImage() {
         className='absolute inset-0 opacity-0'
         accept='image/*'
         onChange={handleInputImage}
-        required
+        required={!imagePreview}
       />
     </label>
   )

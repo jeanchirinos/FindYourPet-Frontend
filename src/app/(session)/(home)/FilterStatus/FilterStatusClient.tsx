@@ -38,6 +38,7 @@ export function FilterStatusClient(props: Props) {
               : 'bg-transparent hover:bg-foreground-100',
             'flex w-full min-w-max cursor-pointer items-center justify-start rounded-lg p-2.5 text-sm shadow-md',
           )}
+          replace
         >
           {item.value}
         </Button>

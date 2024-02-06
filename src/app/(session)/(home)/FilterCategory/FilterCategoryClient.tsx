@@ -45,6 +45,7 @@ export function FilterCategoryClient(props: Props) {
               : 'bg-transparent hover:bg-foreground-100',
             'h-fit cursor-pointer flex-col justify-start gap-y-0.5  rounded-md border border-foreground-300 p-1 text-center flex-center',
           )}
+          replace
         >
           <div className='*:size-4' dangerouslySetInnerHTML={{ __html: item.image }} />
           <span>{item.name}</span>

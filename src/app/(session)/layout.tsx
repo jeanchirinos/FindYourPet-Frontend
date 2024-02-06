@@ -1,6 +1,6 @@
-import { Header } from '@/app/(session)/components/Header/Header'
+import { Header } from './(layout)/Header'
 
-export default async function RootLayout(props: React.PropsWithChildren) {
+export default function RootLayout(props: React.PropsWithChildren) {
   return (
     <div className='flex flex-col gap-y-10 pb-5 max-lg:min-h-screen'>
       <Header />

@@ -9,7 +9,7 @@ import Image from 'next/image'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, useModal } from '@/components/Modal'
 import { handleResponse } from '@/utilities/handleResponse'
-import { MobileForm } from './update-mobile'
+import { MobileForm } from '../mobile-form/update-mobile'
 import { useFormStatus } from 'react-dom'
 import { User } from '@/models/User'
 

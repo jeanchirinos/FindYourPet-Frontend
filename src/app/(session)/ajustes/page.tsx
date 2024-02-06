@@ -1,4 +1,4 @@
-import { UpdateForm } from './update-form'
+import { UpdateForm } from './data-form/update-form'
 
 import { Suspense } from '@/components/other/CustomSuspense'
 import { getUser } from '@/controllers/User'

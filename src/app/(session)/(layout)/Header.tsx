@@ -5,6 +5,7 @@ import Logo from '@/public/img/logo.svg'
 import { PublishButton } from './PublishButton'
 import { HeaderLink } from './HeaderLink'
 import { ThemeSwitcher } from '@/components/ThemeSwitcher'
+import { Skeleton } from '@nextui-org/react'
 
 export function Header() {
   return (
@@ -25,7 +26,7 @@ export function Header() {
         <aside className='flex items-center gap-x-4'>
           <ThemeSwitcher />
           <PublishButton />
-          <Suspense>
+          <Suspense fallback={<Skeleton className='size-[32px] rounded-full' />}>
             <Session />
           </Suspense>
         </aside>

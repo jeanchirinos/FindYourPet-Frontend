@@ -1,12 +1,12 @@
 import { Suspense } from '@/components/other/CustomSuspense'
 import { TGetPetParams } from '@/controllers/Pet'
-import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
 import { PetGrid } from './Pets/PetGrid'
 import { FilterCategory } from './FilterCategory/FilterCategory'
 import { Order } from './Order'
 import { FilterPlace } from './FilterPlace/FilterPlace'
 import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { FilterStatus } from './FilterStatus/FilterStatus'
+import { Spinner } from '@nextui-org/react'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -38,7 +38,14 @@ export default function Page(props: Props) {
           </Suspense>
           <Order order={order} />
         </header>
-        <Suspense fallback={<PetGridSkeleton />} keyProp={JSON.stringify(searchParams)}>
+        <Suspense
+          fallback={
+            <div className='h-96 flex-center'>
+              <Spinner size='lg' />
+            </div>
+          }
+          keyProp={JSON.stringify(searchParams)}
+        >
           <PetGrid searchParams={{ ...restSearchParams, status, order }} />
         </Suspense>
       </section>

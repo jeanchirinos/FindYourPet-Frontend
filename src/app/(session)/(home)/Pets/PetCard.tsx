@@ -31,9 +31,12 @@ export function PetCard(props: Props) {
         >
           {pet.status_name}
         </section>
-        <footer className='flex gap-1.5 text-sm'>
-          <HiOutlineLocationMarker />
-          <p>{pet.district_name}</p>
+        <footer className='flex flex-col gap-y-1.5 text-sm'>
+          <div className='flex gap-x-1.5'>
+            <HiOutlineLocationMarker />
+            <p>{pet.district_name}</p>
+          </div>
+          <span>{pet.breed.name}</span>
         </footer>
       </div>
     </div>

@@ -4,7 +4,9 @@ import Image from 'next/image'
 import { LogoutForm } from './logout-form'
 import { ERole, SessionLogged } from '@/models/Auth'
 
-export function UserLogged(props: { session: SessionLogged }) {
+type Props = { session: SessionLogged }
+
+export function UserLogged(props: Props) {
   const { session } = props
 
   // RENDER
