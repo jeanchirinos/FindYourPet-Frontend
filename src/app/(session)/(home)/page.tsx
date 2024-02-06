@@ -36,7 +36,7 @@ export default function Page(props: Props) {
           <Suspense>
             <FilterPlace />
           </Suspense>
-          <Order order={order} />
+          <Order order={order} hola={Array.from({ length: 2000 })} />
         </header>
         <Suspense fallback={<PetGridSkeleton />} keyProp={JSON.stringify(searchParams)}>
           <PetGrid searchParams={{ ...restSearchParams, status, order }} />

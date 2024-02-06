@@ -3,33 +3,37 @@
 import { Textarea } from '@nextui-org/react'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Input } from '@/components/Input'
-import { PetImage } from './client_components'
 import { useFormAction } from '@/hooks/useFormAction'
 import { createPet } from '@/controllers/Pet'
 import confetti from 'canvas-confetti'
 import { IconCheckFilled } from '@/icons'
 import Link from 'next/link'
 import { Button } from '@/components/Button'
+import { PetImage } from './PetImage'
 
 type Props = {
-  StatusComponent: React.ReactNode
+  StatusInfoComponent: React.ReactNode
   CategoryComponent: React.ReactNode
   PlaceComponent: React.ReactNode
 }
 
 export function Form(props: Props) {
-  const { StatusComponent, CategoryComponent, PlaceComponent } = props
-
+  // HOOKS
   const { formAction, state, setState } = useFormAction(createPet, {
     showSuccessToast: false,
-    onSuccess: () => {
-      const dogShape = confetti.shapeFromText({ text: '🐈' })
-
-      confetti({
-        shapes: [dogShape],
-      })
-    },
+    onSuccess,
   })
+
+  // FUNCTIONS
+  function onSuccess() {
+    const dogShape = confetti.shapeFromText({ text: '🐈' })
+
+    confetti({
+      shapes: [dogShape],
+    })
+  }
+
+  // RENDER
 
   if (state.ok) {
     return (
@@ -50,18 +54,17 @@ export function Form(props: Props) {
     )
   }
 
-  // RENDER
   return (
     <>
       <h2 className='mb-10 text-center text-lg font-semibold'>Registro de datos</h2>
       <form action={formAction} className='flex items-center gap-4 max-md:flex-col md:items-start'>
         <PetImage />
         <section className='flex w-[400px] max-w-full shrink-0 flex-col gap-y-3'>
-          {StatusComponent}
+          {props.StatusInfoComponent}
           <Textarea name='description' label='Descripción' isRequired />
           <Input label='Ubicación' isRequired={false} name='location' />
-          {CategoryComponent}
-          {PlaceComponent}
+          {props.CategoryComponent}
+          {props.PlaceComponent}
 
           <input type='text' defaultValue='1' name='plan' hidden />
           <SubmitButton>Publicar</SubmitButton>
