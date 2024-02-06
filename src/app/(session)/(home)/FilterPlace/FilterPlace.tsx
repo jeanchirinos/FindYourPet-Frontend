@@ -6,10 +6,9 @@ import { IconCheck, IconSearch } from '@/icons'
 import { Chip } from '@nextui-org/react'
 import { useFilterPlace } from './useFilterPlace'
 
-// export function FilterPlace() {
-export function FilterPlace(props: { places: any }) {
+export function FilterPlace() {
   const { filteredPlaces, handleChange, handleRemove, query, setQuery, selectedPlaces } =
-    useFilterPlace(props.places)
+    useFilterPlace()
 
   // RENDER
   return (

@@ -4,10 +4,9 @@ import { PetGridSkeleton } from '@/Skeletons/PetGridSkeleton'
 import { PetGrid } from './Pets/PetGrid'
 import { FilterCategory } from './FilterCategory/FilterCategory'
 import { Order } from './Order'
-// import { FilterPlace } from './FilterPlace/FilterPlace'
+import { FilterPlace } from './FilterPlace/FilterPlace'
 import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { FilterStatus } from './FilterStatus/FilterStatus'
-import { FilterPlaceServer } from './FilterPlace/FilterPlaceServer'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -35,8 +34,7 @@ export default function Page(props: Props) {
       <section className='flex h-full w-full flex-col gap-y-4'>
         <header className='flex justify-between'>
           <Suspense>
-            {/* <FilterPlace /> */}
-            <FilterPlaceServer />
+            <FilterPlace />
           </Suspense>
           <Order order={order} />
         </header>

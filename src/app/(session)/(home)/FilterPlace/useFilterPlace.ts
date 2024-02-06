@@ -1,21 +1,14 @@
-// import { PlaceLocation, getPlaces } from '@/controllers/Place'
-import { PlaceLocation } from '@/controllers/Place'
+import { PlaceLocation, getPlaces } from '@/controllers/Place'
 import { useRouter, useSearchParams } from 'next/navigation'
-// import { useEffect, useMemo, useState } from 'react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
-// export function useFilterPlace() {
-export function useFilterPlace(places: {
-  departamentos: PlaceLocation[]
-  provincias: PlaceLocation[]
-  distritos: PlaceLocation[]
-}) {
+export function useFilterPlace() {
   // STATES
-  // const [places, setPlaces] = useState<{
-  //   departamentos: PlaceLocation[]
-  //   provincias: PlaceLocation[]
-  //   distritos: PlaceLocation[]
-  // }>({ departamentos: [], provincias: [], distritos: [] })
+  const [places, setPlaces] = useState<{
+    departamentos: PlaceLocation[]
+    provincias: PlaceLocation[]
+    distritos: PlaceLocation[]
+  }>({ departamentos: [], provincias: [], distritos: [] })
 
   const [query, setQuery] = useState('')
 
@@ -29,15 +22,15 @@ export function useFilterPlace(places: {
   const districtSearchParam = searchParams.get('district')
 
   // EFFECTS
-  // useEffect(() => {
-  //   async function getPlacesData() {
-  //     const data = await getPlaces()
+  useEffect(() => {
+    async function getPlacesData() {
+      const data = await getPlaces()
 
-  //     setPlaces(data)
-  //   }
+      setPlaces(data)
+    }
 
-  //   getPlacesData()
-  // }, [])
+    getPlacesData()
+  }, [])
 
   const selectedPlaces = useMemo(() => {
     const filteredDepartamento = places.departamentos.find(d => d.code === departmentSearchParam)
