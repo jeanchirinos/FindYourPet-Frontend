@@ -47,11 +47,11 @@ export function MobileForm(props: Props) {
   }
 
   function handleCloseModal() {
-    console.log('AAA')
+    // console.log('AAA')
     resetSteps()
 
     setTimeout(() => {
-      console.log('focus')
+      // console.log('focus')
       inputRef.current?.focus()
       submittingRef.current = false
     }, 100)

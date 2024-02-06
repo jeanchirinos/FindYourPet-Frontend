@@ -53,18 +53,21 @@ function Child(props: React.PropsWithChildren<{ onExitComplete?(): void }>) {
   const { onExitComplete } = props
 
   const firstRender = useRef(true)
+  const altRender = useRef(true)
 
   useEffect(() => {
     return () => {
       if (firstRender.current) {
         firstRender.current = false
       } else {
-        onExitComplete?.()
+        if (altRender.current) {
+          onExitComplete?.()
+        }
+
+        altRender.current = false
       }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [onExitComplete])
 
   return props.children
 }
