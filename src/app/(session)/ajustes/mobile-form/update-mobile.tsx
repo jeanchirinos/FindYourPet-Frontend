@@ -47,6 +47,7 @@ export function MobileForm(props: Props) {
   }
 
   function handleCloseModal() {
+    console.log('AAA')
     resetSteps()
 
     setTimeout(() => {
