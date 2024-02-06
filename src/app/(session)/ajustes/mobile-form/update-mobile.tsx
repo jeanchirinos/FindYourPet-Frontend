@@ -52,7 +52,7 @@ export function MobileForm(props: Props) {
     setTimeout(() => {
       inputRef.current?.focus()
       submittingRef.current = false
-    }, 50)
+    }, 100)
   }
 
   // VALUES
