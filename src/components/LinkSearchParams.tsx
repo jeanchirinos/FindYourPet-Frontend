@@ -1,102 +1,70 @@
 'use client'
 
+import { Button } from '@nextui-org/react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-// import { useState } from 'react'
+import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = Omit<React.ComponentProps<typeof Link>, 'href'> & {
-  href: Record<
-    string,
-    | string
-    | number
-    | {
-        value: string | number
-      }
-  >
+type Props = React.ComponentProps<typeof Button> & {
   classNames?: {
     selected?: string
     notSelected?: string
   }
-  value: string | number
-  selectedValue?: string | undefined | string[]
-  searchParamKey?: string
+  currentParam?: string
+  searchParamKey: string
+  searchParamValue: string | number
   toggle?: boolean
-  keyToDelete?: string
+  keysToDelete?: string[]
 }
 
 export function LinkSearchParams(props: Props) {
   const {
-    href,
     className,
     classNames,
-    selectedValue = '',
-    value,
+    currentParam,
     searchParamKey,
+    searchParamValue,
     toggle = false,
-    keyToDelete,
+    keysToDelete,
     ...restProps
   } = props
-
-  // STATE
-  // const [selectedValueState, setSelectedValueState] = useState(selectedValue)
 
   // HOOKS
   const searchParams = useSearchParams()
 
+  const param = currentParam ?? searchParams.get(searchParamKey)
+  const searchParamValueString = searchParamValue.toString()
+
   // FUNCTIONS
-  function getNewSearchParams() {
-    let newSearchParams = new URLSearchParams(searchParams)
+  const createQueryString = useCallback(() => {
+    const params = new URLSearchParams(searchParams)
 
-    keyToDelete && newSearchParams.delete(keyToDelete)
-
-    Object.entries(props.href).forEach(([key, value]) => {
-      if (toggle && key === searchParamKey) {
-        if (isSelected) {
-          newSearchParams.delete(key)
-        } else {
-          ;(typeof value === 'string' || typeof value === 'number') &&
-            newSearchParams.set(key, value.toString())
-        }
-
-        return '?' + newSearchParams.toString()
-      }
-
-      if (typeof value === 'object') {
-        if (isSelected) {
-          const entries = Array.from(newSearchParams.entries())
-
-          const selectedValueIndex = entries.findIndex(
-            ([key, v]) => key === searchParamKey && v === value.value.toString(),
-          )
-
-          entries.splice(selectedValueIndex, 1)
-
-          newSearchParams = new URLSearchParams(entries)
-        } else {
-          newSearchParams.append(key, value.value.toString())
-        }
+    if (toggle) {
+      if (searchParamValueString === param) {
+        params.delete(searchParamKey)
       } else {
-        newSearchParams.set(key, value.toString())
+        params.set(searchParamKey, searchParamValueString)
       }
+    } else {
+      params.set(searchParamKey, searchParamValueString)
+    }
+
+    keysToDelete?.forEach(key => {
+      params.delete(key)
     })
 
-    return '?' + newSearchParams.toString()
-  }
+    return '?' + params.toString()
+  }, [searchParams, searchParamKey, toggle, keysToDelete, param, searchParamValueString])
 
   // VALUES
-  const isSelected =
-    selectedValue === value.toString() ||
-    (Array.isArray(selectedValue) && selectedValue.includes(value.toString()))
-
-  // const isSelected = selectedValueState === value.toString()
-  // (Array.isArray(selectedValue) && selectedValue.includes(value.toString()))
+  const isSelected = searchParamValueString === param
 
   // RENDER
   return (
-    <Link
-      // onClick={() => setSelectedValueState(value.toString())}
-      href={getNewSearchParams()}
+    <Button
+      as={Link}
+      href={createQueryString()}
       replace
       className={twMerge(
         className,

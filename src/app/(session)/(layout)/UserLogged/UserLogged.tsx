@@ -27,18 +27,20 @@ export function UserLogged(props: Props) {
           <span className='text-sm font-semibold'>{session.username}</span>
           <span className='text-xs'>{session.email}</span>
         </div>
-        <Link href={`/perfil/${session.username}`} className='w-full px-4 py-2 text-sm'>
-          Perfil
-        </Link>
-        <Link href='/ajustes' className='w-full px-4 py-2 text-sm'>
-          Ajustes
-        </Link>
-        {session.role === ERole.ADMIN && (
-          <Link href='#' className='w-full px-4 py-2 text-sm'>
-            Administrar
+        <div className='flex flex-col hover:*:bg-foreground-100'>
+          <Link href={`/perfil/${session.username}`} className='w-full px-4 py-2 text-sm'>
+            Perfil
           </Link>
-        )}
-        <LogoutForm />
+          <Link href='/ajustes' className='w-full px-4 py-2 text-sm'>
+            Ajustes
+          </Link>
+          {session.role === ERole.ADMIN && (
+            <Link href='#' className='w-full px-4 py-2 text-sm'>
+              Administrar
+            </Link>
+          )}
+          <LogoutForm />
+        </div>
       </PopoverContent>
     </Popover>
   )

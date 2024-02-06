@@ -1,12 +1,12 @@
 import { useRef, useState, useEffect } from 'react'
 import { useFormStatus } from 'react-dom'
 
-type TAutoInputProps = {
-  initialValue: string
+type Props = {
+  initialValue: string | null
 }
 
-export function useAutoInput(props: TAutoInputProps) {
-  const { initialValue = '' } = props
+export function useAutoInput(props: Props) {
+  const initialValue = props.initialValue ?? ''
 
   // HOOKS
   const { pending } = useFormStatus()
