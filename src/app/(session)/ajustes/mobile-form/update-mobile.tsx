@@ -26,6 +26,7 @@ export function MobileForm(props: Props) {
     submitButtonRef,
     handleBlur,
     handleKeyDown,
+    submittingRef,
   } = useAutoInput({ initialValue: initialMobile })
 
   // HOOKS
@@ -39,8 +40,19 @@ export function MobileForm(props: Props) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
+    submittingRef.current = true
+
     if (isDisabled) return
     updateMobileModal.open()
+  }
+
+  function handleCloseModal() {
+    resetSteps()
+
+    setTimeout(() => {
+      inputRef.current?.focus()
+      submittingRef.current = false
+    }, 50)
   }
 
   // VALUES
@@ -89,17 +101,7 @@ export function MobileForm(props: Props) {
         )}
       </form>
 
-      <Modal
-        modal={updateMobileModal}
-        onExitComplete={() => {
-          resetSteps()
-          setTimeout(() => {
-            setInputIsEditable(false)
-            setCurrentValue(initialMobile)
-            // submittingRef.current = false
-          }, 1)
-        }}
-      >
+      <Modal modal={updateMobileModal} onExitComplete={handleCloseModal}>
         {currentStep === 1 && (
           <Step1
             useStepsHook={useStepsHook}

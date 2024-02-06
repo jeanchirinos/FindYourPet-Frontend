@@ -40,7 +40,6 @@ export function useAutoInput(props: Props) {
     setTimeout(() => {
       if (submittingRef.current) return
       if (document.activeElement === submitButtonRef.current) return
-
       setInputIsEditable(false)
       setCurrentValue(initialValue)
     }, 100)
@@ -60,6 +59,7 @@ export function useAutoInput(props: Props) {
     inputIsEditable,
     setInputIsEditable,
     inputRef,
+    submittingRef,
     submitButtonRef,
     handleBlur,
     handleKeyDown,
