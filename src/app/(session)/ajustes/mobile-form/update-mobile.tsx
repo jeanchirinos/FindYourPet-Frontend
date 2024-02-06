@@ -10,7 +10,7 @@ import { TUseSteps, useSteps } from '@/hooks/useSteps'
 import { SetState } from '@/types'
 import { useCountdownTimer } from 'use-countdown-timer'
 import { handleResponse } from '@/utilities/handleResponse'
-import { useAutoInput } from '../data-form/update-form'
+import { useAutoInput } from '../data-form/useAutoInput'
 
 export function MobileForm(props: { initialMobile: string | null }) {
   const initialMobile = props.initialMobile ?? ''
