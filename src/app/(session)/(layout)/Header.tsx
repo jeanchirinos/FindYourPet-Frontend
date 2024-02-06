@@ -4,8 +4,8 @@ import { Suspense } from '@/components/other/CustomSuspense'
 import Logo from '@/public/img/logo.svg'
 import { PublishButton } from './PublishButton'
 import { HeaderLink } from './HeaderLink'
-import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 import { Skeleton } from '@nextui-org/react'
+import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 
 export function Header() {
   return (
