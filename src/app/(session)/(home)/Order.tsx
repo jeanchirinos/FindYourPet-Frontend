@@ -3,7 +3,7 @@
 import { SelectNative } from '@/components/Select/SelectNative'
 import { useSearchParams, useRouter } from 'next/navigation'
 
-export function Order(props: { order: string; hola: any[] }) {
+export function Order(props: { order: string }) {
   // HOOKS
   const searchParams = useSearchParams()
   const { replace } = useRouter()
