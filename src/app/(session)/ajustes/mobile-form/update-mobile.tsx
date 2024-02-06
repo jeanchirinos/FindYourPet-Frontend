@@ -50,6 +50,7 @@ export function MobileForm(props: Props) {
     resetSteps()
 
     setTimeout(() => {
+      console.log('focus')
       inputRef.current?.focus()
       submittingRef.current = false
     }, 100)
