@@ -31,6 +31,7 @@ export type Pet = {
     category: {
       id: number
       name: string
+      image: string
     }
   }
   user: {
