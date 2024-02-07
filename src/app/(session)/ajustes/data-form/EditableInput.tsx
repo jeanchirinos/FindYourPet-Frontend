@@ -11,7 +11,7 @@ type Props = {
 }
 
 export function EditableInput(props: Props) {
-  const { initialValue, label, paramName } = props
+  const { paramName } = props
 
   // FUNCTIONS
   async function handleAction(formData: FormData) {
@@ -23,6 +23,17 @@ export function EditableInput(props: Props) {
       showSuccessToast: true,
     })
   }
+
+  // RENDER
+  return (
+    <form action={handleAction} className='group mt-4 flex items-center gap-x-2'>
+      <Content {...props} />
+    </form>
+  )
+}
+
+function Content(props: Props) {
+  const { initialValue, paramName, label } = props
 
   // HOOKS
   const {
@@ -38,9 +49,8 @@ export function EditableInput(props: Props) {
     handleKeyDown,
   } = useAutoInput({ initialValue })
 
-  // RENDER
   return (
-    <form action={handleAction} className='group mt-4 flex items-center gap-x-2'>
+    <>
       <Input
         type='text'
         innerRef={inputRef}
@@ -64,6 +74,6 @@ export function EditableInput(props: Props) {
           onKeyDown={handleKeyDown}
         />
       )}
-    </form>
+    </>
   )
 }

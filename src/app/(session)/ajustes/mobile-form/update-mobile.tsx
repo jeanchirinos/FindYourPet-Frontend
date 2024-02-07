@@ -19,14 +19,14 @@ export function MobileForm(props: Props) {
 
   const {
     currentValue,
-    setCurrentValue,
-    inputIsEditable,
     setInputIsEditable,
     inputRef,
-    submitButtonRef,
+    setCurrentValue,
     handleBlur,
-    handleKeyDown,
+    submitButtonRef,
+    inputIsEditable,
     submittingRef,
+    handleKeyDown,
   } = useAutoInput({ initialValue: initialMobile })
 
   // HOOKS
@@ -46,14 +46,12 @@ export function MobileForm(props: Props) {
   }
 
   function handleCloseModal() {
-    // console.log('AAA')
     resetSteps()
 
     setTimeout(() => {
-      // console.log('focus')
       inputRef.current?.focus()
       submittingRef.current = false
-    }, 100)
+    }, 250)
   }
 
   // VALUES

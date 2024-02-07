@@ -67,3 +67,5 @@ export function useAutoInput(props: Props) {
     pending,
   }
 }
+
+export type TUseAutoInput = ReturnType<typeof useAutoInput>
