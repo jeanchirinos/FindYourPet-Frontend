@@ -36,7 +36,13 @@ export function PetCard(props: Props) {
             <HiOutlineLocationMarker />
             <p>{pet.district_name}</p>
           </div>
-          <span>{pet.breed.name}</span>
+          <div className='flex items-center gap-x-1.5'>
+            <div
+              className='*:size-4'
+              dangerouslySetInnerHTML={{ __html: pet.breed.category.image }}
+            />
+            <span>{pet.breed.name}</span>
+          </div>
         </footer>
       </div>
     </div>

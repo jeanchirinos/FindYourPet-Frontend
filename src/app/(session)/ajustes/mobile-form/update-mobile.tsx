@@ -36,7 +36,6 @@ export function MobileForm(props: Props) {
   const { currentStep, resetSteps } = useStepsHook
 
   // FUNCTIONS
-
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 

@@ -25,7 +25,6 @@ export function LinkSearchParams(props: Props) {
     currentParam,
     searchParamKey,
     searchParamValue,
-    toggle = false,
     keysToDelete,
     ...restProps
   } = props
@@ -40,36 +39,33 @@ export function LinkSearchParams(props: Props) {
   const createQueryString = useCallback(() => {
     const params = new URLSearchParams(searchParams)
 
-    if (toggle) {
-      if (searchParamValueString === param) {
-        params.delete(searchParamKey)
-      } else {
-        params.set(searchParamKey, searchParamValueString)
-      }
-    } else {
-      params.set(searchParamKey, searchParamValueString)
-    }
+    params.set(searchParamKey, searchParamValueString)
 
     keysToDelete?.forEach(key => {
       params.delete(key)
     })
 
     return '?' + params.toString()
-  }, [searchParams, searchParamKey, toggle, keysToDelete, param, searchParamValueString])
+  }, [searchParams, searchParamKey, keysToDelete, searchParamValueString])
 
   // VALUES
   const isSelected = searchParamValueString === param
+
+  const dataSelected = isSelected ? { 'data-selected': 'true' } : {}
+  const dataNotSelected = !isSelected ? { 'data-not-selected': 'true' } : {}
 
   // RENDER
   return (
     <Button
       as={Link}
+      {...dataSelected}
+      {...dataNotSelected}
       href={createQueryString()}
       replace
       className={twMerge(
         className,
-        isSelected && classNames?.selected,
         !isSelected && classNames?.notSelected,
+        isSelected && classNames?.selected,
       )}
       {...restProps}
     />

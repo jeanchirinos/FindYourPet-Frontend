@@ -1,5 +1,6 @@
 import { getCategories } from '@/controllers/Pet'
 import { LinkSearchParams } from '@/components/LinkSearchParams'
+import { twJoin } from 'tailwind-merge'
 
 export async function FilterCategory() {
   const categoriesList = await getCategories()
@@ -8,21 +9,24 @@ export async function FilterCategory() {
     <section>
       <p className='font-semibold text-foreground-900'>Especie</p>
 
-      <div className='grid w-full grid-cols-2 gap-2'>
+      <div className='flex w-full flex-wrap justify-between gap-2'>
         {categoriesList.map(item => (
           <LinkSearchParams
             key={item.id}
             searchParamKey='category_id'
             searchParamValue={item.id}
-            toggle
             keysToDelete={['breed_id', 'page']}
-            classNames={{
-              selected: 'bg-orange-100 text-orange-600',
-              notSelected: 'bg-transparent hover:bg-foreground-100',
-            }}
-            className='h-fit cursor-pointer flex-col justify-start gap-y-0.5 rounded-md border border-foreground-300 p-1 text-center flex-center'
+            className='group flex h-fit min-w-fit cursor-pointer flex-col gap-y-0.5 rounded-none bg-transparent p-0'
           >
-            <div className='*:size-4' dangerouslySetInnerHTML={{ __html: item.image }} />
+            <div
+              className={twJoin(
+                'rounded-md border border-foreground-300 p-1.5 text-center flex-center',
+                'group-data-[selected]:bg-orange-100 group-data-[selected]:text-orange-600',
+                'group-data-[not-selected]:hover:bg-foreground-100',
+              )}
+            >
+              <div className='*:size-5' dangerouslySetInnerHTML={{ __html: item.image }} />
+            </div>
             <span>{item.name}</span>
           </LinkSearchParams>
         ))}
