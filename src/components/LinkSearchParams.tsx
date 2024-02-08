@@ -39,7 +39,12 @@ export function LinkSearchParams(props: Props) {
   const createQueryString = useCallback(() => {
     const params = new URLSearchParams(searchParams)
 
-    params.set(searchParamKey, searchParamValueString)
+    //
+    if (searchParamValueString === '0') {
+      params.delete(searchParamKey)
+    } else {
+      params.set(searchParamKey, searchParamValueString)
+    }
 
     keysToDelete?.forEach(key => {
       params.delete(key)
@@ -49,7 +54,8 @@ export function LinkSearchParams(props: Props) {
   }, [searchParams, searchParamKey, keysToDelete, searchParamValueString])
 
   // VALUES
-  const isSelected = searchParamValueString === param
+  //
+  const isSelected = searchParamValueString === param || (searchParamValueString === '0' && !param)
 
   const dataSelected = isSelected ? { 'data-selected': 'true' } : {}
   const dataNotSelected = !isSelected ? { 'data-not-selected': 'true' } : {}
