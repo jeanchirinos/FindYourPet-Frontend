@@ -93,7 +93,7 @@ export async function resetPassword(prevState: any, formData: FormData) {
 export async function disconnectGoogle() {
   return sendData({
     url: 'user-google-disconnect',
-    revalidate: true,
+    revalidateTagParams: ['user-google'],
   })
 }
 

@@ -2,7 +2,7 @@
 
 import { requestAll } from '@/utilities/request'
 
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 import { ZodError, ZodRawShape, z } from 'zod'
 import { getFormEntries } from './utilities'
@@ -81,13 +81,14 @@ type Params<Response> = {
   url: string
   body?: object
   schema?: z.ZodObject<ZodRawShape> | z.ZodEffects<any>
-  revalidate?: Parameters<typeof revalidatePath>
+  revalidateTagParams?: Parameters<typeof revalidateTag>
+  revalidatePathParams?: Parameters<typeof revalidatePath>
   onSuccess?: (data: Response) => void
   auth?: boolean
 }
 
 export async function sendData<Response>(params: Params<Response>) {
-  const { url, body, schema, onSuccess, revalidate = false, auth } = params
+  const { url, body, schema, onSuccess, revalidatePathParams, revalidateTagParams, auth } = params
 
   if (body && schema) {
     const dataToValidate = body instanceof FormData ? getFormEntries(body) : body
@@ -110,9 +111,12 @@ export async function sendData<Response>(params: Params<Response>) {
   })
 
   if (res.ok) {
-    if (revalidate) {
-      // revalidatePath(...revalidate)
-      revalidatePath('/(session)/ajustes')
+    if (revalidatePathParams) {
+      revalidatePath(...revalidatePathParams)
+    }
+
+    if (revalidateTagParams) {
+      revalidateTag(...revalidateTagParams)
     }
 
     if (onSuccess) {

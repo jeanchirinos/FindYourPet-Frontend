@@ -6,20 +6,6 @@ import { notAuthorized } from '@/utilities/utilities'
 import { notFound } from 'next/navigation'
 import { z } from 'zod'
 
-export async function updateUser(prevState: any, formData: FormData) {
-  const schema = z.object({
-    name: z.string(),
-    username: z.string().min(1),
-  })
-
-  return sendData({
-    url: 'user-update',
-    body: formData,
-    schema,
-    revalidate: true,
-  })
-}
-
 export async function updateUserImageProfile(formData: FormData) {
   const schema = z.object({
     image: z.string().min(1),
@@ -29,7 +15,7 @@ export async function updateUserImageProfile(formData: FormData) {
     url: 'user-profile',
     body: formData,
     schema,
-    revalidate: true,
+    revalidateTagParams: ['user'],
   })
 }
 
@@ -50,7 +36,7 @@ export async function updateMobile(data: { mobile: string }) {
     url: 'update-mobile',
     body: data,
     schema,
-    revalidate: true,
+    revalidateTagParams: ['user'],
   })
 }
 
@@ -64,7 +50,6 @@ export async function verifyMobile(data: { mobile: string; code: string }) {
     url: 'verify-mobile',
     body: data,
     schema,
-    revalidate: true,
   })
 }
 
@@ -78,7 +63,7 @@ export async function updateInfo(data: { param: string; value: string }) {
     url: 'user-update',
     body: data,
     schema,
-    revalidate: ['/ajustesa'],
+    revalidateTagParams: ['user'],
   })
 }
 
@@ -86,7 +71,12 @@ export async function updateInfo(data: { param: string; value: string }) {
 
 export async function getUser() {
   try {
-    const data = await actionRequestGet<User>('user', { auth: true })
+    const data = await actionRequestGet<User>('user', {
+      auth: true,
+      next: {
+        tags: ['user'],
+      },
+    })
 
     return data
   } catch (err) {
@@ -110,7 +100,12 @@ export async function getGoogleData() {
   type Res = { isConnected: boolean; username: string | null }
 
   try {
-    const data = await actionRequestGet<Res>('user-google-data', { auth: true })
+    const data = await actionRequestGet<Res>('user-google-data', {
+      auth: true,
+      next: {
+        tags: ['user-google'],
+      },
+    })
     return data
   } catch (e) {
     return null

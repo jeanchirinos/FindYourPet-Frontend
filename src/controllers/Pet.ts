@@ -47,6 +47,9 @@ export async function getPets(params: TGetPetParams) {
 
   const data = await actionRequestGet<PetPaginate>(url, {
     cache: 'no-store',
+    next: {
+      tags: ['pet'],
+    },
   })
 
   const { current_page, data: pets } = data
@@ -106,7 +109,7 @@ export async function createPet(prevState: any, data: FormData) {
     url: 'pet-store',
     schema,
     body: data,
-    revalidate: true,
+    revalidateTagParams: ['pet'],
     auth: false,
   })
 }
