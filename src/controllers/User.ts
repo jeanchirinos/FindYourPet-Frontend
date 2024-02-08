@@ -68,7 +68,7 @@ export async function verifyMobile(data: { mobile: string; code: string }) {
   })
 }
 
-export async function updateValue(data: { param: string; value: string }) {
+export async function updateInfo(data: { param: string; value: string }) {
   const schema = z.object({
     param: z.string().min(1),
     value: z.string().min(1),
@@ -78,7 +78,7 @@ export async function updateValue(data: { param: string; value: string }) {
     url: 'user-update',
     body: data,
     schema,
-    revalidate: true,
+    revalidate: ['/ajustesa'],
   })
 }
 

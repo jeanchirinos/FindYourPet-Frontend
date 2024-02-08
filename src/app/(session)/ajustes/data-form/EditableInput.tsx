@@ -1,4 +1,4 @@
-import { updateValue } from '@/controllers/User'
+import { updateInfo } from '@/controllers/User'
 import { handleResponse } from '@/utilities/handleResponse'
 import { useAutoInput } from './useAutoInput'
 import { Input } from '@/components/Input'
@@ -17,7 +17,7 @@ export function EditableInput(props: Props) {
   async function handleAction(formData: FormData) {
     const value = formData.get(paramName) as string
 
-    const res = await updateValue({ param: paramName, value })
+    const res = await updateInfo({ param: paramName, value })
 
     handleResponse(res, {
       showSuccessToast: true,

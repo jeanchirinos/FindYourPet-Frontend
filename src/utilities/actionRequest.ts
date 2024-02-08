@@ -81,7 +81,7 @@ type Params<Response> = {
   url: string
   body?: object
   schema?: z.ZodObject<ZodRawShape> | z.ZodEffects<any>
-  revalidate?: boolean
+  revalidate?: Parameters<typeof revalidatePath>
   onSuccess?: (data: Response) => void
   auth?: boolean
 }
@@ -111,7 +111,8 @@ export async function sendData<Response>(params: Params<Response>) {
 
   if (res.ok) {
     if (revalidate) {
-      revalidatePath('/')
+      // revalidatePath(...revalidate)
+      revalidatePath('/(session)/ajustes')
     }
 
     if (onSuccess) {
