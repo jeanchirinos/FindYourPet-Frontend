@@ -2,6 +2,7 @@ import { twJoin } from 'tailwind-merge'
 import Image from 'next/image'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { Pet } from '@/models/Pet'
+import Link from 'next/link'
 
 type Props = { pet: Pet }
 
@@ -17,7 +18,10 @@ export function PetCard(props: Props) {
   const color = Object.values(colors)[pet.status - 1]
 
   return (
-    <div className='flex flex-col overflow-hidden rounded-xl bg-th-fg-2'>
+    <Link
+      href={`/mascota/${pet.id}`}
+      className='flex flex-col overflow-hidden rounded-xl bg-th-fg-2 transition-transform hover:scale-[1.005]'
+    >
       <Image
         className='aspect-square w-full object-cover'
         src={pet.image}
@@ -45,6 +49,6 @@ export function PetCard(props: Props) {
           </div>
         </footer>
       </div>
-    </div>
+    </Link>
   )
 }

@@ -1,6 +1,6 @@
 'use server'
 
-import { BreedsData, Category, PetPaginate, StatusList } from '@/models/Pet'
+import { BreedsData, Category, Pet, PetPaginate, StatusList } from '@/models/Pet'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
 import { getApiUrl } from '@/utilities/request'
 import { notFound } from 'next/navigation'
@@ -57,6 +57,14 @@ export async function getPets(params: TGetPetParams) {
   if (pets.length === 0 && current_page !== 1) {
     notFound()
   }
+
+  return data
+}
+
+export async function getPetById(id: string) {
+  const data = await actionRequestGet<Pet>(`pet-find/${id}`, {
+    cache: 'no-store',
+  })
 
   return data
 }

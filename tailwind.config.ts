@@ -6,6 +6,7 @@ const theme: Config['theme'] = {
   extend: {
     spacing: {
       header: 'var(--header-height)',
+      header_sticky: 'calc(var(--header-height) + 1.25rem)',
     },
     colors: {
       primary: '#FD8F52',

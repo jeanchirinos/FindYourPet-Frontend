@@ -16,7 +16,7 @@ export default function Page(props: Props) {
 
   return (
     <main className='mx-auto flex h-full w-[1600px] max-w-full items-start gap-x-10 px-2'>
-      <aside className='sticky top-[calc(var(--header-height)+1.25rem)] w-48 shrink-0 max-lg:hidden'>
+      <aside className='top-header_sticky sticky w-48 shrink-0 max-lg:hidden'>
         <section className='space-y-8 *:space-y-3'>
           <Suspense>
             <FilterStatus status={status} />
