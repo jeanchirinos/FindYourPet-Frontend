@@ -1,15 +1,11 @@
-import { twMerge } from 'tailwind-merge'
 import { TGetPetParams, getPets } from '@/controllers/Pet'
-import Link from 'next/link'
-import { IconBack, IconForward, IconPet } from '@/icons'
+import { IconPet } from '@/icons'
 import { PetCard } from './PetCard'
 
 type Props = { searchParams: TGetPetParams }
 
 export async function PetGrid(props: Props) {
-  const petsData = await getPets(props.searchParams)
-
-  const { data: pets, links } = petsData
+  const { data: pets } = await getPets(props.searchParams)
 
   if (pets.length === 0)
     return (
@@ -20,37 +16,10 @@ export async function PetGrid(props: Props) {
     )
 
   return (
-    <div className='flex w-full grow flex-col gap-y-3.5'>
-      <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[250px]'>
-        {pets.map(pet => (
-          <PetCard key={pet.id} pet={pet} />
-        ))}
-      </div>
-
-      <div className='flex items-center justify-center gap-x-2'>
-        <IconBack />
-
-        {links.slice(0, -1).map(link => {
-          if (link.url === null) return null
-
-          const url = '?page=' + link.label
-
-          return (
-            <Link
-              href={url}
-              key={link.label}
-              className={twMerge(
-                'rounded-lg bg-secondary px-3 py-0.5',
-                link.active && 'bg-primary text-white',
-              )}
-            >
-              {link.label}
-            </Link>
-          )
-        })}
-
-        <IconForward />
-      </div>
+    <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[250px]'>
+      {pets.map(pet => (
+        <PetCard key={pet.id} pet={pet} />
+      ))}
     </div>
   )
 }
