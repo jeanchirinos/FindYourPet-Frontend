@@ -7,26 +7,24 @@ type Props = { searchParams: TGetPetParams; page: string }
 export async function Paginate(props: Props) {
   const { links } = await getPets(props.searchParams)
 
+  if (links.length === 3) return null
+
   return (
     <div className='flex items-center justify-center gap-x-2'>
-      <IconBack />
+      {links[0].url !== null && (
+        <LinkSearchParams
+          aria-label='Anterior página'
+          searchParamKey='page'
+          searchParamValue={links[0].url.split('page=')[1]}
+        >
+          <IconBack />
+        </LinkSearchParams>
+      )}
 
-      {links.slice(0, -1).map(link => {
+      {links.slice(1, -1).map(link => {
         if (link.url === null) return null
 
-        // const url = '?page=' + link.label
-
         return (
-          // <Link
-          //   href={url}
-          //   key={link.label}
-          //   className={twMerge(
-          //     'rounded-lg bg-secondary px-3 py-0.5',
-          //     link.active && 'bg-primary text-white',
-          //   )}
-          // >
-          //   {link.label}
-          // </Link>
           <LinkSearchParams
             key={link.label}
             searchParamKey='page'
@@ -42,7 +40,15 @@ export async function Paginate(props: Props) {
         )
       })}
 
-      <IconForward />
+      {links.at(-1)?.url !== null && (
+        <LinkSearchParams
+          aria-label='Siguiente página'
+          searchParamKey='page'
+          searchParamValue={links.at(-1)!.url!.split('page=')[1]}
+        >
+          <IconForward />
+        </LinkSearchParams>
+      )}
     </div>
   )
 }

@@ -17,10 +17,10 @@ export function FilterBreedsClient(props: Props) {
     <div className='flex w-full flex-col gap-y-5'>
       <Combobox value={selectedBreeds} onChange={handleChange} multiple>
         <div className='relative z-20 w-full'>
-          <div className='relative w-full cursor-default text-left shadow-md sm:text-sm'>
+          <div className='relative w-full cursor-default text-left sm:text-sm'>
             <Combobox.Button className='w-full '>
               <Combobox.Input
-                className='w-full rounded-lg border-none py-2 pl-3 pr-10 text-sm leading-5 focus:outline-none'
+                className='w-full rounded-lg border-none bg-default-100 py-2 pl-3 pr-10 text-sm leading-5 focus:outline-none'
                 placeholder='Raza'
                 onChange={e => setQuery(e.target.value)}
                 value={query}
@@ -37,7 +37,7 @@ export function FilterBreedsClient(props: Props) {
             leaveTo='opacity-0'
             afterLeave={() => setQuery('')}
           >
-            <Combobox.Options className='text- absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-foreground-200 shadow-lg focus:outline-none sm:text-sm'>
+            <Combobox.Options className='absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-default-100 focus:outline-none sm:text-sm'>
               {filteredBreeds.length === 0 && query !== '' ? (
                 <div className='relative cursor-default select-none px-4 py-2'>Sin resultados</div>
               ) : (

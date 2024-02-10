@@ -18,7 +18,7 @@ export function GoogleForm(props: Props) {
   return (
     <form
       action={formAction}
-      className='flex items-center justify-between rounded-md border border-secondary px-2.5 py-2'
+      className='flex items-center justify-between rounded-md border border-default-100 px-2.5 py-2'
     >
       <div className='flex items-center gap-x-2'>
         <IconGoogle size={24} />
@@ -29,7 +29,7 @@ export function GoogleForm(props: Props) {
       </div>
 
       {isConnected ? (
-        <SubmitButton size='sm' className='rounded-md bg-secondary text-sm text-inherit'>
+        <SubmitButton size='sm' className='bg-custom1 rounded-md text-sm text-inherit'>
           Desconectar
         </SubmitButton>
       ) : (
