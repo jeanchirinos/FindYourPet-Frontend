@@ -116,6 +116,8 @@ export function useFilterPlace() {
       newSearchParams.delete('city')
     }
 
+    newSearchParams.delete('page')
+
     setQuery('')
     replace('?' + newSearchParams.toString())
   }
@@ -137,6 +139,8 @@ export function useFilterPlace() {
         newSearchParams.set('district', filteredDistricts.map(d => d.code).join(','))
       }
     }
+
+    newSearchParams.delete('page')
 
     replace('?' + newSearchParams.toString())
   }
