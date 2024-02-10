@@ -16,7 +16,8 @@ export function SubmitButton(props: Props) {
       type='submit'
       aria-disabled={pending}
       disabled={pending}
-      className={twMerge('bg-primary text-white ', className)}
+      color='primary'
+      className={twMerge('', className)}
       innerRef={innerRef}
       {...otherProps}
     >

@@ -5,25 +5,13 @@
 html {
   scrollbar-gutter: stable;
   scroll-behavior: smooth;
-  /* --th-a: 255 251 247; */
-  /* --th-fg-1: theme(colors.l-fg-1); */
-  /* --th-fg-2: theme(colors.l-fg-2); */
-  /* --th-txt-1: theme(colors.l-txt-1); */
-  /* --th-txt-2: theme(colors.l-txt-2); */
 }
-
-/* html.dark {
-  --th-a: 24 22 19;
-  --th-fg-1: theme(colors.d-fg-1);
-  --th-fg-2: theme(colors.d-fg-2);
-  --th-txt-1: theme(colors.d-txt-1);
-  --th-txt-2: theme(colors.d-txt-2);
-} */
 
 :root {
   --header-height: 40px;
 }
 
+/* Input */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   appearance: none;

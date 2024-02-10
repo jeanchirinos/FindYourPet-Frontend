@@ -50,18 +50,22 @@ const nextuiPlugin = nextui({
   themes: {
     light: {
       colors: {
-        background: '#f5f5f5',
-        default: {
-          '100': '#ffffff',
-        },
+        // background: '#f5f5f5',
+        // default: {
+        //   '100': '#ffffff',
+        // },
         secondary: '#FFEDD9',
       } as CustomColors,
     },
     dark: {
       colors: {
-        background: '#111111',
-        content1: '#27272A',
-        content2: '#36363b',
+        primary: {
+          DEFAULT: '#FD8F52',
+        },
+        focus: '#FD8F52',
+        // background: '#111111',
+        // content1: '#27272A',
+        // content2: '#36363b',
         secondary: '#2D2A26',
       } as CustomColors,
     },
