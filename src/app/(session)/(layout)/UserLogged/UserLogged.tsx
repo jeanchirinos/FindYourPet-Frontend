@@ -22,8 +22,8 @@ export function UserLogged(props: Props) {
           loading='eager'
         />
       </PopoverTrigger>
-      <PopoverContent className='right-0 flex flex-col border border-th-fg-2 bg-th-fg-1 '>
-        <div className='flex flex-col border-b border-th-fg-2 px-4 py-2'>
+      <PopoverContent className='right-0 flex flex-col border border-secondary bg-content1'>
+        <div className='flex flex-col border-b border-secondary px-4 py-2'>
           <span className='text-sm font-semibold'>{session.username}</span>
           <span className='text-xs'>{session.email}</span>
         </div>

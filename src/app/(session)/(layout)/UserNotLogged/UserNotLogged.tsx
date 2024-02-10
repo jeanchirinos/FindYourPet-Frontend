@@ -17,7 +17,7 @@ export function UserNotLogged() {
   return (
     <Popover>
       <PopoverTrigger className='px-5 py-1'>Ingresa</PopoverTrigger>
-      <PopoverContent className='right-0 flex w-80 flex-col gap-y-2 border border-th-fg-1 bg-th-fg-1 px-5 py-3'>
+      <PopoverContent className='right-0 flex w-80 flex-col gap-y-2 bg-content1 px-5 py-3 shadow-md'>
         <div className='max-w-sm space-y-2'>
           <Google />
           <Tabs fullWidth selectedKey={formState} onSelectionChange={setFormState as any}>

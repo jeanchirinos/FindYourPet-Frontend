@@ -40,7 +40,7 @@ export async function PetGrid(props: Props) {
               href={url}
               key={link.label}
               className={twMerge(
-                'rounded-lg bg-th-fg-2 px-3 py-0.5',
+                'rounded-lg bg-secondary px-3 py-0.5',
                 link.active && 'bg-primary text-white',
               )}
             >

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
-    <html lang='es' className='bg-th-fg-1 text-th-txt-1' suppressHydrationWarning>
+    <html lang='es' suppressHydrationWarning>
       <body className={font.className}>
         <Providers>{props.children}</Providers>
       </body>
