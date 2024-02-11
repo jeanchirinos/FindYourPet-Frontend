@@ -19,12 +19,12 @@ export default function Page(props: Props) {
 }
 
 async function Content(props: { petId: string }) {
-  const pet = await getPetById(props.petId)
+  const { pet } = await getPetById(props.petId)
 
   return (
     <div className='mx-auto w-[1600px] max-w-full space-y-10 px-2'>
       <section className='flex gap-10 max-md:flex-col'>
-        <picture className='relative max-h-full min-h-80 w-[600px] shrink-0 overflow-hidden rounded-md'>
+        <picture className='relative aspect-[4/3] max-h-full min-h-80 w-[50%] shrink-0 overflow-hidden rounded-md'>
           <Image
             src={pet.image}
             width={500}
@@ -70,7 +70,7 @@ async function MorePets() {
   const { data: pets } = await getPets({ status: '1' })
 
   return (
-    <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[250px]'>
+    <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[300px]'>
       {pets.map(pet => (
         <PetCard key={pet.id} pet={pet} />
       ))}

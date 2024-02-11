@@ -62,7 +62,7 @@ export async function getPets(params: TGetPetParams) {
 }
 
 export async function getPetById(id: string) {
-  const data = await actionRequestGet<Pet>(`pet-find/${id}`, {
+  const data = await actionRequestGet<{ pet: Pet; morePets: Pet[] }>(`pet-find/${id}`, {
     cache: 'no-store',
   })
 
