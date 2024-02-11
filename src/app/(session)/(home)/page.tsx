@@ -1,7 +1,7 @@
 import { Suspense } from '@/components/other/CustomSuspense'
 import { TGetPetParams } from '@/controllers/Pet'
 import { PetGrid } from './Pets/PetGrid'
-import { FilterCategory } from './Pets/FilterCategory.tsx/FilterCategory'
+import { FilterCategory } from './FilterCategory.tsx/FilterCategory'
 import { Order } from './Order'
 import { FilterPlace } from './FilterPlace/FilterPlace'
 import { FilterBreeds } from './FilterBreeds/FilterBreeds'

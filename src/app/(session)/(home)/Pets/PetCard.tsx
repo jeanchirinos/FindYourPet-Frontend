@@ -20,7 +20,7 @@ export function PetCard(props: Props) {
   return (
     <Link
       href={`/mascota/${pet.id}`}
-      className='bg-custom1 flex flex-col overflow-hidden rounded-xl shadow-small transition-transform hover:scale-[1.005]'
+      className='hover:bg-custom1/50 bg-custom1 flex flex-col overflow-hidden rounded-xl shadow-small'
     >
       <Image
         className='aspect-square w-full object-cover'
@@ -30,20 +30,22 @@ export function PetCard(props: Props) {
         alt='Mascota'
       />
       <div className='space-y-2.5 p-2'>
-        <section className={twJoin('rounded-lg p-1 text-center font-semibold text-white', color)}>
-          {pet.status_name}
+        <section
+          className={twJoin(
+            'flex items-center justify-center gap-x-1.5 rounded-xl p-1 text-white',
+            color,
+          )}
+        >
+          <div
+            className='*:size-4'
+            dangerouslySetInnerHTML={{ __html: pet.breed.category.image }}
+          />
+          <span>{pet.breed.name}</span>
         </section>
         <footer className='flex flex-col gap-y-1.5 text-sm'>
           <div className='flex gap-x-1.5'>
             <HiOutlineLocationMarker />
             <p>{pet.district_name}</p>
-          </div>
-          <div className='flex items-center gap-x-1.5'>
-            <div
-              className='*:size-4'
-              dangerouslySetInnerHTML={{ __html: pet.breed.category.image }}
-            />
-            <span>{pet.breed.name}</span>
           </div>
         </footer>
       </div>

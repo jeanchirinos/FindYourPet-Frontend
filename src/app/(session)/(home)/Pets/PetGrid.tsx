@@ -1,7 +1,7 @@
 import { TGetPetParams, getPets } from '@/controllers/Pet'
 import { IconPet } from '@/icons'
 import { PetCard } from './PetCard'
-import { PaginationAlt } from './PaginationAlt'
+import { PetPagination } from './PetPagination'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -24,7 +24,7 @@ export async function PetGrid(props: Props) {
         ))}
       </div>
       {}
-      <PaginationAlt
+      <PetPagination
         currentPage={props.searchParams.page as string}
         numberOfPages={links.length - 2}
       />
