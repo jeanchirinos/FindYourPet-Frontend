@@ -35,7 +35,11 @@ export function useFilterBreedsClient(breeds: Breed[]) {
   // FUNCTIONS
   function handleChange(value: typeof breeds) {
     const newSearchParams = new URLSearchParams(searchParams)
-    newSearchParams.set('breed_id', value.map(v => v.id).join(','))
+    if (value.length) {
+      newSearchParams.set('breed_id', value.map(v => v.id).join(','))
+    } else {
+      newSearchParams.delete('breed_id')
+    }
 
     setQuery('')
     replace('?' + newSearchParams.toString())
