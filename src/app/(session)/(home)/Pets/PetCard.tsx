@@ -29,10 +29,8 @@ export function PetCard(props: Props) {
         height={pet.image_height}
         alt='Mascota'
       />
-      <div className='space-y-2.5 px-2 pb-2 pt-3'>
-        <section
-          className={twJoin('rounded-lg p-1.5 text-center text-lg font-semibold text-white', color)}
-        >
+      <div className='space-y-2.5 p-2'>
+        <section className={twJoin('rounded-lg p-1 text-center font-semibold text-white', color)}>
           {pet.status_name}
         </section>
         <footer className='flex flex-col gap-y-1.5 text-sm'>

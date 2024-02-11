@@ -4,7 +4,7 @@ import { TGetPetParams, getPets } from '@/controllers/Pet'
 
 type Props = { searchParams: TGetPetParams; page: string }
 
-export async function Paginate(props: Props) {
+export async function Pagination(props: Props) {
   const { links } = await getPets(props.searchParams)
 
   if (links.length === 3) return null

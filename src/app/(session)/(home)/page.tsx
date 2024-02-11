@@ -7,7 +7,6 @@ import { FilterPlace } from './FilterPlace/FilterPlace'
 import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { FilterStatus } from './FilterStatus'
 import { Spinner } from '@nextui-org/react'
-import { Paginate } from './Pets/Paginate'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -40,21 +39,16 @@ export default function Page(props: Props) {
           <Order order={order} />
         </header>
 
-        <div className='flex w-full grow flex-col gap-y-3.5'>
-          <Suspense
-            fallback={
-              <div className='h-96 flex-center'>
-                <Spinner size='lg' />
-              </div>
-            }
-            keyProp={JSON.stringify(searchParams)}
-          >
-            <PetGrid searchParams={{ ...restSearchParams, status, order, page }} />
-            <Paginate searchParams={{ ...restSearchParams, status, order, page }} page={page} />
-          </Suspense>
-          {/* <Suspense>
-          </Suspense> */}
-        </div>
+        <Suspense
+          fallback={
+            <div className='h-96 flex-center'>
+              <Spinner size='lg' />
+            </div>
+          }
+          keyProp={JSON.stringify(searchParams)}
+        >
+          <PetGrid searchParams={{ ...restSearchParams, status, order, page }} />
+        </Suspense>
       </section>
     </main>
   )

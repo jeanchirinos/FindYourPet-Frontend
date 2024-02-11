@@ -16,6 +16,7 @@ type Props = React.ComponentProps<typeof Button> & {
   searchParamValue: string | number
   toggle?: boolean
   keysToDelete?: string[]
+  innerRef?: React.RefObject<HTMLButtonElement>
 }
 
 export function LinkSearchParams(props: Props) {
@@ -26,6 +27,7 @@ export function LinkSearchParams(props: Props) {
     searchParamKey,
     searchParamValue,
     keysToDelete,
+    itemRef,
     ...restProps
   } = props
 
@@ -63,6 +65,7 @@ export function LinkSearchParams(props: Props) {
   // RENDER
   return (
     <Button
+      ref={itemRef as unknown as React.RefObject<HTMLButtonElement>}
       as={Link}
       {...dataSelected}
       {...dataNotSelected}
