@@ -1,5 +1,5 @@
 import { Suspense } from '@/components/other/CustomSuspense'
-import { getPetById, getPets } from '@/controllers/Pet'
+import { getPetById } from '@/controllers/Pet'
 import { PageProps } from '@/types'
 import Image from 'next/image'
 // import PetMap from './map'
@@ -7,6 +7,7 @@ import { Skeleton } from '@nextui-org/react'
 import { PetStatusTag } from '@/components/business/PetStatusTag'
 import { PetCard } from '../../(home)/Pets/PetCard'
 import { ContactNumber } from './contactNumber'
+import { twJoin } from 'tailwind-merge'
 
 type Props = PageProps<'id'>
 
@@ -19,7 +20,24 @@ export default function Page(props: Props) {
 }
 
 async function Content(props: { petId: string }) {
-  const { pet } = await getPetById(props.petId)
+  const { pet, morePets } = await getPetById(props.petId)
+
+  const states = {
+    1: {
+      text: 'buscadas',
+      textClassName: 'text-search',
+    },
+    2: {
+      text: 'perdidas',
+      textClassName: 'text-lost',
+    },
+    3: {
+      text: 'en adopción',
+      textClassName: 'text-adopt',
+    },
+  }
+
+  const petState = states[pet.status as keyof typeof states]
 
   return (
     <div className='mx-auto w-[1600px] max-w-full space-y-10 px-2'>
@@ -27,12 +45,9 @@ async function Content(props: { petId: string }) {
         <picture className='relative aspect-[4/3] max-h-full min-h-80 w-[50%] shrink-0 overflow-hidden rounded-md'>
           <Image
             src={pet.image}
-            width={500}
-            height={500}
-            // width={pet.image_width}
-            // height={pet.image_height}
+            width={pet.image_width || 500}
+            height={pet.image_height || 500}
             alt={pet.id.toString()}
-            // className='top-header_sticky h-min max-h-full w-[600px] max-w-full rounded-md object-cover md:sticky'
             className='absolute size-full object-cover'
           />
         </picture>
@@ -57,23 +72,15 @@ async function Content(props: { petId: string }) {
         </div>
       </section>
       <section className='space-y-4'>
-        <h2 className='text-2xl font-semibold text-lost'>Más mascotas perdidas</h2>
-        <Suspense>
-          <MorePets />
-        </Suspense>
+        <h2 className={twJoin('text-2xl font-semibold', petState.textClassName)}>
+          Más mascotas {petState.text}
+        </h2>
+        <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[300px]'>
+          {morePets.map(pet => (
+            <PetCard key={pet.id} pet={pet} />
+          ))}
+        </div>
       </section>
-    </div>
-  )
-}
-
-async function MorePets() {
-  const { data: pets } = await getPets({ status: '1' })
-
-  return (
-    <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[300px]'>
-      {pets.map(pet => (
-        <PetCard key={pet.id} pet={pet} />
-      ))}
     </div>
   )
 }

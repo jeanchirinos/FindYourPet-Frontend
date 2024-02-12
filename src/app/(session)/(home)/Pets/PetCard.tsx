@@ -20,13 +20,13 @@ export function PetCard(props: Props) {
   return (
     <Link
       href={`/mascota/${pet.id}`}
-      className='hover:bg-custom1/50 bg-custom1 flex flex-col overflow-hidden rounded-xl shadow-small'
+      className='flex flex-col overflow-hidden rounded-xl bg-custom1 shadow-small hover:bg-custom1/50'
     >
       <Image
         className='aspect-square w-full object-cover'
         src={pet.image}
-        width={pet.image_width}
-        height={pet.image_height}
+        width={pet.image_width || 500}
+        height={pet.image_height || 500}
         alt='Mascota'
       />
       <div className='space-y-2.5 p-2'>

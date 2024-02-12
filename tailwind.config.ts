@@ -12,8 +12,8 @@ const theme: Config['theme'] = {
       primary: '#FD8F52',
       focus: '#FD8F52',
       // status colors
-      lost: '#AE6378',
       search: '#79616F',
+      lost: '#AE6378',
       adopt: '#D87F81',
     },
     backgroundImage: {
