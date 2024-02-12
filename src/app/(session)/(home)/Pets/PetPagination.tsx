@@ -2,7 +2,6 @@
 import { LinkSearchParams } from '@/components/LinkSearchParams'
 import { IconBack, IconForward } from '@/icons'
 import { Pagination, PaginationItemRenderProps, PaginationItemType } from '@nextui-org/react'
-import { Fragment } from 'react'
 import { twJoin } from 'tailwind-merge'
 
 type Props = {
@@ -31,7 +30,7 @@ export function PetPagination(props: Props) {
         initialPage={Number(currentPage)}
         className='m-0 max-w-full p-0'
         classNames={{
-          wrapper: 'overflow-x-auto  max-w-full *:shrink-0 rounded-none',
+          wrapper: 'overflow-x-auto max-w-full *:shrink-0 rounded-none',
         }}
         renderItem={props => renderItem({ ...props, className: 'size-9 min-w-0 p-0' })}
       />
@@ -52,40 +51,6 @@ export function PetPagination(props: Props) {
 const renderItem = (props: PaginationItemRenderProps) => {
   const { ref, key, value, className, activePage, page } = props
 
-  // PREV
-  // if (value === PaginationItemType.PREV) {
-  //   return (
-  //     <div className='pr-1' key={key}>
-  //       <LinkSearchParams
-  //         isDisabled={activePage === 1}
-  //         aria-label='Anterior página'
-  //         searchParamKey='page'
-  //         searchParamValue={activePage - 1}
-  //         className={className}
-  //       >
-  //         <IconBack />
-  //       </LinkSearchParams>
-  //     </div>
-  //   )
-  // }
-
-  // // NEXT
-  // if (value === PaginationItemType.NEXT) {
-  //   return (
-  //     <div className='pl-1' key={key}>
-  //       <LinkSearchParams
-  //         isDisabled={activePage === total}
-  //         aria-label='Siguiente página'
-  //         searchParamKey='page'
-  //         searchParamValue={activePage + 1}
-  //         className={className}
-  //       >
-  //         <IconForward />
-  //       </LinkSearchParams>
-  //     </div>
-  //   )
-  // }
-
   // DOTS
   if (value === PaginationItemType.DOTS) {
     return (
@@ -103,26 +68,15 @@ const renderItem = (props: PaginationItemRenderProps) => {
 
   // PAGES
   return (
-    <Fragment key={key}>
-      <LinkSearchParams
-        itemRef={ref as any}
-        searchParamKey='page'
-        searchParamValue={value}
-        currentParam={activePage}
-        // className={twJoin(className, shouldBe(props) && 'max-[400px]:hidden')}
-        className={twJoin(className)}
-      >
-        {value}
-      </LinkSearchParams>
-
-      {/* <LinkSearchParams
-        aria-label='Página número'
-        searchParamKey='page'
-        searchParamValue={page}
-        className={twJoin(className, shouldBe(props) === 'dots' ? 'min-[400px]:hidden' : 'hidden')}
-      >
-        ...
-      </LinkSearchParams> */}
-    </Fragment>
+    <LinkSearchParams
+      key={key}
+      itemRef={ref as any}
+      searchParamKey='page'
+      searchParamValue={value}
+      currentParam={activePage}
+      className={twJoin(className)}
+    >
+      {value}
+    </LinkSearchParams>
   )
 }
