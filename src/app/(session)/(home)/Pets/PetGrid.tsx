@@ -2,6 +2,7 @@ import { TGetPetParams, getPets } from '@/controllers/Pet'
 import { IconPet } from '@/icons'
 import { PetCard } from './PetCard'
 import { PetPagination } from './PetPagination'
+// import { TestPagination } from './TestPagination'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -23,11 +24,12 @@ export async function PetGrid(props: Props) {
           <PetCard key={pet.id} pet={pet} />
         ))}
       </div>
-      {}
       <PetPagination
         currentPage={props.searchParams.page as string}
         numberOfPages={links.length - 2}
       />
+
+      {/* <TestPagination /> */}
     </div>
   )
 }

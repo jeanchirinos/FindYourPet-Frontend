@@ -11,7 +11,7 @@ type Props = React.ComponentProps<typeof Button> & {
     selected?: string
     notSelected?: string
   }
-  currentParam?: string
+  currentParam?: string | number
   searchParamKey: string
   searchParamValue: string | number
   toggle?: boolean
@@ -57,7 +57,8 @@ export function LinkSearchParams(props: Props) {
 
   // VALUES
   //
-  const isSelected = searchParamValueString === param || (searchParamValueString === '0' && !param)
+  const isSelected =
+    searchParamValueString === param?.toString() || (searchParamValueString === '0' && !param)
 
   const dataSelected = isSelected ? { 'data-selected': 'true' } : {}
   const dataNotSelected = !isSelected ? { 'data-not-selected': 'true' } : {}
