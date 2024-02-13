@@ -2,14 +2,13 @@
 
 import { useFormStatus } from 'react-dom'
 import { Button } from '@/components/Button'
-import { twMerge } from 'tailwind-merge'
 
 type Props = React.ComponentProps<typeof Button> & { innerRef?: React.Ref<HTMLButtonElement> }
 
 export function SubmitButton(props: Props) {
   const { pending } = useFormStatus()
 
-  const { children = 'Guardar', className, innerRef, ...otherProps } = props
+  const { children = 'Guardar', innerRef, ...otherProps } = props
 
   return (
     <Button
@@ -17,7 +16,6 @@ export function SubmitButton(props: Props) {
       aria-disabled={pending}
       disabled={pending}
       color='primary'
-      className={twMerge('', className)}
       innerRef={innerRef}
       {...otherProps}
     >

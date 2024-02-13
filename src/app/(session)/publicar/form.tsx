@@ -37,8 +37,8 @@ export function Form(props: Props) {
 
   if (state.ok) {
     return (
-      <div className='flex-col gap-y-4 flex-center lg:h-[648px]'>
-        <header className='flex flex-col items-center gap-y-4'>
+      <div className='flex-col gap-y-6 flex-center lg:h-[648px]'>
+        <header className='flex flex-col items-center gap-y-3'>
           <IconCheckFilled className='text-5xl' />
           <p>Se ha registrado correctamente</p>
         </header>
@@ -46,7 +46,7 @@ export function Form(props: Props) {
           <Link href='/' className='rounded-xl bg-foreground-200 px-4 py-2 text-sm flex-center'>
             Ver mascotas
           </Link>
-          <Button className='bg-primary' onClick={() => setState({ msg: '', ok: null })}>
+          <Button color='primary' onClick={() => setState({ msg: '', ok: null })}>
             Volver a registrar
           </Button>
         </footer>

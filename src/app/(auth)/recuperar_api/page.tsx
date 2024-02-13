@@ -11,7 +11,7 @@ export default async function Page(props: Props) {
 
   // RENDER
   return (
-    <div className='min-h-screen flex-center'>
+    <div className='min-h-screen px-2 flex-center'>
       <Form token={token} />
     </div>
   )

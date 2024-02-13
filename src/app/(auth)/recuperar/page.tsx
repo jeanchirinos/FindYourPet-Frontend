@@ -6,6 +6,7 @@ import { useFormAction } from '@/hooks/useFormAction'
 import { forgotPassword } from '@/controllers/Auth'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
+import { Button } from '@/components/Button'
 
 export default function Page() {
   return (
@@ -23,18 +24,20 @@ function Content() {
 
   // RENDER
   return (
-    <div className='flex min-h-screen items-center justify-center'>
+    <div className='min-h-screen text-center flex-center'>
       {state.ok ? (
-        <div className='flex flex-col gap-y-2 text-center'>
-          <p>Correo enviado</p>
-          <p className='text-balance text-xs'>Revisa tu correo para restablecer tu contraseña</p>
+        <div className='flex flex-col items-center gap-y-6'>
+          <section className='space-y-1.5'>
+            <p className='text-lg font-bold'>Correo enviado</p>
+            <p className='text-foreground-600'>Revisa tu correo para restablecer tu contraseña</p>
+          </section>
 
-          <Link replace href='/' className='mt-2 rounded-md bg-primary py-1.5 text-white'>
+          <Button as={Link} replace href='/' color='primary'>
             Ir a inicio
-          </Link>
+          </Button>
         </div>
       ) : (
-        <form action={formAction} className='flex w-80 max-w-full flex-col gap-y-4 text-center'>
+        <form action={formAction} className='flex w-80 max-w-full flex-col gap-y-4'>
           <h2>Ingresa el correo a recuperar</h2>
           <Input
             defaultValue={initialEmail}

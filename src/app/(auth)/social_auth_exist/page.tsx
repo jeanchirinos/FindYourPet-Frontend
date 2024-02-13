@@ -17,10 +17,14 @@ export default function Page() {
   }
 
   return (
-    <main className='flex-center min-h-screen'>
-      <p className='text-balance'>El correo ya se encuentra vinculado</p>
-      <p className='text-xs'> Inicie sesión y agregue su correo como método de inicio de sesión </p>
-      <Button className='mt-5' onClick={handleBack}>
+    <main className='min-h-screen flex-col gap-y-6 px-2 text-center flex-center'>
+      <section className='space-y-1.5'>
+        <p className='text-lg font-bold'>El correo ya se encuentra vinculado</p>
+        <p className='text-foreground-600'>
+          Inicie sesión y agregue su correo como método de inicio de sesión{' '}
+        </p>
+      </section>
+      <Button color='primary' onClick={handleBack}>
         Entendido
       </Button>
     </main>

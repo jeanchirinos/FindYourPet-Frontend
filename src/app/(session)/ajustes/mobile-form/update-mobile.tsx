@@ -90,7 +90,7 @@ export function MobileForm(props: Props) {
               size='sm'
               isDisabled={isDisabled}
               disabled={isDisabled}
-              className='bg-primary text-white disabled:opacity-60'
+              color='primary'
               type='submit'
               ref={submitButtonRef}
             >
