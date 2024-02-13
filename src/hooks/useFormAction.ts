@@ -13,12 +13,16 @@ export type Options = {
 export function useFormAction(action: any, options?: Options) {
   const { onSuccess, showSuccessToast = true, onError, showErrorToast = true } = options ?? {}
 
+  // VALUES
   const initialState = { ok: null, msg: '' } as { ok: boolean | null; msg: string }
 
+  // HOOKS
   const [stateAction, formAction] = useFormState(action, initialState)
 
+  // STATES
   const [state, setState] = useState(initialState)
 
+  // EFFECTS
   useEffect(() => {
     setState(stateAction)
   }, [stateAction])
