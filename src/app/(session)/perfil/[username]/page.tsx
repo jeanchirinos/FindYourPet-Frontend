@@ -3,8 +3,15 @@ import Image from 'next/image'
 import { HiOutlineDeviceMobile, HiOutlineMail } from 'react-icons/hi'
 import { getUserProfile } from '@/controllers/User'
 import { PageProps } from '@/types'
+import { Metadata } from 'next'
 
 type Props = PageProps<'username'>
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  return {
+    title: props.params.username,
+  }
+}
 
 export default function Page(props: Props) {
   return (

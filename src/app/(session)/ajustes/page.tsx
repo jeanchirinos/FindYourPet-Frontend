@@ -3,6 +3,11 @@ import { UpdateForm } from './data-form/update-form'
 import { Suspense } from '@/components/other/CustomSuspense'
 import { getUser } from '@/controllers/User'
 import { ConnectedAccounts } from './connected-accounts'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Ajustes',
+}
 
 export default async function Page() {
   const user = await getUser()

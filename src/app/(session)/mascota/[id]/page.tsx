@@ -8,8 +8,15 @@ import { PetStatusTag } from '@/components/business/PetStatusTag'
 import { PetCard } from '../../(home)/Pets/PetCard'
 import { ContactNumber } from './contactNumber'
 import { twJoin } from 'tailwind-merge'
+import { Metadata } from 'next'
 
 type Props = PageProps<'id'>
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  return {
+    title: `Mascota ${props.params.id}`,
+  }
+}
 
 export default function Page(props: Props) {
   return (
@@ -41,8 +48,8 @@ async function Content(props: { petId: string }) {
 
   return (
     <div className='mx-auto w-[1600px] max-w-full space-y-10 px-2'>
-      <section className='flex gap-10 max-md:flex-col'>
-        <picture className='relative aspect-[4/3] max-h-full min-h-80 w-[50%] shrink-0 overflow-hidden rounded-md'>
+      <section className='flex gap-x-10 gap-y-2 max-md:flex-col'>
+        <picture className='relative max-h-full min-h-80 shrink-0 overflow-hidden rounded-md md:w-[45%]'>
           <Image
             src={pet.image}
             width={pet.image_width || 500}
@@ -52,13 +59,18 @@ async function Content(props: { petId: string }) {
           />
         </picture>
         <div className='flex grow flex-col gap-y-4'>
-          <PetStatusTag pet={pet} />
-          <div className='h-80 grow overflow-hidden rounded-md'>
+          <PetStatusTag pet={{ ...pet, status_name: 'Estado' }} />
+          <div className='h-80 grow overflow-hidden rounded-md md:h-60 2xl:h-80'>
             <Skeleton className='size-full' />
           </div>
           <section className='max-h-60 overflow-y-auto rounded-md bg-foreground-200 p-2 '>
             <h3>Descripción</h3>
             <p>{pet.description}</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat nisi quos harum.
+              Facere, distinctio autem, fugit aliquam ab accusantium dolorem exercitationem optio
+              eos labore ullam est iste commodi! Eveniet, culpa.
+            </p>
           </section>
           <section className='space-y-2 rounded-md bg-foreground-200 p-2'>
             <h3>Contacto</h3>

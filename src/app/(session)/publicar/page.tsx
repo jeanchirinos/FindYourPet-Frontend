@@ -2,6 +2,11 @@ import { Categories } from './Categories/Categories'
 import { StatusInfo } from './StatusInfo/StatusInfo'
 import { Form } from './form'
 import { Place } from './Place/Place'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Publicar',
+}
 
 export default function Page() {
   return (
