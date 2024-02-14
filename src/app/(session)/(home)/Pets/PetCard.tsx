@@ -1,8 +1,9 @@
 import { twJoin } from 'tailwind-merge'
-import Image from 'next/image'
+import NextImage from 'next/image'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { Pet } from '@/models/Pet'
 import Link from 'next/link'
+import { Image } from '@nextui-org/react'
 
 type Props = { pet: Pet }
 
@@ -20,14 +21,19 @@ export function PetCard(props: Props) {
   return (
     <Link
       href={`/mascota/${pet.id}`}
-      className='flex flex-col overflow-hidden rounded-xl bg-custom1 shadow-small hover:bg-custom1/50'
+      className='group flex flex-col overflow-hidden rounded-xl bg-custom1 shadow-small'
     >
       <Image
+        as={NextImage}
         className='aspect-square w-full object-cover'
         src={pet.image}
         width={pet.image_width || 500}
         height={pet.image_height || 500}
         alt='Mascota'
+        isZoomed
+        classNames={{
+          img: 'group-hover:scale-110',
+        }}
       />
       <div className='space-y-2.5 p-2'>
         <section
