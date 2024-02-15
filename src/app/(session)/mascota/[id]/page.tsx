@@ -1,7 +1,6 @@
 import { Suspense } from '@/components/other/CustomSuspense'
 import { getPetById } from '@/controllers/Pet'
 import { PageProps } from '@/types'
-import Image from 'next/image'
 // import PetMap from './map'
 import { Skeleton } from '@nextui-org/react'
 import { PetStatusTag } from '@/components/business/PetStatusTag'
@@ -9,6 +8,7 @@ import { PetCard } from '../../(home)/Pets/PetCard'
 import { ContactNumber } from './contactNumber'
 import { twJoin } from 'tailwind-merge'
 import { Metadata } from 'next'
+import { Image } from '@/components/Image'
 
 type Props = PageProps<'id'>
 
@@ -55,7 +55,11 @@ async function Content(props: { petId: string }) {
             width={pet.image_width || 500}
             height={pet.image_height || 500}
             alt={pet.id.toString()}
-            className='absolute size-full object-cover'
+            // className='absolute size-full object-cover'
+            classNames={{
+              wrapper: 'absolute size-full object-cover !max-w-full',
+              img: 'absolute size-full object-cover',
+            }}
           />
         </picture>
         <div className='flex grow flex-col gap-y-4'>
