@@ -4,7 +4,7 @@ import { Pet } from '@/models/Pet'
 import Link from 'next/link'
 import { Image } from '@/components/Image'
 
-type Props = { pet: Pet }
+type Props = { pet: Pet; index?: number }
 
 export function PetCard(props: Props) {
   const { pet } = props
@@ -29,6 +29,7 @@ export function PetCard(props: Props) {
           width={pet.image_width || 500}
           height={pet.image_height || 500}
           alt='Mascota'
+          priority={props.index === 0}
         />
       </picture>
       <div className='space-y-2.5 p-2'>

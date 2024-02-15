@@ -56,6 +56,7 @@ async function Content(props: { petId: string }) {
             height={pet.image_height || 500}
             alt={pet.id.toString()}
             className='absolute size-full object-cover'
+            priority
           />
         </picture>
         <div className='flex grow flex-col gap-y-4'>

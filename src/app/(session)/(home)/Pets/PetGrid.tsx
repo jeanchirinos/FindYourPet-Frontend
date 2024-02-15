@@ -19,8 +19,8 @@ export async function PetGrid(props: Props) {
   return (
     <div className='flex w-full grow flex-col gap-y-3.5'>
       <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[250px]'>
-        {pets.map(pet => (
-          <PetCard key={pet.id} pet={pet} />
+        {pets.map((pet, i) => (
+          <PetCard key={pet.id} pet={pet} index={i} />
         ))}
       </div>
       <PetPagination
