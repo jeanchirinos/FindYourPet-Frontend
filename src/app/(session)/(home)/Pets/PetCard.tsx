@@ -22,18 +22,15 @@ export function PetCard(props: Props) {
       href={`/mascota/${pet.id}`}
       className='group flex flex-col overflow-hidden rounded-xl bg-custom1 shadow-small'
     >
-      <Image
-        className='aspect-square w-full object-cover'
-        src={pet.image}
-        width={pet.image_width || 500}
-        height={pet.image_height || 500}
-        alt='Mascota'
-        // isZoomed
-        // classNames={{
-        //   wrapper: 'aspect-square !max-w-full',
-        //   img: 'group-hover:scale-110 w-full object-cover',
-        // }}
-      />
+      <picture className='relative aspect-square w-full overflow-hidden'>
+        <Image
+          className='absolute size-full object-cover transition-transform group-hover:scale-110'
+          src={pet.image}
+          width={pet.image_width || 500}
+          height={pet.image_height || 500}
+          alt='Mascota'
+        />
+      </picture>
       <div className='space-y-2.5 p-2'>
         <section
           className={twJoin(
