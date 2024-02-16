@@ -1,5 +1,5 @@
 import { Categories } from './Categories/Categories'
-import { StatusInfo } from './StatusInfo/StatusInfo'
+import { StatusInfo } from './StatusInfo'
 import { Form } from './form'
 import { Place } from './Place/Place'
 import { Metadata } from 'next'

@@ -3,7 +3,6 @@
 import { Button } from '@/components/Button'
 import { useGoogle } from '@/hooks/useGoogle'
 import { SubmitButton } from '@/components/SubmitButton'
-import { useFormAction } from '@/hooks/useFormAction'
 import { disconnectGoogle } from '@/controllers/Auth'
 import { IconGoogle } from '@/icons'
 
@@ -13,11 +12,10 @@ export function GoogleForm(props: Props) {
   const { isConnected, username } = props
 
   const { openGoogleWindow } = useGoogle({ loggedIn: true })
-  const { formAction } = useFormAction(disconnectGoogle, { showSuccessToast: false })
 
   return (
     <form
-      action={formAction}
+      action={disconnectGoogle}
       className='flex items-center justify-between rounded-md border border-default-100 px-2.5 py-2'
     >
       <div className='flex items-center gap-x-2'>
@@ -29,7 +27,7 @@ export function GoogleForm(props: Props) {
       </div>
 
       {isConnected ? (
-        <SubmitButton size='sm' className='bg-custom1 rounded-md text-sm text-inherit'>
+        <SubmitButton size='sm' className='rounded-md bg-custom1 text-sm text-inherit'>
           Desconectar
         </SubmitButton>
       ) : (

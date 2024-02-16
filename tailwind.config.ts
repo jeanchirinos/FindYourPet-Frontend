@@ -59,6 +59,17 @@ const tailwindPlugin = plugin(plugin => {
     },
   )
 
+  matchVariant('any-*', value => {
+    if (value.includes(',')) {
+      const selectors = value.split(',')
+      const hoverSelectors = selectors.map(selector => `& ${selector}`)
+
+      return hoverSelectors
+    }
+
+    return `& ${value}`
+  })
+
   matchVariant('nth-child', value => {
     let valueToNumber = Number(value)
 
@@ -87,7 +98,12 @@ const config: Config = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme,
-  plugins: [nextuiPlugin, require('tailwindcss-animated'), tailwindPlugin],
+  plugins: [
+    nextuiPlugin,
+    require('tailwindcss-animated'),
+    require('@headlessui/tailwindcss'),
+    tailwindPlugin,
+  ],
 }
 
 export default config

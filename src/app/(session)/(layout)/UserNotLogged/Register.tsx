@@ -45,7 +45,7 @@ export function Register() {
         <Input type='password' name='password' label='Contraseña' minLength={8} />
         <Input type='password' name='passwordConfirm' label='Confirmar contraseña' minLength={8} />
 
-        <SubmitButton className='bg-purple-500 text-white'>Registrarse</SubmitButton>
+        <SubmitButton color='secondary'>Registrarse</SubmitButton>
       </form>
 
       {emailSent && (

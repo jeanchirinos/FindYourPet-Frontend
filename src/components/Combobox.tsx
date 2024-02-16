@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { Combobox as HeadlessCombobox, Transition } from '@headlessui/react'
 import { IconArrowDown, IconCheck } from '@/icons'
 import { IconType } from 'react-icons'
+import { twJoin } from 'tailwind-merge'
 
 type Props = Omit<React.ComponentProps<typeof HeadlessCombobox>, 'multiple'> & {
   query: string
@@ -77,34 +78,40 @@ export function Combobox(props: Props) {
         >
           <HeadlessCombobox.Options className='absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-default-100 focus:outline-none sm:text-sm'>
             {options.length === 0 && query !== '' ? (
-              <div className='relative cursor-default select-none px-4 py-2'>Sin resultados</div>
+              <div className='cursor-default select-none px-4 py-2'>Sin resultados</div>
             ) : (
               options.map(option => (
                 <HeadlessCombobox.Option
                   key={option[itemKeyId]}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-primary text-white' : ''
-                    }`
+                    twJoin(
+                      'relative cursor-default select-none py-2 pl-10 pr-4',
+                      active && 'bg-primary text-white',
+                    )
                   }
                   value={option}
                 >
                   {({ selected, active }) => (
                     <>
                       <span
-                        className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}
+                        className={twJoin(
+                          'block truncate',
+                          selected ? 'font-medium' : 'font-normal',
+                        )}
                       >
                         {getValue(option)}
                       </span>
-                      {selected ? (
+
+                      {selected && (
                         <span
-                          className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                            active ? 'text-white' : 'text-primary'
-                          }`}
+                          className={twJoin(
+                            'absolute inset-y-0 left-0 flex items-center pl-3',
+                            active ? 'text-white' : 'text-primary',
+                          )}
                         >
-                          <IconCheck className='h-5 w-5' aria-hidden='true' />
+                          <IconCheck className='size-5' aria-hidden='true' />
                         </span>
-                      ) : null}
+                      )}
                     </>
                   )}
                 </HeadlessCombobox.Option>

@@ -10,7 +10,7 @@ export function PublishButton() {
   if (pathname?.includes('publicar')) return <></>
 
   return (
-    <Button as={Link} href='/publicar' size='sm' className='bg-main-gradient text-white'>
+    <Button as={Link} href='/publicar' size='sm' color='primary' className='bg-main-gradient'>
       Publicar
     </Button>
   )
