@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes'
 import { IconDarkTheme, IconLightTheme, IconSystemTheme } from '@/icons'
-import { Select, SelectItem } from '@nextui-org/react'
+import { Select, SelectItem } from '@nextui-org/select'
 import { useEffect, useState } from 'react'
 
 const themes = [

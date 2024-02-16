@@ -1,5 +1,5 @@
 'use client'
-import { Skeleton } from '@nextui-org/react'
+import { Skeleton } from '@nextui-org/skeleton'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
 import { memo, useCallback, useState } from 'react'
 

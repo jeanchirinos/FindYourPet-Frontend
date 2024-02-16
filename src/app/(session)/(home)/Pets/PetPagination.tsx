@@ -1,7 +1,7 @@
 'use client'
 import { LinkSearchParams } from '@/components/LinkSearchParams'
 import { IconBack, IconForward } from '@/icons'
-import { Pagination, PaginationItemRenderProps, PaginationItemType } from '@nextui-org/react'
+import { Pagination, PaginationItemRenderProps, PaginationItemType } from '@nextui-org/pagination'
 import { twJoin } from 'tailwind-merge'
 
 type Props = {
@@ -56,7 +56,7 @@ const renderItem = (props: PaginationItemRenderProps) => {
     return (
       <LinkSearchParams
         key={key}
-        aria-label='Página número'
+        aria-label={`Página ${page}`}
         searchParamKey='page'
         searchParamValue={page}
         className={className}
@@ -70,7 +70,7 @@ const renderItem = (props: PaginationItemRenderProps) => {
   return (
     <LinkSearchParams
       key={key}
-      itemRef={ref as any}
+      innerRef={ref as any}
       searchParamKey='page'
       searchParamValue={value}
       currentParam={activePage}

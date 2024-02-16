@@ -1,7 +1,7 @@
 'use client'
 
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/Popover'
-import { Tabs, Tab } from '@nextui-org/react'
+import { Tabs, Tab } from '@nextui-org/tabs'
 import { Google } from './Google'
 import { Login } from './Login'
 import { Register } from './Register'

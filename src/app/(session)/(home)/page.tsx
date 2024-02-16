@@ -6,7 +6,7 @@ import { Order } from './Order'
 import { FilterPlace } from './FilterPlace/FilterPlace'
 import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { FilterStatus } from './FilterStatus'
-import { Spinner } from '@nextui-org/react'
+import { Spinner } from '@nextui-org/spinner'
 
 type Props = { searchParams: TGetPetParams }
 

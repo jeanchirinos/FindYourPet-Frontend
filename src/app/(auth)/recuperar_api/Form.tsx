@@ -6,7 +6,9 @@ import Link from 'next/link'
 import { resetPassword } from '@/controllers/Auth'
 import { Button } from '@/components/Button'
 
-export function Form(props: { token?: string }) {
+type Props = { token?: string }
+
+export function Form(props: Props) {
   const { formAction, state } = useFormAction(resetPassword, { showSuccessToast: false })
 
   if (state.ok) {

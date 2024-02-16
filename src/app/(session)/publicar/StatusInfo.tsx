@@ -14,7 +14,7 @@ export async function StatusInfo() {
             value={item.id.toString()}
             className={twJoin(
               'flex w-full cursor-pointer items-center justify-center rounded-lg px-4 py-3 text-sm shadow-md focus:outline-none',
-              'aria-[checked=true]:bg-orange-100 aria-[checked=true]:text-orange-600',
+              'ui-checked:bg-orange-100 ui-checked:text-orange-600',
             )}
           >
             <RadioLabel as='p'>{item.value}</RadioLabel>

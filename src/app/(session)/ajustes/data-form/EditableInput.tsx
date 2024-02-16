@@ -72,6 +72,7 @@ function Content(props: Props) {
           innerRef={submitButtonRef}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
+          className='shrink-0'
         />
       )}
     </>

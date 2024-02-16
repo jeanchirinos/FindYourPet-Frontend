@@ -13,7 +13,7 @@ export function Providers(props: React.PropsWithChildren) {
         <Suspense>
           <AppProgressBar
             height='1.5px'
-            color='#FF813F'
+            color='hsl(var(--nextui-primary))'
             options={{ showSpinner: false }}
             shallowRouting
           />

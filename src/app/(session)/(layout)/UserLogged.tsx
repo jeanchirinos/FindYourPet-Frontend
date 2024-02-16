@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ERole, SessionLogged } from '@/models/Auth'
+import { SessionLogged } from '@/models/Auth'
 import { Menu, MenuContent, MenuItem, MenuTrigger } from '@/components/Menu'
 import { SubmitButton } from '@/components/SubmitButton'
 import { logout } from '@/controllers/Auth'
@@ -28,26 +28,20 @@ export function UserLogged(props: Props) {
           <span className='text-sm font-semibold'>{session.username}</span>
           <span className='text-xs'>{session.email}</span>
         </div>
-        <div className='ui-active:*:bg-foreground-100 flex flex-col'>
-          <MenuItem>
-            <Link href={`/perfil/${session.username}`} className='w-full px-4 py-2 text-sm'>
-              Perfil
-            </Link>
-          </MenuItem>
-
+        <div className='flex flex-col ui-active:*:bg-foreground-100'>
           <MenuItem>
             <Link href='/ajustes' className='w-full px-4 py-2 text-sm'>
               Ajustes
             </Link>
           </MenuItem>
 
-          {session.role === ERole.ADMIN && (
+          {/* {session.role === ERole.ADMIN && (
             <MenuItem>
               <Link href='#' className='w-full px-4 py-2 text-sm'>
                 Administrar
               </Link>
             </MenuItem>
-          )}
+          )} */}
 
           <form action={logout}>
             <SubmitButton className='w-full justify-start rounded-none bg-transparent px-4 py-0 text-sm text-inherit hover:bg-foreground-100'>

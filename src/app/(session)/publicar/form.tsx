@@ -1,6 +1,6 @@
 'use client'
 
-import { Textarea } from '@nextui-org/react'
+import { Textarea } from '@nextui-org/input'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Input } from '@/components/Input'
 import { useFormAction } from '@/hooks/useFormAction'

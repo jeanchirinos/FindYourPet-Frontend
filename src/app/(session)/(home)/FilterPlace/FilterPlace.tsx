@@ -1,6 +1,6 @@
 'use client'
 import { IconSearch } from '@/icons'
-import { Chip } from '@nextui-org/react'
+import { Chip } from '@nextui-org/chip'
 import { useFilterPlace } from './useFilterPlace'
 import { Combobox } from '@/components/Combobox'
 

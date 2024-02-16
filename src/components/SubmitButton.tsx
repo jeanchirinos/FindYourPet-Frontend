@@ -11,15 +11,8 @@ export function SubmitButton(props: Props) {
   const { children = 'Guardar', innerRef, ...otherProps } = props
 
   return (
-    <Button
-      type='submit'
-      aria-disabled={pending}
-      disabled={pending}
-      color='primary'
-      innerRef={innerRef}
-      {...otherProps}
-    >
-      {pending ? 'Cargando' : children}
+    <Button type='submit' isLoading={pending} color='primary' {...otherProps} innerRef={innerRef}>
+      {children}
     </Button>
   )
 }

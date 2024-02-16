@@ -1,5 +1,5 @@
 'use client'
-import { Input as NextUiInput } from '@nextui-org/react'
+import { Input as NextUiInput } from '@nextui-org/input'
 
 type Props = React.ComponentProps<typeof NextUiInput> & { innerRef?: React.Ref<HTMLInputElement> }
 
@@ -11,8 +11,6 @@ export function Input(props: Props) {
       {...componentProps}
       isRequired
       classNames={{
-        // inputWrapper: 'group-data-[focus-visible=true]:ring-transparent',
-        // bg-content2 group-data-[focus=true]:bg-content2
         label: 'after:hidden',
       }}
       ref={innerRef}

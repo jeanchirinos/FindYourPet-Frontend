@@ -4,15 +4,11 @@ import { Fragment, type ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export function Popover(props: ComponentProps<typeof HeadlessPopover>) {
-  return (
-    <HeadlessPopover {...props} className={twMerge('relative', props.className)}>
-      {props.children}
-    </HeadlessPopover>
-  )
+  return <HeadlessPopover {...props} className={twMerge('relative', props.className)} />
 }
 
 export function PopoverTrigger(props: ComponentProps<typeof HeadlessPopover.Button>) {
-  return <HeadlessPopover.Button {...props}>{props.children}</HeadlessPopover.Button>
+  return <HeadlessPopover.Button {...props} />
 }
 
 export function PopoverContent(props: ComponentProps<typeof HeadlessPopover.Panel>) {

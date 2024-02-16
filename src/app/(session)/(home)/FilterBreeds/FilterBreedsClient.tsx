@@ -1,5 +1,5 @@
 'use client'
-import { Chip } from '@nextui-org/react'
+import { Chip } from '@nextui-org/chip'
 import { Breed } from '@/models/Pet'
 import { useFilterBreedsClient } from './useFilterBreedsClient'
 import { Combobox } from '@/components/Combobox'

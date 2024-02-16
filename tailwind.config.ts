@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss'
-import { ThemeColors, nextui } from '@nextui-org/react'
+import { ThemeColors, nextui } from '@nextui-org/theme'
 import plugin from 'tailwindcss/plugin'
 
 const theme: Config['theme'] = {
@@ -9,7 +9,6 @@ const theme: Config['theme'] = {
       header_sticky: 'calc(var(--header-height) + 1.25rem)',
     },
     colors: {
-      primary: '#FD8F52',
       focus: '#FD8F52',
       // status colors
       search: '#79616F',
@@ -32,11 +31,19 @@ const nextuiPlugin = nextui({
   themes: {
     light: {
       colors: {
+        primary: {
+          DEFAULT: '#FD8F52',
+          foreground: '#FFFFFF',
+        },
         custom1: '#FFEDD9',
       } as CustomColors,
     },
     dark: {
       colors: {
+        primary: {
+          DEFAULT: '#FD8F52',
+          foreground: '#FFFFFF',
+        },
         custom1: '#2D2A26',
       } as CustomColors,
     },
@@ -98,6 +105,7 @@ const config: Config = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme,
+  darkMode: 'class',
   plugins: [
     nextuiPlugin,
     require('tailwindcss-animated'),
