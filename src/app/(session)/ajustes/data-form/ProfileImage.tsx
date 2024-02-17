@@ -66,7 +66,7 @@ export function ProfileImage(props: Props) {
           priority
         />
         <label className='absolute bottom-5 right-5'>
-          <div className='pointer-events-none absolute rounded-full bg-pink-500 p-1 text-2xl text-white'>
+          <div className='pointer-events-none absolute rounded-full bg-primary p-1 text-2xl text-white'>
             <BiSolidCamera />
           </div>
           <input

@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { SessionLogged } from '@/models/Auth'
+import { ERole, SessionLogged } from '@/models/Auth'
 import { Menu, MenuContent, MenuItem, MenuTrigger } from '@/components/Menu'
 import { SubmitButton } from '@/components/SubmitButton'
 import { logout } from '@/controllers/Auth'
-import { Notifications } from './Notifications'
+// import { Notifications } from './Notifications'
 
 type Props = { session: SessionLogged }
 
@@ -14,7 +14,7 @@ export function UserLogged(props: Props) {
   // RENDER
   return (
     <div className='flex items-center gap-x-4'>
-      <Notifications />
+      {/* <Notifications /> */}
       <Menu>
         <MenuTrigger className='flex items-center'>
           <Image
@@ -43,13 +43,13 @@ export function UserLogged(props: Props) {
               </Link>
             </MenuItem>
 
-            {/* {session.role === ERole.ADMIN && (
+            {session.role === ERole.ADMIN && (
               <MenuItem>
-                <Link href='#' className='w-full px-4 py-2 text-sm'>
+                <Link href='/administrar/publicaciones' className='w-full px-4 py-2 text-sm'>
                   Administrar
                 </Link>
               </MenuItem>
-            )} */}
+            )}
 
             <form action={logout}>
               <SubmitButton className='w-full justify-start rounded-none bg-transparent px-4 py-0 text-sm text-inherit hover:bg-foreground-100'>

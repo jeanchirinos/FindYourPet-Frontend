@@ -9,6 +9,8 @@ import { ContactNumber } from './contactNumber'
 import { twJoin } from 'tailwind-merge'
 import { Metadata } from 'next'
 import { Image } from '@/components/Image'
+import { Button } from '@/components/Button'
+import Link from 'next/link'
 
 type Props = PageProps<'id'>
 
@@ -49,7 +51,7 @@ async function Content(props: { petId: string }) {
   return (
     <div className='mx-auto w-[1600px] max-w-full space-y-10 px-2'>
       <section className='flex gap-x-10 gap-y-2 max-md:flex-col'>
-        <picture className='relative max-h-full min-h-80 shrink-0 overflow-hidden rounded-md md:w-[45%]'>
+        <picture className='relative max-h-full min-h-80 shrink-0 animate-fade-up overflow-hidden rounded-md animate-duration-300 md:min-h-[34rem] md:w-[45%]'>
           <Image
             src={pet.image}
             width={pet.image_width || 500}
@@ -60,23 +62,16 @@ async function Content(props: { petId: string }) {
           />
         </picture>
         <div className='flex grow flex-col gap-y-4'>
-          {/* <p>Te pareció haberlo visto ?</p> */}
-
           <PetStatusTag pet={{ ...pet, status_name: 'Estado' }} />
-          <div className='h-80 grow overflow-hidden rounded-md md:h-60 2xl:h-80'>
+          {/* <div className='h-80 grow overflow-hidden rounded-md md:h-60 2xl:h-80'>
             <Skeleton className='size-full' />
-          </div>
-          <section className='max-h-60 overflow-y-auto rounded-md bg-foreground-200 p-2 '>
-            <h3>Descripción</h3>
+          </div> */}
+          <section className='max-h-60 space-y-2.5 overflow-y-auto rounded-md bg-foreground-200 p-2'>
+            <h3 className='font-bold'>Descripción</h3>
             <p>{pet.description}</p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat nisi quos harum.
-              Facere, distinctio autem, fugit aliquam ab accusantium dolorem exercitationem optio
-              eos labore ullam est iste commodi! Eveniet, culpa.
-            </p>
           </section>
-          <section className='space-y-2 rounded-md bg-foreground-200 p-2'>
-            <h3>Contacto</h3>
+          <section className='space-y-2.5 rounded-md bg-foreground-200 p-2'>
+            <h3 className='font-bold'>Contacto</h3>
 
             <div className='flex flex-col gap-y-1'>
               <p>Usuario</p>

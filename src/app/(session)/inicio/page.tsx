@@ -1,12 +1,11 @@
 import { Image } from '@/components/Image'
 import ImgHeroImage from '@/public/img/inicio/hero-image.webp'
 import SvgVercel from '@/public/img/inicio/vercel.svg'
-import SvgFind from '@/public/img/general/find.svg'
-import SvgAlert from '@/public/img/general/alert.svg'
-import SvgAdopt from '@/public/img/general/adopt.svg'
+
 import { Button } from '@/components/Button'
 import Link from 'next/link'
 import { IconForward } from '@/icons'
+import { Services } from './services'
 
 export default function Page() {
   return (
@@ -45,41 +44,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className='mx-auto flex w-[1600px] max-w-full flex-wrap items-center justify-around gap-10 py-16'>
-        <article className='flex flex-col items-center gap-y-2'>
-          <picture className='flex rounded-full bg-search p-7 text-white'>
-            <SvgFind className='w-20' />
-          </picture>
-          <h2 className='text-xl font-bold text-search'>Encuentra</h2>
-          <p className='max-w-[35ch]'>
-            Perdiste a tu mascota y buscas reunirte con ella. Publica detalles sobre tu amigo peludo
-            y recibe ayuda de la comunidad para encontrarlo.
-          </p>
-        </article>
-
-        <article className='flex flex-col items-center gap-y-2'>
-          <picture className='flex rounded-full bg-lost p-7 text-white'>
-            <SvgAlert className='w-20' />
-          </picture>
-          <h2 className='text-xl font-bold text-lost'>Reporta</h2>
-          <p className='max-w-[35ch]'>
-            Encontraste a un animal en la calle que parece tener dueño. Ayuda a reunirlo con su
-            familia publicando detalles sobre el hallazgo.
-          </p>
-        </article>
-
-        <article className='flex flex-col items-center gap-y-2'>
-          <picture className='flex rounded-full bg-adopt p-7 text-white'>
-            <SvgAdopt className='w-20' />
-          </picture>
-          <h2 className='text-xl font-bold text-adopt'>Adopta</h2>
-          <p className='max-w-[35ch]'>
-            Buscas un hogar amoroso para un animalito que necesite adopción. Publica detalles sobre
-            él para encontrarle un nuevo y cariñoso dueño.
-          </p>
-        </article>
-      </section>
-
+      <Services />
       <footer className='px-2 pt-16'>
         <a
           href='https://vercel.com/'
@@ -90,6 +55,17 @@ export default function Page() {
           <p>Desplegado en</p>
           <SvgVercel className='w-20' />
         </a>
+
+        <p className='pt-5 text-center text-foreground-600'>
+          Desarrollado por{' '}
+          <a href='https://rafaellafernandez.vercel.app/' target='_blank' rel='noreferrer'>
+            Rafaella F.
+          </a>{' '}
+          y{' '}
+          <a href='https://jeanchirinos.vercel.app/' target='_blank' rel='noreferrer'>
+            Jean C.
+          </a>
+        </p>
       </footer>
     </main>
   )
