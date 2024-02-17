@@ -17,6 +17,7 @@ export default function Page() {
             src={ImgHeroImage}
             alt='Animales'
             className='max-h-60 w-auto animate-appearance-in lg:max-h-[30rem]'
+            priority
           />
 
           <div className='space-y-5'>
