@@ -21,6 +21,7 @@ export function FilterPlace() {
         icon={IconSearch}
         itemKeyId='code'
         itemKeyValue='tag.long'
+        placeholder='Ubicación'
       />
 
       <div className='flex h-7 gap-x-2.5'>

@@ -14,6 +14,7 @@ type Props = Omit<React.ComponentProps<typeof HeadlessCombobox>, 'multiple'> & {
   multiple?: boolean
   itemKeyId?: string
   itemKeyValue?: string
+  placeholder?: string
 }
 
 export function Combobox(props: Props) {
@@ -25,6 +26,7 @@ export function Combobox(props: Props) {
     icon,
     itemKeyId = 'id',
     itemKeyValue,
+    placeholder = 'Buscar',
     ...restProps
   } = props
 
@@ -48,9 +50,9 @@ export function Combobox(props: Props) {
     <>
       <HeadlessCombobox.Input
         className='w-full rounded-lg border-none bg-default-100 py-2 pl-3 pr-10 text-sm leading-5 focus:outline-none'
-        placeholder='Raza'
         onChange={e => setQuery(e.target.value)}
         value={query}
+        placeholder={placeholder}
       />
       <div className='absolute inset-y-0 right-0 flex items-center pr-2'>
         <Icon className='size-5 text-gray-400' aria-hidden='true' />

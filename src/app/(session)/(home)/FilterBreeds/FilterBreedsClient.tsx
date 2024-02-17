@@ -20,6 +20,7 @@ export function FilterBreedsClient(props: Props) {
         query={query}
         setQuery={setQuery}
         multiple
+        placeholder='Raza'
       />
 
       {selectedBreeds.length > 0 && (

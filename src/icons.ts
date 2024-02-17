@@ -10,5 +10,6 @@ export {
   IoIosArrowBack as IconBack,
   IoIosArrowForward as IconForward,
   IoMdCheckmarkCircle as IconCheckFilled,
+  IoIosNotificationsOutline as IconNotification,
 } from 'react-icons/io'
 export { MdOutlinePets as IconPet } from 'react-icons/md'
