@@ -2,7 +2,6 @@
 
 import { Textarea } from '@nextui-org/input'
 import { SubmitButton } from '@/components/SubmitButton'
-import { Input } from '@/components/Input'
 import { useFormAction } from '@/hooks/useFormAction'
 import { createPet } from '@/controllers/Pet'
 import confetti from 'canvas-confetti'
@@ -89,10 +88,10 @@ export function Form(props: Props) {
         <section className='flex w-[400px] max-w-full shrink-0 flex-col gap-y-3'>
           {props.StatusInfoComponent}
           <Textarea name='description' label='Descripción' isRequired />
-          <Input label='Ubicación' name='location' defaultValue='' className='hidden' />
           {props.CategoryComponent}
           {props.PlaceComponent}
 
+          <input type='text' defaultValue='' name='location' hidden />
           <input type='text' defaultValue='1' name='plan' hidden />
           <SubmitButton isDisabled={!session}>Publicar</SubmitButton>
         </section>
