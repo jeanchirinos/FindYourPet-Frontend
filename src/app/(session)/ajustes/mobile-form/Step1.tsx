@@ -19,12 +19,12 @@ export function Step1(props: Props) {
 
   // FUNCTIONS
   async function handleMobileFormAction() {
-    // const res = await updateMobile({ mobile: currentMobile })
+    const res = await updateMobile({ mobile: currentMobile })
 
-    // if (res.ok) {
-    //   setSecondsToResend(res.data.seconds)
-    nextStep()
-    // }
+    if (res.ok) {
+      setSecondsToResend(res.data.seconds)
+      nextStep()
+    }
   }
 
   return (
