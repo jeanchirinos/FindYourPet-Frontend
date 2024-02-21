@@ -1,21 +1,17 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState, useEffect, useRef } from 'react'
+import { Fragment, useState } from 'react'
 
 interface Props extends React.PropsWithChildren {
   modal: UseModal
-  preventClose?: boolean
-  onExitComplete?(): void
 }
 
 export function Modal(props: Props) {
-  const { modal, children, preventClose, onExitComplete } = props
+  const { modal, children } = props
   const { isOpen, close } = modal
 
-  const onClose = preventClose ? () => {} : close
-
   return (
-    <Transition appear show={isOpen} as={Fragment}>
-      <Dialog onClose={onClose}>
+    <Transition show={isOpen} as={Fragment}>
+      <Dialog onClose={() => close()}>
         <Transition.Child
           as={Fragment}
           enter='ease-out duration-300'
@@ -25,7 +21,6 @@ export function Modal(props: Props) {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          {/* bg-black/25 */}
           <div className='fixed inset-0 z-50 bg-black/25' />
         </Transition.Child>
 
@@ -40,7 +35,7 @@ export function Modal(props: Props) {
             leaveTo='opacity-0 scale-95'
           >
             <Dialog.Panel className='max-h-full overflow-y-auto rounded-2xl bg-custom1 p-6 shadow-xl'>
-              <Child onExitComplete={onExitComplete}>{children}</Child>
+              {children}
             </Dialog.Panel>
           </Transition.Child>
         </div>
@@ -49,31 +44,8 @@ export function Modal(props: Props) {
   )
 }
 
-function Child(props: React.PropsWithChildren<{ onExitComplete?(): void }>) {
-  const { onExitComplete } = props
-
-  const firstRender = useRef(true)
-  const altRender = useRef(true)
-
-  useEffect(() => {
-    return () => {
-      if (firstRender.current) {
-        firstRender.current = false
-      } else {
-        if (altRender.current) {
-          onExitComplete?.()
-        }
-
-        altRender.current = false
-      }
-    }
-  }, [onExitComplete])
-
-  return props.children
-}
-
 // HOOK
-export function useModal() {
+export function useModal({ onClose }: { onClose?: () => void } = {}) {
   const [isOpen, setIsOpen] = useState(false)
 
   function open() {
@@ -82,6 +54,7 @@ export function useModal() {
 
   function close() {
     setIsOpen(false)
+    onClose?.()
   }
 
   return { isOpen, open, close }

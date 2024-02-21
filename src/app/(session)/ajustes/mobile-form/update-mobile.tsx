@@ -30,7 +30,7 @@ export function MobileForm(props: Props) {
   } = useAutoInput({ initialValue: initialMobile })
 
   // HOOKS
-  const updateMobileModal = useModal()
+  const updateMobileModal = useModal({ onClose: handleCloseModal })
 
   const useStepsHook = useSteps()
   const { currentStep, resetSteps } = useStepsHook
@@ -100,7 +100,7 @@ export function MobileForm(props: Props) {
         )}
       </form>
 
-      <Modal modal={updateMobileModal} onExitComplete={handleCloseModal}>
+      <Modal modal={updateMobileModal}>
         {currentStep === 1 && (
           <Step1
             useStepsHook={useStepsHook}
@@ -114,7 +114,7 @@ export function MobileForm(props: Props) {
           <Step2
             modal={updateMobileModal}
             secondsToResend={secondsToResend}
-            setIsEditable={setInputIsEditable}
+            setInputIsEditable={setInputIsEditable}
             currentMobile={currentValue}
           />
         )}

@@ -26,6 +26,9 @@ dependencies:
   framer-motion:
     specifier: ^11.0.5
     version: 11.0.5(react-dom@18.2.0)(react@18.2.0)
+  input-otp:
+    specifier: 0.3.2-beta
+    version: 0.3.2-beta(react-dom@18.2.0)(react@18.2.0)
   million:
     specifier: ^3.0.3
     version: 3.0.3
@@ -6721,6 +6724,16 @@ packages:
   /inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: true
+
+  /input-otp@0.3.2-beta(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-sUnAxAnA9OBa2Dufos8sjrPx6RgornayP8w8hJn2YWmesvet0PI5p8XSdsfN7d5iKRPM+1/KkLynHHn+NUQ1/g==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /internal-slot@1.0.6:
     resolution: {integrity: sha512-Xj6dv+PsbtwyPpEflsejS+oIZxmMlV44zAhG479uYu89MsjcYOhCFnNyKrkJrihbsiasQyY0afoCl/9BLR65bg==}

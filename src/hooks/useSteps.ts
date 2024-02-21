@@ -4,11 +4,11 @@ export function useSteps() {
   const [currentStep, setCurrentStep] = useState(1)
 
   function nextStep() {
-    setCurrentStep(currentStep + 1)
+    setCurrentStep(prev => prev + 1)
   }
 
   function prevStep() {
-    setCurrentStep(currentStep - 1)
+    setCurrentStep(prev => prev - 1)
   }
 
   function resetSteps() {
