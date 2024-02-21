@@ -118,6 +118,5 @@ export async function createPet(prevState: any, data: FormData) {
     schema,
     body: data,
     revalidateTagParams: ['pet'],
-    auth: false,
   })
 }

@@ -80,10 +80,7 @@ export function Form(props: Props) {
         </div>
       )}
 
-      <form
-        action={session ? formAction : () => {}}
-        className='flex items-center gap-4 max-md:flex-col md:items-start'
-      >
+      <form action={formAction} className='flex items-center gap-4 max-md:flex-col md:items-start'>
         <PetImage />
         <section className='flex w-[400px] max-w-full shrink-0 flex-col gap-y-3'>
           {props.StatusInfoComponent}
