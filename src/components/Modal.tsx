@@ -1,17 +1,21 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect, useRef } from 'react'
 
 interface Props extends React.PropsWithChildren {
   modal: UseModal
+  preventCloseOnBackdrop?: boolean
+  onExitComplete?(): void
 }
 
 export function Modal(props: Props) {
-  const { modal, children } = props
+  const { modal, children, preventCloseOnBackdrop: preventClose, onExitComplete } = props
   const { isOpen, close } = modal
 
+  const onClose = preventClose ? () => {} : close
+
   return (
-    <Transition show={isOpen} as={Fragment}>
-      <Dialog onClose={() => close()}>
+    <Transition appear show={isOpen} as={Fragment}>
+      <Dialog onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter='ease-out duration-300'
@@ -35,7 +39,9 @@ export function Modal(props: Props) {
             leaveTo='opacity-0 scale-95'
           >
             <Dialog.Panel className='max-h-full overflow-y-auto rounded-2xl bg-custom1 p-6 shadow-xl'>
-              {children}
+              <Child isOpen={isOpen} onExitComplete={onExitComplete}>
+                {children}
+              </Child>
             </Dialog.Panel>
           </Transition.Child>
         </div>
@@ -44,8 +50,23 @@ export function Modal(props: Props) {
   )
 }
 
+function Child(props: React.PropsWithChildren<{ isOpen: boolean; onExitComplete?: () => void }>) {
+  const { isOpen, onExitComplete } = props
+
+  const alreadyExited = useRef(false)
+
+  useEffect(() => {
+    if (!isOpen && !alreadyExited.current) {
+      onExitComplete?.()
+      alreadyExited.current = true
+    }
+  }, [onExitComplete, isOpen])
+
+  return props.children
+}
+
 // HOOK
-export function useModal({ onClose }: { onClose?: () => void } = {}) {
+export function useModal() {
   const [isOpen, setIsOpen] = useState(false)
 
   function open() {
@@ -54,7 +75,6 @@ export function useModal({ onClose }: { onClose?: () => void } = {}) {
 
   function close() {
     setIsOpen(false)
-    onClose?.()
   }
 
   return { isOpen, open, close }
