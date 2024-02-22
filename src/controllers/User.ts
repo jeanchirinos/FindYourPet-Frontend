@@ -3,7 +3,6 @@
 import { User } from '@/models/User'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
 import { notAuthorized } from '@/utilities/utilities'
-import { notFound } from 'next/navigation'
 import { z } from 'zod'
 
 export async function updateUserImageProfile(formData: FormData) {
@@ -81,18 +80,6 @@ export async function getUser() {
     return data
   } catch (err) {
     return notAuthorized()
-  }
-}
-
-export async function getUserProfile(username: string) {
-  try {
-    const data = await actionRequestGet<{ data: User }>(`user?username=${username}`, {
-      cache: 'no-store',
-    })
-
-    return data.data
-  } catch (err) {
-    notFound()
   }
 }
 

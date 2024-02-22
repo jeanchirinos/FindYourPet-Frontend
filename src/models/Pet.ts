@@ -41,26 +41,6 @@ export type Pet = {
   } | null
 }
 
-export type PetPaginate = {
-  current_page: number
-  data: Pet[]
-  first_page_url: string
-  from: number
-  last_page: number
-  last_page_url: string
-  links: {
-    url: string | null
-    label: string
-    active: boolean
-  }[]
-  next_page_url: string
-  path: string
-  per_page: number
-  prev_page_url: null
-  to: number
-  total: number
-}
-
 export type Category = {
   id: number
   name: string

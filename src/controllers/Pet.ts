@@ -1,6 +1,7 @@
 'use server'
 
-import { BreedsData, Category, Pet, PetPaginate, StatusList } from '@/models/Pet'
+import { BreedsData, Category, Pet, StatusList } from '@/models/Pet'
+import { Paginate } from '@/models/Post'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
 import { getApiUrl } from '@/utilities/request'
 import { notFound } from 'next/navigation'
@@ -45,7 +46,7 @@ export async function getPets(params: TGetPetParams) {
   city && url.searchParams.set('city', city)
   district && url.searchParams.set('district', district)
 
-  const data = await actionRequestGet<PetPaginate>(url, {
+  const data = await actionRequestGet<Paginate<Pet>>(url, {
     cache: 'no-store',
     next: {
       tags: ['pet'],

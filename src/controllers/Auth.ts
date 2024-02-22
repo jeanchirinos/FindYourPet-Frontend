@@ -1,8 +1,8 @@
 'use server'
 import { SessionLogged } from '@/models/Auth'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
-import { cookies } from 'next/headers'
-import { notFound } from 'next/navigation'
+import { cookies, headers } from 'next/headers'
+import { notFound, redirect } from 'next/navigation'
 import { z } from 'zod'
 
 export async function register(formData: FormData) {
@@ -38,6 +38,10 @@ export async function login(formData: FormData) {
     expires.setDate(expires.getDate() + 7)
 
     cookies().set('jwt', data.token, { expires })
+
+    if (headers().get('referer')?.includes('/inicio')) {
+      redirect('/')
+    }
   }
 
   return sendData({

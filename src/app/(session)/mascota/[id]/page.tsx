@@ -2,15 +2,15 @@ import { Suspense } from '@/components/other/CustomSuspense'
 import { getPetById } from '@/controllers/Pet'
 import { PageProps } from '@/types'
 // import PetMap from './map'
-import { Skeleton } from '@nextui-org/skeleton'
+// import { Skeleton } from '@nextui-org/skeleton'
 import { PetStatusTag } from '@/components/business/PetStatusTag'
 import { PetCard } from '../../(home)/Pets/PetCard'
 import { ContactNumber } from './contactNumber'
 import { twJoin } from 'tailwind-merge'
 import { Metadata } from 'next'
 import { Image } from '@/components/Image'
-import { Button } from '@/components/Button'
-import Link from 'next/link'
+// import { Button } from '@/components/Button'
+// import Link from 'next/link'
 
 type Props = PageProps<'id'>
 

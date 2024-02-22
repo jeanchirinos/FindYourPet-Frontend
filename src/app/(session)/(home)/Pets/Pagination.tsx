@@ -1,7 +1,11 @@
 'use client'
 import { LinkSearchParams } from '@/components/LinkSearchParams'
 import { IconBack, IconForward } from '@/icons'
-import { Pagination, PaginationItemRenderProps, PaginationItemType } from '@nextui-org/pagination'
+import {
+  Pagination as NextUiPagination,
+  PaginationItemRenderProps,
+  PaginationItemType,
+} from '@nextui-org/pagination'
 import { twJoin } from 'tailwind-merge'
 
 type Props = {
@@ -9,7 +13,7 @@ type Props = {
   numberOfPages: number
 }
 
-export function PetPagination(props: Props) {
+export function Pagination(props: Props) {
   const { currentPage, numberOfPages } = props
 
   if (numberOfPages === 1) return null
@@ -25,7 +29,7 @@ export function PetPagination(props: Props) {
       >
         <IconBack />
       </LinkSearchParams>
-      <Pagination
+      <NextUiPagination
         total={numberOfPages}
         initialPage={Number(currentPage)}
         className='m-0 max-w-full p-0'
