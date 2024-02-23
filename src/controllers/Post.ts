@@ -1,7 +1,10 @@
+'use server'
+
 import { Paginate, Post } from '@/models/Post'
-import { actionRequestGet } from '@/utilities/actionRequest'
+import { actionRequestGet, sendData } from '@/utilities/actionRequest'
 import { getApiUrl } from '@/utilities/request'
 import { notFound } from 'next/navigation'
+import { z } from 'zod'
 
 export type TGetPetParams = Partial<{
   page: string
@@ -35,4 +38,17 @@ export async function getPosts(params: TGetPetParams) {
   }
 
   return data
+}
+
+export async function deletePost(prevState: any, formData: FormData) {
+  const schema = z.object({
+    id: z.string(),
+  })
+
+  return sendData({
+    url: 'delete-post',
+    schema,
+    body: formData,
+    revalidateTagParams: ['post'],
+  })
 }

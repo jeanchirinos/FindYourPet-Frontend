@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss'
-import { ThemeColors, nextui } from '@nextui-org/theme'
+import { ThemeColors, nextui } from '@nextui-org/react'
 import plugin from 'tailwindcss/plugin'
 
 const theme: Config['theme'] = {

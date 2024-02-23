@@ -26,33 +26,27 @@ export function UserLogged(props: Props) {
             loading='eager'
           />
         </MenuTrigger>
-        <MenuContent className='right-0 flex flex-col overflow-hidden rounded-md bg-content1 shadow-small'>
+        <MenuContent className='right-0'>
           <div className='flex flex-col border-b border-content2 px-4 py-2'>
-            <span className='text-sm font-semibold'>{session.username}</span>
+            <span className='font-semibold'>{session.username}</span>
             <span className='text-xs'>{session.email}</span>
           </div>
-          <div className='flex flex-col ui-active:*:bg-foreground-100'>
+          <div className='flex flex-col any-*-[a]:w-full any-*-[a]:px-4 any-*-[a]:py-2'>
             <MenuItem>
-              <Link href='/publicaciones' className='w-full px-4 py-2 text-sm'>
-                Mis publicaciones
-              </Link>
+              <Link href='/publicaciones'>Mis publicaciones</Link>
             </MenuItem>
             <MenuItem>
-              <Link href='/ajustes' className='w-full px-4 py-2 text-sm'>
-                Ajustes
-              </Link>
+              <Link href='/ajustes'>Ajustes</Link>
             </MenuItem>
 
             {session.role === ERole.ADMIN && (
               <MenuItem>
-                <Link href='/administrar/publicaciones' className='w-full px-4 py-2 text-sm'>
-                  Administrar
-                </Link>
+                <Link href='/administrar/publicaciones'>Administrar</Link>
               </MenuItem>
             )}
 
             <form action={logout}>
-              <SubmitButton className='w-full justify-start rounded-none bg-transparent px-4 py-0 text-sm text-inherit hover:bg-foreground-100'>
+              <SubmitButton className='w-full justify-start rounded-none bg-transparent text-inherit hover:bg-foreground-100'>
                 Cerrar sesión
               </SubmitButton>
             </form>

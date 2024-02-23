@@ -23,7 +23,10 @@ export function MenuContent(props: ComponentProps<typeof HeadlessMenu.Items>) {
     >
       <HeadlessMenu.Items
         {...props}
-        className={twMerge('absolute mt-1 rounded-md', props.className)}
+        className={twMerge(
+          'absolute mt-1 flex flex-col overflow-hidden rounded-md bg-content1 text-sm shadow-small',
+          props.className,
+        )}
       >
         {props.children}
       </HeadlessMenu.Items>
@@ -32,5 +35,10 @@ export function MenuContent(props: ComponentProps<typeof HeadlessMenu.Items>) {
 }
 
 export function MenuItem(props: ComponentProps<typeof HeadlessMenu.Item>) {
-  return <HeadlessMenu.Item {...props} />
+  return (
+    <HeadlessMenu.Item
+      {...props}
+      className={twMerge('ui-active:bg-foreground-100', props.className)}
+    />
+  )
 }

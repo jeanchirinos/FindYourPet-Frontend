@@ -4,8 +4,13 @@ import { TGetPetParams } from '@/controllers/Post'
 import { Spinner } from '@nextui-org/spinner'
 import { PostsList } from './Posts/PostList'
 import { Order } from '../(home)/Order'
+import { Metadata } from 'next'
 
 type Props = { searchParams: TGetPetParams }
+
+export const metadata: Metadata = {
+  title: 'Mis publicaciones',
+}
 
 export default function Page(props: Props) {
   const { searchParams } = props

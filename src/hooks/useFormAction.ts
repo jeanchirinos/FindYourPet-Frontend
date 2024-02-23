@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { useFormState } from 'react-dom'
 
@@ -22,15 +22,23 @@ export function useFormAction(action: any, options?: Options) {
   // STATES
   const [state, setState] = useState(initialState)
 
+  const stateChangedRef = useRef(false)
+
   // EFFECTS
   useEffect(() => {
     setState(stateAction)
+
+    if (stateAction.ok !== null) stateChangedRef.current = true
   }, [stateAction])
 
   useEffect(() => {
     const { ok, msg } = state
 
     if (ok === null) return
+
+    if (!stateChangedRef.current) return
+
+    stateChangedRef.current = false
 
     if (ok) {
       onSuccess?.()
@@ -45,7 +53,7 @@ export function useFormAction(action: any, options?: Options) {
         toast.error(msg)
       }
     }
-  }, [state, onSuccess, onError, showSuccessToast, showErrorToast])
+  }, [state, onSuccess, showSuccessToast, onError, showErrorToast])
 
   return { state, setState, formAction }
 }

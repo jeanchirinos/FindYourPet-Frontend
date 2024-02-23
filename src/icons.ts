@@ -1,4 +1,5 @@
 export { AiOutlineSearch as IconSearch } from 'react-icons/ai'
+export { FaCircle as IconCircle } from 'react-icons/fa'
 export { FcGoogle as IconGoogle } from 'react-icons/fc'
 export { GoChevronDown as IconArrowDown, GoCheck as IconCheck } from 'react-icons/go'
 export {
@@ -14,3 +15,4 @@ export {
 } from 'react-icons/io'
 export { IoPerson as IconUser } from 'react-icons/io5'
 export { MdOutlinePets as IconPet } from 'react-icons/md'
+export { SlOptionsVertical as IconOptions } from 'react-icons/sl'
