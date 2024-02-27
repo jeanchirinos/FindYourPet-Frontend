@@ -4,7 +4,6 @@ import { Toaster as SonnerToaster } from 'sonner'
 export function Toaster() {
   const { theme } = useTheme()
 
-  // 1.4.1 has a bug
   return (
     <SonnerToaster
       richColors

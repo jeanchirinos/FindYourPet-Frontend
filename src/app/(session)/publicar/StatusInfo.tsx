@@ -1,6 +1,6 @@
 import { getStatusList } from '@/controllers/Pet'
 import { twJoin } from 'tailwind-merge'
-import { RadioItem } from '@/components/CustomRadioGroup'
+import { RadioItem } from '@/components/RadioItem'
 
 export async function StatusInfo(props: { status: string | number | undefined }) {
   const statusList = await getStatusList()
