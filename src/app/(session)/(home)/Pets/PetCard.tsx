@@ -44,7 +44,7 @@ export function PetCard(props: Props) {
             />
             <span>{pet.breed.name}</span>
           </div>
-          {isEditable && <PetOptions />}
+          {isEditable && <PetOptions pet={pet} />}
         </section>
         <section className='flex gap-x-1.5 text-sm'>
           <HiOutlineLocationMarker />

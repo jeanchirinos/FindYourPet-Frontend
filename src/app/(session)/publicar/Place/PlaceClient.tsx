@@ -4,12 +4,24 @@ import { useState } from 'react'
 import { getPlaces } from '@/controllers/Place'
 import { SelectNative } from '@/components/Select/SelectNative'
 
-export function PlaceClient(props: { places: Awaited<ReturnType<typeof getPlaces>> }) {
-  const { departamentos, provincias, distritos } = props.places
+export function PlaceClient(props: {
+  places: Awaited<ReturnType<typeof getPlaces>>
+  initialData?: {
+    estate: string
+    city: string
+    district: string
+  }
+}) {
+  const { places, initialData } = props
+  const { departamentos, provincias, distritos } = places
 
   // STATES
-  const [selectedDepartamento, setSelectedDepartamento] = useState<undefined | string>('D-14')
-  const [selectedProvincia, setSelectedProvincia] = useState<undefined | string>('P-135')
+  const [selectedDepartamento, setSelectedDepartamento] = useState<undefined | string>(
+    initialData?.estate ?? 'D-14',
+  )
+  const [selectedProvincia, setSelectedProvincia] = useState<undefined | string>(
+    initialData?.city ?? 'P-135',
+  )
 
   // VALUES
   const provinciasList = selectedDepartamento
@@ -50,6 +62,7 @@ export function PlaceClient(props: { places: Awaited<ReturnType<typeof getPlaces
         optionKeyValue='code'
         optionKeyText='name'
         label='Distrito'
+        defaultValue={initialData?.district}
       />
     </>
   )

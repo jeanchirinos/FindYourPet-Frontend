@@ -18,12 +18,12 @@
     ".eslintrc.json": true,
     ".prettierrc.json": true,
     "pnpm-lock.yaml": true,
-    "node_modules": true,
     "src/app/opengraph-image.png": true,
     "src/app/favicon.ico": true,
     "postcss.config.js": true,
     ".npmrc": true,
-    ".next": true
+    ".next": true,
+    "node_modules": true
   },
   "hide-files.files": [
     "README.md",
@@ -32,12 +32,12 @@
     ".eslintrc.json",
     ".prettierrc.json",
     "pnpm-lock.yaml",
-    "node_modules",
     "src/app/opengraph-image.png",
     "src/app/favicon.ico",
     "postcss.config.js",
     ".npmrc",
-    ".next"
+    ".next",
+    "node_modules"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {

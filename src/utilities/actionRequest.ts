@@ -101,6 +101,7 @@ export async function sendData<Response>(params: Params<Response>) {
 
         return { ok: false, msg: message, data: undefined } as const
       }
+
       return { ok: false, msg: 'Error en la validación de datos', data: undefined } as const
     }
   }

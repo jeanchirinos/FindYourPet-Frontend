@@ -121,3 +121,41 @@ export async function createPet(prevState: any, data: FormData) {
     revalidateTagParams: ['pet'],
   })
 }
+
+export async function updatePet(prevState: any, data: FormData) {
+  const imageFile = data.get('image') as File
+
+  if (imageFile.size === 0) {
+    data.delete('image')
+  }
+
+  const schema = z.object({
+    id: z.string(),
+    image: z.optional(
+      z
+        .any()
+        .refine(
+          file => file.size <= MAX_FILE_SIZE && file.size > 0,
+          `El peso de la imagen debe ser mayor a 0MB y menor a 1MB.`,
+        )
+        .refine(
+          file => ACCEPTED_IMAGE_TYPES.includes(file.type),
+          'Solo se permiten .jpg, .jpeg, .png and .webp',
+        ),
+    ),
+    description: z.string(),
+    estate: z.string(),
+    city: z.string(),
+    district: z.string(),
+    location: z.string(),
+    status: z.string(),
+    plan: z.string(),
+  })
+
+  return sendData({
+    url: 'pet-update',
+    schema,
+    body: data,
+    revalidateTagParams: ['post'],
+  })
+}

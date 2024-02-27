@@ -56,7 +56,7 @@ export function SelectNative(props: React.ComponentProps<'select'> & SelectProps
       {label && (
         <label
           className={twMerge(
-            'pointer-events-none absolute top-1 ml-2.5 text-xs text-foreground-600',
+            'pointer-events-none absolute top-1 ml-2.5 text-xs text-foreground-500',
             classNames?.label,
           )}
         >
