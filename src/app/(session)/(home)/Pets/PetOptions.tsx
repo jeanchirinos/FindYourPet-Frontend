@@ -1,8 +1,7 @@
 'use client'
 
 import { IconOptions } from '@/icons'
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown'
-import { Button, ButtonWithRef } from '@/components/Button'
+import { DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown'
 import { Modal, UseModal, useModal } from '@/components/Modal'
 import { useFormAction } from '@/hooks/useFormAction'
 import { deletePost } from '@/controllers/Post'
@@ -10,6 +9,8 @@ import { SubmitButton } from '@/components/SubmitButton'
 import Link from 'next/link'
 import { Pet } from '@/models/Pet'
 import { Image } from '@/components/Image'
+import { Dropdown } from '@/components/Dropdown'
+import { Button } from '@nextui-org/button'
 
 export function PetOptions(props: { pet: Pet }) {
   const deleteModal = useModal()
@@ -23,9 +24,9 @@ export function PetOptions(props: { pet: Pet }) {
         }}
       >
         <DropdownTrigger>
-          <ButtonWithRef size='sm' variant='light' className='min-w-fit'>
+          <Button size='sm' variant='light' className='min-w-fit'>
             <IconOptions size={20} />
-          </ButtonWithRef>
+          </Button>
         </DropdownTrigger>
         <DropdownMenu
           aria-label='Opciones'
