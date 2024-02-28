@@ -20,12 +20,7 @@ export function Login() {
         onChange={e => setCurrentEmail(e.target.value)}
       />
       <Input type='password' name='password' label='Contraseña' minLength={8} />
-      <Link
-        href={`/recuperar?email=${currentEmail}`}
-        target='_blank'
-        rel='noreferrer'
-        className='mx-auto'
-      >
+      <Link href={`/recuperar?email=${currentEmail}`} className='mx-auto'>
         ¿Olvidaste tu contraseña?
       </Link>
       <SubmitButton>Ingresar</SubmitButton>

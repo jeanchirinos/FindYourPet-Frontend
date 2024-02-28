@@ -32,7 +32,7 @@ function Content() {
             <p className='text-foreground-600'>Revisa tu correo para restablecer tu contraseña</p>
           </section>
 
-          <Button as={Link} replace href='/' color='primary'>
+          <Button as={Link} href='/' color='primary'>
             Ir a inicio
           </Button>
         </div>
