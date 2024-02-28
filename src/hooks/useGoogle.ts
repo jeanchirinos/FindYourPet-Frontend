@@ -7,8 +7,8 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 // import { setCookie } from 'typescript-cookie'
 
-export function useGoogle(params?: { loggedIn: boolean }) {
-  const { loggedIn = false } = params ?? {}
+export function useGoogle(params?: { isLoggedIn: boolean }) {
+  const { isLoggedIn = false } = params ?? {}
 
   const router = useRouter()
 
@@ -21,11 +21,11 @@ export function useGoogle(params?: { loggedIn: boolean }) {
 
       // if (!loggedIn) {
       // setCookie('jwt', token, { expires: 7, path: '/' })
-      await updateGoogle(token)
+      updateGoogle({ token, isLoggedIn })
       // }
 
       // router.refresh()
-      openedWindow.current?.close()
+      // openedWindow.current?.close()
 
       // setTimeout(() => {
       // if (pathname.includes('inicio')) {
@@ -40,7 +40,7 @@ export function useGoogle(params?: { loggedIn: boolean }) {
     return () => {
       window.removeEventListener('message', handleMessage)
     }
-  }, [router, loggedIn, pathname])
+  }, [router, isLoggedIn, pathname])
 
   // FUNCTIONS
   function openGoogleWindow() {

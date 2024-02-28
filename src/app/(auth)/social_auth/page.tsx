@@ -1,4 +1,5 @@
 'use client'
+import { Spinner } from '@nextui-org/spinner'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense, useEffect } from 'react'
 
@@ -21,5 +22,10 @@ function Content() {
     window.opener.postMessage(Object.fromEntries(searchParams), window.location.origin)
   }, [router, searchParams])
 
-  return <></>
+  return (
+    <main className='h-screen flex-col gap-y-6 text-xl flex-center'>
+      <Spinner size='lg' color='current' />
+      <p>Estás siendo redireccionado</p>
+    </main>
+  )
 }

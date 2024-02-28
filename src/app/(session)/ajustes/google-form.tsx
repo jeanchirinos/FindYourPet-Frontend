@@ -11,7 +11,7 @@ type Props = { isConnected: boolean; username: string | null }
 export function GoogleForm(props: Props) {
   const { isConnected, username } = props
 
-  const { openGoogleWindow } = useGoogle({ loggedIn: true })
+  const { openGoogleWindow } = useGoogle({ isLoggedIn: true })
 
   return (
     <form

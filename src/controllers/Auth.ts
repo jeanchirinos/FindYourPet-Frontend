@@ -111,13 +111,13 @@ export async function verifyToken(token: string | undefined) {
   }
 }
 
-export async function updateGoogle(token: string) {
+export async function updateGoogle({ token, isLoggedIn }: { token: string; isLoggedIn: boolean }) {
   const expires = new Date()
   expires.setDate(expires.getDate() + 7)
 
   cookies().set('jwt', token, { expires })
 
-  if (headers().get('referer')?.includes('/inicio')) {
+  if (headers().get('referer')?.includes('/inicio') && !isLoggedIn) {
     redirect('/')
   }
 }
