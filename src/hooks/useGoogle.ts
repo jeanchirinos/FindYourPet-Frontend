@@ -1,50 +1,37 @@
 'use client'
 
-import { updateGoogle } from '@/controllers/Auth'
+// import { updateGoogle } from '@/controllers/Auth'
 import { getApiUrl } from '@/utilities/request'
-// import { redirect, usePathname, useRouter } from 'next/navigation'
-import { usePathname, useRouter } from 'next/navigation'
-import { useEffect, useRef } from 'react'
-// import { setCookie } from 'typescript-cookie'
+// import { usePathname, useRouter } from 'next/navigation'
+// import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 export function useGoogle(params?: { isLoggedIn: boolean }) {
-  const { isLoggedIn = false } = params ?? {}
+  // const { isLoggedIn = false } = params ?? {}
 
-  const router = useRouter()
-
-  const pathname = usePathname()
+  // const router = useRouter()
+  // const pathname = usePathname()
 
   // EFFECT
-  useEffect(() => {
-    async function handleMessage(e: MessageEvent<{ token: string }>) {
-      const { token } = e.data
+  // useEffect(() => {
+  //   async function handleMessage(e: MessageEvent<{ token: string }>) {
+  //     const { token } = e.data
 
-      // if (!loggedIn) {
-      // setCookie('jwt', token, { expires: 7, path: '/' })
-      await updateGoogle({ token, isLoggedIn })
-      openedWindow.current?.close()
-      // }
+  //     await updateGoogle({ token })
+  //     openedWindow.current?.close()
+  //   }
 
-      // router.refresh()
+  //   window.addEventListener('message', handleMessage)
 
-      // setTimeout(() => {
-      // if (pathname.includes('inicio')) {
-      //   // router.push('/')
-      //   redirect('/')
-      // }
-      // }, 1000)
-    }
-
-    window.addEventListener('message', handleMessage)
-
-    return () => {
-      window.removeEventListener('message', handleMessage)
-    }
-  }, [router, isLoggedIn, pathname])
+  //   return () => {
+  //     window.removeEventListener('message', handleMessage)
+  //   }
+  // }, [router, isLoggedIn, pathname])
 
   // FUNCTIONS
   function openGoogleWindow() {
     const url = getApiUrl('auth/google/redirect')
+    // const url = new URL('http://localhost:3000/social_auth')
     url.searchParams.set('url', window.location.href + 'social_auth')
     url.searchParams.set('environment', process.env.NODE_ENV)
 
