@@ -5,7 +5,7 @@ import { RadioItem } from '@/components/RadioItem'
 export async function StatusInfo(props: { status: string | number | undefined }) {
   const statusList = await getStatusList()
 
-  const defaultValue = props.status ?? statusList[0].id
+  const defaultValue = Number(props.status) ?? statusList[0].id
 
   const classNames = {
     1: 'has-[:checked]:bg-search',
