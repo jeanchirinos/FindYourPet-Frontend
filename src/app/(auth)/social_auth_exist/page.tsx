@@ -12,10 +12,6 @@ export default function Page() {
     if (!window.opener) return router.replace('/')
   }, [router])
 
-  function handleBack() {
-    window.opener.postMessage({}, window.location.origin)
-  }
-
   return (
     <main className='min-h-screen flex-col gap-y-6 px-2 text-center flex-center'>
       <section className='space-y-1.5'>
@@ -24,7 +20,7 @@ export default function Page() {
           Inicie sesión y agregue su correo como método de inicio de sesión
         </p>
       </section>
-      <Button color='primary' onClick={handleBack}>
+      <Button color='primary' onClick={close}>
         Entendido
       </Button>
     </main>

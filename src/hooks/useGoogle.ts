@@ -12,6 +12,7 @@ export function useGoogle() {
 
       await updateGoogle({ token })
       openedWindow.current?.close()
+      close()
     }
 
     window.addEventListener('message', handleMessage)
@@ -24,7 +25,8 @@ export function useGoogle() {
   // FUNCTIONS
   function openGoogleWindow() {
     const url = getApiUrl('auth/google/redirect')
-    // const url = new URL('http://localhost:3000/social_auth')
+
+    // TODO: Check this
     url.searchParams.set('url', window.location.href + 'social_auth')
     url.searchParams.set('environment', process.env.NODE_ENV)
 
