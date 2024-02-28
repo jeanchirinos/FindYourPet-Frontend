@@ -1,32 +1,25 @@
 'use client'
 
-// import { updateGoogle } from '@/controllers/Auth'
+import { updateGoogle } from '@/controllers/Auth'
 import { getApiUrl } from '@/utilities/request'
-// import { usePathname, useRouter } from 'next/navigation'
-// import { useEffect, useRef } from 'react'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
-export function useGoogle(params?: { isLoggedIn: boolean }) {
-  // const { isLoggedIn = false } = params ?? {}
-
-  // const router = useRouter()
-  // const pathname = usePathname()
-
+export function useGoogle() {
   // EFFECT
-  // useEffect(() => {
-  //   async function handleMessage(e: MessageEvent<{ token: string }>) {
-  //     const { token } = e.data
+  useEffect(() => {
+    async function handleMessage(e: MessageEvent<{ token: string }>) {
+      const { token } = e.data
 
-  //     await updateGoogle({ token })
-  //     openedWindow.current?.close()
-  //   }
+      await updateGoogle({ token })
+      openedWindow.current?.close()
+    }
 
-  //   window.addEventListener('message', handleMessage)
+    window.addEventListener('message', handleMessage)
 
-  //   return () => {
-  //     window.removeEventListener('message', handleMessage)
-  //   }
-  // }, [router, isLoggedIn, pathname])
+    return () => {
+      window.removeEventListener('message', handleMessage)
+    }
+  }, [])
 
   // FUNCTIONS
   function openGoogleWindow() {
