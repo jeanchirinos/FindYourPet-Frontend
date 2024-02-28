@@ -37,8 +37,6 @@ export async function requestAll<Response>(...params: RequestParamsAll) {
     const { message, msg } = json
     const { statusText, url, status } = res
 
-    // console.log({ json, res })
-
     throw new Error(message ?? msg ?? statusText, {
       cause: {
         url,

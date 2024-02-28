@@ -45,39 +45,6 @@ export function PetImage(props: Props) {
 
   // RENDER
   return (
-    // <label
-    //   className={twJoin(
-    //     'relative mx-auto flex aspect-square size-full max-w-[400px] flex-col items-center justify-center rounded-md border',
-    //     imagePreview
-    //       ? 'border-transparent'
-    //       : 'border-dashed border-foreground-300 bg-foreground-100',
-    //   )}
-    // >
-    //   {/* {imagePreview ? (
-    //     <>
-    //       <img src={imagePreview} alt='Mascota' className='size-full rounded-md object-cover' />
-
-    //       <Button className='pointer-events-none mt-2.5 w-full'>Editar</Button>
-    //     </>
-    //   ) : (
-    //     <div className='flex flex-col items-center gap-y-2.5'>
-    //       <CiImageOn size={28} className='text-neutral-400' />
-    //       <p className='max-w-[25ch] text-balance text-center text-sm leading-tight text-neutral-400'>
-    //         Selecciona una imagen o arrástrala aquí
-    //       </p>
-    //     </div>
-    //   )} */}
-
-    //   <input
-    //     type='file'
-    //     name='image'
-    //     ref={inputRef}
-    //     className='absolute inset-0 opacity-0'
-    //     accept='image/*'
-    //     onChange={handleInputImage}
-    //     required={!imagePreview}
-    //   />
-    // </label>
     <div className='flex w-[400px] max-w-full flex-col md:w-full'>
       <label
         className={twJoin(
