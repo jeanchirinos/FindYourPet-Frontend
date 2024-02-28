@@ -111,6 +111,17 @@ export async function verifyToken(token: string | undefined) {
   }
 }
 
+export async function updateGoogle(token: string) {
+  const expires = new Date()
+  expires.setDate(expires.getDate() + 7)
+
+  cookies().set('jwt', token, { expires })
+
+  if (headers().get('referer')?.includes('/inicio')) {
+    redirect('/')
+  }
+}
+
 // GET
 export async function getSession() {
   try {

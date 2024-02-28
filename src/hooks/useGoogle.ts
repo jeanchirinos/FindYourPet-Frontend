@@ -1,9 +1,11 @@
 'use client'
 
+import { updateGoogle } from '@/controllers/Auth'
 import { getApiUrl } from '@/utilities/request'
-import { redirect, usePathname, useRouter } from 'next/navigation'
+// import { redirect, usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
-import { setCookie } from 'typescript-cookie'
+// import { setCookie } from 'typescript-cookie'
 
 export function useGoogle(params?: { loggedIn: boolean }) {
   const { loggedIn = false } = params ?? {}
@@ -18,17 +20,18 @@ export function useGoogle(params?: { loggedIn: boolean }) {
       const { token } = e.data
 
       if (!loggedIn) {
-        setCookie('jwt', token, { expires: 7, path: '/' })
+        // setCookie('jwt', token, { expires: 7, path: '/' })
+        updateGoogle(token)
       }
 
-      router.refresh()
+      // router.refresh()
       openedWindow.current?.close()
 
       // setTimeout(() => {
-      if (pathname.includes('inicio')) {
-        // router.push('/')
-        redirect('/')
-      }
+      // if (pathname.includes('inicio')) {
+      //   // router.push('/')
+      //   redirect('/')
+      // }
       // }, 1000)
     }
 
