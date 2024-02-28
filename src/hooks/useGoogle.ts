@@ -21,7 +21,7 @@ export function useGoogle(params?: { isLoggedIn: boolean }) {
 
       // if (!loggedIn) {
       // setCookie('jwt', token, { expires: 7, path: '/' })
-      await updateGoogle({ token, isLoggedIn })
+      updateGoogle({ token, isLoggedIn })
       openedWindow.current?.close()
       // }
 

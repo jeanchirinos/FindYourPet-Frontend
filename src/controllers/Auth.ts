@@ -113,7 +113,6 @@ export async function verifyToken(token: string | undefined) {
 }
 
 export async function updateGoogle({ token, isLoggedIn }: { token: string; isLoggedIn: boolean }) {
-  await waitFor(5)
   const expires = new Date()
   expires.setDate(expires.getDate() + 7)
 
