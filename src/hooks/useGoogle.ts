@@ -1,7 +1,7 @@
 'use client'
 
 import { getApiUrl } from '@/utilities/request'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { setCookie } from 'typescript-cookie'
 
@@ -9,6 +9,8 @@ export function useGoogle(params?: { loggedIn: boolean }) {
   const { loggedIn = false } = params ?? {}
 
   const router = useRouter()
+
+  const pathname = usePathname()
 
   // EFFECT
   useEffect(() => {
@@ -21,6 +23,10 @@ export function useGoogle(params?: { loggedIn: boolean }) {
 
       router.refresh()
       openedWindow.current?.close()
+
+      if (pathname.includes('inicio')) {
+        router.push('/')
+      }
     }
 
     window.addEventListener('message', handleMessage)
@@ -28,7 +34,7 @@ export function useGoogle(params?: { loggedIn: boolean }) {
     return () => {
       window.removeEventListener('message', handleMessage)
     }
-  }, [router, loggedIn])
+  }, [router, loggedIn, pathname])
 
   // FUNCTIONS
   function openGoogleWindow() {

@@ -59,11 +59,11 @@ export default function Page() {
         <p className='pt-5 text-center text-foreground-600'>
           Desarrollado por{' '}
           <a href='https://rafaellafernandez.vercel.app/' target='_blank' rel='noreferrer'>
-            Rafaella F.
+            Rafaella Fernández
           </a>{' '}
           y{' '}
           <a href='https://jeanchirinos.vercel.app/' target='_blank' rel='noreferrer'>
-            Jean C.
+            Jean Chirinos
           </a>
         </p>
       </footer>

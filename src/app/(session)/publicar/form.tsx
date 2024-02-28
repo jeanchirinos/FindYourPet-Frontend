@@ -88,8 +88,6 @@ export function Form(props: Props) {
           {props.CategoryComponent}
           {props.PlaceComponent}
 
-          <input type='text' defaultValue='' name='location' hidden />
-          <input type='text' defaultValue='1' name='plan' hidden />
           <SubmitButton isDisabled={!session}>Publicar</SubmitButton>
         </section>
       </form>

@@ -93,6 +93,10 @@ const MAX_FILE_SIZE = 1048576
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 
 export async function createPet(prevState: any, data: FormData) {
+
+  data.append('location', '')
+  data.append('plan', '1')
+
   const schema = z.object({
     breed_id: z.string(),
     image: z

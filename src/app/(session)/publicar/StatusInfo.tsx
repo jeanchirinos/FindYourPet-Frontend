@@ -5,7 +5,7 @@ import { RadioItem } from '@/components/RadioItem'
 export async function StatusInfo(props: { status: string | number | undefined }) {
   const statusList = await getStatusList()
 
-  const defaultValue = Number(props.status) ?? statusList[0].id
+  const defaultValue = props.status?.toString() ?? statusList[0].id.toString()
 
   const classNames = {
     1: 'has-[:checked]:bg-search',
@@ -21,7 +21,7 @@ export async function StatusInfo(props: { status: string | number | undefined })
           input={{
             name: 'status',
             value: item.id,
-            defaultChecked: item.id === defaultValue,
+            defaultChecked: item.id.toString() === defaultValue,
           }}
           className={twJoin(
             'flex w-full cursor-pointer items-center justify-center rounded-lg px-4 py-3 text-sm shadow-md has-[:checked]:text-white',

@@ -107,8 +107,6 @@ export function Form(props: Props) {
           {props.PlaceComponent}
 
           <input defaultValue={pet.id} name='id' hidden />
-          <input defaultValue='' name='location' hidden />
-          <input defaultValue='1' name='plan' hidden />
           <SubmitButton
             isDisabled={!formChanged}
             title={!formChanged ? 'Los datos están incompletos o no han sido modificados' : ''}
