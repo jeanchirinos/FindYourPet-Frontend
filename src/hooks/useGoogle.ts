@@ -24,9 +24,11 @@ export function useGoogle(params?: { loggedIn: boolean }) {
       router.refresh()
       openedWindow.current?.close()
 
-      if (pathname.includes('inicio')) {
-        router.push('/')
-      }
+      setTimeout(() => {
+        if (pathname.includes('inicio')) {
+          router.push('/')
+        }
+      }, 1)
     }
 
     window.addEventListener('message', handleMessage)
