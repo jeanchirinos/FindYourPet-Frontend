@@ -12,7 +12,6 @@ export function useGoogle() {
 
       await updateGoogle({ token })
       openedWindow.current?.close()
-      close()
     }
 
     window.addEventListener('message', handleMessage)
