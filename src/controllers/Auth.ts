@@ -1,6 +1,7 @@
 'use server'
 import { SessionLogged } from '@/models/Auth'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
+import { waitFor } from '@/utilities/utilities'
 import { cookies, headers } from 'next/headers'
 import { notFound, redirect } from 'next/navigation'
 import { z } from 'zod'
@@ -112,6 +113,7 @@ export async function verifyToken(token: string | undefined) {
 }
 
 export async function updateGoogle({ token, isLoggedIn }: { token: string; isLoggedIn: boolean }) {
+  await waitFor(5)
   const expires = new Date()
   expires.setDate(expires.getDate() + 7)
 
