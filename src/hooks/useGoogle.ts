@@ -28,7 +28,7 @@ export function useGoogle(params?: { loggedIn: boolean }) {
         if (pathname.includes('inicio')) {
           router.push('/')
         }
-      }, 1)
+      }, 1000)
     }
 
     window.addEventListener('message', handleMessage)
