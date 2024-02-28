@@ -26,7 +26,7 @@ function Content() {
 
   // RENDER
   return (
-    <div className='min-h-screen text-center flex-center'>
+    <div className='min-h-dvh text-center flex-center'>
       {state.ok ? (
         <div className='flex flex-col items-center gap-y-6'>
           <section className='space-y-1.5'>

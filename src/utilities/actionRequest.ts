@@ -1,7 +1,6 @@
 'use server'
 
 import { requestAll } from '@/utilities/request'
-
 import { revalidatePath, revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 import { ZodError, ZodRawShape, z } from 'zod'
@@ -23,7 +22,7 @@ export async function actionRequestGet<Response>(...params: RequestParams) {
     const jwt = cookies().get('jwt')
 
     if (!jwt) {
-      throw new Error('No hay jwt')
+      throw new Error('Sin token')
     }
 
     headers.Cookie = cookies().toString()
@@ -31,9 +30,9 @@ export async function actionRequestGet<Response>(...params: RequestParams) {
 
   const myConfig = { ...config, headers: { ...config.headers, ...headers } }
 
-  if (process.env.NODE_ENV === 'development') {
-    // config.cache = 'force-cache'
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   myConfig.cache = 'force-cache'
+  // }
 
   return requestAll<Response>(url, myConfig)
 }
@@ -49,7 +48,7 @@ export async function actionRequestPost<Response>(...params: RequestParams) {
     const jwt = cookies().get('jwt')
 
     if (!jwt) {
-      throw new Error('No hay jwt')
+      throw new Error('Sin token')
     }
 
     headers.Cookie = cookies().toString()

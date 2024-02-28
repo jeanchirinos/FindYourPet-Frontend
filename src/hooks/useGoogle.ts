@@ -7,18 +7,14 @@ import { useEffect, useRef } from 'react'
 export function useGoogle() {
   // EFFECT
   useEffect(() => {
-    async function handleMessage(e: MessageEvent<{ token: string }>) {
-      const { token } = e.data
-
-      await updateGoogle({ token })
+    async function handleMessageFromAuthPage(e: MessageEvent<{ token: string }>) {
+      await updateGoogle(e.data.token)
       openedWindow.current?.close()
     }
 
-    window.addEventListener('message', handleMessage)
+    window.addEventListener('message', handleMessageFromAuthPage)
 
-    return () => {
-      window.removeEventListener('message', handleMessage)
-    }
+    return () => window.removeEventListener('message', handleMessageFromAuthPage)
   }, [])
 
   // FUNCTIONS

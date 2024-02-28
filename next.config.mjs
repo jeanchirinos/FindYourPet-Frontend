@@ -1,5 +1,3 @@
-// import million from 'million/compiler'
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -31,12 +29,5 @@ const nextConfig = {
     return config
   },
 }
-
-// export default million.next(nextConfig, {
-//   auto: {
-//     rsc: true,
-//   },
-//   mute: true,
-// })
 
 export default nextConfig

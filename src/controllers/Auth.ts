@@ -111,18 +111,20 @@ export async function verifyToken(token: string | undefined) {
   }
 }
 
-export async function updateGoogle({ token }: { token: string | null }) {
+export async function updateGoogle(token: string) {
   const expires = new Date()
   expires.setDate(expires.getDate() + 7)
 
-  if (!token) return
-
-  cookies().set('jwt', token, { expires })
+  if (!headers().get('referer')?.includes('/ajustes')) {
+    cookies().set('jwt', token, { expires })
+  }
 
   if (headers().get('referer')?.includes('/inicio')) {
     redirect('/')
   }
 }
+
+// A
 
 // GET
 export async function getSession() {

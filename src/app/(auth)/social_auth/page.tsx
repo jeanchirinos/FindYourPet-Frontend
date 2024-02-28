@@ -23,7 +23,7 @@ function Content() {
   }, [router, searchParams])
 
   return (
-    <main className='h-screen flex-col gap-y-6 text-xl flex-center'>
+    <main className='h-dvh flex-col gap-y-6 text-xl flex-center'>
       <Spinner size='lg' color='current' />
       <p>Autorizando</p>
     </main>
