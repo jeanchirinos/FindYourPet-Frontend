@@ -1,7 +1,7 @@
 'use client'
 
 import { getApiUrl } from '@/utilities/request'
-import { usePathname, useRouter } from 'next/navigation'
+import { redirect, usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { setCookie } from 'typescript-cookie'
 
@@ -24,11 +24,12 @@ export function useGoogle(params?: { loggedIn: boolean }) {
       router.refresh()
       openedWindow.current?.close()
 
-      setTimeout(() => {
-        if (pathname.includes('inicio')) {
-          router.push('/')
-        }
-      }, 1000)
+      // setTimeout(() => {
+      if (pathname.includes('inicio')) {
+        // router.push('/')
+        redirect('/')
+      }
+      // }, 1000)
     }
 
     window.addEventListener('message', handleMessage)
