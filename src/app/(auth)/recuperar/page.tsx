@@ -4,7 +4,7 @@ import { SubmitButton } from '@/components/SubmitButton'
 import Link from 'next/link'
 import { useFormAction } from '@/hooks/useFormAction'
 import { forgotPassword } from '@/controllers/Auth'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { Button } from '@/components/Button'
 
@@ -19,6 +19,8 @@ export default function Page() {
 function Content() {
   const searchParams = useSearchParams()
   const initialEmail = searchParams.get('email') ?? undefined
+
+  const { back } = useRouter()
 
   const { formAction, state } = useFormAction(forgotPassword, { showSuccessToast: false })
 
@@ -48,7 +50,10 @@ function Content() {
             required
             placeholder='example@gmail.com'
           />
-          <SubmitButton>Enviar correo</SubmitButton>
+          <footer className='flex gap-x-2.5 *:grow'>
+            <Button onClick={back}>Atrás</Button>
+            <SubmitButton>Enviar correo</SubmitButton>
+          </footer>
         </form>
       )}
     </div>
