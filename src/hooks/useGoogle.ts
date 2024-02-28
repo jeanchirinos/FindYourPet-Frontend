@@ -16,13 +16,13 @@ export function useGoogle(params?: { loggedIn: boolean }) {
 
   // EFFECT
   useEffect(() => {
-    function handleMessage(e: MessageEvent<{ token: string }>) {
+    async function handleMessage(e: MessageEvent<{ token: string }>) {
       const { token } = e.data
 
-      if (!loggedIn) {
-        // setCookie('jwt', token, { expires: 7, path: '/' })
-        updateGoogle(token)
-      }
+      // if (!loggedIn) {
+      // setCookie('jwt', token, { expires: 7, path: '/' })
+      await updateGoogle(token)
+      // }
 
       // router.refresh()
       openedWindow.current?.close()
