@@ -93,7 +93,6 @@ const MAX_FILE_SIZE = 1048576
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
 
 export async function createPet(prevState: any, data: FormData) {
-
   data.append('location', '')
   data.append('plan', '1')
 
@@ -162,4 +161,49 @@ export async function updatePet(prevState: any, data: FormData) {
     body: data,
     revalidateTagParams: ['post'],
   })
+}
+
+export async function getAllPetsAdmin(params: TGetPetParams) {
+  const { page, order, status, category_id, breed_id, estate, city, district } = params
+  const limit = '15'
+
+  const url = getApiUrl('admin-pets')
+
+  url.pathname += `/${limit}`
+
+  page && url.searchParams.set('page', page)
+
+  category_id && url.searchParams.set('category_id', category_id)
+
+  if (breed_id) {
+    if (Array.isArray(breed_id)) {
+      const breeds = breed_id.join(',')
+      url.searchParams.set('breed_id', breeds)
+    } else {
+      url.searchParams.set('breed_id', breed_id)
+    }
+  }
+
+  status && url.searchParams.set('status', status)
+  order && url.searchParams.set('order', order)
+
+  estate && url.searchParams.set('estate', estate)
+  city && url.searchParams.set('city', city)
+  district && url.searchParams.set('district', district)
+
+  const data = await actionRequestGet<Paginate<Pet>>(url, {
+    cache: 'no-store',
+    next: {
+      tags: ['pet-admin'],
+    },
+    auth: true,
+  })
+
+  const { current_page, data: pets } = data
+
+  if (pets.length === 0 && current_page !== 1) {
+    notFound()
+  }
+
+  return data
 }

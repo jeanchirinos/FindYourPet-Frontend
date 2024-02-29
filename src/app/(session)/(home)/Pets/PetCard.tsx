@@ -38,11 +38,16 @@ export function PetCard(props: Props) {
       <footer className='space-y-2.5 p-2'>
         <section className='flex items-center gap-x-2'>
           <div className={twJoin('grow gap-x-1.5 rounded-xl p-1 text-white flex-center', color)}>
-            <span
-              className='flex-center *:size-4'
-              dangerouslySetInnerHTML={{ __html: pet.breed.category.image }}
-            />
-            <span>{pet.breed.name}</span>
+            {/* TODO: Temporal when api fix admin-pets */}
+            {pet.breed?.category?.image && (
+              <>
+                <span
+                  className='flex-center *:size-4'
+                  dangerouslySetInnerHTML={{ __html: pet.breed.category.image }}
+                />
+                <span>{pet.breed.name}</span>
+              </>
+            )}
           </div>
           {isEditable && <PetOptions pet={pet} />}
         </section>

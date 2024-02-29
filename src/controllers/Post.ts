@@ -46,7 +46,7 @@ export async function deletePost(prevState: any, formData: FormData) {
   })
 
   return sendData({
-    url: 'delete-post',
+    url: `pet-delete/${formData.get('id')}`,
     schema,
     body: formData,
     revalidateTagParams: ['post'],

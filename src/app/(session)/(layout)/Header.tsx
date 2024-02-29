@@ -6,20 +6,26 @@ import { PublishButton } from './PublishButton'
 import { HeaderLink } from './HeaderLink'
 import { Skeleton } from '@nextui-org/skeleton'
 import { ThemeSwitcher } from '@/components/ThemeSwitcher'
+import { MobileMenu } from './MobileMenu'
+import { links } from './links'
 
 export function Header() {
   return (
     <header id='header-nav' className='sticky inset-0 top-0 z-50 h-header'>
       <div className='mx-auto flex w-[1600px] max-w-full justify-between px-2'>
         <aside className='flex'>
-          <Link href='/inicio' aria-label='Inicio'>
-            <Logo width={40} />
-          </Link>
+          <div className='flex items-center gap-x-0.5'>
+            <MobileMenu />
+            <Link href='/inicio' aria-label='Inicio'>
+              <Logo width={40} />
+            </Link>
+          </div>
           <div className='flex *:flex *:items-center *:px-3 max-md:hidden'>
-            <HeaderLink href='/inicio'>Inicio</HeaderLink>
-            <HeaderLink href='/'>Mascotas</HeaderLink>
-            {/* <HeaderLink href='/planes'>Planes</HeaderLink>
-            <HeaderLink href='/casos_de_exito'>Casos de éxito</HeaderLink> */}
+            {links.map(link => (
+              <HeaderLink key={link.href} href={link.href}>
+                {link.text}
+              </HeaderLink>
+            ))}
           </div>
         </aside>
         <aside className='flex items-center gap-x-4'>

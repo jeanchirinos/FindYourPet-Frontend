@@ -13,6 +13,6 @@ export {
   IoMdCheckmarkCircle as IconCheckFilled,
   IoIosNotificationsOutline as IconNotification,
 } from 'react-icons/io'
-export { IoPerson as IconUser } from 'react-icons/io5'
+export { IoPerson as IconUser, IoMenu as IconMobileMenu } from 'react-icons/io5'
 export { MdOutlinePets as IconPet } from 'react-icons/md'
 export { SlOptionsVertical as IconOptions } from 'react-icons/sl'
