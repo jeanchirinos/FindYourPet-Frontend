@@ -17,9 +17,9 @@ export function MobileMenu() {
           </Button>
         </MenuTrigger>
         <MenuContent className='left-0 top-0 -z-10 mt-0 w-full rounded-t-none bg-background/90 pt-header backdrop-blur-md focus:outline-none'>
-          <div className='flex flex-col any-*-[a]:w-full any-*-[a]:px-4 any-*-[a]:py-2'>
+          <div className='flex flex-col'>
             {links.map(link => (
-              <MenuItem key={link.href}>
+              <MenuItem key={link.href} className='px-2 py-2.5'>
                 <HeaderLink href={link.href}>{link.text}</HeaderLink>
               </MenuItem>
             ))}

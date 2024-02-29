@@ -6,10 +6,10 @@ import { useFormAction } from '@/hooks/useFormAction'
 import { createPet } from '@/controllers/Pet'
 import confetti from 'canvas-confetti'
 import { IconCheckFilled, IconUser } from '@/icons'
-import Link from 'next/link'
 import { Button } from '@/components/Button'
 import { PetImage } from './PetImage'
 import { SessionLogged } from '@/models/Auth'
+import { Link } from '@/components/Link'
 
 type Props = {
   StatusInfoComponent: React.ReactNode
@@ -49,9 +49,9 @@ export function Form(props: Props) {
           Tu publicación será revisada y cuando sea aprobada será visible de forma pública
         </p>
         <footer className='flex gap-x-2.5'>
-          <Link href='/' className='rounded-xl bg-foreground-200 px-4 py-2 text-sm flex-center'>
+          <Button as={Link} href='/'>
             Ver mascotas
-          </Link>
+          </Button>
           <Button color='primary' onClick={() => setState({ msg: '', ok: null })}>
             Volver a registrar
           </Button>

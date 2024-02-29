@@ -3,9 +3,9 @@ import ImgHeroImage from '@/public/img/inicio/hero-image.webp'
 import SvgVercel from '@/public/img/inicio/vercel.svg'
 
 import { Button } from '@/components/Button'
-import Link from 'next/link'
 import { IconForward } from '@/icons'
 import { Services } from './services'
+import { Link } from '@/components/Link'
 
 export default function Page() {
   return (
@@ -33,12 +33,12 @@ export default function Page() {
             <Button
               as={Link}
               href='/'
-              variant='shadow'
               color='primary'
+              variant='shadow'
               className='bg-main-gradient'
             >
               <span>Ver mascotas</span>
-              <IconForward className='' />
+              <IconForward />
             </Button>
           </div>
         </div>
@@ -46,25 +46,36 @@ export default function Page() {
 
       <Services />
       <footer className='px-2 pt-16'>
-        <a
-          href='https://vercel.com/'
-          target='_blank'
-          className='mx-auto flex w-fit items-center gap-x-2'
-          rel='noreferrer'
-        >
+        <div className='mx-auto flex w-fit items-center gap-x-2'>
           <p>Desplegado en</p>
-          <SvgVercel className='w-20' />
-        </a>
+          <Link color='foreground' isExternal href='https://vercel.com/'>
+            <SvgVercel className='w-20' />
+          </Link>
+        </div>
 
         <p className='pt-5 text-center text-foreground-600'>
           Desarrollado por{' '}
-          <a href='https://rafaellafernandez.vercel.app/' target='_blank' rel='noreferrer'>
+          <Link
+            href='https://rafaellafernandez.vercel.app/'
+            isExternal
+            showAnchorIcon
+            color='foreground'
+            size='sm'
+            underline='always'
+          >
             Rafaella Fernández
-          </a>{' '}
+          </Link>{' '}
           y{' '}
-          <a href='https://jeanchirinos.vercel.app/' target='_blank' rel='noreferrer'>
+          <Link
+            href='https://jeanchirinos.vercel.app/'
+            isExternal
+            showAnchorIcon
+            color='foreground'
+            size='sm'
+            underline='always'
+          >
             Jean Chirinos
-          </a>
+          </Link>
         </p>
       </footer>
     </main>

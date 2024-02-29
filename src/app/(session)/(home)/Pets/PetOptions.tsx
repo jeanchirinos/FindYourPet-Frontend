@@ -22,6 +22,9 @@ export function PetOptions(props: { pet: Pet }) {
         classNames={{
           content: 'min-w-fit',
         }}
+        style={{
+          zIndex: 40,
+        }}
       >
         <DropdownTrigger>
           <Button size='sm' variant='light' className='min-w-fit'>
@@ -33,9 +36,16 @@ export function PetOptions(props: { pet: Pet }) {
           classNames={{
             list: '*:pr-8',
           }}
+          className='a'
         >
           <DropdownItem as={Link} key='edit' href={`/publicaciones/editar/${props.pet.id}`}>
             Editar
+          </DropdownItem>
+          <DropdownItem
+            key='finish'
+            // onClick={deleteModal.open}
+          >
+            Finalizar anuncio
           </DropdownItem>
           <DropdownItem
             key='delete'
@@ -44,12 +54,6 @@ export function PetOptions(props: { pet: Pet }) {
             onClick={deleteModal.open}
           >
             Eliminar
-          </DropdownItem>
-          <DropdownItem
-            key='finish'
-            // onClick={deleteModal.open}
-          >
-            Finalizar anuncio
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>

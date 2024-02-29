@@ -51,6 +51,11 @@ export function ThemeSwitcher() {
       selectedKeys={[selectedTheme.id]}
       selectionMode='single'
       onChange={e => setTheme(e.target.value)}
+      popoverProps={{
+        style: {
+          zIndex: 40,
+        },
+      }}
     >
       {themes.map(t => (
         <SelectItem key={t.id} startContent={t.icon}>

@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/Button'
-import Link from 'next/link'
+import { Link } from '@/components/Link'
 import { usePathname } from 'next/navigation'
 
 export function PublishButton() {

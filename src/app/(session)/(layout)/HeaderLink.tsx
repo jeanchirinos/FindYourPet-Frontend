@@ -1,22 +1,30 @@
 'use client'
-import Link from 'next/link'
+import { Link } from '@/components/Link'
 import { usePathname } from 'next/navigation'
 import { forwardRef } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-type Props = React.ComponentProps<typeof Link>
+type Props = React.ComponentProps<typeof Link> & { pattern?: string }
 
 export const HeaderLink = forwardRef<HTMLAnchorElement, Props>(function HeaderLink(props, ref) {
+  const { pattern } = props
+
   const pathname = usePathname()
 
   const isActive = () => {
-    const { href } = props
+    if (pattern) {
+      return pathname.match(pattern)
+    }
 
-    if (href === '/') return pathname === '/'
-    return pathname.includes(href as string)
+    return pathname === props.href
   }
 
   return (
-    <Link {...props} ref={ref} className={twMerge(isActive() && 'text-primary', props.className)} />
+    <Link
+      color='foreground'
+      {...props}
+      ref={ref}
+      className={twMerge(isActive() && 'text-primary', props.className)}
+    />
   )
 })

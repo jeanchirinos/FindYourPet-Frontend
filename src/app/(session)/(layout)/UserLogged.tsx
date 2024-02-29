@@ -1,9 +1,9 @@
-import Link from 'next/link'
 import Image from 'next/image'
 import { ERole, SessionLogged } from '@/models/Auth'
 import { SubmitButton } from '@/components/SubmitButton'
 import { logout } from '@/controllers/Auth'
 import { Menu, MenuContent, MenuItem, MenuTrigger } from '@/components/Menu'
+import { HeaderLink } from './HeaderLink'
 // import { Notifications } from './Notifications'
 
 type Props = { session: SessionLogged }
@@ -32,15 +32,21 @@ export function UserLogged(props: Props) {
           </div>
           <div className='flex flex-col any-*-[a]:w-full any-*-[a]:px-4 any-*-[a]:py-2'>
             <MenuItem>
-              <Link href='/publicaciones'>Mis publicaciones</Link>
+              <HeaderLink size='sm' href='/publicaciones'>
+                Mis publicaciones
+              </HeaderLink>
             </MenuItem>
             <MenuItem>
-              <Link href='/ajustes'>Ajustes</Link>
+              <HeaderLink size='sm' href='/ajustes'>
+                Ajustes
+              </HeaderLink>
             </MenuItem>
 
             {session.role === ERole.ADMIN && (
               <MenuItem>
-                <Link href='/administrar/publicaciones'>Administrar</Link>
+                <HeaderLink size='sm' href='/administrar/publicaciones'>
+                  Administrar
+                </HeaderLink>
               </MenuItem>
             )}
 

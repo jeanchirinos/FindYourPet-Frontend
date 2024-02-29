@@ -2,9 +2,9 @@
 import { Input } from '@/components/Input'
 import { SubmitButton } from '@/components/SubmitButton'
 import { useFormAction } from '@/hooks/useFormAction'
-import Link from 'next/link'
 import { resetPassword } from '@/controllers/Auth'
 import { Button } from '@/components/Button'
+import { Link } from '@/components/Link'
 
 type Props = { token?: string }
 

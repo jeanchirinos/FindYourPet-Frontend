@@ -23,7 +23,7 @@ export function PetCard(props: Props) {
   return (
     <article className='flex flex-col overflow-hidden rounded-xl bg-custom1 shadow-small'>
       <Link
-        href={`/mascota/${pet.id}`}
+        href={`/mascotas/${pet.id}`}
         className='group relative aspect-square w-full overflow-hidden'
       >
         <Image

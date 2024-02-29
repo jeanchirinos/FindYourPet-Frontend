@@ -1,12 +1,12 @@
 'use client'
 import { Input } from '@/components/Input'
 import { SubmitButton } from '@/components/SubmitButton'
-import Link from 'next/link'
 import { useFormAction } from '@/hooks/useFormAction'
 import { forgotPassword } from '@/controllers/Auth'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { Button } from '@/components/Button'
+import { Link } from '@/components/Link'
 
 export default function Page() {
   return (

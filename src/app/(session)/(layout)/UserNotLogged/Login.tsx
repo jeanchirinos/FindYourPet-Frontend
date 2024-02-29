@@ -1,7 +1,7 @@
 'use client'
 
-import Link from 'next/link'
 import { Input } from '@/components/Input'
+import { Link } from '@/components/Link'
 import { SubmitButton } from '@/components/SubmitButton'
 import { login } from '@/controllers/Auth'
 import { useState } from 'react'
