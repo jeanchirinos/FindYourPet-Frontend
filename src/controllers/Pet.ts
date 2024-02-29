@@ -163,8 +163,20 @@ export async function updatePet(prevState: any, data: FormData) {
   })
 }
 
-export async function getAllPetsAdmin(params: TGetPetParams) {
-  const { page, order, status, category_id, breed_id, estate, city, district } = params
+export type TGetPetParams2 = Partial<{
+  page: string
+  status: string
+  category_id: string
+  breed_id: string | string[]
+  order: string
+  estate: string
+  city: string
+  district: string
+  published: string
+}>
+
+export async function getAllPetsAdmin(params: TGetPetParams2) {
+  const { page, order, status, category_id, breed_id, estate, city, district, published } = params
   const limit = '15'
 
   const url = getApiUrl('admin-pets')
@@ -174,6 +186,7 @@ export async function getAllPetsAdmin(params: TGetPetParams) {
   page && url.searchParams.set('page', page)
 
   category_id && url.searchParams.set('category_id', category_id)
+  published && url.searchParams.set('published', published)
 
   if (breed_id) {
     if (Array.isArray(breed_id)) {
@@ -194,7 +207,7 @@ export async function getAllPetsAdmin(params: TGetPetParams) {
   const data = await actionRequestGet<Paginate<Pet>>(url, {
     cache: 'no-store',
     next: {
-      tags: ['pet-admin'],
+      tags: ['admin-pets'],
     },
     auth: true,
   })

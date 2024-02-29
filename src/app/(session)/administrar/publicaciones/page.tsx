@@ -1,6 +1,6 @@
 import { Suspense } from '@/components/other/CustomSuspense'
 import { PetList } from './PetList'
-import { TGetPetParams } from '@/controllers/Pet'
+import { TGetPetParams2 } from '@/controllers/Pet'
 import { FilterStatus } from '../../(home)/FilterStatus'
 import { FilterCategory } from '../../(home)/FilterCategory.tsx/FilterCategory'
 import { FilterBreeds } from '../../(home)/FilterBreeds/FilterBreeds'
@@ -8,7 +8,7 @@ import { FilterPlace } from '../../(home)/FilterPlace/FilterPlace'
 import { Order } from '../../(home)/Order'
 import { Spinner } from '@nextui-org/spinner'
 
-type Props = { searchParams: TGetPetParams }
+type Props = { searchParams: TGetPetParams2 }
 
 export default function Page(props: Props) {
   const { searchParams } = props
