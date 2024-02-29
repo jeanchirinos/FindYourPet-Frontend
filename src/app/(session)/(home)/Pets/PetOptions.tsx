@@ -45,6 +45,12 @@ export function PetOptions(props: { pet: Pet }) {
           >
             Eliminar
           </DropdownItem>
+          <DropdownItem
+            key='finish'
+            // onClick={deleteModal.open}
+          >
+            Finalizar anuncio
+          </DropdownItem>
         </DropdownMenu>
       </Dropdown>
 
