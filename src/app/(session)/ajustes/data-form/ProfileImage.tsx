@@ -1,4 +1,4 @@
-import { updateUserImageProfile } from '@/controllers/User'
+import { updateUserImageProfile } from '@/controllers/UserController'
 import { BiSolidCamera } from 'react-icons/bi'
 import { useRef, useState } from 'react'
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'

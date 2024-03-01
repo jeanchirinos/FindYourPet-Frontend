@@ -105,7 +105,9 @@ export async function verifyToken(token: string | undefined) {
   if (!token) notFound()
 
   try {
-    await actionRequestGet(`verify-token/${token}`)
+    await actionRequestGet(`verify-token/${token}`, {
+      cache: 'no-store',
+    })
   } catch (err) {
     notFound()
   }
@@ -129,7 +131,10 @@ export async function updateGoogle(token: string) {
 // GET
 export async function getSession() {
   try {
-    const data = await actionRequestGet<SessionLogged>('session', { auth: true })
+    const data = await actionRequestGet<SessionLogged>('session', {
+      auth: true,
+      redirectIfUnauthorized: false,
+    })
 
     return data
   } catch (err) {

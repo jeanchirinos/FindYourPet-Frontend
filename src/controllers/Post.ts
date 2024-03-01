@@ -27,7 +27,7 @@ export async function getPosts(params: TGetPetParams) {
   const data = await actionRequestGet<Paginate<Post>>(url, {
     cache: 'no-store',
     next: {
-      tags: ['post'],
+      tags: ['post', 'pets-list'],
     },
   })
 
@@ -49,7 +49,6 @@ export async function deletePost(prevState: any, formData: FormData) {
     url: `pet-delete/${formData.get('id')}`,
     schema,
     body: formData,
-    // revalidateTagParams: ['post', 'admin-pets'],
-    revalidateTagParams: ['admin-pets'],
+    revalidateTagParams: ['pets-list'],
   })
 }

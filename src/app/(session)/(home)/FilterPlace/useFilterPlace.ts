@@ -1,4 +1,4 @@
-import { PlaceLocation, getPlaces } from '@/controllers/Place'
+import { PlaceLocation, getPlaces } from '@/controllers/PlaceController'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 

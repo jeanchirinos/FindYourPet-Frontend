@@ -1,4 +1,4 @@
-import { updateInfo } from '@/controllers/User'
+import { updateInfo } from '@/controllers/UserController'
 import { handleResponse } from '@/utilities/handleResponse'
 import { useAutoInput } from './useAutoInput'
 import { Input } from '@/components/Input'

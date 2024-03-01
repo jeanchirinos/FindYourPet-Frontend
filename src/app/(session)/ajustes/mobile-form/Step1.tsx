@@ -1,4 +1,4 @@
-import { updateMobile } from '@/controllers/User'
+import { updateMobile } from '@/controllers/UserController'
 
 import { SubmitButton } from '@/components/SubmitButton'
 import { UseModal } from '@/components/Modal'

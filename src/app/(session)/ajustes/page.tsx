@@ -1,7 +1,7 @@
 import { UpdateForm } from './data-form/update-form'
 
 import { Suspense } from '@/components/other/CustomSuspense'
-import { getUser } from '@/controllers/User'
+import { getUser } from '@/controllers/UserController'
 import { ConnectedAccounts } from './connected-accounts'
 import { Metadata } from 'next'
 

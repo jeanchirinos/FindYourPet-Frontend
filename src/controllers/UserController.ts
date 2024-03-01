@@ -2,7 +2,6 @@
 
 import { User } from '@/models/User'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
-import { notAuthorized } from '@/utilities/utilities'
 import { z } from 'zod'
 
 export async function updateUserImageProfile(formData: FormData) {
@@ -69,18 +68,14 @@ export async function updateInfo(data: { param: string; value: string }) {
 // GET
 
 export async function getUser() {
-  try {
-    const data = await actionRequestGet<User>('user', {
-      auth: true,
-      next: {
-        tags: ['user'],
-      },
-    })
+  const data = await actionRequestGet<User>('user', {
+    auth: true,
+    next: {
+      tags: ['user'],
+    },
+  })
 
-    return data
-  } catch (err) {
-    return notAuthorized()
-  }
+  return data
 }
 
 export async function getGoogleData() {
@@ -89,6 +84,7 @@ export async function getGoogleData() {
   try {
     const data = await actionRequestGet<Res>('user-google-data', {
       auth: true,
+      redirectIfUnauthorized: false,
       next: {
         tags: ['user-google'],
       },

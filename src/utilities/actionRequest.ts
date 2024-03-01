@@ -4,11 +4,12 @@ import { requestAll } from '@/utilities/request'
 import { revalidatePath, revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 import { ZodError, ZodRawShape, z } from 'zod'
-import { getFormEntries } from './utilities'
+import { getFormEntries, notAuthorized } from './utilities'
 
 interface Config extends Omit<RequestInit, 'body'> {
   body?: object
   auth?: boolean
+  redirectIfUnauthorized?: boolean // if auth is true this will have effect
 }
 
 export type RequestParams = [url: Parameters<typeof fetch>['0'], config?: Config]
@@ -16,23 +17,29 @@ export type RequestParams = [url: Parameters<typeof fetch>['0'], config?: Config
 export async function actionRequestGet<Response>(...params: RequestParams) {
   const [url, config = {}] = params
 
+  const { redirectIfUnauthorized = true } = config
+
   const headers: HeadersInit = {}
 
   if (config.auth) {
     const jwt = cookies().get('jwt')
 
-    if (!jwt) {
-      throw new Error('Sin token')
+    try {
+      if (!jwt) {
+        throw new Error('Sin token')
+      }
+    } catch (e) {
+      if (redirectIfUnauthorized) {
+        return notAuthorized()
+      }
+
+      throw new Error('Error desconocido en obtención de token')
     }
 
     headers.Cookie = cookies().toString()
   }
 
-  const myConfig = { ...config, headers: { ...config.headers, ...headers } }
-
-  // if (process.env.NODE_ENV === 'development') {
-  //   myConfig.cache = 'force-cache'
-  // }
+  const myConfig = { ...config, redirectIfUnauthorized, headers: { ...config.headers, ...headers } }
 
   return requestAll<Response>(url, myConfig)
 }

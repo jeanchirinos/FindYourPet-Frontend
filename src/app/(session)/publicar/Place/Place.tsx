@@ -1,5 +1,5 @@
 import { PlaceClient } from './PlaceClient'
-import { getPlaces } from '@/controllers/Place'
+import { getPlaces } from '@/controllers/PlaceController'
 
 export async function Place(props: {
   initialData?: {

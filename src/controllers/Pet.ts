@@ -49,7 +49,7 @@ export async function getPets(params: TGetPetParams) {
   const data = await actionRequestGet<Paginate<Pet>>(url, {
     cache: 'no-store',
     next: {
-      tags: ['pet'],
+      tags: ['pet', 'pets-list'],
     },
   })
 
@@ -121,7 +121,7 @@ export async function createPet(prevState: any, data: FormData) {
     url: 'pet-store',
     schema,
     body: data,
-    revalidateTagParams: ['pet'],
+    revalidateTagParams: ['pets-list'],
   })
 }
 
@@ -207,7 +207,7 @@ export async function getAllPetsAdmin(params: TGetPetParams2) {
   const data = await actionRequestGet<Paginate<Pet>>(url, {
     cache: 'no-store',
     next: {
-      tags: ['admin-pets'],
+      tags: ['admin-pets', 'pets-list'],
     },
     auth: true,
   })

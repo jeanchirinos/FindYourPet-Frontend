@@ -1,5 +1,8 @@
+import { notAuthorized } from './utilities'
+
 export interface Config extends Omit<RequestInit, 'body'> {
   body?: object
+  redirectIfUnauthorized?: boolean
 }
 
 export type RequestParamsAll = [url: Parameters<typeof fetch>['0'], config?: Config]
@@ -33,16 +36,26 @@ export async function requestAll<Response>(...params: RequestParamsAll) {
 
   const json = await res.json()
 
-  if (!res.ok) {
-    const { message, msg } = json
-    const { statusText, url, status } = res
+  try {
+    if (!res.ok) {
+      const { message, msg } = json
+      const { statusText, url, status } = res
 
-    throw new Error(message ?? msg ?? statusText, {
-      cause: {
-        url,
-        status,
-      },
-    })
+      throw new Error(message ?? msg ?? statusText, {
+        cause: {
+          url,
+          status,
+        },
+      })
+    }
+  } catch {
+    if (res.status === 401) {
+      if (config?.redirectIfUnauthorized) {
+        return notAuthorized()
+      }
+    }
+
+    throw new Error('Error desconocido luego de la respuesta del servidor')
   }
 
   return json as Response
