@@ -46,7 +46,7 @@ export function ThemeSwitcher() {
           leaveFrom='transform scale-100 opacity-100'
           leaveTo='transform scale-95 opacity-0'
         >
-          <Listbox.Options className='absolute right-0 mt-1 max-h-60 w-max overflow-auto rounded-md bg-content1 text-small shadow-small'>
+          <Listbox.Options className='absolute right-0 mt-1 max-h-60 w-max overflow-auto rounded-md bg-content1 text-small shadow-small focus:outline-none'>
             {themes.map(theme => (
               <Listbox.Option
                 key={theme.id}
