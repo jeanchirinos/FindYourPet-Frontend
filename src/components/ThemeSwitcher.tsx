@@ -1,9 +1,10 @@
 'use client'
 
+import { Listbox, Transition } from '@headlessui/react'
 import { useTheme } from 'next-themes'
-import { IconDarkTheme, IconLightTheme, IconSystemTheme } from '@/icons'
-import { Select, SelectItem } from '@nextui-org/select'
-import { useEffect, useState } from 'react'
+import { IconCheck, IconDarkTheme, IconLightTheme, IconSystemTheme } from '@/icons'
+import { Fragment } from 'react'
+import { Button } from '@nextui-org/button'
 
 const themes = [
   {
@@ -26,42 +27,42 @@ const themes = [
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme()
 
-  // STATES
-  const [selectedTheme, setSelectTheme] = useState(themes[0])
+  const selectedTheme = themes.find(t => t.id === theme) ?? themes[0]
 
-  // EFFECTS
-  useEffect(() => {
-    const newTheme = themes.find(t => t.id === theme)
-    newTheme && setSelectTheme(newTheme)
-  }, [theme])
-
-  // RENDER
   return (
-    <Select
-      size='sm'
-      classNames={{
-        base: 'w-fit',
-        trigger: 'min-h-4 !max-h-8 w-fit bg-content2',
-        value: '!text-inherit hidden',
-        popoverContent: 'w-fit absolute right-0',
-      }}
-      aria-label='Cambiar tema'
-      selectorIcon={<></>}
-      startContent={<div>{selectedTheme.icon}</div>}
-      selectedKeys={[selectedTheme.id]}
-      selectionMode='single'
-      onChange={e => setTheme(e.target.value)}
-      popoverProps={{
-        style: {
-          zIndex: 40,
-        },
-      }}
-    >
-      {themes.map(t => (
-        <SelectItem key={t.id} startContent={t.icon}>
-          {t.name}
-        </SelectItem>
-      ))}
-    </Select>
+    <Listbox value={selectedTheme} onChange={theme => setTheme(theme.id)}>
+      <div className='relative'>
+        <Listbox.Button as={Fragment}>
+          <Button size='sm' className='min-w-fit bg-default-100 text-base'>
+            {selectedTheme.icon}
+          </Button>
+        </Listbox.Button>
+        <Transition
+          as={Fragment}
+          enter='transition duration-100 ease-out'
+          enterFrom='transform scale-95 opacity-0'
+          enterTo='transform scale-100 opacity-100'
+          leave='transition duration-75 ease-out'
+          leaveFrom='transform scale-100 opacity-100'
+          leaveTo='transform scale-95 opacity-0'
+        >
+          <Listbox.Options className='absolute right-0 mt-1 max-h-60 w-max overflow-auto rounded-md bg-content1 text-small shadow-small'>
+            {themes.map(theme => (
+              <Listbox.Option
+                key={theme.id}
+                value={theme}
+                className='flex cursor-pointer items-center justify-between gap-x-2 px-3 py-1.5 ui-active:bg-foreground-100'
+              >
+                <div className='flex items-center gap-x-1.5'>
+                  {theme.icon}
+                  <span>{theme.name}</span>
+                </div>
+                <IconCheck className='invisible ui-selected:visible' />
+              </Listbox.Option>
+            ))}
+          </Listbox.Options>
+        </Transition>
+      </div>
+    </Listbox>
   )
 }

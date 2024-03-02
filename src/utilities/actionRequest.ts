@@ -6,18 +6,39 @@ import { cookies } from 'next/headers'
 import { ZodError, ZodRawShape, z } from 'zod'
 import { getFormEntries, notAuthorized } from './utilities'
 
-interface Config extends Omit<RequestInit, 'body'> {
+// Types
+interface BaseConfig extends Omit<RequestInit, 'body'> {
   body?: object
   auth?: boolean
   redirectIfUnauthorized?: boolean // if auth is true this will have effect
 }
 
-export type RequestParams = [url: Parameters<typeof fetch>['0'], config?: Config]
+interface NotNullableConfig extends BaseConfig {
+  nullable?: false
+}
 
-export async function actionRequestGet<Response>(...params: RequestParams) {
+interface NullableConfig extends BaseConfig {
+  nullable: true
+}
+
+type RequestParamsNotNullable = [url: Parameters<typeof fetch>['0'], config?: NotNullableConfig]
+type RequestParamsNullable = [url: Parameters<typeof fetch>['0'], config?: NullableConfig]
+
+export async function actionRequestGet<Response>(
+  ...params: RequestParamsNotNullable
+): Promise<Response>
+
+export async function actionRequestGet<Response>(
+  ...params: RequestParamsNullable
+): Promise<Response | null>
+
+//
+export async function actionRequestGet<Response>(
+  ...params: RequestParamsNotNullable | RequestParamsNullable
+) {
   const [url, config = {}] = params
 
-  const { redirectIfUnauthorized = true } = config
+  const { redirectIfUnauthorized = true, nullable } = config
 
   const headers: HeadersInit = {}
 
@@ -33,18 +54,28 @@ export async function actionRequestGet<Response>(...params: RequestParams) {
         return notAuthorized()
       }
 
+      if (nullable) return null
+
       throw new Error('Error desconocido en obtención de token')
     }
 
     headers.Cookie = cookies().toString()
   }
 
-  const myConfig = { ...config, redirectIfUnauthorized, headers: { ...config.headers, ...headers } }
+  const myConfig = {
+    ...config,
+    redirectIfUnauthorized,
+    headers: { ...config.headers, ...headers },
+  }
 
-  return requestAll<Response>(url, myConfig)
+  if (nullable) {
+    return requestAll<Response>(url, { ...myConfig, nullable })
+  } else {
+    return requestAll<Response>(url, { ...myConfig, nullable })
+  }
 }
 
-export async function actionRequestPost<Response>(...params: RequestParams) {
+export async function actionRequestPost<Response>(...params: RequestParamsNotNullable) {
   const [url, config = {}] = params
 
   const { auth = true } = config

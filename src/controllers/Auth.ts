@@ -130,14 +130,15 @@ export async function updateGoogle(token: string) {
 
 // GET
 export async function getSession() {
-  try {
-    const data = await actionRequestGet<SessionLogged>('session', {
-      auth: true,
-      redirectIfUnauthorized: false,
-    })
+  // try {
+  const data = await actionRequestGet<SessionLogged>('session', {
+    auth: true,
+    redirectIfUnauthorized: false,
+    nullable: true,
+  })
 
-    return data
-  } catch (err) {
-    return null
-  }
+  return data
+  // } catch (err) {
+  //   return null
+  // }
 }

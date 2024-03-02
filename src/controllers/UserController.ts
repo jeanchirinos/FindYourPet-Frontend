@@ -81,16 +81,17 @@ export async function getUser() {
 export async function getGoogleData() {
   type Res = { isConnected: boolean; username: string | null }
 
-  try {
-    const data = await actionRequestGet<Res>('user-google-data', {
-      auth: true,
-      redirectIfUnauthorized: false,
-      next: {
-        tags: ['user-google'],
-      },
-    })
-    return data
-  } catch (e) {
-    return null
-  }
+  // try {
+  const data = await actionRequestGet<Res>('user-google-data', {
+    auth: true,
+    redirectIfUnauthorized: false,
+    next: {
+      tags: ['user-google'],
+    },
+    nullable: true
+  })
+  return data
+  // } catch (e) {
+  //   return null
+  // }
 }

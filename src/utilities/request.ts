@@ -1,13 +1,32 @@
 import { notAuthorized } from './utilities'
 
-export interface Config extends Omit<RequestInit, 'body'> {
+export interface BaseConfig extends Omit<RequestInit, 'body'> {
   body?: object
   redirectIfUnauthorized?: boolean
 }
 
-export type RequestParamsAll = [url: Parameters<typeof fetch>['0'], config?: Config]
+interface NotNullableConfig extends BaseConfig {
+  nullable?: false
+}
 
-export async function requestAll<Response>(...params: RequestParamsAll) {
+interface NullableConfig extends BaseConfig {
+  nullable?: true
+}
+
+type RequestParamsNotNullable = [url: Parameters<typeof fetch>['0'], config?: NotNullableConfig]
+
+type RequestParamsNullable = [url: Parameters<typeof fetch>['0'], config?: NullableConfig]
+
+export async function requestAll<Response>(...params: RequestParamsNotNullable): Promise<Response>
+
+export async function requestAll<Response>(
+  ...params: RequestParamsNullable
+): Promise<Response | null>
+
+//
+export async function requestAll<Response>(
+  ...params: RequestParamsNotNullable | RequestParamsNullable
+) {
   const [url, config] = params
 
   const headers = new Headers(config?.headers)
@@ -48,14 +67,18 @@ export async function requestAll<Response>(...params: RequestParamsAll) {
         },
       })
     }
-  } catch {
+  } catch (e) {
     if (res.status === 401) {
       if (config?.redirectIfUnauthorized) {
         return notAuthorized()
       }
     }
 
-    throw new Error('Error desconocido luego de la respuesta del servidor')
+    if (config?.nullable) return null
+
+    const error = e instanceof Error ? e : new Error('Error desconocido en la petición al servidor')
+
+    throw error
   }
 
   return json as Response
