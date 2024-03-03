@@ -220,3 +220,30 @@ export async function getAllPetsAdmin(params: TGetPetParams2) {
 
   return data
 }
+
+export async function getUserPosts(params: TGetPetParams2) {
+  const { page, published } = params
+  const limit = '5'
+
+  const url = getApiUrl('pet-user')
+  url.pathname += `/${limit}`
+
+  page && url.searchParams.set('page', page)
+  published && url.searchParams.set('published', published)
+
+  const data = await actionRequestGet<Paginate<Pet>>(url, {
+    cache: 'no-store',
+    next: {
+      tags: ['user-posts', 'pets-list'],
+    },
+    auth: true,
+  })
+
+  const { current_page, data: posts } = data
+
+  if (posts.length === 0 && current_page !== 1) {
+    notFound()
+  }
+
+  return data
+}

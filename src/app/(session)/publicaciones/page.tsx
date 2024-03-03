@@ -15,15 +15,15 @@ export const metadata: Metadata = {
 export default function Page(props: Props) {
   const { searchParams } = props
 
-  const { type = 'not-approved', page = '1', order = 'desc', ...restSearchParams } = searchParams
+  const { published = '0', page = '1', order = 'desc', ...restSearchParams } = searchParams
 
   const tabs = [
     {
-      id: 'not-approved',
+      id: '0',
       title: 'En revisión',
     },
     {
-      id: 'approved',
+      id: '1',
       title: 'Aprobados',
     },
   ]
@@ -35,8 +35,8 @@ export default function Page(props: Props) {
           {tabs.map(item => (
             <LinkSearchParams
               key={item.id}
-              currentParam={type}
-              searchParamKey='type'
+              currentParam={published}
+              searchParamKey='published'
               searchParamValue={item.id}
               keysToDelete={['page']}
               className='h-fit rounded-md py-1.5'
@@ -59,7 +59,7 @@ export default function Page(props: Props) {
         }
         keyProp={JSON.stringify(searchParams)}
       >
-        <PostsList searchParams={{ ...restSearchParams, type, order, page }} />
+        <PostsList searchParams={{ ...restSearchParams, published, order, page }} />
       </Suspense>
     </main>
   )

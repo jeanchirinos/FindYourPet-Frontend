@@ -40,7 +40,7 @@ export function LinkSearchParams(props: Props) {
   const createQueryString = useCallback(() => {
     const params = new URLSearchParams(searchParams)
 
-    //
+    //TODO: user-posts default value is 0 :,v
     if (searchParamValueString === '0') {
       params.delete(searchParamKey)
     } else {

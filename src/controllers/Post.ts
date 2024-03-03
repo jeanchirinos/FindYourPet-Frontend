@@ -1,6 +1,7 @@
 'use server'
 
-import { Paginate, Post } from '@/models/Post'
+import { Pet } from '@/models/Pet'
+import { Paginate } from '@/models/Post'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
 import { getApiUrl } from '@/utilities/request'
 import { notFound } from 'next/navigation'
@@ -8,27 +9,28 @@ import { z } from 'zod'
 
 export type TGetPetParams = Partial<{
   page: string
-  type: string
+  published: string
   order: string
 }>
 
 export async function getPosts(params: TGetPetParams) {
-  const { page, order, type } = params
-  const limit = '10'
+  const { page, order, published } = params
+  const limit = '12'
 
-  const url = getApiUrl('post')
+  const url = getApiUrl('pet-user')
 
   url.pathname += `/${limit}`
 
   page && url.searchParams.set('page', page)
-  type && url.searchParams.set('type', type)
+  published && url.searchParams.set('published', published)
   order && url.searchParams.set('order', order)
 
-  const data = await actionRequestGet<Paginate<Post>>(url, {
+  const data = await actionRequestGet<Paginate<Pet>>(url, {
     cache: 'no-store',
     next: {
-      tags: ['post', 'pets-list'],
+      tags: ['user-posts', 'pets-list'],
     },
+    auth: true,
   })
 
   const { current_page, data: posts } = data
