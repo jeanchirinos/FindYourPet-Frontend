@@ -44,8 +44,13 @@ export function Form(props: Props) {
 
     const stringData = Object.values(formProps).reduce((acc, value) => {
       if (value instanceof File && 'size' in value) {
-        //@ts-ignore
-        return acc + value.size
+        // let fileValuesString = ''
+
+        // for (const key in value) {
+        //   fileValuesString += value[key as keyof File].toString()
+        // }
+
+        return (acc as string) + value.name + value.size
       } else {
         return (acc as string) + value
       }
@@ -79,12 +84,19 @@ export function Form(props: Props) {
 
           const stringData = Object.values(formProps).reduce((acc, value) => {
             if (value instanceof File && 'size' in value) {
-              // @ts-ignore
-              return acc + value.size
+              // let fileValuesString = ''
+
+              // for (const key in value) {
+              //   fileValuesString += value[key as keyof File].toString()
+              // }
+
+              return (acc as string) + value.name + value.size
             } else {
               return (acc as string) + value
             }
           })
+
+          // console.log(initialFormData)
 
           if (initialFormData !== stringData) {
             setFormChanged(true)

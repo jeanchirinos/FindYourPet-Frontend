@@ -11,37 +11,38 @@ type Props = React.ComponentProps<typeof Button> & {
     selected?: string
     notSelected?: string
   }
-  currentParam?: string | number
   searchParamKey: string
   searchParamValue: string | number
   toggle?: boolean
   keysToDelete?: string[]
   innerRef?: React.RefObject<HTMLButtonElement>
+  defaultParam?: string | number
 }
 
 export function LinkSearchParams(props: Props) {
   const {
     className,
     classNames,
-    currentParam,
     searchParamKey,
     searchParamValue,
     keysToDelete,
+    defaultParam,
     ...restProps
   } = props
 
   // HOOKS
   const searchParams = useSearchParams()
 
-  const param = currentParam ?? searchParams.get(searchParamKey)
+  const param = searchParams.get(searchParamKey)?.toString()
   const searchParamValueString = searchParamValue.toString()
+
+  const isDefaultParam = searchParamValueString === defaultParam?.toString()
 
   // FUNCTIONS
   const createQueryString = useCallback(() => {
     const params = new URLSearchParams(searchParams)
 
-    //TODO: user-posts default value is 0 :,v
-    if (searchParamValueString === '0') {
+    if (isDefaultParam) {
       params.delete(searchParamKey)
     } else {
       params.set(searchParamKey, searchParamValueString)
@@ -52,12 +53,10 @@ export function LinkSearchParams(props: Props) {
     })
 
     return '?' + params.toString()
-  }, [searchParams, searchParamKey, keysToDelete, searchParamValueString])
+  }, [searchParams, searchParamKey, keysToDelete, searchParamValueString, isDefaultParam])
 
   // VALUES
-  //
-  const isSelected =
-    searchParamValueString === param?.toString() || (searchParamValueString === '0' && !param)
+  const isSelected = searchParamValueString === param || (!param && isDefaultParam)
 
   const dataSelected = isSelected ? { 'data-selected': 'true' } : {}
   const dataNotSelected = !isSelected ? { 'data-not-selected': 'true' } : {}

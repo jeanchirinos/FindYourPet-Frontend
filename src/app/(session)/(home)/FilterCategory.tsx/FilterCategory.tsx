@@ -16,6 +16,7 @@ export async function FilterCategory() {
             key={item.id}
             searchParamKey='category_id'
             searchParamValue={item.id}
+            defaultParam={0}
             keysToDelete={['breed_id', 'page']}
             className='group flex h-fit min-w-fit cursor-pointer flex-col gap-y-0.5 rounded-none bg-transparent p-0'
           >

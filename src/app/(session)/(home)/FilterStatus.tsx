@@ -1,8 +1,9 @@
 import { getStatusList } from '@/controllers/Pet'
 import { LinkSearchParams } from '@/components/LinkSearchParams'
 import { twJoin } from 'tailwind-merge'
+import { DEFAULT_PET_STATUS } from '@/controllers/defaultValues'
 
-export async function FilterStatus(props: { status: string }) {
+export async function FilterStatus() {
   const statusList = await getStatusList()
 
   const classNames = {
@@ -19,7 +20,7 @@ export async function FilterStatus(props: { status: string }) {
         {statusList.map(item => (
           <LinkSearchParams
             key={item.id}
-            currentParam={props.status}
+            defaultParam={DEFAULT_PET_STATUS}
             searchParamKey='status'
             searchParamValue={item.id}
             keysToDelete={['page']}

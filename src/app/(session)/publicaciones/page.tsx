@@ -5,6 +5,7 @@ import { Spinner } from '@nextui-org/spinner'
 import { PostsList } from './Posts/PostList'
 import { Order } from '../(home)/Order'
 import { Metadata } from 'next'
+import { DEFAULT_PET_PUBLISHED } from '@/controllers/defaultValues'
 
 type Props = { searchParams: TGetPetParams }
 
@@ -14,8 +15,6 @@ export const metadata: Metadata = {
 
 export default function Page(props: Props) {
   const { searchParams } = props
-
-  const { published = '0', page = '1', order = 'desc', ...restSearchParams } = searchParams
 
   const tabs = [
     {
@@ -35,9 +34,9 @@ export default function Page(props: Props) {
           {tabs.map(item => (
             <LinkSearchParams
               key={item.id}
-              currentParam={published}
               searchParamKey='published'
               searchParamValue={item.id}
+              defaultParam={DEFAULT_PET_PUBLISHED}
               keysToDelete={['page']}
               className='h-fit rounded-md py-1.5'
               classNames={{
@@ -48,7 +47,7 @@ export default function Page(props: Props) {
             </LinkSearchParams>
           ))}
         </nav>
-        <Order order={order} />
+        <Order />
       </header>
 
       <Suspense
@@ -59,7 +58,7 @@ export default function Page(props: Props) {
         }
         keyProp={JSON.stringify(searchParams)}
       >
-        <PostsList searchParams={{ ...restSearchParams, published, order, page }} />
+        <PostsList searchParams={searchParams} />
       </Suspense>
     </main>
   )

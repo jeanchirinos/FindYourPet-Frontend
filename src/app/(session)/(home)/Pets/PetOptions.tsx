@@ -41,12 +41,12 @@ export function PetOptions(props: { pet: Pet }) {
           <DropdownItem as={Link} key='edit' href={`/publicaciones/editar/${props.pet.id}`}>
             Editar
           </DropdownItem>
-          <DropdownItem
+          {/* <DropdownItem
             key='finish'
             // onClick={deleteModal.open}
           >
             Finalizar anuncio
-          </DropdownItem>
+          </DropdownItem> */}
           <DropdownItem
             key='delete'
             className='text-danger'
@@ -78,7 +78,8 @@ function DialogDelete(props: { pet: Pet; modal: UseModal }) {
         <span>¿ Estás seguro de eliminar tu publicación? </span>
 
         <article className='flex justify-center'>
-          <Image
+          {/* <Image */}
+          <img
             src={pet.image}
             width={500}
             height={500}

@@ -29,7 +29,7 @@ export function Form(props: Props) {
 
   // FUNCTIONS
   function onSuccess() {
-    const dogShape = confetti.shapeFromText({ text: '🐈' })
+    const dogShape = confetti.shapeFromText({ text: '🐕' })
 
     confetti({
       shapes: [dogShape],

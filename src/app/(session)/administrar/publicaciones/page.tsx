@@ -12,14 +12,13 @@ type Props = { searchParams: TGetPetParams2 }
 
 export default function Page(props: Props) {
   const { searchParams } = props
-  const { page = '1', status = '1', order = 'desc', ...restSearchParams } = searchParams
 
   return (
     <main className='mx-auto flex h-full w-[1600px] max-w-full items-start gap-x-10 px-2'>
       <aside className='sticky top-header_sticky w-48 shrink-0 max-lg:hidden'>
         <section className='space-y-8 *:space-y-3'>
           <Suspense>
-            <FilterStatus status={status} />
+            <FilterStatus />
           </Suspense>
           <Suspense>
             <FilterCategory />
@@ -36,7 +35,7 @@ export default function Page(props: Props) {
           <Suspense>
             <FilterPlace />
           </Suspense>
-          <Order order={order} />
+          <Order />
         </header>
 
         <Suspense
@@ -47,7 +46,7 @@ export default function Page(props: Props) {
           }
           keyProp={JSON.stringify(searchParams)}
         >
-          <PetList searchParams={{ ...restSearchParams, status, order, page }} />
+          <PetList searchParams={searchParams} />
         </Suspense>
       </section>
     </main>

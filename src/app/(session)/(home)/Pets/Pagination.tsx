@@ -14,7 +14,7 @@ type Props = {
 }
 
 export function Pagination(props: Props) {
-  const { currentPage, numberOfPages } = props
+  const { currentPage = '1', numberOfPages } = props
 
   if (numberOfPages === 1) return null
 
@@ -53,7 +53,7 @@ export function Pagination(props: Props) {
 }
 
 const renderItem = (props: PaginationItemRenderProps) => {
-  const { ref, key, value, className, activePage, page } = props
+  const { ref, key, value, className, page } = props
 
   // DOTS
   if (value === PaginationItemType.DOTS) {
@@ -77,7 +77,7 @@ const renderItem = (props: PaginationItemRenderProps) => {
       innerRef={ref as any}
       searchParamKey='page'
       searchParamValue={value}
-      currentParam={activePage}
+      defaultParam='1'
       className={twJoin(className)}
     >
       {value}

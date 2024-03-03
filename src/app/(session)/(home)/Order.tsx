@@ -3,7 +3,9 @@
 import { SelectNative } from '@/components/Select/SelectNative'
 import { useSearchParams, useRouter } from 'next/navigation'
 
-export function Order(props: { order: string }) {
+const DEFAULT_ORDER = 'desc'
+
+export function Order() {
   // HOOKS
   const searchParams = useSearchParams()
   const { replace } = useRouter()
@@ -11,7 +13,13 @@ export function Order(props: { order: string }) {
   // FUNCTIONS
   function handleChange(value: string) {
     const newSearchParams = new URLSearchParams(searchParams)
-    newSearchParams.set('order', value)
+
+    if (value === DEFAULT_ORDER) {
+      newSearchParams.delete('order')
+    } else {
+      newSearchParams.set('order', value)
+    }
+
     newSearchParams.delete('page')
 
     replace('?' + newSearchParams.toString())
@@ -22,7 +30,7 @@ export function Order(props: { order: string }) {
     <div className='max-md:hidden'>
       <SelectNative
         state={{
-          selected: props.order,
+          selected: searchParams.get('order') ?? DEFAULT_ORDER,
           onSelectChange: handleChange,
         }}
         options={[

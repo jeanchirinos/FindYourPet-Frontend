@@ -14,13 +14,13 @@ export function FilterBreedsClient(props: Props) {
   return (
     <div className='flex w-full flex-col gap-y-5'>
       <Combobox
+        placeholder='Raza'
         options={filteredBreeds}
         value={selectedBreeds}
         onChange={handleChange}
         query={query}
         setQuery={setQuery}
         multiple
-        placeholder='Raza'
       />
 
       {selectedBreeds.length > 0 && (

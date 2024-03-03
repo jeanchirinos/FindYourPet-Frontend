@@ -26,13 +26,14 @@ export function PetCard(props: Props) {
         href={`/mascotas/${pet.id}`}
         className='group relative aspect-square w-full overflow-hidden'
       >
-        <Image
+        <img
           className='absolute size-full object-cover transition-transform group-hover:scale-110'
           src={pet.image}
           width={pet.image_width ?? 500}
           height={pet.image_height ?? 500}
           alt='Mascota'
-          priority={index === 0}
+          loading='lazy'
+          // priority={index === 0}
         />
       </Link>
       <footer className='space-y-2.5 p-2'>
