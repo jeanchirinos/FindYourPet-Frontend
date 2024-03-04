@@ -7,7 +7,7 @@ import { updatePet } from '@/controllers/Pet'
 import { PetImage } from '@/app/(session)/publicar/PetImage'
 import { redirect, useRouter } from 'next/navigation'
 import { Pet } from '@/models/Pet'
-import { IconBack } from '@/icons'
+import { IconBack, IconInfo } from '@/icons'
 import { Button } from '@/components/Button'
 import { useEffect, useRef, useState } from 'react'
 
@@ -66,6 +66,14 @@ export function Form(props: Props) {
 
         <h2 className='text-center text-lg font-semibold'>Edición de datos</h2>
       </div>
+
+      {/* @ts-ignore */}
+      {pet.published === '1' && (
+        <blockquote className='mb-4 flex gap-x-2 rounded-xl border border-default-100 bg-default-200/20 px-4 py-3 text-small'>
+          <IconInfo className='text-large' />
+          Al editar los datos de tu publicación, esta pasará por un proceso de revisión.
+        </blockquote>
+      )}
       <form
         ref={formRef}
         action={formAction}

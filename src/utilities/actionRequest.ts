@@ -135,7 +135,7 @@ export async function sendData<Response>(params: Params<Response>) {
       schema.parse(dataToValidate)
     } catch (error) {
       if (error instanceof ZodError) {
-        const message = error.issues[0].message
+        const message = `${error.issues[0].path[0]} : ${error.issues[0].message}`
 
         return { ok: false, msg: message, data: undefined } as const
       }

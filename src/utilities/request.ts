@@ -55,9 +55,11 @@ export async function requestAll<Response>(
     body,
   })
 
-  const json = await res.json()
+  let json
 
   try {
+    json = await res.json()
+
     if (!res.ok) {
       const { message, msg } = json
       const { statusText, url, status } = res

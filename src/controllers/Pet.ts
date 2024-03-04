@@ -134,6 +134,9 @@ export async function updatePet(prevState: any, data: FormData) {
     data.delete('image')
   }
 
+  // if image or description was updated
+  data.set('published', '0')
+
   const schema = z.object({
     id: z.string(),
     image: z.optional(
@@ -152,13 +155,13 @@ export async function updatePet(prevState: any, data: FormData) {
     estate: z.string(),
     city: z.string(),
     district: z.string(),
-    location: z.string(),
+    // location: z.string(),
     status: z.string(),
-    plan: z.string(),
+    // plan: z.string(),
   })
 
   return sendData({
-    url: 'pet-update',
+    url: 'pet-updatea',
     schema,
     body: data,
     revalidateTagParams: ['post'],
