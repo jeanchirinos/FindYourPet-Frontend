@@ -71,15 +71,17 @@ export function Form(props: Props) {
         action={formAction}
         onChange={e => {
           const formData = new FormData(e.currentTarget)
-          const formProps = Object.fromEntries(formData)
+          const formProps = Object.values(Object.fromEntries(formData))
 
-          const stringData = Object.values(formProps).reduce((acc, value) => {
-            if (value instanceof File && 'size' in value) {
-              return (acc as string) + value.name + value.size
-            } else {
-              return (acc as string) + value
-            }
-          })
+          const stringData = formProps
+            .map(value => {
+              if (value instanceof File && 'size' in value) {
+                return value.name + value.size
+              } else {
+                return value
+              }
+            })
+            .join('')
 
           if (initialFormData !== stringData) {
             setFormChanged(true)
