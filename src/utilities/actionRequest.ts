@@ -11,6 +11,7 @@ interface BaseConfig extends Omit<RequestInit, 'body'> {
   body?: object
   auth?: boolean
   redirectIfUnauthorized?: boolean // if auth is true this will have effect
+  authIsOptional?: boolean
 }
 
 interface NotNullableConfig extends BaseConfig {
@@ -38,7 +39,7 @@ export async function actionRequestGet<Response>(
 ) {
   const [url, config = {}] = params
 
-  const { redirectIfUnauthorized = true, nullable } = config
+  const { redirectIfUnauthorized = true, nullable, authIsOptional } = config
 
   const headers: HeadersInit = {}
 
@@ -46,7 +47,7 @@ export async function actionRequestGet<Response>(
     const jwt = cookies().get('jwt')
 
     try {
-      if (!jwt) {
+      if (!jwt && !authIsOptional) {
         throw new Error('Sin token')
       }
     } catch (e) {
