@@ -39,24 +39,21 @@ export function Form(props: Props) {
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
-    const formData = new FormData(formRef.current!)
-    const formProps = Object.fromEntries(formData)
+    if (!formRef.current) return
+    const formData = new FormData(formRef.current)
+    const formProps = Object.values(Object.fromEntries(formData))
 
-    const stringData = Object.values(formProps).reduce((acc, value) => {
-      if (value instanceof File && 'size' in value) {
-        // let fileValuesString = ''
+    const stringData = formProps
+      .map(value => {
+        if (value instanceof File && 'size' in value) {
+          return value.name + value.size
+        } else {
+          return value
+        }
+      })
+      .join('')
 
-        // for (const key in value) {
-        //   fileValuesString += value[key as keyof File].toString()
-        // }
-
-        return (acc as string) + value.name + value.size
-      } else {
-        return (acc as string) + value
-      }
-    })
-
-    setInitialFormData(stringData as string)
+    setInitialFormData(stringData)
   }, [])
 
   // RENDER
@@ -84,19 +81,11 @@ export function Form(props: Props) {
 
           const stringData = Object.values(formProps).reduce((acc, value) => {
             if (value instanceof File && 'size' in value) {
-              // let fileValuesString = ''
-
-              // for (const key in value) {
-              //   fileValuesString += value[key as keyof File].toString()
-              // }
-
               return (acc as string) + value.name + value.size
             } else {
               return (acc as string) + value
             }
           })
-
-          // console.log(initialFormData)
 
           if (initialFormData !== stringData) {
             setFormChanged(true)

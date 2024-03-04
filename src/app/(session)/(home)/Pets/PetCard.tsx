@@ -22,12 +22,10 @@ export function PetCard(props: Props) {
   // RENDER
   return (
     <article className='flex flex-col overflow-hidden rounded-xl bg-custom1 shadow-small'>
-      <Link
-        href={`/mascotas/${pet.id}`}
-        className='group relative aspect-square w-full overflow-hidden'
-      >
+      {/*@ts-ignore */}
+      {pet.published === '0' ? (
         <img
-          className='absolute size-full object-cover transition-transform group-hover:scale-110'
+          className='aspect-square w-full overflow-hidden object-cover'
           src={pet.image}
           width={pet.image_width ?? 500}
           height={pet.image_height ?? 500}
@@ -35,7 +33,23 @@ export function PetCard(props: Props) {
           loading='lazy'
           // priority={index === 0}
         />
-      </Link>
+      ) : (
+        <Link
+          href={`/mascotas/${pet.id}`}
+          className='group relative aspect-square w-full overflow-hidden'
+        >
+          <img
+            className='absolute size-full object-cover transition-transform group-hover:scale-110'
+            src={pet.image}
+            width={pet.image_width ?? 500}
+            height={pet.image_height ?? 500}
+            alt='Mascota'
+            loading='lazy'
+            // priority={index === 0}
+          />
+        </Link>
+      )}
+
       <footer className='space-y-2.5 p-2'>
         <section className='flex items-center gap-x-2'>
           <div className={twJoin('grow gap-x-1.5 rounded-xl p-1 text-white flex-center', color)}>

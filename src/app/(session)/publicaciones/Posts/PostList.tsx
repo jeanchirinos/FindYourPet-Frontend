@@ -6,7 +6,9 @@ import { PetCard } from '../../(home)/Pets/PetCard'
 type Props = { searchParams: TGetPetParams }
 
 export async function PostsList(props: Props) {
-  const { data: posts, links } = await getPosts(props.searchParams)
+  const { searchParams } = props
+
+  const { data: posts, links } = await getPosts(searchParams)
 
   if (posts.length === 0)
     return (
@@ -23,10 +25,7 @@ export async function PostsList(props: Props) {
           <PetCard key={pet.id} pet={pet} index={i} isEditable />
         ))}
       </div>
-      <Pagination
-        currentPage={props.searchParams.page as string}
-        numberOfPages={links.length - 2}
-      />
+      <Pagination currentPage={searchParams.page as string} numberOfPages={links.length - 2} />
     </div>
   )
 }
