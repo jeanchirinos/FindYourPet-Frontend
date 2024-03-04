@@ -72,9 +72,7 @@ export function PetCard(props: Props) {
           <HiOutlineLocationMarker />
           <span>{pet.district_name}</span>
         </section>
-        {/* <Suspense>
-          <PetDecision pet={pet} />
-        </Suspense> */}
+        {isAdmin && <PetDecision pet={pet} />}
       </footer>
     </article>
   )

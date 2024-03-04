@@ -75,7 +75,7 @@ function DialogDelete(props: { pet: Pet; modal: UseModal }) {
       <form action={formAction} className='space-y-4'>
         <input name='id' hidden defaultValue={pet.id} />
 
-        <span>¿ Estás seguro de eliminar tu publicación? </span>
+        <span>¿ Estás seguro de eliminar tu publicación ? </span>
 
         <article className='flex justify-center'>
           {/* <Image */}

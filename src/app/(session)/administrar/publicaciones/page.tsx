@@ -7,6 +7,7 @@ import { FilterBreeds } from '../../(home)/FilterBreeds/FilterBreeds'
 import { FilterPlace } from '../../(home)/FilterPlace/FilterPlace'
 import { Order } from '../../(home)/Order'
 import { Spinner } from '@nextui-org/spinner'
+import { PetVisibility } from '../../publicaciones/PetVisibility'
 
 type Props = { searchParams: TGetPetParams2 }
 
@@ -32,9 +33,12 @@ export default function Page(props: Props) {
       </aside>
       <section className='flex h-full w-full flex-col gap-y-4'>
         <header className='flex justify-between'>
-          <Suspense>
-            <FilterPlace />
-          </Suspense>
+          <div className='flex gap-x-2'>
+            <PetVisibility />
+            {/* <Suspense>
+              <FilterPlace />
+            </Suspense> */}
+          </div>
           <Order />
         </header>
 

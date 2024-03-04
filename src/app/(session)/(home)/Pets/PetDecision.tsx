@@ -1,15 +1,28 @@
-import { Button } from '@/components/Button'
+'use client'
+
+import { SubmitButton } from '@/components/SubmitButton'
+import { updatePetVisibility } from '@/controllers/Pet'
+import { useFormAction } from '@/hooks/useFormAction'
 import { Pet } from '@/models/Pet'
 
 export async function PetDecision(props: { pet: Pet }) {
+  const { pet } = props
+
+  const { formAction } = useFormAction(updatePetVisibility)
+
   return (
-    <div className='flex gap-x-1.5 *:grow'>
-      <Button color='danger' variant='flat'>
-        Desaprobar
-      </Button>
-      <Button color='success' variant='flat'>
-        Aprobar
-      </Button>
-    </div>
+    <form action={formAction} className='flex gap-x-1.5 *:grow'>
+      <input name='id' defaultValue={pet.id} hidden />
+      {/*@ts-ignore */}
+      {pet.published === '0' ? (
+        <SubmitButton color='success' variant='flat'>
+          Aprobar
+        </SubmitButton>
+      ) : (
+        <SubmitButton color='danger' variant='flat'>
+          Ocultar
+        </SubmitButton>
+      )}
+    </form>
   )
 }
