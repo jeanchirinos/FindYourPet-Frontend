@@ -38,9 +38,14 @@ export function PetOptions(props: { pet: Pet }) {
           }}
           className='a'
         >
-          <DropdownItem as={Link} key='edit' href={`/publicaciones/editar/${props.pet.id}`}>
-            Editar
-          </DropdownItem>
+          {/*@ts-ignore */}
+          {pet.published !== '0' ? (
+            <DropdownItem as={Link} key='edit' href={`/publicaciones/editar/${props.pet.id}`}>
+              Editar
+            </DropdownItem>
+          ) : (
+            <></>
+          )}
           {/* <DropdownItem
             key='finish'
             // onClick={deleteModal.open}
