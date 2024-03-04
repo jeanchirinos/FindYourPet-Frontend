@@ -16,7 +16,7 @@ export function Header() {
         <aside className='flex'>
           <div className='flex items-center gap-x-0.5'>
             <MobileMenu />
-            <Link href='/inicio' aria-label='Inicio'>
+            <Link href='/' aria-label='Inicio'>
               <Logo width={40} />
             </Link>
           </div>

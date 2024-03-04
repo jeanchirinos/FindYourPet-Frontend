@@ -4,11 +4,13 @@ import { Pet } from '@/models/Pet'
 import Link from 'next/link'
 import { Image } from '@/components/Image'
 import { PetOptions } from './PetOptions'
+import { Suspense } from '@/components/other/CustomSuspense'
+import { PetDecision } from './PetDecision'
 
-type Props = { pet: Pet; index?: number; isEditable?: boolean }
+type Props = { pet: Pet; index?: number; isEditable?: boolean; isAdmin?: boolean }
 
 export function PetCard(props: Props) {
-  const { pet, index, isEditable = false } = props
+  const { pet, index, isEditable = false, isAdmin } = props
 
   // VALUES
   const colors = {
@@ -23,7 +25,7 @@ export function PetCard(props: Props) {
   return (
     <article className='flex flex-col overflow-hidden rounded-xl bg-custom1 shadow-small'>
       {/*@ts-ignore */}
-      {pet.published === '0' ? (
+      {pet.published === '0' && !isAdmin ? (
         <img
           className='aspect-square w-full overflow-hidden object-cover'
           src={pet.image}
@@ -70,6 +72,9 @@ export function PetCard(props: Props) {
           <HiOutlineLocationMarker />
           <span>{pet.district_name}</span>
         </section>
+        {/* <Suspense>
+          <PetDecision pet={pet} />
+        </Suspense> */}
       </footer>
     </article>
   )
