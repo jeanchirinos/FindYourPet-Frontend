@@ -12,7 +12,7 @@ export function MobileMenu() {
     <div className='flex-center md:hidden'>
       <Menu className='static'>
         <MenuTrigger as={Fragment}>
-          <Button size='sm' variant='light' className='min-w-fit pl-0 flex-center'>
+          <Button size='sm' variant='light' isIconOnly className='pl-0 flex-center'>
             <IconMobileMenu size={32} />
           </Button>
         </MenuTrigger>

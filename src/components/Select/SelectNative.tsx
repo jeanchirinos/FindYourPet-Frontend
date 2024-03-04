@@ -52,16 +52,16 @@ export function SelectNative(props: React.ComponentProps<'select'> & SelectProps
 
   // RENDER
   return (
-    <div className={twMerge('relative flex', className)}>
+    <label className={twMerge('relative flex', className)}>
       {label && (
-        <label
+        <span
           className={twMerge(
             'pointer-events-none absolute top-1 ml-2.5 text-xs text-foreground-500',
             classNames?.label,
           )}
         >
           {label}
-        </label>
+        </span>
       )}
       <select
         disabled={!options}
@@ -88,6 +88,6 @@ export function SelectNative(props: React.ComponentProps<'select'> & SelectProps
           </option>
         ))}
       </select>
-    </div>
+    </label>
   )
 }

@@ -27,8 +27,8 @@ export function PetOptions(props: { pet: Pet }) {
         }}
       >
         <DropdownTrigger>
-          <Button size='sm' variant='light' className='min-w-fit'>
-            <IconOptions size={20} />
+          <Button size='sm' variant='light' isIconOnly aria-label='Opciones'>
+            <IconOptions />
           </Button>
         </DropdownTrigger>
         <DropdownMenu

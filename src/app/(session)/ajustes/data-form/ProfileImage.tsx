@@ -8,6 +8,7 @@ import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, useModal } from '@/components/Modal'
 import { User } from '@/models/User'
 import { handleResponse } from '@/utilities/handleResponse'
+import { Button } from '@nextui-org/button'
 
 type Props = { user: User }
 
@@ -19,7 +20,6 @@ export function ProfileImage(props: Props) {
 
   // REF
   const cropperRef = useRef<CropperRef>(null)
-  const inputImageRef = useRef<HTMLInputElement>(null)
 
   // STATES
   const [imagePreview, setImagePreview] = useState<undefined | string>(undefined)
@@ -65,18 +65,17 @@ export function ProfileImage(props: Props) {
           alt='Perfil'
           priority
         />
-        <label className='absolute bottom-5 right-5'>
-          <div className='pointer-events-none absolute rounded-full bg-primary p-1 text-2xl text-white'>
-            <BiSolidCamera />
-          </div>
-          <input
-            ref={inputImageRef}
-            type='file'
-            className='size-[2rem] opacity-0'
-            accept='image/*'
-            onChange={handleInputImage}
-          />
-        </label>
+        <Button
+          as='label'
+          role={null as any}
+          isIconOnly
+          radius='full'
+          color='primary'
+          className='absolute bottom-5 right-5 cursor-pointer text-2xl'
+        >
+          <BiSolidCamera />
+          <input hidden type='file' accept='image/*' onChange={handleInputImage} />
+        </Button>
       </section>
 
       <Modal modal={profileImageModal}>

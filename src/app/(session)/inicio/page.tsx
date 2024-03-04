@@ -36,9 +36,9 @@ export default function Page() {
               color='primary'
               variant='shadow'
               className='bg-main-gradient'
+              endContent={<IconForward />}
             >
-              <span>Ver mascotas</span>
-              <IconForward />
+              Ver mascotas
             </Button>
           </div>
         </div>
@@ -48,7 +48,7 @@ export default function Page() {
       <footer className='px-2 pt-16'>
         <div className='mx-auto flex w-fit items-center gap-x-2'>
           <p>Desplegado en</p>
-          <Link color='foreground' isExternal href='https://vercel.com/'>
+          <Link color='foreground' isExternal href='https://vercel.com/' aria-label='Vercel'>
             <SvgVercel className='w-20' />
           </Link>
         </div>

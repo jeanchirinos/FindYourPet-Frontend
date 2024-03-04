@@ -1,5 +1,5 @@
 import { getStatusList } from '@/controllers/Pet'
-import { twJoin } from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge'
 import { RadioItem } from '@/components/RadioItem'
 
 export async function StatusInfo(props: { status: string | number | undefined }) {
@@ -23,10 +23,11 @@ export async function StatusInfo(props: { status: string | number | undefined })
             value: item.id,
             defaultChecked: item.id.toString() === defaultValue,
           }}
-          className={twJoin(
-            'flex w-full cursor-pointer items-center justify-center rounded-lg px-4 py-3 text-sm shadow-md has-[:checked]:text-white',
+          className={twMerge(
+            'grow has-[:checked]:text-white',
             classNames[item.id as keyof typeof classNames],
           )}
+          variant='bordered'
         >
           {item.value}
         </RadioItem>

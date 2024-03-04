@@ -60,13 +60,7 @@ export function Form(props: Props) {
   return (
     <>
       <div className='mb-8 flex items-center gap-x-4'>
-        <Button
-          onClick={back}
-          size='sm'
-          variant='faded'
-          radius='full'
-          className='aspect-square h-fit min-w-fit !p-2 *:shrink-0'
-        >
+        <Button isIconOnly onClick={back} size='sm' variant='faded' radius='full'>
           <IconBack />
         </Button>
 

@@ -12,7 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@headlessui/tailwindcss": "^0.2.0",
-    "@nextui-org/react": "^2.2.9",
+    "@nextui-org/react": "^2.2.10",
     "@radix-ui/react-select": "^2.0.0",
     "@react-google-maps/api": "^2.19.3",
     "canvas-confetti": "^1.9.2",

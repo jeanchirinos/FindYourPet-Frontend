@@ -29,6 +29,7 @@ export function Order() {
   return (
     <div className='max-md:hidden'>
       <SelectNative
+        aria-label='Ordenar'
         state={{
           selected: searchParams.get('order') ?? DEFAULT_ORDER,
           onSelectChange: handleChange,

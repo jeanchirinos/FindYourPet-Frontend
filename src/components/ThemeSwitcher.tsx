@@ -33,7 +33,7 @@ export function ThemeSwitcher() {
     <Listbox value={selectedTheme} onChange={theme => setTheme(theme.id)}>
       <div className='relative'>
         <Listbox.Button as={Fragment}>
-          <Button size='sm' className='min-w-fit bg-default-100 text-base'>
+          <Button isIconOnly className='bg-default-100' size='sm' aria-label='Tema'>
             {selectedTheme.icon}
           </Button>
         </Listbox.Button>
