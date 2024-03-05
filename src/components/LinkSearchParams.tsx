@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { Button } from './Button'
+import { Button } from '@nextui-org/button'
 
 type Props = React.ComponentProps<typeof Button> & {
   classNames?: {
@@ -13,10 +13,9 @@ type Props = React.ComponentProps<typeof Button> & {
   }
   searchParamKey: string
   searchParamValue: string | number
-  toggle?: boolean
   keysToDelete?: string[]
-  innerRef?: React.RefObject<HTMLButtonElement>
   defaultParam?: string | number
+  innerRef?: React.RefObject<HTMLButtonElement>
 }
 
 export function LinkSearchParams(props: Props) {
@@ -27,16 +26,21 @@ export function LinkSearchParams(props: Props) {
     searchParamValue,
     keysToDelete,
     defaultParam,
+    innerRef,
     ...restProps
   } = props
 
   // HOOKS
   const searchParams = useSearchParams()
 
+  // VALUES
   const param = searchParams.get(searchParamKey)?.toString()
   const searchParamValueString = searchParamValue.toString()
 
   const isDefaultParam = searchParamValueString === defaultParam?.toString()
+  const isSelected = searchParamValueString === param || (!param && isDefaultParam)
+
+  const dataSelected = isSelected ? { 'data-selected': true } : { 'data-not-selected': true }
 
   // FUNCTIONS
   const createQueryString = useCallback(() => {
@@ -55,18 +59,11 @@ export function LinkSearchParams(props: Props) {
     return '?' + params.toString()
   }, [searchParams, searchParamKey, keysToDelete, searchParamValueString, isDefaultParam])
 
-  // VALUES
-  const isSelected = searchParamValueString === param || (!param && isDefaultParam)
-
-  const dataSelected = isSelected ? { 'data-selected': 'true' } : {}
-  const dataNotSelected = !isSelected ? { 'data-not-selected': 'true' } : {}
-
   // RENDER
   return (
     <Button
       as={Link}
       {...dataSelected}
-      {...dataNotSelected}
       href={createQueryString()}
       replace
       className={twMerge(
@@ -74,6 +71,7 @@ export function LinkSearchParams(props: Props) {
         !isSelected && classNames?.notSelected,
         isSelected && classNames?.selected,
       )}
+      ref={innerRef}
       {...restProps}
     />
   )

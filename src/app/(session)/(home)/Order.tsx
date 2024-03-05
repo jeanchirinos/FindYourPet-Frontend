@@ -27,18 +27,17 @@ export function Order() {
 
   // RENDER
   return (
-    <div className='max-md:hidden'>
-      <SelectNative
-        aria-label='Ordenar'
-        state={{
-          selected: searchParams.get('order') ?? DEFAULT_ORDER,
-          onSelectChange: handleChange,
-        }}
-        options={[
-          { id: 'desc', name: 'Más reciente' },
-          { id: 'asc', name: 'Más antiguo' },
-        ]}
-      />
-    </div>
+    <SelectNative
+      className='h-fit max-md:hidden'
+      aria-label='Ordenar'
+      state={{
+        selected: searchParams.get('order') ?? DEFAULT_ORDER,
+        onSelectChange: handleChange,
+      }}
+      options={[
+        { id: 'desc', name: 'Más reciente' },
+        { id: 'asc', name: 'Más antiguo' },
+      ]}
+    />
   )
 }

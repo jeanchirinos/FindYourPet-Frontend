@@ -5,7 +5,7 @@ import { updatePetVisibility } from '@/controllers/Pet'
 import { useFormAction } from '@/hooks/useFormAction'
 import { Pet } from '@/models/Pet'
 
-export async function PetDecision(props: { pet: Pet }) {
+export function PetDecision(props: { pet: Pet }) {
   const { pet } = props
 
   const { formAction } = useFormAction(updatePetVisibility)

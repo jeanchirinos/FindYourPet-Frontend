@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { twJoin } from 'tailwind-merge'
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { CiImageOn } from 'react-icons/ci'
 import { toast } from 'sonner'
 
@@ -77,7 +77,7 @@ export function PetImage(props: Props) {
       </label>
 
       {imagePreview && (
-        <Button className='mt-2.5 w-full' onClick={() => inputRef.current?.click()}>
+        <Button className='mt-2.5' size='sm' onClick={() => inputRef.current?.click()}>
           Editar
         </Button>
       )}

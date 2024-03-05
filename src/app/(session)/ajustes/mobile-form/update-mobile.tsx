@@ -3,7 +3,7 @@ import { Input } from '@/components/Input'
 import { useState } from 'react'
 
 import { Modal, useModal } from '@/components/Modal'
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { useSteps } from '@/hooks/useSteps'
 import { useAutoInput } from '../data-form/useAutoInput'
 import { Step1 } from './Step1'

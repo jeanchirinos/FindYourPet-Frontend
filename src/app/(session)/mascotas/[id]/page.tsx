@@ -9,7 +9,7 @@ import { ContactNumber } from './contactNumber'
 import { twJoin } from 'tailwind-merge'
 import { Metadata } from 'next'
 import { Image } from '@/components/Image'
-// import { Button } from '@/components/Button'
+// import { Button } from '@nextui-org/button'
 // import Link from 'next/link'
 
 type Props = PageProps<'id'>

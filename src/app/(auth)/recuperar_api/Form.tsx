@@ -3,7 +3,7 @@ import { Input } from '@/components/Input'
 import { SubmitButton } from '@/components/SubmitButton'
 import { useFormAction } from '@/hooks/useFormAction'
 import { resetPassword } from '@/controllers/Auth'
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { Link } from '@/components/Link'
 
 type Props = { token?: string }

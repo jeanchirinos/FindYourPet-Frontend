@@ -5,7 +5,7 @@ import { useFormAction } from '@/hooks/useFormAction'
 import { forgotPassword } from '@/controllers/Auth'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { Link } from '@/components/Link'
 
 export default function Page() {

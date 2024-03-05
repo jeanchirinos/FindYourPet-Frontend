@@ -8,7 +8,7 @@ import { PetImage } from '@/app/(session)/publicar/PetImage'
 import { redirect, useRouter } from 'next/navigation'
 import { Pet } from '@/models/Pet'
 import { IconBack, IconInfo } from '@/icons'
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { useEffect, useRef, useState } from 'react'
 
 type Props = {

@@ -6,7 +6,6 @@ import {
   PaginationItemRenderProps,
   PaginationItemType,
 } from '@nextui-org/pagination'
-import { twJoin } from 'tailwind-merge'
 
 type Props = {
   currentPage: string | number
@@ -78,7 +77,7 @@ const renderItem = (props: PaginationItemRenderProps) => {
       searchParamKey='page'
       searchParamValue={value}
       defaultParam='1'
-      className={twJoin(className)}
+      className={className}
     >
       {value}
     </LinkSearchParams>

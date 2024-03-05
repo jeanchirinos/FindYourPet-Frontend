@@ -12,19 +12,9 @@ html {
 }
 
 /* Input */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  appearance: none;
-  margin: 0;
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:is(:hover, :focus, :active) {
   transition: background-color 50000s ease-in-out 0s;
-}
-
-input[type='file']::-webkit-file-upload-button {
-  cursor: pointer;
 }
 
 /* Header transition */

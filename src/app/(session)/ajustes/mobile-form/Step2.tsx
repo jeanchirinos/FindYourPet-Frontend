@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { SubmitButton } from '@/components/SubmitButton'
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { SetState } from '@/types'
 import { useCountdownTimer } from 'use-countdown-timer'
 import { handleResponse } from '@/utilities/handleResponse'

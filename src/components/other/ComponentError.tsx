@@ -1,5 +1,5 @@
 'use client'
 
 export function ErrorUiComponent() {
-  return <p>Hubo un error</p>
+  return <p>Ocurrió un error</p>
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { FcGoogle } from 'react-icons/fc'
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { useGoogle } from '@/hooks/useGoogle'
 
 export function Google() {

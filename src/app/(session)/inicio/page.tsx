@@ -2,7 +2,7 @@ import { Image } from '@/components/Image'
 import ImgHeroImage from '@/public/img/inicio/hero-image.webp'
 import SvgVercel from '@/public/img/inicio/vercel.svg'
 
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { IconForward } from '@/icons'
 import { Services } from './services'
 import { Link } from '@/components/Link'

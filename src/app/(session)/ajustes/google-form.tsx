@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { useGoogle } from '@/hooks/useGoogle'
 import { SubmitButton } from '@/components/SubmitButton'
 import { disconnectGoogle } from '@/controllers/Auth'

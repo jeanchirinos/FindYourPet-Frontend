@@ -2,7 +2,7 @@ import { updateMobile } from '@/controllers/UserController'
 
 import { SubmitButton } from '@/components/SubmitButton'
 import { UseModal } from '@/components/Modal'
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { TUseSteps } from '@/hooks/useSteps'
 import { SetState } from '@/types'
 

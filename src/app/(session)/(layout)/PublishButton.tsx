@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { Link } from '@/components/Link'
 import { usePathname } from 'next/navigation'
 

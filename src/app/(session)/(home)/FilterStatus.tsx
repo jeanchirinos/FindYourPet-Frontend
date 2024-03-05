@@ -22,13 +22,13 @@ export async function FilterStatus() {
             key={item.id}
             defaultParam={DEFAULT_PET_STATUS}
             searchParamKey='status'
-            searchParamValue={item.id}
             keysToDelete={['page']}
+            searchParamValue={item.id}
+            className='flex w-full min-w-max cursor-pointer items-center justify-start rounded-lg p-2.5 text-sm shadow-md'
             classNames={{
               selected: twJoin(classNames[item.id as keyof typeof classNames], 'text-white'),
               notSelected: 'bg-transparent hover:bg-foreground-100',
             }}
-            className='flex w-full min-w-max cursor-pointer items-center justify-start rounded-lg p-2.5 text-sm shadow-md'
           >
             {item.value}
           </LinkSearchParams>

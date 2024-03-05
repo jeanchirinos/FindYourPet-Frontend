@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { Input } from '@/components/Input'
-import { Button } from '@/components/Button'
+import { Button } from '@nextui-org/button'
 import { SubmitButton } from '@/components/SubmitButton'
 import { handleResponse } from '@/utilities/handleResponse'
 import { register } from '@/controllers/Auth'
