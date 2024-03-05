@@ -9,8 +9,6 @@ export async function updateUserImageProfile(formData: FormData) {
     image: z.string().min(1),
   })
 
-  console.log('image', formData.get('image'))
-
   return sendData({
     url: 'user-profile',
     body: formData,

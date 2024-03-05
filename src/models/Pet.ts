@@ -38,7 +38,7 @@ export type Pet = {
     id: number
     username: string
     image: string
-  } | null
+  }
 }
 
 export type Category = {

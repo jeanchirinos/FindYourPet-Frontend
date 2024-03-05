@@ -5,12 +5,11 @@ import { PageProps } from '@/types'
 // import { Skeleton } from '@nextui-org/skeleton'
 import { PetStatusTag } from '@/components/business/PetStatusTag'
 import { PetCard } from '../../(home)/Pets/PetCard'
-import { ContactNumber } from './contactNumber'
+// import { ContactNumber } from './contactNumber'
 import { twJoin } from 'tailwind-merge'
 import { Metadata } from 'next'
 import { Image } from '@/components/Image'
-// import { Button } from '@nextui-org/button'
-// import Link from 'next/link'
+import { IconLocation } from '@/icons'
 
 type Props = PageProps<'id'>
 
@@ -64,21 +63,25 @@ async function Content(props: { petId: string }) {
         </picture>
         <div className='flex grow flex-col gap-y-4'>
           <PetStatusTag pet={pet} />
-          {/* <div className='h-80 grow overflow-hidden rounded-md md:h-60 2xl:h-80'>
-            <Skeleton className='size-full' />
-          </div> */}
-          <section className='max-h-60 space-y-2.5 overflow-y-auto rounded-md bg-foreground-200 p-2'>
-            <h3 className='font-bold'>Descripción</h3>
-            <p>{pet.description}</p>
-          </section>
-          <section className='space-y-2.5 rounded-md bg-foreground-200 p-2'>
-            <h3 className='font-bold'>Contacto</h3>
-
-            <div className='flex flex-col gap-y-1'>
-              <p>Usuario</p>
-              <p>alguien@gmail.com</p>
-              <ContactNumber id={pet.id} phoneNumber='999999999' />
+          <section className='flex flex-col gap-y-3 rounded-md bg-foreground-200/50 p-2'>
+            <div className='flex items-center gap-x-2'>
+              <Image
+                src={pet.user.image}
+                alt={pet.user.username}
+                width={32}
+                height={32}
+                className='rounded-full'
+              />
+              <p className='text-foreground-600'>{pet.user.username}</p>
             </div>
+
+            <p>{pet.description}</p>
+
+            <div className='flex items-baseline gap-x-1'>
+              <IconLocation />
+              <span className='text-foreground-600'>{pet.district_name}</span>
+            </div>
+            {/* <ContactNumber id={pet.id} phoneNumber='999999999' /> */}
           </section>
         </div>
       </section>

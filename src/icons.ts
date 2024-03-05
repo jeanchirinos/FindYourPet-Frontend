@@ -2,6 +2,8 @@ export { AiOutlineSearch as IconSearch } from 'react-icons/ai'
 export { FaCircle as IconCircle } from 'react-icons/fa'
 export { FcGoogle as IconGoogle } from 'react-icons/fc'
 export { GoChevronDown as IconArrowDown, GoCheck as IconCheck } from 'react-icons/go'
+export { HiOutlineLocationMarker as IconLocation } from 'react-icons/hi'
+
 export {
   HiMiniComputerDesktop as IconSystemTheme,
   HiOutlineMoon as IconDarkTheme,
