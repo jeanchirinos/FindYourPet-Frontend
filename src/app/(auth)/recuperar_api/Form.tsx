@@ -19,6 +19,7 @@ export function Form(props: Props) {
           <p className='text-foreground-600'>Ya puedes iniciar sesión con tu nueva contraseña</p>
         </section>
 
+        {/* @ts-ignore */}
         <Button as={Link} color='primary' replace href='/'>
           Ir a inicio
         </Button>
