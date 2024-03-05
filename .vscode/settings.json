@@ -14,30 +14,28 @@
     "**/*.crswap": true,
     "README.md": true,
     ".gitignore": true,
-    "next-env.d.ts": true,
     ".eslintrc.json": true,
     ".prettierrc.json": true,
     "pnpm-lock.yaml": true,
     "src/app/opengraph-image.png": true,
-    "src/app/favicon.ico": true,
-    "postcss.config.js": true,
     ".npmrc": true,
-    ".next": true,
-    "node_modules": true
+    "node_modules": true,
+    "next-env.d.ts": true,
+    "postcss.config.js": true,
+    "src/app/favicon.ico": true
   },
   "hide-files.files": [
     "README.md",
     ".gitignore",
-    "next-env.d.ts",
     ".eslintrc.json",
     ".prettierrc.json",
     "pnpm-lock.yaml",
     "src/app/opengraph-image.png",
-    "src/app/favicon.ico",
-    "postcss.config.js",
     ".npmrc",
-    ".next",
-    "node_modules"
+    "node_modules",
+    "next-env.d.ts",
+    "postcss.config.js",
+    "src/app/favicon.ico"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {

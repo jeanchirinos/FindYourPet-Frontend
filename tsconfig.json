@@ -16,6 +16,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -31,11 +36,6 @@
         "public/*"
       ]
     },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
   },
   "include": [
     "next-env.d.ts",
