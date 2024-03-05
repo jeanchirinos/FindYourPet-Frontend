@@ -63,7 +63,7 @@ async function Content(props: { petId: string }) {
           />
         </picture>
         <div className='flex grow flex-col gap-y-4'>
-          <PetStatusTag pet={{ ...pet, status_name: 'Estado' }} />
+          <PetStatusTag pet={pet} />
           {/* <div className='h-80 grow overflow-hidden rounded-md md:h-60 2xl:h-80'>
             <Skeleton className='size-full' />
           </div> */}

@@ -4,14 +4,17 @@ import { Input } from '@/components/Input'
 import { Link } from '@/components/Link'
 import { SubmitButton } from '@/components/SubmitButton'
 import { login } from '@/controllers/Auth'
+import { useFormAction } from '@/hooks/useFormAction'
 import { useState } from 'react'
 
 export function Login() {
   const [currentEmail, setCurrentEmail] = useState('')
 
+  const { formAction } = useFormAction(login, { showSuccessToast: false })
+
   // RENDER
   return (
-    <form className='mt-4 flex max-w-xs flex-col gap-y-4' action={login}>
+    <form className='mt-4 flex max-w-xs flex-col gap-y-4' action={formAction}>
       <Input
         type='email'
         name='email'
