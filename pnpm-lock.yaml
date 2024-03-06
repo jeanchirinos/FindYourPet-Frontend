@@ -27,14 +27,14 @@ dependencies:
     specifier: ^11.0.8
     version: 11.0.8(react-dom@18.2.0)(react@18.2.0)
   input-otp:
-    specifier: 0.3.31-beta
-    version: 0.3.31-beta(react-dom@18.2.0)(react@18.2.0)
+    specifier: 1.0.0
+    version: 1.0.0(react-dom@18.2.0)(react@18.2.0)
   next:
     specifier: 14.1.2
     version: 14.1.2(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
   next-nprogress-bar:
-    specifier: ^2.3.2
-    version: 2.3.2
+    specifier: ^2.3.4
+    version: 2.3.4
   next-themes:
     specifier: ^0.2.1
     version: 0.2.1(next@14.1.2)(react-dom@18.2.0)(react@18.2.0)
@@ -104,8 +104,8 @@ devDependencies:
     specifier: ^3.2.5
     version: 3.2.5
   prettier-plugin-tailwindcss:
-    specifier: ^0.5.11
-    version: 0.5.11(prettier@3.2.5)
+    specifier: ^0.5.12
+    version: 0.5.12(prettier@3.2.5)
   tailwindcss:
     specifier: 3.4.1
     version: 3.4.1
@@ -6733,8 +6733,8 @@ packages:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: true
 
-  /input-otp@0.3.31-beta(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-PyOlHQ3qfZEPFTu08A8aDQhv4vi16RS6LWGPMN6wY0kA3zIX3dexWYnAb8NXHL3ET2QjcYgfyycCDvy3az2pwQ==}
+  /input-otp@1.0.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-sJJJM0Gul6bHz/Hjewm0Ebxoj6GCcX0ZD2pEhxT85VWzkOrK0iGtysXhtMrovRJYBz5RVGlHBsLl1VE07J83EQ==}
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
@@ -7226,8 +7226,8 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-nprogress-bar@2.3.2:
-    resolution: {integrity: sha512-D2XjnjnuJ4kOYgtJPgu/naBqEsFxHoKa0cDQJRwbkMzTNVtEng7TgAqaFCjeSCNMTeReWj8wge0EIRdqPWu2sw==}
+  /next-nprogress-bar@2.3.4:
+    resolution: {integrity: sha512-R4okQiaMIw5yFIq9SjBkQ0TPv7UVSkR5fWt7tauO2gQYW+62Wyq3kK8M40VtrwO42xJ1anEevDBxM88wb9ZE7g==}
     dependencies:
       nprogress: 0.2.0
     dev: false
@@ -7630,8 +7630,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-tailwindcss@0.5.11(prettier@3.2.5):
-    resolution: {integrity: sha512-AvI/DNyMctyyxGOjyePgi/gqj5hJYClZ1avtQvLlqMT3uDZkRbi4HhGUpok3DRzv9z7Lti85Kdj3s3/1CeNI0w==}
+  /prettier-plugin-tailwindcss@0.5.12(prettier@3.2.5):
+    resolution: {integrity: sha512-o74kiDBVE73oHW+pdkFSluHBL3cYEvru5YgEqNkBMFF7Cjv+w1vI565lTlfoJT4VLWDe0FMtZ7FkE/7a4pMXSQ==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
@@ -7646,6 +7646,7 @@ packages:
       prettier-plugin-marko: '*'
       prettier-plugin-organize-attributes: '*'
       prettier-plugin-organize-imports: '*'
+      prettier-plugin-sort-imports: '*'
       prettier-plugin-style-order: '*'
       prettier-plugin-svelte: '*'
       prettier-plugin-twig-melody: '*'
@@ -7671,6 +7672,8 @@ packages:
       prettier-plugin-organize-attributes:
         optional: true
       prettier-plugin-organize-imports:
+        optional: true
+      prettier-plugin-sort-imports:
         optional: true
       prettier-plugin-style-order:
         optional: true

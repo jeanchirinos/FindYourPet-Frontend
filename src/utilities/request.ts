@@ -97,24 +97,20 @@ export async function requestAll<Response>(
 }
 
 export function getApiUrl(url: string) {
-  const envName = 'NEXT_PUBLIC_BACKEND_API'
-
-  const baseUrl = process.env[envName]
+  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_API
 
   if (!baseUrl) {
-    throw new Error(`No se ha definido la variable de entorno ${envName}`)
+    throw new Error(`No se ha definido la variable de entorno NEXT_PUBLIC_BACKEND_API`)
   }
 
   return new URL(url, baseUrl)
 }
 
 export function getApiKey() {
-  const envName = 'API_KEY'
-
-  const apiKey = process.env[envName]
+  const apiKey = process.env.API_KEY
 
   if (!apiKey) {
-    throw new Error(`No se ha definido la variable de entorno ${envName}`)
+    throw new Error(`No se ha definido la variable de entorno API_KEY`)
   }
 
   return apiKey
