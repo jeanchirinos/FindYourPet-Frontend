@@ -19,7 +19,6 @@ export function OtpInput(props: Props) {
       value={validationCode}
       onChange={setValidationCode}
       maxLength={6}
-      allowNavigation
       pattern={REGEXP_ONLY_DIGITS}
       render={({ slots }) => (
         <div className='flex'>
