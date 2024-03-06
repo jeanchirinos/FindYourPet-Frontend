@@ -2,7 +2,7 @@ import { twJoin } from 'tailwind-merge'
 import { HiOutlineLocationMarker } from 'react-icons/hi'
 import { Pet } from '@/models/Pet'
 import Link from 'next/link'
-// import { Image } from '@/components/Image'
+import { Image } from '@/components/Image'
 import { PetOptions } from './PetOptions'
 import { PetDecision } from './PetDecision'
 import { IconForward } from '@/icons'
@@ -24,7 +24,7 @@ export function PetCard(props: Props) {
   // RENDER
   return (
     <article className='flex flex-col overflow-hidden rounded-xl bg-custom1 shadow-small'>
-      <PetImage pet={pet} isAdmin={isAdmin} />
+      <PetImage pet={pet} isAdmin={isAdmin} index={index} />
 
       <footer className='space-y-2.5 p-2'>
         <section className='flex items-center gap-x-2'>
@@ -52,14 +52,14 @@ export function PetCard(props: Props) {
   )
 }
 
-function PetImage(props: { pet: Pet; isAdmin?: boolean }) {
-  const { pet, isAdmin } = props
+function PetImage(props: { pet: Pet; isAdmin?: boolean; index?: number }) {
+  const { pet, isAdmin, index } = props
 
   //@ts-ignore
   const isNotLinkeable = !isAdmin && pet.published === '0'
 
   const image = (
-    <img
+    <Image
       className={
         isNotLinkeable
           ? 'aspect-square w-full overflow-hidden object-cover'
@@ -70,7 +70,7 @@ function PetImage(props: { pet: Pet; isAdmin?: boolean }) {
       height={pet.image_height ?? 500}
       alt='Mascota'
       loading='lazy'
-      // priority={index === 0}
+      priority={index === 0}
     />
   )
 

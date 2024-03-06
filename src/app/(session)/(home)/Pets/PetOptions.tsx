@@ -78,8 +78,7 @@ function DialogDelete(props: { pet: Pet; modal: UseModal }) {
         <span>¿ Estás seguro de eliminar tu publicación ? </span>
 
         <article className='flex justify-center'>
-          {/* <Image */}
-          <img
+          <Image
             src={pet.image}
             width={500}
             height={500}
