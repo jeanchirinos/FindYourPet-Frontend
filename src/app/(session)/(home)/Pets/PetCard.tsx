@@ -6,6 +6,7 @@ import { Image } from '@/components/Image'
 import { PetOptions } from './PetOptions'
 import { PetDecision } from './PetDecision'
 import { IconForward } from '@/icons'
+import { ROUTE } from '@/routes'
 
 type Props = { pet: Pet; index?: number; isEditable?: boolean; isAdmin?: boolean }
 
@@ -74,10 +75,10 @@ function PetImage(props: { pet: Pet; isAdmin?: boolean; index?: number }) {
 
   return (
     <Link
-      href={`/mascotas/${pet.id}`}
+      href={ROUTE.PETS.ID(pet.id)}
       className='group relative aspect-square w-full overflow-hidden'
     >
-      <IconForward className='absolute right-2 top-2 z-10 hidden text-xl group-hover:block' />
+      <IconForward className='absolute right-2 top-2 z-10 hidden text-xl text-white group-hover:block' />
       {image}
     </Link>
   )

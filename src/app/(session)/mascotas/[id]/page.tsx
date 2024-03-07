@@ -21,9 +21,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default function Page(props: Props) {
   return (
-    <Suspense>
+    // <Suspense>
       <Content petId={props.params.id} />
-    </Suspense>
+    // </Suspense>
   )
 }
 

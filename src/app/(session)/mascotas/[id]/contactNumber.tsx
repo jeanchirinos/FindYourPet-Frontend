@@ -1,5 +1,7 @@
+import { ROUTE } from '@/routes'
+
 export function ContactNumber(props: { id: string | number; phoneNumber: string }) {
-  const message = `Hola, vi este anuncio ${process.env.NEXT_PUBLIC_APP_URL}/mascotas/${props.id} por PetContrado, `
+  const message = `Hola, vi este anuncio ${process.env.NEXT_PUBLIC_APP_URL + ROUTE.PETS.ID(props.id)} por PetContrado, `
 
   const url = new URL('https://api.whatsapp.com/send/')
   url.searchParams.set('phone', `+51${props.phoneNumber}`)
