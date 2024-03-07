@@ -5,6 +5,7 @@ import { Link } from '@/components/Link'
 import { SubmitButton } from '@/components/SubmitButton'
 import { login } from '@/controllers/Auth'
 import { useFormAction } from '@/hooks/useFormAction'
+import { ROUTE } from '@/routes'
 import { useState } from 'react'
 
 export function Login() {
@@ -23,7 +24,7 @@ export function Login() {
         onChange={e => setCurrentEmail(e.target.value)}
       />
       <Input type='password' name='password' label='Contraseña' minLength={8} />
-      <Link href={`/recuperar?email=${currentEmail}`} className='mx-auto'>
+      <Link href={ROUTE.AUTH.PASSWORD_FORGOT(currentEmail)} className='mx-auto'>
         ¿Olvidaste tu contraseña?
       </Link>
       <SubmitButton>Ingresar</SubmitButton>

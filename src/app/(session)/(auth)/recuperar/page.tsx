@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { ButtonLink } from '@/components/ButtonLink'
 import { Title } from '@/components/business/Title'
+import { ROUTE } from '@/routes'
 
 export default function Page() {
   return (
@@ -32,8 +33,8 @@ function Content() {
             <p className='text-foreground-600'>Revisa tu correo para restablecer tu contraseña</p>
           </section>
 
-          <ButtonLink href='/' color='primary'>
-            Ir a inicio
+          <ButtonLink href={ROUTE.PETS.INDEX} color='primary'>
+            Ver mascotas
           </ButtonLink>
         </div>
       ) : (

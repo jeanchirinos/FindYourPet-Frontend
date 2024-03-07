@@ -11,6 +11,7 @@ import { PetImage } from './PetImage'
 import { SessionLogged } from '@/models/Auth'
 import { Title } from '@/components/business/Title'
 import { ButtonLink } from '@/components/ButtonLink'
+import { ROUTE } from '@/routes'
 
 type Props = {
   StatusInfoComponent: React.ReactNode
@@ -50,7 +51,7 @@ export function Form(props: Props) {
           Tu publicación será revisada y cuando sea aprobada será visible de forma pública
         </p>
         <footer className='flex gap-x-2.5'>
-          <ButtonLink href='/'>Ver mascotas</ButtonLink>
+          <ButtonLink href={ROUTE.PETS.INDEX}>Ver mascotas</ButtonLink>
           <Button color='primary' onClick={() => setState({ msg: '', ok: null })}>
             Volver a registrar
           </Button>

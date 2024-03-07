@@ -1,14 +1,12 @@
-// import { ROUTE } from '@/routes'
+import { ROUTE } from '@/routes'
 
 export const links = [
   {
-    // href: ROUTE.HOME,
-    href: '/inicio',
+    href: ROUTE.HOME,
     text: 'Inicio',
   },
   {
-    // href: ROUTE.PETS,
-    href: '/',
+    href: ROUTE.PETS.INDEX,
     text: 'Mascotas',
   },
   // {

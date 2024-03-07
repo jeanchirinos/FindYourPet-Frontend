@@ -1,3 +1,4 @@
+import { ROUTE } from '@/routes'
 import { redirect } from 'next/navigation'
 
 /** Simulate a delay for async operations */
@@ -10,5 +11,5 @@ export function getFormEntries(formData: FormData) {
 }
 
 export function notAuthorized() {
-  return redirect('/')
+  return redirect(ROUTE.PETS.INDEX)
 }

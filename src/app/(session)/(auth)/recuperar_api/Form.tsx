@@ -5,6 +5,7 @@ import { useFormAction } from '@/hooks/useFormAction'
 import { resetPassword } from '@/controllers/Auth'
 import { ButtonLink } from '@/components/ButtonLink'
 import { Title } from '@/components/business/Title'
+import { ROUTE } from '@/routes'
 
 type Props = { token?: string }
 
@@ -19,7 +20,7 @@ export function Form(props: Props) {
           <p className='text-foreground-600'>Ya puedes iniciar sesión con tu nueva contraseña</p>
         </section>
 
-        <ButtonLink color='primary' replace href='/'>
+        <ButtonLink color='primary' replace href={ROUTE.PETS.INDEX}>
           Ir a inicio
         </ButtonLink>
       </div>

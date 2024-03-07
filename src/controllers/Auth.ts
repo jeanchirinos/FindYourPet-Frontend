@@ -1,5 +1,6 @@
 'use server'
 import { SessionLogged } from '@/models/Auth'
+import { ROUTE } from '@/routes'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
 import { cookies, headers } from 'next/headers'
 import { notFound, redirect } from 'next/navigation'
@@ -39,8 +40,8 @@ export async function login(prevState: any, formData: FormData) {
 
     cookies().set('jwt', data.token, { expires })
 
-    if (headers().get('referer')?.includes('/inicio')) {
-      redirect('/')
+    if (headers().get('referer')?.includes(ROUTE.HOME)) {
+      redirect(ROUTE.PETS.INDEX)
     }
   }
 
@@ -117,20 +118,17 @@ export async function updateGoogle(token: string) {
   const expires = new Date()
   expires.setDate(expires.getDate() + 7)
 
-  if (!headers().get('referer')?.includes('/ajustes')) {
+  if (!headers().get('referer')?.includes(ROUTE.SETTINGS)) {
     cookies().set('jwt', token, { expires })
   }
 
-  if (headers().get('referer')?.includes('/inicio')) {
-    redirect('/')
+  if (headers().get('referer')?.includes(ROUTE.HOME)) {
+    redirect(ROUTE.PETS.INDEX)
   }
 }
 
-// A
-
 // GET
 export async function getSession() {
-  // try {
   const data = await actionRequestGet<SessionLogged>('session', {
     auth: true,
     redirectIfUnauthorized: false,
@@ -138,7 +136,4 @@ export async function getSession() {
   })
 
   return data
-  // } catch (err) {
-  //   return null
-  // }
 }

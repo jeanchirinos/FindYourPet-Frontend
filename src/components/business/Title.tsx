@@ -1,6 +1,7 @@
 'use client'
 
 import { IconBack } from '@/icons'
+import { ROUTE } from '@/routes'
 import { Button } from '@nextui-org/button'
 import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
@@ -16,7 +17,7 @@ export function Title(props: Props) {
     if (window.history.length > 2) {
       back()
     } else {
-      push('/')
+      push(ROUTE.PETS.INDEX)
     }
   }
 

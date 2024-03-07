@@ -11,6 +11,7 @@ import { Pet } from '@/models/Pet'
 import { Image } from '@/components/Image'
 import { Dropdown } from '@/components/Dropdown'
 import { Button } from '@nextui-org/button'
+import { ROUTE } from '@/routes'
 
 export function PetOptions(props: { pet: Pet }) {
   const deleteModal = useModal()
@@ -38,7 +39,7 @@ export function PetOptions(props: { pet: Pet }) {
           }}
           className='a'
         >
-          <DropdownItem as={Link} key='edit' href={`/publicaciones/editar/${props.pet.id}`}>
+          <DropdownItem as={Link} key='edit' href={ROUTE.POSTS.EDIT(props.pet.id)}>
             Editar
           </DropdownItem>
           {/* <DropdownItem

@@ -1,8 +1,6 @@
 const ROOT = {
-  PETS: '/',
   HOME: '/inicio',
   PUBLISH: '/publicar',
-  POSTS: '/publicaciones',
   SETTINGS: '/ajustes',
 } as const
 
@@ -11,11 +9,18 @@ const ADMIN = {
 } as const
 
 const PETS = {
+  INDEX: '/',
   ID: (id: string | number) => `/mascotas/${id}` as const,
 } as const
 
+const POSTS = {
+  INDEX: '/publicaciones',
+  EDIT: (id: string | number) => `/publicaciones/editar/${id}` as const,
+}
+
 const AUTH = {
-  PASSWORD_FORGOT: '/recuperar',
+  PASSWORD_FORGOT: (email?: string) => `/recuperar${email ? '?email=' + email : ''}` as const,
+  // API use this two routes
   PASSWORD_RESET: '/recuperar_api',
   SOCIAL_AUTH: '/social_auth',
 } as const
@@ -25,4 +30,5 @@ export const ROUTE = {
   AUTH,
   PETS,
   ADMIN,
+  POSTS,
 }

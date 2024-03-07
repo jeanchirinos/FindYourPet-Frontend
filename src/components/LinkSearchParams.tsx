@@ -1,12 +1,11 @@
 'use client'
 
-import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { Button } from '@nextui-org/button'
+import { ButtonLink } from './ButtonLink'
 
-type Props = React.ComponentProps<typeof Button> & {
+type Props = React.ComponentProps<typeof ButtonLink> & {
   classNames?: {
     selected?: string
     notSelected?: string
@@ -15,7 +14,7 @@ type Props = React.ComponentProps<typeof Button> & {
   searchParamValue: string | number
   keysToDelete?: string[]
   defaultParam?: string | number
-  innerRef?: React.RefObject<HTMLButtonElement>
+  innerRef?: React.Ref<HTMLButtonElement>
 }
 
 export function LinkSearchParams(props: Props) {
@@ -61,8 +60,7 @@ export function LinkSearchParams(props: Props) {
 
   // RENDER
   return (
-    <Button
-      as={Link}
+    <ButtonLink
       {...dataSelected}
       href={createQueryString()}
       replace
@@ -71,7 +69,7 @@ export function LinkSearchParams(props: Props) {
         !isSelected && classNames?.notSelected,
         isSelected && classNames?.selected,
       )}
-      ref={innerRef}
+      innerRef={innerRef}
       {...restProps}
     />
   )

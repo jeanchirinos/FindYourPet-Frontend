@@ -8,6 +8,7 @@ import { Skeleton } from '@nextui-org/skeleton'
 import { ThemeSwitcher } from '@/components/ThemeSwitcher'
 import { MobileMenu } from './MobileMenu'
 import { links } from './links'
+import { ROUTE } from '@/routes'
 
 export function Header() {
   return (
@@ -16,7 +17,7 @@ export function Header() {
         <aside className='flex'>
           <div className='flex items-center gap-x-0.5'>
             <MobileMenu />
-            <Link href='/' aria-label='Inicio'>
+            <Link href={ROUTE.PETS.INDEX} aria-label='Inicio'>
               <Logo width={40} />
             </Link>
           </div>

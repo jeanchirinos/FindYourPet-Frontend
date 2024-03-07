@@ -2,10 +2,11 @@ import { Image } from '@/components/Image'
 import ImgHeroImage from '@/public/img/inicio/hero-image.webp'
 import SvgVercel from '@/public/img/inicio/vercel.svg'
 
-import { Button } from '@nextui-org/button'
 import { IconForward } from '@/icons'
 import { Services } from './services'
 import { Link } from '@/components/Link'
+import { ROUTE } from '@/routes'
+import { ButtonLink } from '@/components/ButtonLink'
 
 export default function Page() {
   return (
@@ -30,16 +31,15 @@ export default function Page() {
               adopciones y reportar hallazgos de animales extraviados.
             </p>
 
-            <Button
-              as={Link}
-              href='/'
+            <ButtonLink
+              href={ROUTE.PETS.INDEX}
               color='primary'
               variant='shadow'
               className='bg-main-gradient'
               endContent={<IconForward />}
             >
               Ver mascotas
-            </Button>
+            </ButtonLink>
           </div>
         </div>
       </section>

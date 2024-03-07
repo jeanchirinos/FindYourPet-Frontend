@@ -4,6 +4,7 @@ import { SubmitButton } from '@/components/SubmitButton'
 import { logout } from '@/controllers/Auth'
 import { Menu, MenuContent, MenuItem, MenuTrigger } from '@/components/Menu'
 import { HeaderLink } from './HeaderLink'
+import { ROUTE } from '@/routes'
 // import { Notifications } from './Notifications'
 
 type Props = { session: SessionLogged }
@@ -32,19 +33,19 @@ export function UserLogged(props: Props) {
           </div>
           <div className='flex flex-col any-*-[a]:w-full any-*-[a]:px-4 any-*-[a]:py-2'>
             <MenuItem>
-              <HeaderLink size='sm' href='/publicaciones'>
+              <HeaderLink size='sm' href={ROUTE.POSTS.INDEX}>
                 Mis publicaciones
               </HeaderLink>
             </MenuItem>
             <MenuItem>
-              <HeaderLink size='sm' href='/ajustes'>
+              <HeaderLink size='sm' href={ROUTE.SETTINGS}>
                 Ajustes
               </HeaderLink>
             </MenuItem>
 
             {session.role === ERole.ADMIN && (
               <MenuItem>
-                <HeaderLink size='sm' href='/administrar/publicaciones'>
+                <HeaderLink size='sm' href={ROUTE.ADMIN.POSTS}>
                   Administrar
                 </HeaderLink>
               </MenuItem>
