@@ -58,13 +58,14 @@ export async function requestAll<Response>(
   let json
 
   try {
-    if (!res.ok && (res.status === 404 || res.status === 500))
+    if (!res.ok && (res.status === 404 || res.status === 500)) {
       throw new Error(`${res.status} : ${res.statusText}`, {
         cause: {
           url,
           status: res.status,
         },
       })
+    }
 
     json = await res.json()
 

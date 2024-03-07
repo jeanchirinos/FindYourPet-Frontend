@@ -65,8 +65,15 @@ export async function getPets(params: TGetPetParams) {
 export async function getPetById(id: string) {
   const data = await actionRequestGet<{ pet: Pet; morePets: Pet[] }>(`pet-find/${id}`, {
     cache: 'no-store',
+  })
+
+  return data
+}
+
+export async function getPetByIdEdit(id: string) {
+  const data = await actionRequestGet<Pet>(`pet-edit/${id}`, {
+    cache: 'no-store',
     auth: true,
-    authIsOptional: true,
   })
 
   return data
@@ -134,24 +141,20 @@ export async function updatePet(prevState: any, data: FormData) {
     data.delete('image')
   }
 
-  // if image or description was updated
-  // data.set('published', '0')
-
   const schema = z.object({
     breed_id: z.string(),
-    // id: z.string(),
-    // image: z.optional(
-    //   z
-    //     .any()
-    //     .refine(
-    //       file => file.size <= MAX_FILE_SIZE && file.size > 0,
-    //       `El peso de la imagen debe ser mayor a 0MB y menor a 1MB.`,
-    //     )
-    //     .refine(
-    //       file => ACCEPTED_IMAGE_TYPES.includes(file.type),
-    //       'Solo se permiten .jpg, .jpeg, .png and .webp',
-    //     ),
-    // ),
+    image: z.optional(
+      z
+        .any()
+        .refine(
+          file => file.size <= MAX_FILE_SIZE && file.size > 0,
+          `El peso de la imagen debe ser mayor a 0MB y menor a 1MB.`,
+        )
+        .refine(
+          file => ACCEPTED_IMAGE_TYPES.includes(file.type),
+          'Solo se permiten .jpg, .jpeg, .png and .webp',
+        ),
+    ),
     description: z.string(),
     estate: z.string(),
     city: z.string(),

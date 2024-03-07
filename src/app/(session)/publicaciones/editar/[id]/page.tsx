@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 type Props = PageProps<'id'>
 
 export default async function Page(props: Props) {
+  // const pet = await getPetByIdEdit(props.params.id)
   const { pet } = await getPetById(props.params.id)
 
   return (
