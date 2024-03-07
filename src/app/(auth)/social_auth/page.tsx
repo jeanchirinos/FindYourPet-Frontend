@@ -1,31 +1,17 @@
-'use client'
-import { Spinner } from '@nextui-org/spinner'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { Suspense, useEffect } from 'react'
+import { AuthSuccess } from './auth-success'
+import { AlreadyLinked } from './already-linked'
 
-export default function Page() {
-  return (
-    <Suspense>
-      <Content />
-    </Suspense>
-  )
+type Props = {
+  searchParams: { status: 'success'; token: string } | { status: 'error' }
 }
 
-function Content() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-
-  useEffect(() => {
-    // Open only if it was opened by the app
-    if (!window.opener) return router.replace('/')
-
-    window.opener.postMessage(Object.fromEntries(searchParams), window.location.origin)
-  }, [router, searchParams])
+export default function Page(props: Props) {
+  const { searchParams } = props
+  const { status } = searchParams
 
   return (
-    <main className='h-dvh flex-col gap-y-6 text-xl flex-center'>
-      <Spinner size='lg' color='current' />
-      <p>Autorizando</p>
+    <main className='min-h-dvh flex-col gap-y-6 px-2 text-center flex-center'>
+      {status === 'success' ? <AuthSuccess token={searchParams.token} /> : <AlreadyLinked />}
     </main>
   )
 }

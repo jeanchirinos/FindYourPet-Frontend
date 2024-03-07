@@ -10,6 +10,7 @@ import { Button } from '@nextui-org/button'
 import { PetImage } from './PetImage'
 import { SessionLogged } from '@/models/Auth'
 import { Link } from '@/components/Link'
+import { Title } from '@/components/business/Title'
 
 type Props = {
   StatusInfoComponent: React.ReactNode
@@ -62,7 +63,8 @@ export function Form(props: Props) {
 
   return (
     <>
-      <h2 className='mb-8 text-center text-lg font-semibold'>Registro de datos</h2>
+      {/* <h2 className='mb-8 text-center text-lg font-semibold'>Registro de datos</h2> */}
+      <Title>Registro de datos </Title>
 
       {!session && (
         <div className='sticky top-header z-20 bg-background py-4'>

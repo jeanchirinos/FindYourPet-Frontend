@@ -69,7 +69,6 @@ function PetImage(props: { pet: Pet; isAdmin?: boolean; index?: number }) {
       width={pet.image_width ?? 500}
       height={pet.image_height ?? 500}
       alt='Mascota'
-      loading='lazy'
       priority={index === 0}
     />
   )

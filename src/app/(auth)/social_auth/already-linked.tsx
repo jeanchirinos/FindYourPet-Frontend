@@ -2,13 +2,13 @@
 
 import { Button } from '@nextui-org/button'
 
-export default function Page() {
+export function AlreadyLinked() {
   function handleBack() {
     close()
   }
 
   return (
-    <main className='min-h-dvh flex-col gap-y-6 px-2 text-center flex-center'>
+    <>
       <section className='space-y-1.5'>
         <p className='text-lg font-bold'>El correo ya se encuentra vinculado</p>
         <p className='text-foreground-600'>
@@ -18,6 +18,6 @@ export default function Page() {
       <Button color='primary' onClick={handleBack}>
         Entendido
       </Button>
-    </main>
+    </>
   )
 }
