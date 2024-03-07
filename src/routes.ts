@@ -1,6 +1,3 @@
-// import { TId } from '@/src/types/types'
-// import { EPortfolioType } from './enums'
-
 const ROOT = {
   PETS: '/',
   HOME: '/inicio',
@@ -18,52 +15,14 @@ const PETS = {
 } as const
 
 const AUTH = {
-  PASSWORD_RESET: '/recuperar',
-  PASSWORD_RESET_CONFIRM: '/recuperar_api',
-  FORGOT: '/olvide-contrasena',
-  RESET: '/restablecer-contrasena',
+  PASSWORD_FORGOT: '/recuperar',
+  PASSWORD_RESET: '/recuperar_api',
+  SOCIAL_AUTH: '/social_auth',
 } as const
-
-// const INSTRUMENTOS = {
-//   INDEX: '/instrumentos',
-//   ID: (id: TId, type: string) => `/instrumentos/${type}/${id}` as const,
-// } as const
-
-// const PORTAFOLIO = {
-//   INDEX: '/portafolio',
-//   TYPE: (type: keyof typeof EPortfolioType) => `/portafolio?type=${type}` as const,
-// } as const
-
-// const EMPRESA = {
-//   ID: (id: TId) => `/empresa/${id}` as const,
-// } as const
-
-// const PROYECTO = {
-//   ID: (id: TId) => `/proyecto/${id}` as const,
-// } as const
-
-// const BUSCAR = {
-//   INDEX: '/buscar',
-//   PARAM: (q: string) => `/buscar?q=${q}` as const,
-// } as const
-
-// const ANALYTICS = {
-//   INDEX: '/analytics',
-//   NOTICIAS: (type: 'sector_inmobiliario' | 'economia' | 'politica' = 'economia') =>
-//     `/analytics/noticias/${type}` as const,
-//   INDICADORES: (category?: 'economico' | 'demografico' | 'bienes_raices') =>
-//     `/analytics/indicadores${category ? `#${category}` : ''}` as const,
-//   ACADEMICS: (category?: 'informes' | 'articulos' | 'investigaciones') =>
-//     `/analytics/academics${category ? `#${category}` : ''}` as const,
-//   APP: 'https://www.onbpi.com/assessment/analytics/',
-// } as const
 
 export const ROUTE = {
   ...ROOT,
-  // INSTRUMENTOS,
-  // PORTAFOLIO,
-  // EMPRESA,
-  // PROYECTO,
-  // BUSCAR,
-  // ANALYTICS,
+  AUTH,
+  PETS,
+  ADMIN,
 }

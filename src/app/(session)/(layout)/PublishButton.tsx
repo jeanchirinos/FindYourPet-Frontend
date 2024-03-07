@@ -1,8 +1,7 @@
 'use client'
 
-import { Button } from '@nextui-org/button'
-import { Link } from '@/components/Link'
 import { usePathname } from 'next/navigation'
+import { ButtonLink } from '@/components/ButtonLink'
 
 export function PublishButton() {
   const pathname = usePathname()
@@ -10,8 +9,8 @@ export function PublishButton() {
   if (pathname?.includes('publicar')) return <></>
 
   return (
-    <Button as={Link} href='/publicar' size='sm' color='primary' className='bg-main-gradient'>
+    <ButtonLink href='/publicar' size='sm' color='primary' className='bg-main-gradient'>
       Publicar
-    </Button>
+    </ButtonLink>
   )
 }

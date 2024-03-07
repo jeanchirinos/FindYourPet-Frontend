@@ -3,8 +3,13 @@
 import { IconBack } from '@/icons'
 import { Button } from '@nextui-org/button'
 import { useRouter } from 'next/navigation'
+import { twMerge } from 'tailwind-merge'
 
-export function Title(props: React.PropsWithChildren) {
+type Props = React.ComponentProps<'div'> & { showBack?: boolean }
+
+export function Title(props: Props) {
+  const { showBack = true, ...restProps } = props
+
   const { back, push } = useRouter()
 
   function handleBack() {
@@ -16,10 +21,12 @@ export function Title(props: React.PropsWithChildren) {
   }
 
   return (
-    <div className='mb-8 flex items-center gap-x-4'>
-      <Button isIconOnly onClick={handleBack} size='sm' variant='faded' radius='full'>
-        <IconBack />
-      </Button>
+    <div {...restProps} className={twMerge('mb-8 flex items-center gap-x-4', props.className)}>
+      {showBack && (
+        <Button isIconOnly onClick={handleBack} size='sm' variant='faded' radius='full'>
+          <IconBack />
+        </Button>
+      )}
 
       <h2 className='text-center text-lg font-semibold'>{props.children}</h2>
     </div>

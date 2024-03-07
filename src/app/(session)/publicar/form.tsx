@@ -9,8 +9,8 @@ import { IconCheckFilled, IconUser } from '@/icons'
 import { Button } from '@nextui-org/button'
 import { PetImage } from './PetImage'
 import { SessionLogged } from '@/models/Auth'
-import { Link } from '@/components/Link'
 import { Title } from '@/components/business/Title'
+import { ButtonLink } from '@/components/ButtonLink'
 
 type Props = {
   StatusInfoComponent: React.ReactNode
@@ -50,9 +50,7 @@ export function Form(props: Props) {
           Tu publicación será revisada y cuando sea aprobada será visible de forma pública
         </p>
         <footer className='flex gap-x-2.5'>
-          <Button as={Link} href='/'>
-            Ver mascotas
-          </Button>
+          <ButtonLink href='/'>Ver mascotas</ButtonLink>
           <Button color='primary' onClick={() => setState({ msg: '', ok: null })}>
             Volver a registrar
           </Button>

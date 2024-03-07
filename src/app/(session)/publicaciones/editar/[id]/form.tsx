@@ -5,11 +5,11 @@ import { SubmitButton } from '@/components/SubmitButton'
 import { useFormAction } from '@/hooks/useFormAction'
 import { updatePet } from '@/controllers/Pet'
 import { PetImage } from '@/app/(session)/publicar/PetImage'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { Pet } from '@/models/Pet'
 import { IconBack, IconInfo } from '@/icons'
 import { Button } from '@nextui-org/button'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 type Props = {
   StatusInfoComponent: React.ReactNode
@@ -30,7 +30,8 @@ export function Form(props: Props) {
 
   // FUNCTIONS
   function onSuccess() {
-    redirect('/publicaciones')
+    // TODO
+    back()
   }
 
   const [initialFormData, setInitialFormData] = useState('')

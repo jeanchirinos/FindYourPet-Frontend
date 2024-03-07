@@ -11,8 +11,8 @@ export default async function Page(props: Props) {
 
   // RENDER
   return (
-    <div className='min-h-dvh px-2 flex-center'>
+    <main className='grow pb-[3.75rem] flex-center'>
       <Form token={token} />
-    </div>
+    </main>
   )
 }
