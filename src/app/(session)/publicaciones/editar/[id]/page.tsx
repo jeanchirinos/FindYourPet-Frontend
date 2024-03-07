@@ -4,7 +4,7 @@ import { Place } from '@/app/(session)/publicar/Place/Place'
 import { Metadata } from 'next'
 import { PageProps } from '@/types'
 import { Form } from './form'
-import { getPetById } from '@/controllers/Pet'
+import { getPetByIdEdit } from '@/controllers/Pet'
 
 export const metadata: Metadata = {
   title: 'Editar publicación',
@@ -13,8 +13,7 @@ export const metadata: Metadata = {
 type Props = PageProps<'id'>
 
 export default async function Page(props: Props) {
-  // const pet = await getPetByIdEdit(props.params.id)
-  const { pet } = await getPetById(props.params.id)
+  const pet = await getPetByIdEdit(props.params.id)
 
   return (
     <main className='mx-auto flex w-[768px] max-w-full grow flex-col px-2'>

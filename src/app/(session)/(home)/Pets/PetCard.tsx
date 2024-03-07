@@ -59,8 +59,7 @@ function PetImage(props: { pet: Pet; isAdmin?: boolean; index?: number }) {
   const isNotLinkeable = !isAdmin && pet.published === '0'
 
   const image = (
-    // <Image
-    <img
+    <Image
       className={
         isNotLinkeable
           ? 'aspect-square w-full overflow-hidden object-cover'
@@ -70,8 +69,7 @@ function PetImage(props: { pet: Pet; isAdmin?: boolean; index?: number }) {
       width={pet.image_width ?? 500}
       height={pet.image_height ?? 500}
       alt='Mascota'
-      loading='lazy'
-      // priority={index === 0}
+      priority={index === 0}
     />
   )
 
