@@ -31,7 +31,7 @@ export function Header() {
         <aside className='flex items-center gap-x-4'>
           <ThemeSwitcher />
           <PublishButton />
-          <Suspense fallback={<Skeleton className='h-8 w-[72px] rounded-md' />}>
+          <Suspense fallback={<Skeleton className='size-8 rounded-full' />}>
             <Session />
           </Suspense>
         </aside>

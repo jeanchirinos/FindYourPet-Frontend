@@ -62,16 +62,20 @@ async function Content(props: { petId: string }) {
         </picture>
         <div className='flex grow flex-col gap-y-4'>
           <PetStatusTag pet={pet} />
-          <section className='flex flex-col gap-y-3 rounded-md bg-foreground-200/50 p-2'>
+          <section className='flex flex-col gap-y-4 rounded-md bg-foreground-200/50 p-2'>
             <div className='flex items-center gap-x-2'>
               <Image
                 src={pet.user.image}
                 alt={pet.user.username}
-                width={32}
-                height={32}
+                width={40}
+                height={40}
                 className='rounded-full'
               />
-              <p className='text-foreground-600'>{pet.user.username}</p>
+              <div className='flex flex-col'>
+                <span className='text-small text-foreground-500'>{pet.user.username}</span>
+                {/* @ts-ignore */}
+                <span className='text-foreground-600'>{pet.user.email}</span>
+              </div>
             </div>
 
             <p>{pet.description}</p>
@@ -84,16 +88,18 @@ async function Content(props: { petId: string }) {
           </section>
         </div>
       </section>
-      <section className='space-y-4'>
-        <h2 className={twJoin('text-2xl font-semibold', petState.textClassName)}>
-          Más mascotas {petState.text}
-        </h2>
-        <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[300px]'>
-          {morePets.map(pet => (
-            <PetCard key={pet.id} pet={pet} />
-          ))}
-        </div>
-      </section>
+      {morePets.length && (
+        <section className='space-y-4'>
+          <h2 className={twJoin('text-2xl font-semibold', petState.textClassName)}>
+            Más mascotas {petState.text}
+          </h2>
+          <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[300px]'>
+            {morePets.map(pet => (
+              <PetCard key={pet.id} pet={pet} />
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   )
 }
