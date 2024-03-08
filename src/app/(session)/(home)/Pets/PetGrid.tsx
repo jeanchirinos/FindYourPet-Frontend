@@ -2,17 +2,13 @@ import { GetPetsParams, getPets } from '@/controllers/Pet'
 import { IconPet } from '@/icons'
 import { PetCard } from './PetCard'
 import { Pagination } from './Pagination'
-import { DEFAULT_PET_STATUS } from '@/controllers/defaultValues'
 import { PageSearchParamsProps2 } from '@/types'
 
 type Props = PageSearchParamsProps2<GetPetsParams>
 
 export async function PetGrid(props: Props) {
   const { searchParams } = props
-
-  const { status = DEFAULT_PET_STATUS } = searchParams
-
-  const { data: pets, links } = await getPets({ ...searchParams, status })
+  const { data: pets, links } = await getPets(searchParams)
 
   if (pets.length === 0)
     return (
@@ -29,10 +25,7 @@ export async function PetGrid(props: Props) {
           <PetCard key={pet.id} pet={pet} index={i} />
         ))}
       </div>
-      <Pagination
-        currentPage={props.searchParams.page as string}
-        numberOfPages={links.length - 2}
-      />
+      <Pagination currentPage={searchParams.page as string} numberOfPages={links.length - 2} />
     </div>
   )
 }

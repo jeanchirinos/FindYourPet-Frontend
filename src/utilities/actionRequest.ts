@@ -25,16 +25,12 @@ interface NullableConfig extends BaseConfig {
 type RequestParamsNotNullable = [url: Parameters<typeof fetch>['0'], config?: NotNullableConfig]
 type RequestParamsNullable = [url: Parameters<typeof fetch>['0'], config?: NullableConfig]
 
-export async function actionRequestGet<Response>(
-  ...params: RequestParamsNotNullable
-): Promise<Response>
+export async function getData<Response>(...params: RequestParamsNotNullable): Promise<Response>
 
-export async function actionRequestGet<Response>(
-  ...params: RequestParamsNullable
-): Promise<Response | null>
+export async function getData<Response>(...params: RequestParamsNullable): Promise<Response | null>
 
 //
-export async function actionRequestGet<Response>(
+export async function getData<Response>(
   ...params: RequestParamsNotNullable | RequestParamsNullable
 ) {
   const [url, config = {}] = params

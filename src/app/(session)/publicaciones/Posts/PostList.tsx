@@ -1,14 +1,15 @@
 import { IconPet } from '@/icons'
-import { TGetPetParams, getPosts } from '@/controllers/Post'
 import { Pagination } from '../../(home)/Pets/Pagination'
 import { PetCard } from '../../(home)/Pets/PetCard'
+import { PageSearchParamsProps2 } from '@/types'
+import { GetUserPostsParams, getUserPosts } from '@/controllers/Pet'
 
-type Props = { searchParams: TGetPetParams }
+type Props = PageSearchParamsProps2<GetUserPostsParams>
 
 export async function PostsList(props: Props) {
   const { searchParams } = props
 
-  const { data: posts, links } = await getPosts(searchParams)
+  const { data: posts, links } = await getUserPosts(searchParams)
 
   if (posts.length === 0)
     return (

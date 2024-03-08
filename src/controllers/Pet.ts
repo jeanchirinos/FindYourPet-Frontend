@@ -3,33 +3,25 @@
 import { BreedsData, Category, Pet, StatusList } from '@/models/Pet'
 import { Paginate } from '@/models/Post'
 import { SearchParamsProps } from '@/types'
-import { actionRequestGet, sendData } from '@/utilities/actionRequest'
+import { getData, sendData } from '@/utilities/actionRequest'
 import { getApiUrl } from '@/utilities/request'
-import { notFound } from 'next/navigation'
 import { z } from 'zod'
-
-export type TGetPetParams = Partial<{
-  page: string
-  status: string
-  category_id: string
-  breed_id: string
-  order: string
-  estate: string
-  city: string
-  district: string
-}>
+import { DEFAULT_PET_PUBLISHED, DEFAULT_PET_STATUS } from './defaultValues'
 
 export type GetPetsParams = SearchParamsProps<
   'page' | 'status' | 'category_id' | 'breed_id' | 'order' | 'estate' | 'city' | 'district'
 >
 
 export async function getPets(params: GetPetsParams) {
+  const { status = DEFAULT_PET_STATUS } = params
   const limit = '15'
 
-  const url = getApiUrl(`pet/${limit}`)
-  url.search = new URLSearchParams(params).toString()
+  const searchParams = new URLSearchParams({ ...params, status }).toString()
 
-  const data = await actionRequestGet<Paginate<Pet>>(url, {
+  const url = getApiUrl(`pet/${limit}`)
+  url.search = searchParams
+
+  const data = await getData<Paginate<Pet>>(url, {
     cache: 'no-store',
     next: {
       tags: ['pet', 'pets-list'],
@@ -40,7 +32,7 @@ export async function getPets(params: GetPetsParams) {
 }
 
 export async function getPetById(id: string) {
-  const data = await actionRequestGet<{ pet: Pet; morePets: Pet[] }>(`pet-find/${id}`, {
+  const data = await getData<{ pet: Pet; morePets: Pet[] }>(`pet-find/${id}`, {
     cache: 'no-store',
   })
 
@@ -48,7 +40,7 @@ export async function getPetById(id: string) {
 }
 
 export async function getPetByIdEdit(id: string) {
-  const data = await actionRequestGet<Pet>(`pet-edit/${id}`, {
+  const data = await getData<Pet>(`pet-edit/${id}`, {
     cache: 'no-store',
     auth: true,
   })
@@ -56,20 +48,65 @@ export async function getPetByIdEdit(id: string) {
   return data
 }
 
-export async function getBreeds() {
-  const data = await actionRequestGet<BreedsData>('breedList', { cache: 'force-cache' })
+export type GetPetsAdminParams = SearchParamsProps<'page' | 'published'>
+
+export async function getAllPetsAdmin(params: GetPetsAdminParams) {
+  const { published = DEFAULT_PET_PUBLISHED } = params
+  const limit = '15'
+
+  const searchParams = new URLSearchParams({ ...params, published }).toString()
+
+  const url = getApiUrl(`admin-pets/${limit}`)
+  url.search = searchParams
+
+  const data = await getData<Paginate<Pet>>(url, {
+    cache: 'no-store',
+    next: {
+      tags: ['admin-pets', 'pets-list'],
+    },
+    auth: true,
+  })
 
   return data
 }
 
+export type GetUserPostsParams = SearchParamsProps<'page' | 'published'>
+
+export async function getUserPosts(params: GetUserPostsParams) {
+  const { published = DEFAULT_PET_PUBLISHED } = params
+  const limit = '12'
+
+  const searchParams = new URLSearchParams({ ...params, published }).toString()
+
+  const url = getApiUrl(`pet-user/${limit}`)
+  url.search = searchParams
+
+  const data = await getData<Paginate<Pet>>(url, {
+    cache: 'no-store',
+    next: {
+      tags: ['user-posts', 'pets-list'],
+    },
+    auth: true,
+  })
+
+  return data
+}
+
+// CACHE
 export async function getStatusList() {
-  const data = await actionRequestGet<StatusList>('pet-status', { cache: 'force-cache' })
+  const data = await getData<StatusList>('pet-status', { cache: 'force-cache' })
 
   return data
 }
 
 export async function getCategories() {
-  const data = await actionRequestGet<Category[]>('category', { cache: 'force-cache' })
+  const data = await getData<Category[]>('category', { cache: 'force-cache' })
+
+  return data
+}
+
+export async function getBreeds() {
+  const data = await getData<BreedsData>('breedList', { cache: 'force-cache' })
 
   return data
 }
@@ -147,91 +184,6 @@ export async function updatePet(prevState: any, data: FormData) {
     body: data,
     revalidateTagParams: ['post'],
   })
-}
-
-export type TGetPetParams2 = Partial<{
-  page: string
-  status: string
-  category_id: string
-  breed_id: string | string[]
-  order: string
-  estate: string
-  city: string
-  district: string
-  published: string
-}>
-
-export async function getAllPetsAdmin(params: TGetPetParams2) {
-  const { page, order, status, category_id, breed_id, estate, city, district, published } = params
-  const limit = '15'
-
-  const url = getApiUrl('admin-pets')
-
-  url.pathname += `/${limit}`
-
-  page && url.searchParams.set('page', page)
-
-  category_id && url.searchParams.set('category_id', category_id)
-  published && url.searchParams.set('published', published)
-
-  if (breed_id) {
-    if (Array.isArray(breed_id)) {
-      const breeds = breed_id.join(',')
-      url.searchParams.set('breed_id', breeds)
-    } else {
-      url.searchParams.set('breed_id', breed_id)
-    }
-  }
-
-  status && url.searchParams.set('status', status)
-  order && url.searchParams.set('order', order)
-
-  estate && url.searchParams.set('estate', estate)
-  city && url.searchParams.set('city', city)
-  district && url.searchParams.set('district', district)
-
-  const data = await actionRequestGet<Paginate<Pet>>(url, {
-    cache: 'no-store',
-    next: {
-      tags: ['admin-pets', 'pets-list'],
-    },
-    auth: true,
-  })
-
-  const { current_page, data: pets } = data
-
-  if (pets.length === 0 && current_page !== 1) {
-    notFound()
-  }
-
-  return data
-}
-
-export async function getUserPosts(params: TGetPetParams2) {
-  const { page, published } = params
-  const limit = '5'
-
-  const url = getApiUrl('pet-user')
-  url.pathname += `/${limit}`
-
-  page && url.searchParams.set('page', page)
-  published && url.searchParams.set('published', published)
-
-  const data = await actionRequestGet<Paginate<Pet>>(url, {
-    cache: 'no-store',
-    next: {
-      tags: ['user-posts', 'pets-list'],
-    },
-    auth: true,
-  })
-
-  const { current_page, data: posts } = data
-
-  if (posts.length === 0 && current_page !== 1) {
-    notFound()
-  }
-
-  return data
 }
 
 export async function updatePetVisibility(prevState: any, formData: FormData) {

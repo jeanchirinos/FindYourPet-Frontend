@@ -1,5 +1,5 @@
 import { Suspense } from '@/components/other/CustomSuspense'
-import { TGetPetParams } from '@/controllers/Pet'
+import { GetPetsParams } from '@/controllers/Pet'
 import { PetGrid } from './Pets/PetGrid'
 import { FilterCategory } from './FilterCategory.tsx/FilterCategory'
 import { Order } from './Order'
@@ -7,11 +7,13 @@ import { FilterPlace } from './FilterPlace/FilterPlace'
 import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { FilterStatus } from './FilterStatus'
 import { Spinner } from '@nextui-org/spinner'
+import { PageSearchParamsProps2 } from '@/types'
 
-type Props = { searchParams: TGetPetParams }
+type Props = PageSearchParamsProps2<GetPetsParams>
 
 export default function Page(props: Props) {
   const { searchParams } = props
+  const { category_id } = searchParams
 
   return (
     <main className='mx-auto flex h-full w-[1600px] max-w-full items-start gap-x-10 px-2'>
@@ -23,9 +25,9 @@ export default function Page(props: Props) {
           <Suspense>
             <FilterCategory />
           </Suspense>
-          {searchParams.category_id && (
+          {category_id && (
             <Suspense>
-              <FilterBreeds category_id={searchParams.category_id} />
+              <FilterBreeds category_id={category_id} />
             </Suspense>
           )}
         </section>

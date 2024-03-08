@@ -1,7 +1,7 @@
 'use server'
 
 import { User } from '@/models/User'
-import { actionRequestGet, sendData } from '@/utilities/actionRequest'
+import { getData, sendData } from '@/utilities/actionRequest'
 import { z } from 'zod'
 
 export async function updateUserImageProfile(formData: FormData) {
@@ -67,7 +67,7 @@ export async function updateInfo(data: { param: string; value: string }) {
 
 // GET
 export async function getUser() {
-  const data = await actionRequestGet<User>('user', {
+  const data = await getData<User>('user', {
     auth: true,
     next: {
       tags: ['user'],
@@ -80,7 +80,7 @@ export async function getUser() {
 export async function getGoogleData() {
   type Res = { isConnected: boolean; username: string | null }
 
-  const data = await actionRequestGet<Res>('user-google-data', {
+  const data = await getData<Res>('user-google-data', {
     auth: true,
     redirectIfUnauthorized: false,
     next: {

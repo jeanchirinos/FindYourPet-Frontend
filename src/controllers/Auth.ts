@@ -1,7 +1,7 @@
 'use server'
 import { SessionLogged } from '@/models/Auth'
 import { ROUTE } from '@/routes'
-import { actionRequestGet, sendData } from '@/utilities/actionRequest'
+import { getData, sendData } from '@/utilities/actionRequest'
 import { cookies, headers } from 'next/headers'
 import { notFound, redirect } from 'next/navigation'
 import { z } from 'zod'
@@ -106,7 +106,7 @@ export async function verifyToken(token: string | undefined) {
   if (!token) notFound()
 
   try {
-    await actionRequestGet(`verify-token/${token}`, {
+    await getData(`verify-token/${token}`, {
       cache: 'no-store',
     })
   } catch (err) {
@@ -129,7 +129,7 @@ export async function updateGoogle(token: string) {
 
 // GET
 export async function getSession() {
-  const data = await actionRequestGet<SessionLogged>('session', {
+  const data = await getData<SessionLogged>('session', {
     auth: true,
     redirectIfUnauthorized: false,
     nullable: true,

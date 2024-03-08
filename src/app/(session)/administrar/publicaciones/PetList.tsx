@@ -1,13 +1,14 @@
-import { TGetPetParams, getAllPetsAdmin } from '@/controllers/Pet'
+import { GetPetsAdminParams, getAllPetsAdmin } from '@/controllers/Pet'
 import { IconPet } from '@/icons'
 import { PetCard } from '@/app/(session)/(home)/Pets/PetCard'
 import { Pagination } from '@/app/(session)/(home)/Pets/Pagination'
+import { PageSearchParamsProps2 } from '@/types'
 
-// type Props = { searchParams: TGetPetParams }
-type Props = { searchParams: any }
+type Props = PageSearchParamsProps2<GetPetsAdminParams>
 
 export async function PetList(props: Props) {
-  const { data: pets, links } = await getAllPetsAdmin(props.searchParams)
+  const { searchParams } = props
+  const { data: pets, links } = await getAllPetsAdmin(searchParams)
 
   if (pets.length === 0)
     return (
@@ -24,10 +25,7 @@ export async function PetList(props: Props) {
           <PetCard key={pet.id} pet={pet} index={i} isEditable isAdmin />
         ))}
       </div>
-      <Pagination
-        currentPage={props.searchParams.page as string}
-        numberOfPages={links.length - 2}
-      />
+      <Pagination currentPage={searchParams.page as string} numberOfPages={links.length - 2} />
     </div>
   )
 }

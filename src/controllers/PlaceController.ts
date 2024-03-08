@@ -1,5 +1,5 @@
 'use server'
-import { actionRequestGet } from '@/utilities/actionRequest'
+import { getData } from '@/utilities/actionRequest'
 
 export type PlaceLocation = {
   code: string
@@ -10,8 +10,8 @@ export type PlaceLocation = {
   }
 }
 
-async function getData(type: 'departments' | 'provinces' | 'districts') {
-  const data = await actionRequestGet<PlaceLocation[]>(
+async function getPlacesData(type: 'departments' | 'provinces' | 'districts') {
+  const data = await getData<PlaceLocation[]>(
     `https://ubigeosperu.nijui.com/api/${type}?order_by=is_capital`,
     {
       cache: 'force-cache',
@@ -22,9 +22,9 @@ async function getData(type: 'departments' | 'provinces' | 'districts') {
 }
 
 export async function getPlaces() {
-  const departamentosData = getData('departments')
-  const provinciasData = getData('provinces')
-  const distritosData = getData('districts')
+  const departamentosData = getPlacesData('departments')
+  const provinciasData = getPlacesData('provinces')
+  const distritosData = getPlacesData('districts')
 
   const [departamentos, provincias, distritos] = await Promise.all([
     departamentosData,
