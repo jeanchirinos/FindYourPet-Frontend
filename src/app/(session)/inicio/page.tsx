@@ -16,10 +16,10 @@ export default function Page() {
           <Image
             src={ImgHeroImage}
             alt='Animales'
-            className='max-h-60 w-auto animate-appearance-in lg:max-h-[30rem]'
+            className='h-60 w-auto animate-appearance-in lg:h-[30rem]'
             priority
           />
-
+          {/* aspect-[666/683] */}
           <div className='space-y-5'>
             <div className='text-4xl font-bold lg:text-7xl'>
               <p>Encuentra a tu</p>

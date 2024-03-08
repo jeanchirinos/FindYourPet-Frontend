@@ -1,4 +1,4 @@
-import { Suspense } from '@/components/other/CustomSuspense'
+// import { Suspense } from '@/components/other/CustomSuspense'
 import { getPetById } from '@/controllers/Pet'
 import { PageProps } from '@/types'
 // import PetMap from './map'
@@ -22,7 +22,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 export default function Page(props: Props) {
   return (
     // <Suspense>
-      <Content petId={props.params.id} />
+    <Content petId={props.params.id} />
     // </Suspense>
   )
 }
