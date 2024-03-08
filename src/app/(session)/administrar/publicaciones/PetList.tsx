@@ -3,7 +3,8 @@ import { IconPet } from '@/icons'
 import { PetCard } from '@/app/(session)/(home)/Pets/PetCard'
 import { Pagination } from '@/app/(session)/(home)/Pets/Pagination'
 
-type Props = { searchParams: TGetPetParams }
+// type Props = { searchParams: TGetPetParams }
+type Props = { searchParams: any }
 
 export async function PetList(props: Props) {
   const { data: pets, links } = await getAllPetsAdmin(props.searchParams)
