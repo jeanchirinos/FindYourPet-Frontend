@@ -1,14 +1,13 @@
-import { TGetPetParams, getPets } from '@/controllers/Pet'
+import { GetPetsParams, getPets } from '@/controllers/Pet'
 import { IconPet } from '@/icons'
 import { PetCard } from './PetCard'
 import { Pagination } from './Pagination'
 import { DEFAULT_PET_STATUS } from '@/controllers/defaultValues'
+import { PageSearchParamsProps2 } from '@/types'
 
-type Props = { searchParams: TGetPetParams }
+type Props = PageSearchParamsProps2<GetPetsParams>
 
 export async function PetGrid(props: Props) {
-  console.log({ props })
-
   const { searchParams } = props
 
   const { status = DEFAULT_PET_STATUS } = searchParams

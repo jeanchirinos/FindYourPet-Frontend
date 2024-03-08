@@ -2,6 +2,7 @@
 
 import { BreedsData, Category, Pet, StatusList } from '@/models/Pet'
 import { Paginate } from '@/models/Post'
+import { SearchParamsProps } from '@/types'
 import { actionRequestGet, sendData } from '@/utilities/actionRequest'
 import { getApiUrl } from '@/utilities/request'
 import { notFound } from 'next/navigation'
@@ -18,7 +19,11 @@ export type TGetPetParams = Partial<{
   district: string
 }>
 
-export async function getPets(params: TGetPetParams) {
+export type GetPetsParams = SearchParamsProps<
+  'page' | 'status' | 'category_id' | 'breed_id' | 'order' | 'estate' | 'city' | 'district'
+>
+
+export async function getPets(params: GetPetsParams) {
   const limit = '15'
 
   const url = getApiUrl(`pet/${limit}`)
