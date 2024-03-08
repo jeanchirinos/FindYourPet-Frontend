@@ -14,9 +14,7 @@ export function useFilterBreedsClient(breeds: Breed[]) {
 
   // EFFECTS
   const selectedBreeds = useMemo(() => {
-    const filteredBreeds = breeds.filter(breed =>
-      breed_id?.split(',').includes(breed.id.toString()),
-    )
+    const filteredBreeds = breeds.filter(breed => breed_id?.includes(breed.id.toString()))
 
     return filteredBreeds
   }, [breed_id, breeds])
@@ -33,10 +31,11 @@ export function useFilterBreedsClient(breeds: Breed[]) {
         )
 
   // FUNCTIONS
-  function handleChange(value: typeof breeds) {
+  function handleChange(newBreeds: typeof breeds) {
     const newSearchParams = new URLSearchParams(searchParams)
-    if (value.length) {
-      newSearchParams.set('breed_id', value.map(v => v.id).join(','))
+
+    if (newBreeds.length) {
+      newSearchParams.set('breed_id', newBreeds.map(nb => nb.id).join(','))
     } else {
       newSearchParams.delete('breed_id')
     }

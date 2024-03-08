@@ -7,6 +7,8 @@ import { DEFAULT_PET_STATUS } from '@/controllers/defaultValues'
 type Props = { searchParams: TGetPetParams }
 
 export async function PetGrid(props: Props) {
+  console.log({ props })
+
   const { searchParams } = props
 
   const { status = DEFAULT_PET_STATUS } = searchParams

@@ -11,7 +11,7 @@ export type TGetPetParams = Partial<{
   page: string
   status: string
   category_id: string
-  breed_id: string | string[]
+  breed_id: string
   order: string
   estate: string
   city: string
@@ -19,32 +19,10 @@ export type TGetPetParams = Partial<{
 }>
 
 export async function getPets(params: TGetPetParams) {
-  const { page, order, status, category_id, breed_id, estate, city, district } = params
   const limit = '15'
 
-  const url = getApiUrl('pet')
-
-  url.pathname += `/${limit}`
-
-  page && url.searchParams.set('page', page)
-
-  category_id && url.searchParams.set('category_id', category_id)
-
-  if (breed_id) {
-    if (Array.isArray(breed_id)) {
-      const breeds = breed_id.join(',')
-      url.searchParams.set('breed_id', breeds)
-    } else {
-      url.searchParams.set('breed_id', breed_id)
-    }
-  }
-
-  status && url.searchParams.set('status', status)
-  order && url.searchParams.set('order', order)
-
-  estate && url.searchParams.set('estate', estate)
-  city && url.searchParams.set('city', city)
-  district && url.searchParams.set('district', district)
+  const url = getApiUrl(`pet/${limit}`)
+  url.search = new URLSearchParams(params).toString()
 
   const data = await actionRequestGet<Paginate<Pet>>(url, {
     cache: 'no-store',
@@ -52,12 +30,6 @@ export async function getPets(params: TGetPetParams) {
       tags: ['pet', 'pets-list'],
     },
   })
-
-  const { current_page, data: pets } = data
-
-  if (pets.length === 0 && current_page !== 1) {
-    notFound()
-  }
 
   return data
 }
