@@ -100,7 +100,7 @@ export function Form(props: Props) {
         }}
         className='flex items-center gap-4 max-md:flex-col md:items-start'
       >
-        <PetImage initialImage={pet.image} />
+        <PetImage initialImage={pet.image.image} />
         <section className='flex w-[400px] max-w-full shrink-0 flex-col gap-y-3'>
           {props.StatusInfoComponent}
           <Textarea
