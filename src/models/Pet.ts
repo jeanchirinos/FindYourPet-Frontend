@@ -10,10 +10,12 @@ export type Pet = {
   id: number
   breed_id: number
   user_id: null | number
-  image: string
-  image_width: number
-  image_height: number
   description: string
+  image: {
+    image: string
+    width: number
+    height: number
+  }
   city: string
   district: string
   location: string
@@ -48,3 +50,20 @@ export type Category = {
 }
 
 export type StatusList = { id: number; value: string }[]
+
+type PetBase = {
+  id: number
+  breed_id: string
+  user_id: string
+  image: string
+  description: string
+  estate: string
+  city: string
+  district: string
+  location: string
+  status: string // '0' | '1' | '2'
+  plan: string
+  public_date: string
+  until_date: string
+  published: '0' | '1'
+}

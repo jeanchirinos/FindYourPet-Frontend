@@ -60,7 +60,6 @@ export async function getAllPetsAdmin(params: GetPetsAdminParams) {
   url.search = searchParams
 
   const data = await getData<Paginate<Pet>>(url, {
-    cache: 'no-store',
     next: {
       tags: ['admin-pets', 'pets-list'],
     },

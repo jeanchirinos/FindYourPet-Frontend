@@ -3,12 +3,12 @@ import { BiSolidCamera } from 'react-icons/bi'
 import { useRef, useState } from 'react'
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
-import Image from 'next/image'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Modal, useModal } from '@/components/Modal'
 import { User } from '@/models/User'
 import { handleResponse } from '@/utilities/handleResponse'
 import { Button } from '@nextui-org/button'
+import { Image } from '@/components/Image'
 
 type Props = { user: User }
 

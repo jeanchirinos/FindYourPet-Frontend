@@ -4,7 +4,6 @@ import { IconOptions } from '@/icons'
 import { DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown'
 import { Modal, UseModal, useModal } from '@/components/Modal'
 import { useFormAction } from '@/hooks/useFormAction'
-import { deletePost } from '@/controllers/Post'
 import { SubmitButton } from '@/components/SubmitButton'
 import Link from 'next/link'
 import { Pet } from '@/models/Pet'
@@ -12,6 +11,7 @@ import { Image } from '@/components/Image'
 import { Dropdown } from '@/components/Dropdown'
 import { Button } from '@nextui-org/button'
 import { ROUTE } from '@/routes'
+import { deletePet } from '@/controllers/PetController/deletePet'
 
 export function PetOptions(props: { pet: Pet }) {
   const deleteModal = useModal()
@@ -37,7 +37,6 @@ export function PetOptions(props: { pet: Pet }) {
           classNames={{
             list: '*:pr-8',
           }}
-          className='a'
         >
           <DropdownItem as={Link} key='edit' href={ROUTE.POSTS.EDIT(props.pet.id)}>
             Editar
@@ -67,7 +66,7 @@ export function PetOptions(props: { pet: Pet }) {
 function DialogDelete(props: { pet: Pet; modal: UseModal }) {
   const { modal, pet } = props
 
-  const { formAction } = useFormAction(deletePost, {
+  const { formAction } = useFormAction(deletePet, {
     onSuccess: modal.close,
   })
 

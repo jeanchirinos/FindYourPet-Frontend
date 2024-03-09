@@ -95,13 +95,6 @@ export async function resetPassword(prevState: any, formData: FormData) {
   })
 }
 
-export async function disconnectGoogle() {
-  return sendData({
-    url: 'user-google-disconnect',
-    revalidateTagParams: ['user-google'],
-  })
-}
-
 export async function verifyToken(token: string | undefined) {
   if (!token) notFound()
 
@@ -112,6 +105,13 @@ export async function verifyToken(token: string | undefined) {
   } catch (err) {
     notFound()
   }
+}
+
+export async function disconnectGoogle() {
+  return sendData({
+    url: 'user-google-disconnect',
+    revalidateTagParams: ['user-google'],
+  })
 }
 
 export async function updateGoogle(token: string) {

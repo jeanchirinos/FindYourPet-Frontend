@@ -61,9 +61,9 @@ function PetImage(props: { pet: Pet; isAdmin?: boolean; index?: number }) {
           ? 'aspect-square w-full overflow-hidden object-cover'
           : 'absolute size-full object-cover transition-transform group-hover:scale-110'
       }
-      src={pet.image}
-      width={pet.image_width ?? 500}
-      height={pet.image_height ?? 500}
+      src={pet.image.image}
+      width={pet.image.width ?? 500}
+      height={pet.image.height ?? 500}
       alt='Mascota'
       priority={index === 0}
     />

@@ -52,9 +52,9 @@ async function Content(props: { petId: string }) {
       <section className='flex gap-x-10 gap-y-2 max-md:flex-col'>
         <picture className='relative max-h-full min-h-80 shrink-0 animate-fade-up overflow-hidden rounded-md animate-duration-300 md:min-h-[34rem] md:w-[45%]'>
           <Image
-            src={pet.image}
-            width={pet.image_width || 500}
-            height={pet.image_height || 500}
+            src={pet.image.image}
+            width={pet.image.width || 500}
+            height={pet.image.height || 500}
             alt={pet.id.toString()}
             className='absolute size-full object-cover'
             priority

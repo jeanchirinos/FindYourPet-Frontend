@@ -1,10 +1,10 @@
-import Image from 'next/image'
 import { ERole, SessionLogged } from '@/models/Auth'
 import { SubmitButton } from '@/components/SubmitButton'
 import { logout } from '@/controllers/Auth'
 import { Menu, MenuContent, MenuItem, MenuTrigger } from '@/components/Menu'
 import { HeaderLink } from './HeaderLink'
 import { ROUTE } from '@/routes'
+import { Image } from '@/components/Image'
 // import { Notifications } from './Notifications'
 
 type Props = { session: SessionLogged }
