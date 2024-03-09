@@ -79,7 +79,7 @@ function DialogDelete(props: { pet: Pet; modal: UseModal }) {
 
         <article className='flex justify-center'>
           <Image
-            src={pet.image}
+            src={pet.image.image}
             width={500}
             height={500}
             alt='Imagen de mascota a eliminar'
