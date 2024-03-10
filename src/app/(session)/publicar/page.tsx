@@ -4,7 +4,7 @@ import { Form } from './form'
 import { Place } from './Place/Place'
 import { Metadata } from 'next'
 import { PageProps } from '@/types'
-import { getSession } from '@/controllers/Auth'
+import { getSession } from '@/controllers/UserController/getSession'
 
 export const metadata: Metadata = {
   title: 'Publicar',

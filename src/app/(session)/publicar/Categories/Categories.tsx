@@ -1,10 +1,8 @@
-import { getBreeds, getCategories } from '@/controllers/Pet'
+import { getCategories } from '@/controllers/CategoryController/getCategories'
+import { getBreeds } from '@/controllers/BreedController/getBreeds'
 import { CategoriesClient } from './CategoriesClient'
 
-export async function Categories(props: {
-  initialCategoryId?: number
-  initialBreedId?: string | number
-}) {
+export async function Categories(props: { initialCategoryId?: string; initialBreedId?: string }) {
   const categoriesData = getCategories()
   const breedsData = getBreeds()
 

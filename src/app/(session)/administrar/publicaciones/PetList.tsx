@@ -1,4 +1,4 @@
-import { GetPetsAdminParams, getAllPetsAdmin } from '@/controllers/Pet'
+import { GetPetsAdminParams, getPetsAdmin } from '@/controllers/PetController/getPetsAdmin'
 import { IconPet } from '@/icons'
 import { PetCard } from '@/app/(session)/(home)/Pets/PetCard'
 import { Pagination } from '@/app/(session)/(home)/Pets/Pagination'
@@ -8,7 +8,7 @@ type Props = PageSearchParamsProps2<GetPetsAdminParams>
 
 export async function PetList(props: Props) {
   const { searchParams } = props
-  const { data: pets, links } = await getAllPetsAdmin(searchParams)
+  const { data: pets, links } = await getPetsAdmin(searchParams)
 
   if (pets.length === 0)
     return (

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Breed } from '@/models/Pet'
+import { Breed } from '@/models/Breed'
 
 export function useFilterBreedsClient(breeds: Breed[]) {
   // STATES

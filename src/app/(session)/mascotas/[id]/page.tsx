@@ -1,5 +1,5 @@
 // import { Suspense } from '@/components/other/CustomSuspense'
-import { getPetById } from '@/controllers/Pet'
+import { getPetById } from '@/controllers/PetController/getPetById'
 import { PageProps } from '@/types'
 // import PetMap from './map'
 // import { Skeleton } from '@nextui-org/skeleton'
@@ -45,7 +45,7 @@ async function Content(props: { petId: string }) {
     },
   }
 
-  const petState = states[pet.status as keyof typeof states]
+  const petState = states[Number(pet.status) as keyof typeof states]
 
   return (
     <div className='mx-auto w-[1600px] max-w-full space-y-10 px-2'>

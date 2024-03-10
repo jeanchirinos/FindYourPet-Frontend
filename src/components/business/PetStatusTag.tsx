@@ -15,7 +15,7 @@ export function PetStatusTag(props: Props) {
     EN_ADOPCIÓN: 'bg-adopt',
   }
 
-  const color = Object.values(colors)[pet.status - 1]
+  const color = Object.values(colors)[Number(pet.status) - 1]
 
   return (
     <section

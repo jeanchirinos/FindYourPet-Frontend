@@ -1,4 +1,4 @@
-import { getGoogleData } from '@/controllers/UserController'
+import { getGoogleData } from '@/controllers/UserController/getGoogleData'
 import { GoogleForm } from './google-form'
 
 export async function ConnectedAccounts() {

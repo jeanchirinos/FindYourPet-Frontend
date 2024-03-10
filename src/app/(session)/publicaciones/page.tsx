@@ -4,9 +4,9 @@ import { Metadata } from 'next'
 import { PostsList } from './Posts/PostList'
 import { PetVisibility } from './PetVisibility'
 import { PageSearchParamsProps2 } from '@/types'
-import { GetUserPostsParams } from '@/controllers/Pet'
+import { GetUserPetsParams } from '@/controllers/PetController/getUserPets'
 
-type Props = PageSearchParamsProps2<GetUserPostsParams>
+type Props = PageSearchParamsProps2<GetUserPetsParams>
 
 export const metadata: Metadata = {
   title: 'Mis publicaciones',

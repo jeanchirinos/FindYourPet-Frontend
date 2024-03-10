@@ -1,4 +1,4 @@
-import { GetPetsParams, getPets } from '@/controllers/Pet'
+import { GetPetsParams, getPets } from '@/controllers/PetController/getPets'
 import { IconPet } from '@/icons'
 import { PetCard } from './PetCard'
 import { Pagination } from './Pagination'

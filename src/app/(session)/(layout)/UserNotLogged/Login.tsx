@@ -3,7 +3,7 @@
 import { Input } from '@/components/Input'
 import { Link } from '@/components/Link'
 import { SubmitButton } from '@/components/SubmitButton'
-import { login } from '@/controllers/Auth'
+import { login } from '@/controllers/AuthController/login'
 import { useFormAction } from '@/hooks/useFormAction'
 import { ROUTE } from '@/routes'
 import { useState } from 'react'

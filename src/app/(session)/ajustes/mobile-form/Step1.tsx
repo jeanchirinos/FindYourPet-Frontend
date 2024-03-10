@@ -1,5 +1,4 @@
-import { updateMobile } from '@/controllers/UserController'
-
+import { updateMobile } from '@/controllers/UserController/updateMobile'
 import { SubmitButton } from '@/components/SubmitButton'
 import { UseModal } from '@/components/Modal'
 import { Button } from '@nextui-org/button'

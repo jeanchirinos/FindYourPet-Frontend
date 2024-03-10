@@ -4,7 +4,7 @@ import { Place } from '@/app/(session)/publicar/Place/Place'
 import { Metadata } from 'next'
 import { PageProps } from '@/types'
 import { Form } from './form'
-import { getPetByIdEdit } from '@/controllers/Pet'
+import { getPetByIdEdit } from '@/controllers/PetController/getPetByIdEdit'
 
 export const metadata: Metadata = {
   title: 'Editar publicación',
@@ -20,12 +20,11 @@ export default async function Page(props: Props) {
       <Form
         StatusInfoComponent={<StatusInfo status={pet.status} />}
         CategoryComponent={
-          <Categories initialCategoryId={pet.breed.category_id} initialBreedId={pet.breed.id} />
+          <Categories initialCategoryId={pet.breed.category_id} initialBreedId={pet.breed_id} />
         }
         PlaceComponent={
           <Place
             initialData={{
-              //@ts-ignore
               estate: pet.estate,
               city: pet.city,
               district: pet.district,

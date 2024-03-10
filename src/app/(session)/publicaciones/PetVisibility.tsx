@@ -1,5 +1,5 @@
 import { LinkSearchParams } from '@/components/LinkSearchParams'
-import { DEFAULT_PET_PUBLISHED } from '@/controllers/defaultValues'
+import { DEFAULT_PET_PUBLISHED } from '@/controllers/PetController/constants'
 
 export function PetVisibility() {
   const tabs = [

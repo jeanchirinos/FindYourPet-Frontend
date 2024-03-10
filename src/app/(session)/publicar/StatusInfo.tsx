@@ -1,4 +1,4 @@
-import { getStatusList } from '@/controllers/Pet'
+import { getStatusList } from '@/controllers/PetController/getStatusList'
 import { twMerge } from 'tailwind-merge'
 import { RadioItem } from '@/components/RadioItem'
 

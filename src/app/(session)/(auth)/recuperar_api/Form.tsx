@@ -2,7 +2,7 @@
 import { Input } from '@/components/Input'
 import { SubmitButton } from '@/components/SubmitButton'
 import { useFormAction } from '@/hooks/useFormAction'
-import { resetPassword } from '@/controllers/Auth'
+import { resetPassword } from '@/controllers/AuthController/resetPassword'
 import { ButtonLink } from '@/components/ButtonLink'
 import { Title } from '@/components/business/Title'
 import { ROUTE } from '@/routes'

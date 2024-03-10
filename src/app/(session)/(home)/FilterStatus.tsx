@@ -1,7 +1,7 @@
-import { getStatusList } from '@/controllers/Pet'
+import { getStatusList } from '@/controllers/PetController/getStatusList'
 import { LinkSearchParams } from '@/components/LinkSearchParams'
 import { twJoin } from 'tailwind-merge'
-import { DEFAULT_PET_STATUS } from '@/controllers/defaultValues'
+import { DEFAULT_PET_STATUS } from '@/controllers/PetController/constants'
 
 export async function FilterStatus() {
   const statusList = await getStatusList()

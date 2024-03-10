@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { getPlaces } from '@/controllers/PlaceController'
+import { getPlaces } from '@/controllers/PlaceController/getPlaces'
 import { SelectNative } from '@/components/Select/SelectNative'
 
 export function PlaceClient(props: {

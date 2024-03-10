@@ -1,10 +1,11 @@
-import { ERole, SessionLogged } from '@/models/Auth'
 import { SubmitButton } from '@/components/SubmitButton'
-import { logout } from '@/controllers/Auth'
+import { logout } from '@/controllers/AuthController/logout'
 import { Menu, MenuContent, MenuItem, MenuTrigger } from '@/components/Menu'
 import { HeaderLink } from './HeaderLink'
 import { ROUTE } from '@/routes'
 import { Image } from '@/components/Image'
+import { SessionLogged } from '@/controllers/UserController/getSession'
+import { ERole } from '@/controllers/UserController/constants'
 // import { Notifications } from './Notifications'
 
 type Props = { session: SessionLogged }

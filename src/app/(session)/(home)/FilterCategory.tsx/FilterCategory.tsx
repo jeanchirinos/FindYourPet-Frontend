@@ -1,4 +1,4 @@
-import { getCategories } from '@/controllers/Pet'
+import { getCategories } from '@/controllers/CategoryController/getCategories'
 import { LinkSearchParams } from '@/components/LinkSearchParams'
 import { twMerge } from 'tailwind-merge'
 import { allCategoriesItem } from './allCategoriesItem'

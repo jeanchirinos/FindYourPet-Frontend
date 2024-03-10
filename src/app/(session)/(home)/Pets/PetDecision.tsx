@@ -1,7 +1,7 @@
 'use client'
 
 import { SubmitButton } from '@/components/SubmitButton'
-import { updatePetVisibility } from '@/controllers/Pet'
+import { updatePetVisibility } from '@/controllers/PetController/updatePetVisibility'
 import { useFormAction } from '@/hooks/useFormAction'
 import { Pet } from '@/models/Pet'
 

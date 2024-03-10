@@ -4,3 +4,5 @@ export type Breed = {
   // image: string,
   category_id: string
 }
+
+export type BreedsData = Record<string, Breed[]>

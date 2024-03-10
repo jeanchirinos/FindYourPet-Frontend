@@ -1,4 +1,4 @@
-import { getBreeds } from '@/controllers/Pet'
+import { getBreeds } from '@/controllers/BreedController/getBreeds'
 import { FilterBreedsClient } from './FilterBreedsClient'
 
 export async function FilterBreeds(props: { category_id: string }) {

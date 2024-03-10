@@ -3,7 +3,7 @@
 import { Button } from '@nextui-org/button'
 import { useGoogle } from '@/hooks/useGoogle'
 import { SubmitButton } from '@/components/SubmitButton'
-import { disconnectGoogle } from '@/controllers/Auth'
+import { disconnectGoogle } from '@/controllers/UserController/disconnectGoogle'
 import { IconGoogle } from '@/icons'
 
 type Props = { isConnected: boolean; username: string | null }

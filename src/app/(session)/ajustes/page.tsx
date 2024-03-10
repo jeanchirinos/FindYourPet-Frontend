@@ -1,7 +1,7 @@
 import { UpdateForm } from './data-form/update-form'
 
 import { Suspense } from '@/components/other/CustomSuspense'
-import { getUser } from '@/controllers/UserController'
+import { getUser } from '@/controllers/UserController/getUser'
 import { ConnectedAccounts } from './connected-accounts'
 import { Metadata } from 'next'
 
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
+  // TODO: promise all
   const user = await getUser()
 
   return (

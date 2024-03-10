@@ -3,7 +3,7 @@
 import { Textarea } from '@nextui-org/input'
 import { SubmitButton } from '@/components/SubmitButton'
 import { useFormAction } from '@/hooks/useFormAction'
-import { updatePet } from '@/controllers/Pet'
+import { updatePet } from '@/controllers/PetController/updatePet'
 import { PetImage } from '@/app/(session)/publicar/PetImage'
 import { useRouter } from 'next/navigation'
 import { Pet } from '@/models/Pet'

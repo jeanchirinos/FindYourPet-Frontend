@@ -1,11 +1,11 @@
 'use server'
 
 import { Pet } from '@/models/Pet'
-import { Paginate } from '@/models/Post'
+import { Paginate } from '@/models/utils'
 import { SearchParamsProps } from '@/types'
 import { getData } from '@/utilities/actionRequest'
 import { getApiUrl } from '@/utilities/request'
-import { DEFAULT_PET_STATUS } from '../defaultValues'
+import { DEFAULT_PET_STATUS } from './constants'
 
 export type GetPetsParams = SearchParamsProps<
   'page' | 'status' | 'category_id' | 'breed_id' | 'order' | 'estate' | 'city' | 'district'

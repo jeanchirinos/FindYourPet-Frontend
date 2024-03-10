@@ -1,6 +1,6 @@
 'use client'
 import { Chip } from '@nextui-org/chip'
-import { Breed } from '@/models/Pet'
+import { Breed } from '@/models/Breed'
 import { useFilterBreedsClient } from './useFilterBreedsClient'
 import { Combobox } from '@/components/Combobox'
 

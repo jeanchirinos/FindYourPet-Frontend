@@ -1,5 +1,5 @@
 import { Suspense } from '@/components/other/CustomSuspense'
-import { GetPetsParams } from '@/controllers/Pet'
+import { GetPetsParams } from '@/controllers/PetController/getPets'
 import { PetGrid } from './Pets/PetGrid'
 import { FilterCategory } from './FilterCategory.tsx/FilterCategory'
 import { Order } from './Order'

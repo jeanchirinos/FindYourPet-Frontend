@@ -1,15 +1,15 @@
 'use server'
 
 import { Pet } from '@/models/Pet'
-import { Paginate } from '@/models/Post'
+import { Paginate } from '@/models/utils'
 import { SearchParamsProps } from '@/types'
 import { getData } from '@/utilities/actionRequest'
 import { getApiUrl } from '@/utilities/request'
-import { DEFAULT_PET_PUBLISHED } from '../defaultValues'
+import { DEFAULT_PET_PUBLISHED } from './constants'
 
-export type GetUserPostsParams = SearchParamsProps<'page' | 'published'>
+export type GetUserPetsParams = SearchParamsProps<'page' | 'published'>
 
-export async function getUserPets(params: GetUserPostsParams) {
+export async function getUserPets(params: GetUserPetsParams) {
   const { published = DEFAULT_PET_PUBLISHED } = params
   const limit = '12'
 

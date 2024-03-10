@@ -1,12 +1,7 @@
-export type Breed = {
-  id: number
-  name: string
-  category_id: number
-}
+import { Breed } from './Breed'
+import { User } from './User'
 
-export type BreedsData = Record<string, Breed[]>
-
-export type Pet = {
+export type Peta = {
   id: number
   breed_id: number
   user_id: null | number
@@ -62,8 +57,26 @@ type PetBase = {
   district: string
   location: string
   status: string // '0' | '1' | '2'
-  plan: string
-  public_date: string
-  until_date: string
+  // plan: string
+  // public_date: string
+  // until_date: string
   published: '0' | '1'
+}
+
+export type Pet = PetBase & {
+  user_id: string
+  image: {
+    image: string
+    width: number
+    height: number
+  }
+  status_name: string
+  district_name: string
+  breed: Breed & {
+    category: Category
+  }
+  user: Pick<User, 'username' | 'image'> & {
+    id: number
+  }
+  // user: User
 }

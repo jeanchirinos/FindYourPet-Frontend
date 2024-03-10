@@ -1,7 +1,3 @@
-export type Post = {
-  id: number
-}
-
 export type Paginate<Item> = {
   current_page: number
   data: Item[]

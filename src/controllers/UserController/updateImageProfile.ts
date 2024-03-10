@@ -3,7 +3,7 @@
 import { sendData } from '@/utilities/actionRequest'
 import { z } from 'zod'
 
-export async function updateUserImageProfile(formData: FormData) {
+export async function updateImageProfile(formData: FormData) {
   const schema = z.object({
     image: z.string().min(1),
   })

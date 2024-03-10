@@ -5,7 +5,7 @@ import { SetState } from '@/types'
 import { useCountdownTimer } from 'use-countdown-timer'
 import { handleResponse } from '@/utilities/handleResponse'
 import { UseModal } from '@/components/Modal'
-import { verifyMobile } from '@/controllers/UserController'
+import { verifyMobile } from '@/controllers/UserController/verifyMobile'
 import { OtpInput } from './OtpInput'
 import { toast } from 'sonner'
 

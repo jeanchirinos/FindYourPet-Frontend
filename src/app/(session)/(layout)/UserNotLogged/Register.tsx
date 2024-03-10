@@ -5,7 +5,7 @@ import { Input } from '@/components/Input'
 import { Button } from '@nextui-org/button'
 import { SubmitButton } from '@/components/SubmitButton'
 import { handleResponse } from '@/utilities/handleResponse'
-import { register } from '@/controllers/Auth'
+import { register } from '@/controllers/AuthController/register'
 
 export function Register() {
   // STATES

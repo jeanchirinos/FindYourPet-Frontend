@@ -1,6 +1,6 @@
 'use client'
 
-import { updateGoogle } from '@/controllers/Auth'
+import { udpdateGoogleSession } from '@/controllers/UserController/udpdateGoogleSession'
 import { getApiUrl } from '@/utilities/request'
 import { useEffect, useRef } from 'react'
 
@@ -8,7 +8,7 @@ export function useGoogle() {
   // EFFECT
   useEffect(() => {
     async function handleMessageFromAuthPage(e: MessageEvent<{ token: string }>) {
-      await updateGoogle(e.data.token)
+      await udpdateGoogleSession(e.data.token)
       openedWindow.current?.close()
     }
 

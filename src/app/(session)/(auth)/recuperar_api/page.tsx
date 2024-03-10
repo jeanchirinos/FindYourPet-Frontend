@@ -1,4 +1,4 @@
-import { verifyToken } from '@/controllers/Auth'
+import { verifyToken } from '@/controllers/AuthController/verifyToken'
 import { Form } from './Form'
 import { PageProps } from '@/types'
 

@@ -2,14 +2,14 @@ import { IconPet } from '@/icons'
 import { Pagination } from '../../(home)/Pets/Pagination'
 import { PetCard } from '../../(home)/Pets/PetCard'
 import { PageSearchParamsProps2 } from '@/types'
-import { GetUserPostsParams, getUserPosts } from '@/controllers/Pet'
+import { GetUserPetsParams, getUserPets } from '@/controllers/PetController/getUserPets'
 
-type Props = PageSearchParamsProps2<GetUserPostsParams>
+type Props = PageSearchParamsProps2<GetUserPetsParams>
 
 export async function PostsList(props: Props) {
   const { searchParams } = props
 
-  const { data: posts, links } = await getUserPosts(searchParams)
+  const { data: posts, links } = await getUserPets(searchParams)
 
   if (posts.length === 0)
     return (

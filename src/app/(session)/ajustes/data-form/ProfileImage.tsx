@@ -1,4 +1,4 @@
-import { updateUserImageProfile } from '@/controllers/UserController'
+import { updateImageProfile } from '@/controllers/UserController/updateImageProfile'
 import { BiSolidCamera } from 'react-icons/bi'
 import { useRef, useState } from 'react'
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
@@ -43,7 +43,7 @@ export function ProfileImage(props: Props) {
 
     formData.set('image', image)
 
-    const res = await updateUserImageProfile(formData)
+    const res = await updateImageProfile(formData)
 
     handleResponse(res, {
       onSuccess() {

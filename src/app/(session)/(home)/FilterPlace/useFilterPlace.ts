@@ -1,14 +1,15 @@
-import { PlaceLocation, getPlaces } from '@/controllers/PlaceController'
+import { getPlaces } from '@/controllers/PlaceController/getPlaces'
+import { PlaceLocation } from '@/models/Place'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 
 export function useFilterPlace() {
   // STATES
-  const [places, setPlaces] = useState<{
-    departamentos: PlaceLocation[]
-    provincias: PlaceLocation[]
-    distritos: PlaceLocation[]
-  }>({ departamentos: [], provincias: [], distritos: [] })
+  const [places, setPlaces] = useState<Awaited<ReturnType<typeof getPlaces>>>({
+    departamentos: [],
+    provincias: [],
+    distritos: [],
+  })
 
   const [query, setQuery] = useState('')
 

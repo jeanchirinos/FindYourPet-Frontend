@@ -1,4 +1,4 @@
-import { getSession } from '@/controllers/Auth'
+import { getSession } from '@/controllers/UserController/getSession'
 import { UserLogged } from './UserLogged'
 import { UserNotLogged } from './UserNotLogged/UserNotLogged'
 

@@ -1,14 +1,6 @@
 'use server'
+import { PlaceLocation } from '@/models/Place'
 import { getData } from '@/utilities/actionRequest'
-
-export type PlaceLocation = {
-  code: string
-  name: string
-  tag: {
-    short: string
-    long: string
-  }
-}
 
 async function getPlacesData(type: 'departments' | 'provinces' | 'districts') {
   const data = await getData<PlaceLocation[]>(
