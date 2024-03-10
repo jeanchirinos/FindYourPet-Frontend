@@ -1,7 +1,7 @@
 'use client'
 
 import { SelectNative } from '@/components/Select/SelectNative'
-import { Category } from '@/models/Pet'
+import { Category } from '@/models/Category'
 import { BreedsData } from '@/models/Breed'
 import { useState } from 'react'
 

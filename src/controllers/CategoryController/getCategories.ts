@@ -1,6 +1,6 @@
 'use server'
 
-import { Category } from '@/models/Pet'
+import { Category } from '@/models/Category'
 import { getData } from '@/utilities/actionRequest'
 
 export async function getCategories() {
