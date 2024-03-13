@@ -9,6 +9,7 @@ export async function getUser() {
     next: {
       tags: ['user'],
     },
+    
   })
 
   return data
