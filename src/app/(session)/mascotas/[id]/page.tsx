@@ -1,8 +1,6 @@
-// import { Suspense } from '@/components/other/CustomSuspense'
 import { getPetById } from '@/controllers/PetController/getPetById'
 import { PageProps } from '@/types'
 // import PetMap from './map'
-// import { Skeleton } from '@nextui-org/skeleton'
 import { PetStatusTag } from '@/components/business/PetStatusTag'
 import { PetCard } from '../../(home)/Pets/PetCard'
 import { ContactNumber } from './contactNumber'
@@ -14,21 +12,18 @@ import { IconLocation } from '@/icons'
 type Props = PageProps<'id'>
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
+  const { pet } = await getPetById(props.params.id)
+
   return {
     title: `Mascota ${props.params.id}`,
+    openGraph: {
+      images: [pet.image.image],
+    },
   }
 }
 
-export default function Page(props: Props) {
-  return (
-    // <Suspense>
-    <Content petId={props.params.id} />
-    // </Suspense>
-  )
-}
-
-async function Content(props: { petId: string }) {
-  const { pet, morePets } = await getPetById(props.petId)
+export default async function Page(props: Props) {
+  const { pet, morePets } = await getPetById(props.params.id)
 
   const states = {
     1: {
