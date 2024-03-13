@@ -21,8 +21,7 @@
     "node_modules": true,
     "next-env.d.ts": true,
     "postcss.config.js": true,
-    "src/app/favicon.ico": true,
-    ".next": true
+    "src/app/favicon.ico": true
   },
   "hide-files.files": [
     "README.md",
@@ -34,8 +33,7 @@
     "node_modules",
     "next-env.d.ts",
     "postcss.config.js",
-    "src/app/favicon.ico",
-    ".next"
+    "src/app/favicon.ico"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {
