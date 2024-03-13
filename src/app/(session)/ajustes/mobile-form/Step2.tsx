@@ -1,23 +1,20 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { SubmitButton } from '@/components/SubmitButton'
 import { Button } from '@nextui-org/button'
-import { SetState } from '@/types'
 import { useCountdownTimer } from 'use-countdown-timer'
 import { handleResponse } from '@/utilities/handleResponse'
 import { UseModal } from '@/components/Modal'
 import { verifyMobile } from '@/controllers/UserController/verifyMobile'
 import { OtpInput } from './OtpInput'
-import { toast } from 'sonner'
 
 type Props = {
   modal: UseModal
   secondsToResend: number
-  setInputIsEditable: SetState<boolean>
   currentMobile: string
 }
 
 export function Step2(props: Props) {
-  const { modal, secondsToResend, setInputIsEditable, currentMobile } = props
+  const { modal, secondsToResend, currentMobile } = props
 
   const [validationCode, setValidationCode] = useState('')
 
@@ -28,14 +25,11 @@ export function Step2(props: Props) {
 
   // FUNCTIONS
   async function handleVerifyMobileFormAction() {
-    if (validationCode.length !== 6) return toast.error('El código debe tener 6 dígitos')
-
     const res = await verifyMobile({ code: validationCode, mobile: currentMobile })
 
     handleResponse(res, {
       onSuccess() {
         modal.close()
-        setInputIsEditable(false)
       },
       showSuccessToast: true,
     })
@@ -46,20 +40,25 @@ export function Step2(props: Props) {
     start()
   }
 
+  const isDisabled = validationCode.length !== 6
+
+  const formRef = useRef<HTMLFormElement>(null)
+
   // RENDER
   return (
     <form
       className='flex flex-col items-center gap-y-5 text-center'
       action={handleVerifyMobileFormAction}
+      ref={formRef}
     >
-      <h2 className='max-w-[30ch] text-center'>
+      <span className='max-w-[30ch] text-center'>
         Ingrese el código de verificación que se envió a su número de celular
-      </h2>
+      </span>
 
       <OtpInput
         validationCode={validationCode}
         setValidationCode={setValidationCode}
-        onComplete={handleVerifyMobileFormAction}
+        onComplete={() => formRef.current?.requestSubmit()}
       />
 
       {isRunning && <p>Podrás reenviar el código luego de {countdown / 1000} segundos </p>}
@@ -74,7 +73,9 @@ export function Step2(props: Props) {
         <Button onClick={modal.close} className='grow'>
           Cerrar
         </Button>
-        <SubmitButton className='grow'>Confirmar</SubmitButton>
+        <SubmitButton isDisabled={isDisabled} className='grow'>
+          Confirmar
+        </SubmitButton>
       </div>
     </form>
   )

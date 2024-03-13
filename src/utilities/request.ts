@@ -81,7 +81,7 @@ export async function requestAll<Response>(
       })
     }
   } catch (e) {
-    if (res.status === 401) {
+    if (res.status === 401 || res.status === 403) {
       if (config?.redirectIfUnauthorized) {
         return notAuthorized()
       }

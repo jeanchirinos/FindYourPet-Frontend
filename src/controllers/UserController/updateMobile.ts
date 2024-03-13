@@ -20,6 +20,5 @@ export async function updateMobile(data: { mobile: string }) {
     url: 'update-mobile',
     body: data,
     schema,
-    revalidateTagParams: ['user'],
   })
 }

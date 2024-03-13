@@ -62,14 +62,13 @@ export function Form(props: Props) {
 
   return (
     <>
-      {/* <h2 className='mb-8 text-center text-lg font-semibold'>Registro de datos</h2> */}
       <Title>Registro de datos </Title>
 
       {!session && (
         <div className='sticky top-header z-20 bg-background py-4'>
           <Button
             onClick={() => {
-              document.getElementById('#not-logged-menu-trigger')?.click()
+              document.getElementById('not-logged-menu-trigger')?.click()
             }}
             variant='flat'
             color='warning'

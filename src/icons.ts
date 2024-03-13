@@ -17,5 +17,9 @@ export {
   IoIosInformationCircleOutline as IconInfo,
 } from 'react-icons/io'
 export { IoPerson as IconUser, IoMenu as IconMobileMenu } from 'react-icons/io5'
-export { MdOutlinePets as IconPet } from 'react-icons/md'
+export {
+  MdOutlinePets as IconPet,
+  MdOutlineDelete as IconDelete,
+  MdWhatsapp as IconWhatsapp,
+} from 'react-icons/md'
 export { SlOptionsVertical as IconOptions } from 'react-icons/sl'

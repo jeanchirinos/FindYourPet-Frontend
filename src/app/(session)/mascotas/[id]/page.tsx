@@ -5,7 +5,7 @@ import { PageProps } from '@/types'
 // import { Skeleton } from '@nextui-org/skeleton'
 import { PetStatusTag } from '@/components/business/PetStatusTag'
 import { PetCard } from '../../(home)/Pets/PetCard'
-// import { ContactNumber } from './contactNumber'
+import { ContactNumber } from './contactNumber'
 import { twJoin } from 'tailwind-merge'
 import { Metadata } from 'next'
 import { Image } from '@/components/Image'
@@ -60,31 +60,36 @@ async function Content(props: { petId: string }) {
             priority
           />
         </picture>
-        <div className='flex grow flex-col gap-y-4'>
+        <div className='flex grow flex-col gap-y-5'>
           <PetStatusTag pet={pet} />
-          <section className='flex flex-col gap-y-4 rounded-md bg-foreground-200/50 p-2'>
-            <div className='flex items-center gap-x-2'>
-              <Image
-                src={pet.user.image}
-                alt={pet.user.username}
-                width={40}
-                height={40}
-                className='rounded-full'
-              />
-              <div className='flex flex-col'>
-                <span className='text-small text-foreground-500'>{pet.user.username}</span>
-                {/* @ts-ignore */}
-                <span className='text-foreground-600'>{pet.user.email}</span>
+          <section className='flex flex-col gap-y-12 rounded-md bg-foreground-200/50 px-4 py-5'>
+            <div className='flex flex-col gap-y-4'>
+              <div className='flex items-center gap-x-2'>
+                <Image
+                  src={pet.user.image}
+                  alt={pet.user.username}
+                  width={40}
+                  height={40}
+                  className='rounded-full'
+                />
+                <div className='flex flex-col'>
+                  <span className='text-small text-foreground-500'>{pet.user.username}</span>
+                  {/* @ts-ignore */}
+                  <span className='text-foreground-600'>{pet.user.email}</span>
+                </div>
               </div>
+
+              <p>{pet.description}</p>
             </div>
 
-            <p>{pet.description}</p>
-
-            <div className='flex items-baseline gap-x-1'>
-              <IconLocation />
-              <span className='text-foreground-600'>{pet.district_name}</span>
+            <div className='flex flex-col gap-y-3'>
+              <div className='flex items-baseline gap-x-1'>
+                <IconLocation />
+                <span className='text-foreground-600'>{pet.district_name}</span>
+              </div>
+              {/*@ts-ignore */}
+              {pet.user.mobile && <ContactNumber id={pet.id} phoneNumber={pet.user.mobile} />}
             </div>
-            {/* <ContactNumber id={pet.id} phoneNumber='999999999' /> */}
           </section>
         </div>
       </section>

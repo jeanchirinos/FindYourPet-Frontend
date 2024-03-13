@@ -8,6 +8,10 @@ import { useSteps } from '@/hooks/useSteps'
 import { useAutoInput } from '../data-form/useAutoInput'
 import { Step1 } from './Step1'
 import { Step2 } from './Step2'
+import { IconDelete } from '@/icons'
+import { deleteMobile } from '@/controllers/UserController/deleteMobile'
+import { SubmitButton } from '@/components/SubmitButton'
+import { handleResponse } from '@/utilities/handleResponse'
 
 type Props = { initialMobile: string | null }
 
@@ -54,38 +58,49 @@ export function MobileForm(props: Props) {
     }, 250)
   }
 
+  // ACTION
+
+  async function handleAction() {
+    submittingRef.current = true
+    const res = await deleteMobile()
+
+    handleResponse(res, {
+      showSuccessToast: true,
+    })
+  }
+
   // VALUES
   const isDisabled = initialMobile === currentValue || !/^9[0-9]{8}$/.test(currentValue)
 
   // RENDER
   return (
     <>
-      <form
-        onSubmit={handleSubmit}
-        className='mt-4 flex items-center gap-x-2'
-        onKeyDown={handleKeyDown}
-      >
-        <Input
-          type='text'
-          name='mobile'
-          label='Móvil'
-          isRequired={false}
-          value={currentValue}
-          minLength={9}
-          maxLength={9}
-          pattern='^9[0-9]{8}$'
-          onChange={e => {
-            const value = e.target.value
-            if (isNaN(Number(value))) return
-            setCurrentValue(e.target.value)
-          }}
-          onFocus={() => setInputIsEditable(true)}
-          onBlur={handleBlur}
-          innerRef={inputRef}
-        />
+      <div className='mt-4 flex items-center gap-x-2'>
+        <form
+          onSubmit={handleSubmit}
+          className='flex grow items-center gap-x-2'
+          onKeyDown={handleKeyDown}
+        >
+          <Input
+            type='text'
+            name='mobile'
+            label='Móvil'
+            isRequired={false}
+            value={currentValue}
+            minLength={9}
+            maxLength={9}
+            pattern='^9[0-9]{8}$'
+            onChange={e => {
+              const value = e.target.value
+              if (isNaN(Number(value))) return
+              setCurrentValue(e.target.value)
+            }}
+            onFocus={() => setInputIsEditable(true)}
+            onBlur={handleBlur}
+            innerRef={inputRef}
+          />
 
-        {inputIsEditable && (
-          <div className='flex gap-x-1.5'>
+          {inputIsEditable && (
             <Button
               size='sm'
               isDisabled={isDisabled}
@@ -96,9 +111,23 @@ export function MobileForm(props: Props) {
             >
               Guardar
             </Button>
-          </div>
+          )}
+        </form>
+
+        {inputIsEditable && initialMobile !== '' && (
+          <form action={handleAction}>
+            <SubmitButton
+              size='sm'
+              color='danger'
+              variant='flat'
+              isIconOnly
+              innerRef={submitButtonRef}
+            >
+              <IconDelete className='pointer-events-none' />
+            </SubmitButton>
+          </form>
         )}
-      </form>
+      </div>
 
       <Modal modal={updateMobileModal} onExitComplete={handleCloseModal}>
         {currentStep === 1 && (
@@ -114,7 +143,6 @@ export function MobileForm(props: Props) {
           <Step2
             modal={updateMobileModal}
             secondsToResend={secondsToResend}
-            setInputIsEditable={setInputIsEditable}
             currentMobile={currentValue}
           />
         )}

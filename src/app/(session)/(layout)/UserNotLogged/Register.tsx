@@ -17,7 +17,8 @@ export function Register() {
 
   // FUNCTIONS
   function handleBack() {
-    setEmailSent(false)
+    const notLoggedMenuTrigger = document.getElementById('not-logged-menu-trigger')
+    notLoggedMenuTrigger?.click()
   }
 
   async function formAction(formData: FormData) {
@@ -49,10 +50,12 @@ export function Register() {
       </form>
 
       {emailSent && (
-        <div className='absolute inset-0 z-10 flex flex-col items-center justify-center bg-white'>
-          <p>Se envió un correo de confirmación a :</p>
-          <b>{currentEmail}</b>
-          <Button onPress={handleBack}>Volver</Button>
+        <div className='absolute inset-0 z-10 flex-col gap-y-4 bg-content1 text-center flex-center'>
+          <div className='space-y-2'>
+            <p>Se envió un correo de confirmación a :</p>
+            <b>{currentEmail}</b>
+          </div>
+          <Button onPress={handleBack}>Cerrar</Button>
         </div>
       )}
     </>

@@ -26,7 +26,6 @@ type RequestParamsNotNullable = [url: Parameters<typeof fetch>['0'], config?: No
 type RequestParamsNullable = [url: Parameters<typeof fetch>['0'], config?: NullableConfig]
 
 export async function getData<Response>(...params: RequestParamsNotNullable): Promise<Response>
-
 export async function getData<Response>(...params: RequestParamsNullable): Promise<Response | null>
 
 //

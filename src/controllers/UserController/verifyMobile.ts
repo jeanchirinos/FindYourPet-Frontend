@@ -13,5 +13,6 @@ export async function verifyMobile(data: { mobile: string; code: string }) {
     url: 'verify-mobile',
     body: data,
     schema,
+    revalidateTagParams: ['user'],
   })
 }
