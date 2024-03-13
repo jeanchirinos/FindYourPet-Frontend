@@ -69,6 +69,7 @@ export function Form(props: Props) {
       </div>
 
       {/* @ts-ignore */}
+      {/* Shouldn't appear if is admin */}
       {pet.published === '1' && (
         <blockquote className='mb-4 flex gap-x-2 rounded-xl border border-default-100 bg-default-200/20 px-4 py-3 text-small'>
           <IconInfo className='text-large' />
