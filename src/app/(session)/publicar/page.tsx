@@ -8,6 +8,7 @@ import { getSession } from '@/controllers/UserController/getSession'
 
 export const metadata: Metadata = {
   title: 'Publicar',
+  description: 'Pulica tu anuncio de mascota perdida, encontrada o en adopción',
 }
 
 type Props = PageProps<{}, 'status'>

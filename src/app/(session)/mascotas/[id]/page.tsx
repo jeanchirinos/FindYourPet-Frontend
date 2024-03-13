@@ -2,12 +2,12 @@ import { getPetById } from '@/controllers/PetController/getPetById'
 import { PageProps } from '@/types'
 // import PetMap from './map'
 import { PetStatusTag } from '@/components/business/PetStatusTag'
-import { PetCard } from '../../(home)/Pets/PetCard'
 import { ContactNumber } from './contactNumber'
-import { twJoin } from 'tailwind-merge'
 import { Metadata } from 'next'
 import { Image } from '@/components/Image'
 import { IconLocation } from '@/icons'
+import { Suspense } from '@/components/other/CustomSuspense'
+import { MorePets } from './more-pets'
 
 type Props = PageProps<'id'>
 
@@ -15,7 +15,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const { pet } = await getPetById(props.params.id)
 
   return {
-    title: `Mascota ${props.params.id}`,
+    title: {
+      absolute: `${pet.status_name} | ${pet.breed.name} en ${pet.district_name} | ${props.params.id}`,
+    },
+
     openGraph: {
       images: [pet.image.image],
     },
@@ -24,24 +27,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function Page(props: Props) {
-  const { pet, morePets } = await getPetById(props.params.id)
-
-  const states = {
-    1: {
-      text: 'buscadas',
-      textClassName: 'text-search',
-    },
-    2: {
-      text: 'perdidas',
-      textClassName: 'text-lost',
-    },
-    3: {
-      text: 'en adopción',
-      textClassName: 'text-adopt',
-    },
-  }
-
-  const petState = states[Number(pet.status) as keyof typeof states]
+  const { pet } = await getPetById(props.params.id)
 
   return (
     <div className='mx-auto w-[1600px] max-w-full space-y-10 px-2'>
@@ -49,8 +35,8 @@ export default async function Page(props: Props) {
         <picture className='relative max-h-full min-h-80 shrink-0 animate-fade-up overflow-hidden rounded-md animate-duration-300 md:min-h-[34rem] md:w-[45%]'>
           <Image
             src={pet.image.image}
-            width={pet.image.width || 500}
-            height={pet.image.height || 500}
+            width={pet.image.width}
+            height={pet.image.height}
             alt={pet.id.toString()}
             className='absolute size-full object-cover'
             priority
@@ -89,18 +75,9 @@ export default async function Page(props: Props) {
           </section>
         </div>
       </section>
-      {morePets.length && (
-        <section className='space-y-4'>
-          <h2 className={twJoin('text-2xl font-semibold', petState.textClassName)}>
-            Más mascotas {petState.text}
-          </h2>
-          <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[300px]'>
-            {morePets.map(pet => (
-              <PetCard key={pet.id} pet={pet} />
-            ))}
-          </div>
-        </section>
-      )}
+      <Suspense>
+        <MorePets pet={pet} />
+      </Suspense>
     </div>
   )
 }

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: '%s | Encuentra tu mascota',
     default: 'Encuentra tu mascota',
   },
-  description: 'Encuentra y adopta una mascota',
+  description: 'Encuentra, adopta o reporta una mascota.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL!),
   openGraph: {
     url: process.env.NEXT_PUBLIC_APP_URL,

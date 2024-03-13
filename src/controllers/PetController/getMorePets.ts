@@ -3,8 +3,8 @@
 import { Pet } from '@/models/Pet'
 import { getData } from '@/utilities/actionRequest'
 
-export async function getPetById(id: string | number) {
-  const data = await getData<{ pet: Pet }>(`pet-find/${id}`, {
+export async function getMorePets(id: number) {
+  const data = await getData<{ morePets: Pet[] }>(`more-pets/${id}`, {
     cache: 'no-store',
   })
 
