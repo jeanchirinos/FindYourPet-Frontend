@@ -2,7 +2,7 @@
 import { Input } from '@/components/Input'
 import { useState } from 'react'
 
-import { Modal, useModal } from '@/components/Modal'
+import { Modal, UseModal, useModal } from '@/components/Modal'
 import { Button } from '@nextui-org/button'
 import { useSteps } from '@/hooks/useSteps'
 import { useAutoInput } from '../data-form/useAutoInput'
@@ -11,7 +11,7 @@ import { Step2 } from './Step2'
 import { IconDelete } from '@/icons'
 import { deleteMobile } from '@/controllers/UserController/deleteMobile'
 import { SubmitButton } from '@/components/SubmitButton'
-import { handleResponse } from '@/utilities/handleResponse'
+import { useFormAction } from '@/hooks/useFormAction'
 
 type Props = { initialMobile: string | null }
 
@@ -35,6 +35,7 @@ export function MobileForm(props: Props) {
 
   // HOOKS
   const updateMobileModal = useModal()
+  const deleteMobileModal = useModal()
 
   const useStepsHook = useSteps()
   const { currentStep, resetSteps } = useStepsHook
@@ -59,14 +60,12 @@ export function MobileForm(props: Props) {
   }
 
   // ACTION
+  function handleSubmitDelete(e: React.FormEvent) {
+    e.preventDefault()
 
-  async function handleAction() {
     submittingRef.current = true
-    const res = await deleteMobile()
 
-    handleResponse(res, {
-      showSuccessToast: true,
-    })
+    deleteMobileModal.open()
   }
 
   // VALUES
@@ -115,7 +114,7 @@ export function MobileForm(props: Props) {
         </form>
 
         {inputIsEditable && initialMobile !== '' && (
-          <form action={handleAction}>
+          <form onSubmit={handleSubmitDelete}>
             <SubmitButton
               size='sm'
               color='danger'
@@ -147,6 +146,40 @@ export function MobileForm(props: Props) {
           />
         )}
       </Modal>
+
+      <DialogDelete
+        modal={deleteMobileModal}
+        onExitComplete={() => {
+          setTimeout(() => {
+            // inputRef.current?.focus()
+            // submittingRef.current = false
+            inputRef.current?.focus()
+            inputRef.current?.blur()
+            submittingRef.current = false
+          }, 250)
+        }}
+      />
     </>
+  )
+}
+
+function DialogDelete(props: { modal: UseModal; onExitComplete: () => void }) {
+  const { modal, onExitComplete } = props
+
+  const { formAction } = useFormAction(deleteMobile, {
+    onSuccess: modal.close,
+  })
+
+  return (
+    <Modal modal={modal} onExitComplete={onExitComplete}>
+      <form action={formAction} className='space-y-4'>
+        <span>¿ Estás seguro de remover tu número de contacto ?</span>
+
+        <footer className='flex justify-center gap-x-2'>
+          <Button onClick={modal.close}>No, cancelar</Button>
+          <SubmitButton color='danger'>Sí, remover</SubmitButton>
+        </footer>
+      </form>
+    </Modal>
   )
 }

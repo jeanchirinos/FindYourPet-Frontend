@@ -14,7 +14,12 @@ export function UpdateForm(props: Props) {
     <>
       <ProfileImage user={user} />
 
-      <EditableInput initialValue={user.name} label='Nombre' paramName='name' />
+      <EditableInput
+        initialValue={user.name}
+        label='Nombre'
+        paramName='name'
+        inputProps={{ isRequired: false }}
+      />
       <EditableInput initialValue={user.username} label='Usuario' paramName='username' />
       <MobileForm initialMobile={user.mobile} />
     </>

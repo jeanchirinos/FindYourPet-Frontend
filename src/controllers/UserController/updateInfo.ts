@@ -6,7 +6,7 @@ import { z } from 'zod'
 export async function updateInfo(data: { param: string; value: string }) {
   const schema = z.object({
     param: z.string().min(1),
-    value: z.string().min(1),
+    value: z.string(),
   })
 
   return sendData({

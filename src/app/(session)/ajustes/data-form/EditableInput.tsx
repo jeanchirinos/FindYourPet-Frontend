@@ -8,6 +8,7 @@ type Props = {
   initialValue: string | null
   paramName: string
   label: string
+  inputProps?: React.ComponentProps<typeof Input>
 }
 
 export function EditableInput(props: Props) {
@@ -62,6 +63,7 @@ function Content(props: Props) {
         onFocus={() => setInputIsEditable(true)}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
+        {...props.inputProps}
       />
 
       {inputIsEditable && (
