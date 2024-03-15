@@ -17,6 +17,7 @@ const center = {
 function PetMap() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
+    googleMapsApiKey: '',
   })
 
   const [map, setMap] = useState(null)
