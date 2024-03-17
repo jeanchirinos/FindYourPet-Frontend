@@ -10,6 +10,7 @@ import { Pet } from '@/models/Pet'
 import { IconBack, IconInfo } from '@/icons'
 import { Button } from '@nextui-org/button'
 import React, { useEffect, useRef, useState } from 'react'
+import { Input } from '@/components/Input'
 
 type Props = {
   StatusInfoComponent: React.ReactNode
@@ -106,12 +107,19 @@ export function Form(props: Props) {
           {props.StatusInfoComponent}
           <Textarea
             name='description'
+            // @ts-ignore
             defaultValue={pet.description}
-            label='Descripción'
-            isRequired
+            label='Descripción (Opcional)'
           />
           {props.CategoryComponent}
           {props.PlaceComponent}
+          <Input
+            isRequired={false}
+            name='location'
+            label='Dirección (Opcional)'
+            // @ts-ignore
+            defaultValue={pet.location}
+          />
 
           <input defaultValue={pet.id} name='id' hidden />
           <SubmitButton

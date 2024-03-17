@@ -5,7 +5,7 @@ import { PetStatusTag } from '@/components/business/PetStatusTag'
 import { ContactNumber } from './contactNumber'
 import { Metadata } from 'next'
 import { Image } from '@/components/Image'
-import { IconLocation } from '@/icons'
+import { IconLocation, IconMap } from '@/icons'
 import { Suspense } from '@/components/other/CustomSuspense'
 import { MorePets } from './more-pets'
 
@@ -54,23 +54,34 @@ export default async function Page(props: Props) {
                   height={40}
                   className='rounded-full'
                 />
-                <div className='flex flex-col'>
-                  <span className='text-small text-foreground-500'>{pet.user.username}</span>
+                <div className='flex flex-col text-small'>
+                  <span className='text-foreground-600'>{pet.user.username}</span>
                   {/* @ts-ignore */}
-                  <span className='text-foreground-600'>{pet.user.email}</span>
+                  <span className='text-foreground-500'>{pet.user.email}</span>
                 </div>
               </div>
 
               <p>{pet.description}</p>
             </div>
 
-            <div className='flex flex-col gap-y-3'>
-              <div className='flex items-baseline gap-x-1'>
-                <IconLocation />
-                <span className='text-foreground-600'>{pet.district_name}</span>
+            <div className='flex flex-col gap-y-6'>
+              <div>
+                {pet.location && (
+                  <div className='flex items-center gap-x-1.5'>
+                    <IconLocation />
+                    <span className='text-foreground-500'>{pet.location}</span>
+                  </div>
+                )}
+                <div className='flex items-center gap-x-1.5'>
+                  <IconMap />
+                  <span className='text-foreground-600'>{pet.district_name}</span>
+                </div>
               </div>
               {/*@ts-ignore */}
-              {pet.user.mobile && <ContactNumber id={pet.id} phoneNumber={pet.user.mobile} />}
+              {pet.status_name !== 'Perdido' && pet.user.mobile && (
+                // @ts-ignore
+                <ContactNumber id={pet.id} phoneNumber={pet.user.mobile} />
+              )}
             </div>
           </section>
         </div>

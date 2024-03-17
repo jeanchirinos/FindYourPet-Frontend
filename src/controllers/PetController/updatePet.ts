@@ -25,13 +25,12 @@ export async function updatePet(prevState: any, data: FormData) {
           'Solo se permiten .jpg, .jpeg, .png and .webp',
         ),
     ),
-    description: z.string(),
+    description: z.string().optional(),
     estate: z.string(),
     city: z.string(),
     district: z.string(),
-    // location: z.string(),
+    location: z.string().optional(),
     status: z.string(),
-    // plan: z.string(),
   })
 
   return sendData({

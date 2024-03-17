@@ -1,4 +1,5 @@
 export { AiOutlineSearch as IconSearch } from 'react-icons/ai'
+export { CiMap as IconMap } from 'react-icons/ci'
 export { FaCircle as IconCircle } from 'react-icons/fa'
 export { FcGoogle as IconGoogle } from 'react-icons/fc'
 export { GoChevronDown as IconArrowDown, GoCheck as IconCheck } from 'react-icons/go'

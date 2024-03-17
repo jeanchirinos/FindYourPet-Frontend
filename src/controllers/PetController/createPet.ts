@@ -5,9 +5,6 @@ import { z } from 'zod'
 import { ACCEPTED_IMAGE_TYPES, MAX_PET_IMAGE_SIZE } from './constants'
 
 export async function createPet(prevState: any, data: FormData) {
-  data.set('location', '')
-  data.set('plan', '1')
-
   const schema = z.object({
     breed_id: z.string(),
     image: z
@@ -20,13 +17,12 @@ export async function createPet(prevState: any, data: FormData) {
         file => ACCEPTED_IMAGE_TYPES.includes(file.type),
         'Solo se permiten .jpg, .jpeg, .png and .webp',
       ),
-    description: z.string(),
+    description: z.string().optional(),
     estate: z.string(),
     city: z.string(),
     district: z.string(),
-    location: z.string(),
+    location: z.string().optional(),
     status: z.string(),
-    plan: z.string(),
   })
 
   return sendData({

@@ -12,6 +12,7 @@ import { SessionLogged } from '@/controllers/UserController/getSession'
 import { Title } from '@/components/business/Title'
 import { ButtonLink } from '@/components/ButtonLink'
 import { ROUTE } from '@/routes'
+import { Input } from '@/components/Input'
 
 type Props = {
   StatusInfoComponent: React.ReactNode
@@ -62,7 +63,7 @@ export function Form(props: Props) {
 
   return (
     <>
-      <Title>Registro de datos </Title>
+      <Title>Registro de datos</Title>
 
       {!session && (
         <div className='sticky top-header z-20 bg-background py-4'>
@@ -84,9 +85,10 @@ export function Form(props: Props) {
         <PetImage />
         <section className='flex w-[400px] max-w-full shrink-0 flex-col gap-y-3'>
           {props.StatusInfoComponent}
-          <Textarea name='description' label='Descripción' isRequired />
+          <Textarea name='description' label='Descripción (Opcional)' />
           {props.CategoryComponent}
           {props.PlaceComponent}
+          <Input isRequired={false} name='location' label='Dirección (Opcional)' />
 
           <SubmitButton isDisabled={!session}>Publicar</SubmitButton>
         </section>

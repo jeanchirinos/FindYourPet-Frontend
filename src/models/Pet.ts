@@ -9,11 +9,11 @@ type PetBase = {
   breed_id: string
   user_id: string
   image: string
-  description: string
+  description: string | null
   estate: string
   city: string
   district: string
-  location: string
+  location: string | null
   status: string // '0' | '1' | '2'
   // plan: string
   // public_date: string
