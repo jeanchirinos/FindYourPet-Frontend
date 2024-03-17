@@ -9,14 +9,5 @@
         "runOn": "folderOpen"
       }
     },
-    {
-      "label": "Run dev server",
-      "type": "npm",
-      "script": "dev",
-      "runOptions": {
-        "runOn": "folderOpen"
-      },
-      "dependsOn": "Check for outdated packages"
-    }
   ]
 }

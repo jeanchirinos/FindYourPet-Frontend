@@ -11,7 +11,7 @@ import { ButtonLink } from '@/components/ButtonLink'
 export default function Page() {
   return (
     <main>
-      <section className='-mt-20 bg-custom1 py-header_sticky'>
+      <section className='-mt-20 bg-primary/20 py-header_sticky'>
         <div className='mx-auto flex w-[1600px] max-w-full flex-col items-center justify-around gap-10 px-2 pt-8 lg:flex-row-reverse'>
           <Image
             src={ImgHeroImage}
