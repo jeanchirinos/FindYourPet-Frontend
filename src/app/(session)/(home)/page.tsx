@@ -8,6 +8,7 @@ import { FilterBreeds } from './FilterBreeds/FilterBreeds'
 import { FilterStatus } from './FilterStatus'
 import { Spinner } from '@nextui-org/spinner'
 import { PageSearchParamsProps2 } from '@/types'
+import { FilterToggle } from './FilterToggle'
 
 type Props = PageSearchParamsProps2<GetPetsParams>
 
@@ -16,8 +17,11 @@ export default function Page(props: Props) {
   const { category_id } = searchParams
 
   return (
-    <main className='mx-auto flex h-full w-[1600px] max-w-full items-start gap-x-10 px-2'>
-      <aside className='sticky top-header_sticky w-48 shrink-0 max-lg:hidden'>
+    <main className='relative mx-auto flex h-full w-[1600px] max-w-full items-start gap-x-10 px-2'>
+      <aside
+        id='pet-filter'
+        className='sticky top-20 z-20 w-48 shrink-0 bg-background transition-transform max-md:absolute max-md:left-0 max-md:w-full max-md:-translate-x-full max-md:px-4 max-md:pb-4 md:top-header_sticky'
+      >
         <section className='space-y-8 *:space-y-3'>
           <Suspense>
             <FilterStatus />
@@ -33,7 +37,8 @@ export default function Page(props: Props) {
         </section>
       </aside>
       <section className='flex h-full w-full flex-col gap-y-4'>
-        <header className='flex justify-between'>
+        <header className='flex justify-between gap-x-4 '>
+          <FilterToggle />
           <Suspense>
             <FilterPlace />
           </Suspense>

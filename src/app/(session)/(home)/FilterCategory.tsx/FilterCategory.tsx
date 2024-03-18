@@ -10,7 +10,7 @@ export async function FilterCategory() {
     <section>
       <p className='font-semibold text-foreground-900'>Especie</p>
 
-      <div className='flex w-full flex-wrap justify-between gap-2'>
+      <div className='flex w-full flex-wrap gap-6 md:justify-between md:gap-2'>
         {[allCategoriesItem, ...categoriesList].map(item => (
           <LinkSearchParams
             key={item.id}

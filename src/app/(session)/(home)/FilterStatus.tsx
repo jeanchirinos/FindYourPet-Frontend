@@ -16,7 +16,7 @@ export async function FilterStatus() {
     <section>
       <p className='font-semibold text-foreground-900'>Estado</p>
 
-      <div className='flex flex-col gap-y-2'>
+      <div className='flex flex-col gap-2 min-[425px]:flex-row md:flex-col'>
         {statusList.map(item => (
           <LinkSearchParams
             key={item.id}

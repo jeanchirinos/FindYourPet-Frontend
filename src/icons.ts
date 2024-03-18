@@ -22,5 +22,6 @@ export {
   MdOutlinePets as IconPet,
   MdOutlineDelete as IconDelete,
   MdWhatsapp as IconWhatsapp,
+  MdOutlineFilterAlt as IconFilter,
 } from 'react-icons/md'
 export { SlOptionsVertical as IconOptions } from 'react-icons/sl'

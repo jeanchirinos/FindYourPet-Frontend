@@ -28,7 +28,7 @@ export function Order() {
   // RENDER
   return (
     <SelectNative
-      className='h-fit max-md:hidden'
+      className='h-fit '
       aria-label='Ordenar'
       state={{
         selected: searchParams.get('order') ?? DEFAULT_ORDER,
