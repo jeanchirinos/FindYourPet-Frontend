@@ -12,6 +12,8 @@ export default function Page(props: Props) {
 
   return (
     <main className='mx-auto flex w-[1600px] max-w-full flex-col gap-y-8 px-2'>
+      <h1 className='text-xl font-black'>Administrar publicaciones</h1>
+
       <PetVisibility />
 
       <Suspense
