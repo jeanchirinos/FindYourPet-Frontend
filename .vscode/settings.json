@@ -18,11 +18,11 @@
     ".prettierrc.json": true,
     "pnpm-lock.yaml": true,
     ".npmrc": true,
-    "node_modules": true,
     "next-env.d.ts": true,
     "postcss.config.js": true,
     "src/app/favicon.ico": true,
-    ".next": true
+    ".next": true,
+    "node_modules": true
   },
   "hide-files.files": [
     "README.md",
@@ -31,11 +31,11 @@
     ".prettierrc.json",
     "pnpm-lock.yaml",
     ".npmrc",
-    "node_modules",
     "next-env.d.ts",
     "postcss.config.js",
     "src/app/favicon.ico",
-    ".next"
+    ".next",
+    "node_modules"
   ],
   "peacock.color": "#D2A9B0",
   "workbench.colorCustomizations": {

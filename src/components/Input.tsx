@@ -10,7 +10,10 @@ export function Input(props: Props) {
   return (
     <NextUiInput
       isRequired
-      classNames={{ ...classNames, label: twMerge('after:hidden', classNames?.label) }}
+      classNames={{
+        ...classNames,
+        label: twMerge('after:hidden !text-foreground-500', classNames?.label),
+      }}
       {...componentProps}
       ref={innerRef}
     />

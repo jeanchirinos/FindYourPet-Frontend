@@ -1,13 +1,13 @@
-{
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "Check for outdated packages",
-      "type": "npm",
-      "script": "upd",
-      "runOptions": {
-        "runOn": "folderOpen"
-      }
-    },
-  ]
-}
+// {
+//   "version": "2.0.0",
+//   "tasks": [
+//     {
+//       "label": "Check for outdated packages",
+//       "type": "npm",
+//       "script": "upd",
+//       "runOptions": {
+//         "runOn": "folderOpen"
+//       }
+//     },
+//   ]
+// }

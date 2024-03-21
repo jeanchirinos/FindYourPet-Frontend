@@ -110,6 +110,7 @@ export function Form(props: Props) {
             // @ts-ignore
             defaultValue={pet.description}
             label='Descripción (Opcional)'
+            labelPlacement='outside'
           />
           {props.CategoryComponent}
           {props.PlaceComponent}
@@ -117,6 +118,8 @@ export function Form(props: Props) {
             isRequired={false}
             name='location'
             label='Dirección (Opcional)'
+            labelPlacement='outside'
+            placeholder=' '
             // @ts-ignore
             defaultValue={pet.location}
           />

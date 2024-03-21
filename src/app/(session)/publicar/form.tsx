@@ -85,10 +85,16 @@ export function Form(props: Props) {
         <PetImage />
         <section className='flex w-[400px] max-w-full shrink-0 flex-col gap-y-3'>
           {props.StatusInfoComponent}
-          <Textarea name='description' label='Descripción (Opcional)' />
+          <Textarea name='description' label='Descripción (Opcional)' labelPlacement='outside' />
           {props.CategoryComponent}
           {props.PlaceComponent}
-          <Input isRequired={false} name='location' label='Dirección (Opcional)' />
+          <Input
+            isRequired={false}
+            name='location'
+            label='Dirección (Opcional)'
+            labelPlacement='outside'
+            placeholder=' '
+          />
 
           <SubmitButton isDisabled={!session}>Publicar</SubmitButton>
         </section>

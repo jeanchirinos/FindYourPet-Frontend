@@ -52,23 +52,15 @@ export function SelectNative(props: React.ComponentProps<'select'> & SelectProps
 
   // RENDER
   return (
-    <label className={twMerge('relative flex', className)}>
+    <label className={twMerge('relative flex flex-col gap-y-1', className)}>
       {label && (
-        <span
-          className={twMerge(
-            'pointer-events-none absolute top-1 ml-2.5 text-xs text-foreground-500',
-            classNames?.label,
-          )}
-        >
-          {label}
-        </span>
+        <span className={twMerge('text-sm text-foreground-500', classNames?.label)}>{label}</span>
       )}
       <select
         disabled={!options}
         required={required}
         className={twMerge(
-          'w-full cursor-pointer rounded-lg border-r-4 border-r-transparent bg-default-100 pb-1 pl-1.5 text-sm focus:outline-none',
-          label ? 'pt-6' : 'py-2',
+          'w-full cursor-pointer rounded-lg border-r-4 border-r-transparent bg-default-100 py-2 pl-1 text-sm focus:outline focus:outline-foreground-600',
           classNames?.select,
         )}
         value={stringState?.selected ?? numberState?.selected ?? undefined}

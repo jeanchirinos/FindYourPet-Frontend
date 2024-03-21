@@ -5,12 +5,14 @@ import { Category } from '@/models/Category'
 import { BreedsData } from '@/models/Breed'
 import { useState } from 'react'
 
-export function CategoriesClient(props: {
+type Props = {
   categories: Category[]
   breeds: BreedsData
   initialCategoryId?: string
   initialBreedId?: string
-}) {
+}
+
+export function CategoriesClient(props: Props) {
   const { categories, breeds, initialCategoryId = '24', initialBreedId } = props
 
   // STATES
@@ -28,8 +30,8 @@ export function CategoriesClient(props: {
       <SelectNative
         options={selectedCategory ? breeds[selectedCategory] : undefined}
         defaultValue={initialBreedId}
-        name='breed_id'
         label='Raza'
+        name='breed_id'
       />
     </>
   )
