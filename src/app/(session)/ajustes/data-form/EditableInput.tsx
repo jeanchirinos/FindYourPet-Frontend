@@ -27,7 +27,7 @@ export function EditableInput(props: Props) {
 
   // RENDER
   return (
-    <form action={handleAction} className='group mt-4 flex items-center gap-x-2'>
+    <form action={handleAction} className='group mt-4 flex items-end gap-x-2'>
       <Content {...props} />
     </form>
   )

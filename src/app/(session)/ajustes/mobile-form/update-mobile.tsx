@@ -74,10 +74,10 @@ export function MobileForm(props: Props) {
   // RENDER
   return (
     <>
-      <div className='mt-4 flex items-center gap-x-2'>
+      <div className='mt-4 flex items-end gap-x-2'>
         <form
           onSubmit={handleSubmit}
-          className='flex grow items-center gap-x-2'
+          className='flex grow items-end gap-x-2'
           onKeyDown={handleKeyDown}
         >
           <Input

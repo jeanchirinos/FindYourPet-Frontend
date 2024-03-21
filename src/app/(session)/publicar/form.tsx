@@ -88,13 +88,7 @@ export function Form(props: Props) {
           <Textarea name='description' label='Descripción (Opcional)' labelPlacement='outside' />
           {props.CategoryComponent}
           {props.PlaceComponent}
-          <Input
-            isRequired={false}
-            name='location'
-            label='Dirección (Opcional)'
-            labelPlacement='outside'
-            placeholder=' '
-          />
+          <Input isRequired={false} name='location' label='Dirección (Opcional)' />
 
           <SubmitButton isDisabled={!session}>Publicar</SubmitButton>
         </section>

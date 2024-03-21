@@ -14,6 +14,8 @@ export function Input(props: Props) {
         ...classNames,
         label: twMerge('after:hidden !text-foreground-500', classNames?.label),
       }}
+      labelPlacement='outside'
+      placeholder=' '
       {...componentProps}
       ref={innerRef}
     />

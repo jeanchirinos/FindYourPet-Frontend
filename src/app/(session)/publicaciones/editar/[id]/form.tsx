@@ -118,8 +118,6 @@ export function Form(props: Props) {
             isRequired={false}
             name='location'
             label='Dirección (Opcional)'
-            labelPlacement='outside'
-            placeholder=' '
             // @ts-ignore
             defaultValue={pet.location}
           />
