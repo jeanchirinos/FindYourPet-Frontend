@@ -9,7 +9,7 @@ const theme: Config['theme'] = {
       header_sticky: 'calc(var(--header-height) + 1.25rem)',
     },
     colors: {
-      focus: '#FD8F52',
+      focus: 'hsl(var(--nextui-foreground-600))',
       // status colors
       search: '#79616F',
       lost: '#AE6378',
@@ -22,7 +22,6 @@ const theme: Config['theme'] = {
 }
 
 //* PLUGINS
-
 type CustomColors = (Partial<ThemeColors> & { custom1?: string }) | undefined
 
 // NextUI

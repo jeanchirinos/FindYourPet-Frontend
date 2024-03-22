@@ -116,7 +116,7 @@ type Params<Response> = {
   schema?: z.ZodObject<ZodRawShape> | z.ZodEffects<any>
   revalidateTagParams?: Parameters<typeof revalidateTag>
   revalidatePathParams?: Parameters<typeof revalidatePath>
-  onSuccess?: (data: Response) => void
+  onSuccess?: (data: Response) => Promise<void> | void
   auth?: boolean
 }
 
@@ -154,7 +154,7 @@ export async function sendData<Response>(params: Params<Response>) {
     }
 
     if (onSuccess) {
-      onSuccess(res.data)
+      await onSuccess(res.data)
     }
   }
 

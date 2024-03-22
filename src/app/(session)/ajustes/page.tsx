@@ -1,8 +1,8 @@
 import { UpdateForm } from './data-form/update-form'
 
-import { Suspense } from '@/components/other/CustomSuspense'
+// import { Suspense } from '@/components/other/CustomSuspense'
 import { getUser } from '@/controllers/UserController/getUser'
-import { ConnectedAccounts } from './connected-accounts'
+// import { ConnectedAccounts } from './connected-accounts'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  // TODO: promise all
   const user = await getUser()
 
   return (
@@ -18,9 +17,9 @@ export default async function Page() {
       <div className='flex w-[350px] max-w-full flex-col'>
         <h2 className='mb-8 text-2xl font-black'>Información personal</h2>
         <UpdateForm user={user} />
-        <Suspense>
-          <ConnectedAccounts />
-        </Suspense>
+        {/* <Suspense>
+          <ConnectedAccounts/>
+        </Suspense> */}
       </div>
     </main>
   )

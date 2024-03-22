@@ -11,5 +11,6 @@ export async function getGoogleData() {
     },
     nullable: true,
   })
+
   return data
 }

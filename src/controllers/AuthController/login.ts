@@ -2,7 +2,8 @@
 
 import { ROUTE } from '@/routes'
 import { sendData } from '@/utilities/actionRequest'
-import { cookies, headers } from 'next/headers'
+import { isCurrentPath } from '@/utilities/serverUtilities'
+import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
@@ -14,13 +15,15 @@ export async function login(prevState: any, formData: FormData) {
 
   type Response = { token: string }
 
-  function onSuccess(data: Response) {
+  async function onSuccess(data: Response) {
     const expires = new Date()
     expires.setDate(expires.getDate() + 7)
 
     cookies().set('jwt', data.token, { expires })
 
-    if (headers().get('referer')?.includes(ROUTE.HOME)) {
+    const pathIsHome = await isCurrentPath(ROUTE.HOME)
+
+    if (pathIsHome) {
       redirect(ROUTE.PETS.INDEX)
     }
   }

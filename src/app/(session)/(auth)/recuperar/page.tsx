@@ -38,26 +38,21 @@ function Content() {
           </ButtonLink>
         </div>
       ) : (
-        <div className='flex w-96 max-w-full flex-col gap-y-6'>
-          <div>
-            <Title showBack={false} className='mb-2 gap-x-2.5'>
-              Recuperar contraseña
-            </Title>
-            <p className='text-foreground-600'>Ingresa el correo de la contraseña a recuperar</p>
-          </div>
+        <div className='flex w-96 max-w-full flex-col'>
+          <Title showBack={false} className='mb-5'>
+            Recuperar contraseña
+          </Title>
           <form action={formAction} className='flex flex-col gap-y-4'>
             <Input
               defaultValue={initialEmail}
               type='email'
               name='email'
-              label='Correo'
+              label='Ingresa el correo de la contraseña a recuperar'
               autoFocus
               required
-              placeholder='example@gmail.com'
+              placeholder='correo@gmail.com'
             />
-            <footer className='flex gap-x-2.5 *:grow'>
-              <SubmitButton>Enviar correo</SubmitButton>
-            </footer>
+            <SubmitButton>Enviar correo</SubmitButton>
           </form>
         </div>
       )}
