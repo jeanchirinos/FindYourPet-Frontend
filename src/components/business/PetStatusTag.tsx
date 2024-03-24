@@ -1,5 +1,5 @@
 import { Pet } from '@/models/Pet'
-import { twJoin } from 'tailwind-merge'
+import { cn } from '@/lib/utils'
 
 type Props = {
   className?: string
@@ -18,9 +18,7 @@ export function PetStatusTag(props: Props) {
   const color = Object.values(colors)[Number(pet.status) - 1]
 
   return (
-    <section
-      className={twJoin('rounded-lg p-1.5 text-center text-lg font-semibold text-white', color)}
-    >
+    <section className={cn('rounded-lg p-1.5 text-center text-lg font-semibold text-white', color)}>
       {pet.status_name}
     </section>
   )

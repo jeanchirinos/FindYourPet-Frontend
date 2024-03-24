@@ -4,7 +4,7 @@ import { requestAll } from '@/utilities/request'
 import { revalidatePath, revalidateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 import { ZodError, ZodRawShape, z } from 'zod'
-import { getFormEntries, notAuthorized } from './utilities'
+import { getFormEntries, redirectAfterUnauthorized } from './utilities'
 
 // Types
 interface BaseConfig extends Omit<RequestInit, 'body'> {
@@ -47,7 +47,7 @@ export async function getData<Response>(
       }
     } catch (e) {
       if (redirectIfUnauthorized) {
-        return notAuthorized()
+        return redirectAfterUnauthorized()
       }
 
       if (nullable) return null

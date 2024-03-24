@@ -2,7 +2,7 @@ import { Breed } from './Breed'
 import { Category } from './Category'
 import { User } from './User'
 
-export type StatusList = { id: number; value: string }[]
+export type StatusList = { id: 1 | 2 | 3; value: string }[]
 
 type PetBase = {
   id: number
@@ -14,7 +14,7 @@ type PetBase = {
   city: string
   district: string
   location: string | null
-  status: string // '0' | '1' | '2'
+  status: '1' | '2' | '3'
   // plan: string
   // public_date: string
   // until_date: string

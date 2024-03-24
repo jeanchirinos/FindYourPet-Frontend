@@ -1,7 +1,7 @@
 import { getStatusList } from '@/controllers/PetController/getStatusList'
 import { LinkSearchParams } from '@/components/LinkSearchParams'
-import { twJoin } from 'tailwind-merge'
 import { DEFAULT_PET_STATUS } from '@/controllers/PetController/constants'
+import { cn } from '@/lib/utils'
 
 export async function FilterStatus() {
   const statusList = await getStatusList()
@@ -26,7 +26,7 @@ export async function FilterStatus() {
             searchParamValue={item.id}
             className='flex w-full min-w-max cursor-pointer items-center justify-start rounded-lg p-2.5 text-sm shadow-md'
             classNames={{
-              selected: twJoin(classNames[item.id as keyof typeof classNames], 'text-white'),
+              selected: cn(classNames[item.id as keyof typeof classNames], 'text-white'),
               notSelected: 'bg-transparent hover:bg-foreground-100',
             }}
           >

@@ -1,7 +1,8 @@
 import { getMorePets } from '@/controllers/PetController/getMorePets'
 import { Pet } from '@/models/Pet'
-import { twJoin } from 'tailwind-merge'
-import { PetCard } from '../../(home)/Pets/PetCard'
+import { cn } from '@/lib/utils'
+
+import { PetCard } from '../../(index)/Pets/PetCard'
 
 export async function MorePets(props: { pet: Pet }) {
   const { pet } = props
@@ -29,7 +30,7 @@ export async function MorePets(props: { pet: Pet }) {
     <>
       {morePets.length && (
         <section className='space-y-4'>
-          <h2 className={twJoin('text-2xl font-semibold', petState.textClassName)}>
+          <h2 className={cn('text-2xl font-semibold', petState.textClassName)}>
             Más mascotas {petState.text}
           </h2>
           <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[300px]'>

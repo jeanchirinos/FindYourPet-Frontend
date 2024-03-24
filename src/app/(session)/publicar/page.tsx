@@ -19,7 +19,7 @@ export default async function Page(props: Props) {
   return (
     <main className='mx-auto flex w-[768px] max-w-full grow flex-col px-2'>
       <Form
-        StatusInfoComponent={<StatusInfo status={props.searchParams.status} />}
+        StatusInfoComponent={<StatusInfo initialStatusId={props.searchParams.status} />}
         CategoryComponent={<Categories />}
         PlaceComponent={<Place />}
         session={session}

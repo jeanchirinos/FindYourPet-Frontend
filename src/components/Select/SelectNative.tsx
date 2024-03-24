@@ -1,6 +1,6 @@
 'use client'
 
-import { twJoin, twMerge } from 'tailwind-merge'
+import { cn, cnx } from '@/lib/utils'
 
 export type SelectProps = {
   options: any[] | undefined
@@ -52,14 +52,14 @@ export function SelectNative(props: React.ComponentProps<'select'> & SelectProps
 
   // RENDER
   return (
-    <label className={twMerge('relative flex flex-col gap-y-1', className)}>
+    <label className={cnx('relative flex flex-col gap-y-1', className)}>
       {label && (
-        <span className={twMerge('text-sm text-foreground-500', classNames?.label)}>{label}</span>
+        <span className={cnx('text-sm text-foreground-500', classNames?.label)}>{label}</span>
       )}
       <select
         disabled={!options}
         required={required}
-        className={twMerge(
+        className={cnx(
           'w-full cursor-pointer rounded-lg border-r-4 border-r-transparent bg-default-100 py-2 pl-1 text-sm focus:outline focus:outline-foreground-600',
           classNames?.select,
         )}
@@ -67,14 +67,14 @@ export function SelectNative(props: React.ComponentProps<'select'> & SelectProps
         onChange={handleChange}
         {...otherProps}
       >
-        <option className={twJoin(required && 'hidden')} value=''>
+        <option className={cn(required && 'hidden')} value=''>
           Selecciona una opción
         </option>
         {options?.map(option => (
           <option
             key={option[optionKeyValue]}
             value={option[optionKeyValue].toString()}
-            className={twJoin(classNames?.option)}
+            className={cn(classNames?.option)}
           >
             {option[optionKeyText]}
           </option>

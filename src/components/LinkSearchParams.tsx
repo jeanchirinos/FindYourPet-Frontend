@@ -2,7 +2,7 @@
 
 import { useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { cnx } from '@/lib/utils'
 import { ButtonLink } from './ButtonLink'
 
 type Props = React.ComponentProps<typeof ButtonLink> & {
@@ -64,7 +64,7 @@ export function LinkSearchParams(props: Props) {
       {...dataSelected}
       href={createQueryString()}
       replace
-      className={twMerge(
+      className={cnx(
         className,
         !isSelected && classNames?.notSelected,
         isSelected && classNames?.selected,

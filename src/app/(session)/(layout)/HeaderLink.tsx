@@ -2,7 +2,7 @@
 import { Link } from '@/components/Link'
 import { usePathname } from 'next/navigation'
 import { forwardRef } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { cnx } from '@/lib/utils'
 
 type Props = React.ComponentProps<typeof Link> & { pattern?: string }
 
@@ -24,7 +24,7 @@ export const HeaderLink = forwardRef<HTMLAnchorElement, Props>(function HeaderLi
       color='foreground'
       {...props}
       ref={ref}
-      className={twMerge(isActive() && 'text-primary', props.className)}
+      className={cnx(isActive() && 'text-primary', props.className)}
     />
   )
 })

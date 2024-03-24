@@ -6,7 +6,6 @@ import { ROUTE } from '@/routes'
 import { Image } from '@/components/Image'
 import { SessionLogged } from '@/controllers/UserController/getSession'
 import { ERole } from '@/controllers/UserController/constants'
-// import { Notifications } from './Notifications'
 
 type Props = { session: SessionLogged }
 
@@ -15,7 +14,6 @@ export function UserLogged(props: Props) {
 
   return (
     <div className='flex items-center gap-x-4'>
-      {/* <Notifications /> */}
       <Menu>
         <MenuTrigger className='flex items-center'>
           <Image

@@ -15,22 +15,25 @@ type Props = {
 export function Pagination(props: Props) {
   const { currentPage = '1', numberOfPages } = props
 
+  const currentPageNumber = Number(currentPage)
+
   if (numberOfPages === 1) return null
 
   return (
     <footer className='mx-auto flex max-w-full gap-x-2'>
       <LinkSearchParams
-        isDisabled={Number(currentPage) === 1}
+        isDisabled={currentPageNumber === 1}
         aria-label='Anterior página'
         searchParamKey='page'
-        searchParamValue={Number(currentPage) - 1}
+        searchParamValue={currentPageNumber - 1}
         className='size-9 min-w-0 shrink-0 p-0'
       >
         <IconBack />
       </LinkSearchParams>
+
       <NextUiPagination
         total={numberOfPages}
-        initialPage={Number(currentPage)}
+        initialPage={currentPageNumber}
         className='m-0 max-w-full p-0'
         classNames={{
           wrapper: 'overflow-x-auto max-w-full *:shrink-0 rounded-none',
@@ -39,10 +42,10 @@ export function Pagination(props: Props) {
       />
 
       <LinkSearchParams
-        isDisabled={Number(currentPage) === numberOfPages}
+        isDisabled={currentPageNumber === numberOfPages}
         aria-label='Siguiente página'
         searchParamKey='page'
-        searchParamValue={Number(currentPage) + 1}
+        searchParamValue={currentPageNumber + 1}
         className='size-9 min-w-0 shrink-0 p-0'
       >
         <IconForward />

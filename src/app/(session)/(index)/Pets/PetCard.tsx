@@ -1,11 +1,10 @@
-import { twJoin } from 'tailwind-merge'
-import { HiOutlineLocationMarker } from 'react-icons/hi'
+import { cn } from '@/lib/utils'
 import { Pet } from '@/models/Pet'
 import Link from 'next/link'
 import { Image } from '@/components/Image'
 import { PetOptions } from './PetOptions'
 import { PetDecision } from './PetDecision'
-import { IconForward } from '@/icons'
+import { IconForward, IconLocation } from '@/icons'
 import { ROUTE } from '@/routes'
 
 type Props = { pet: Pet; index?: number; isEditable?: boolean; isAdmin?: boolean }
@@ -15,12 +14,12 @@ export function PetCard(props: Props) {
 
   // VALUES
   const colors = {
-    SE_BUSCA: 'bg-search',
-    PERDIDO: 'bg-lost',
-    EN_ADOPCIÓN: 'bg-adopt',
+    1: 'bg-search',
+    2: 'bg-lost',
+    3: 'bg-adopt',
   }
 
-  const color = Object.values(colors)[Number(pet.status) - 1]
+  const color = colors[pet.status]
 
   // RENDER
   return (
@@ -29,7 +28,7 @@ export function PetCard(props: Props) {
 
       <footer className='space-y-2.5 p-2'>
         <section className='flex items-center gap-x-2'>
-          <div className={twJoin('grow gap-x-1.5 rounded-xl p-1 text-white flex-center', color)}>
+          <div className={cn('grow gap-x-1.5 rounded-xl p-1 text-white flex-center', color)}>
             <span
               className='flex-center *:size-4'
               dangerouslySetInnerHTML={{ __html: pet.breed.category.image }}
@@ -39,7 +38,7 @@ export function PetCard(props: Props) {
           {isEditable && <PetOptions pet={pet} />}
         </section>
         <section className='flex gap-x-1.5 text-sm'>
-          <HiOutlineLocationMarker />
+          <IconLocation />
           <span>{pet.district_name}</span>
         </section>
         {isAdmin && <PetDecision pet={pet} />}
@@ -48,7 +47,9 @@ export function PetCard(props: Props) {
   )
 }
 
-function PetImage(props: { pet: Pet; isAdmin?: boolean; index?: number }) {
+type PetImageProps = { pet: Pet; isAdmin?: boolean; index?: number }
+
+function PetImage(props: PetImageProps) {
   const { pet, isAdmin, index } = props
 
   //@ts-ignore

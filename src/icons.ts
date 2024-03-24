@@ -1,5 +1,6 @@
 export { AiOutlineSearch as IconSearch } from 'react-icons/ai'
-export { CiMap as IconMap } from 'react-icons/ci'
+export { BiSolidCamera as IconCamera } from 'react-icons/bi'
+export { CiMap as IconMap, CiImageOn as IconPicture } from 'react-icons/ci'
 export { FaCircle as IconCircle } from 'react-icons/fa'
 export { FcGoogle as IconGoogle } from 'react-icons/fc'
 export { GoChevronDown as IconArrowDown, GoCheck as IconCheck } from 'react-icons/go'
@@ -14,7 +15,6 @@ export {
   IoIosArrowBack as IconBack,
   IoIosArrowForward as IconForward,
   IoMdCheckmarkCircle as IconCheckFilled,
-  IoIosNotificationsOutline as IconNotification,
   IoIosInformationCircleOutline as IconInfo,
 } from 'react-icons/io'
 export { IoPerson as IconUser, IoMenu as IconMobileMenu } from 'react-icons/io5'

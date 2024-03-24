@@ -10,6 +10,6 @@ export function getFormEntries(formData: FormData) {
   return Object.fromEntries(formData.entries())
 }
 
-export function notAuthorized() {
+export function redirectAfterUnauthorized() {
   return redirect(ROUTE.PETS.INDEX)
 }

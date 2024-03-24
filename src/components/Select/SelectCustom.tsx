@@ -1,10 +1,11 @@
 'use client'
 
 import * as Select from '@radix-ui/react-select'
-import { twJoin, twMerge } from 'tailwind-merge'
+import { cnx, cn } from '@/lib/utils'
 import { SelectProps, SelectNative } from './SelectNative'
 import { useEffect, useState } from 'react'
 import { IconArrowDown, IconCheck } from '@/icons'
+
 // import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 type Props = SelectProps & {
@@ -90,7 +91,7 @@ export function SelectCustom(props: Props) {
       <SelectNative
         options={options}
         state={{ selected: auxSelected, onSelectChange: setAuxSelected }}
-        className={twMerge(className, 'max-w-full')}
+        className={cnx(className, 'max-w-full')}
       />
     )
 
@@ -102,7 +103,7 @@ export function SelectCustom(props: Props) {
       {...otherProps}
     >
       <Select.Trigger
-        className={twMerge(
+        className={cnx(
           'placeholder:text-muted-foreground relative flex items-center justify-between gap-x-1.5 rounded-md border border-foreground-100 bg-content2 text-sm outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1',
           'h-11 w-full min-w-10 max-w-full p-1',
           showOnlySelectedIcon && 'justify-center',
@@ -112,10 +113,7 @@ export function SelectCustom(props: Props) {
         <div className='flex flex-col items-start gap-y-1.5'>
           {label && (
             <label
-              className={twMerge(
-                'pointer-events-none text-xs text-foreground-600',
-                classNames?.label,
-              )}
+              className={cnx('pointer-events-none text-xs text-foreground-600', classNames?.label)}
             >
               {label}
             </label>
@@ -137,14 +135,14 @@ export function SelectCustom(props: Props) {
       <Select.Portal>
         <Select.Content
           position='popper'
-          className={twJoin(
+          className={cn(
             'text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 relative z-50 max-h-96 overflow-hidden rounded-md border border-foreground-100 bg-content2 shadow-md',
             'min-w-28 data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
           )}
         >
           <Select.Viewport className='h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] px-1.5 py-1'>
             {!required && (
-              <SelectItem value='' className={twJoin(classNames?.option)}>
+              <SelectItem value='' className={cn(classNames?.option)}>
                 <div className='flex items-center gap-x-1.5'>
                   <span>{placeholder}</span>
                 </div>
@@ -155,7 +153,7 @@ export function SelectCustom(props: Props) {
               <SelectItem
                 key={option[optionKeyValue]}
                 value={option[optionKeyValue].toString()}
-                className={twJoin(classNames?.option)}
+                className={cn(classNames?.option)}
               >
                 <div className='flex items-center gap-x-1.5'>
                   <span>{option.icon}</span>
@@ -175,7 +173,7 @@ function SelectItem(props: React.PropsWithChildren<React.ComponentProps<typeof S
 
   return (
     <Select.Item
-      className={twMerge(
+      className={cnx(
         'text-violet11 data-[disabled]:text-mauve8 data-[highlighted]:text-violet1 relative flex h-[25px] select-none items-center gap-x-1.5 rounded-[3px] px-1.5 text-[13px] leading-none data-[disabled]:pointer-events-none data-[highlighted]:bg-content3 data-[highlighted]:outline-none',
         className,
       )}

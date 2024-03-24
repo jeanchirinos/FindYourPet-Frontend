@@ -1,35 +1,34 @@
 import { getStatusList } from '@/controllers/PetController/getStatusList'
-import { twMerge } from 'tailwind-merge'
 import { RadioItem } from '@/components/RadioItem'
+import { cn } from '@nextui-org/react'
 
-export async function StatusInfo(props: { status: string | number | undefined }) {
+const checkedClassNames = {
+  1: 'has-[:checked]:bg-search',
+  2: 'has-[:checked]:bg-lost',
+  3: 'has-[:checked]:bg-adopt',
+}
+
+type Props = { initialStatusId: string | number | undefined }
+
+export async function StatusInfo(props: Props) {
   const statusList = await getStatusList()
 
-  const defaultValue = props.status?.toString() ?? statusList[0].id.toString()
-
-  const classNames = {
-    1: 'has-[:checked]:bg-search',
-    2: 'has-[:checked]:bg-lost',
-    3: 'has-[:checked]:bg-adopt',
-  }
+  const defaultStatusId = props.initialStatusId?.toString() ?? statusList[0].id.toString()
 
   return (
     <fieldset className='flex gap-2 max-sm:flex-col'>
-      {statusList.map(item => (
+      {statusList.map(status => (
         <RadioItem
-          key={item.id}
+          key={status.id}
           input={{
             name: 'status',
-            value: item.id,
-            defaultChecked: item.id.toString() === defaultValue,
+            value: status.id,
+            defaultChecked: status.id.toString() === defaultStatusId,
           }}
-          className={twMerge(
-            'grow has-[:checked]:text-white',
-            classNames[item.id as keyof typeof classNames],
-          )}
+          className={cn('grow has-[:checked]:text-white', checkedClassNames[status.id])}
           variant='bordered'
         >
-          {item.value}
+          {status.value}
         </RadioItem>
       ))}
     </fieldset>

@@ -1,10 +1,10 @@
 'use client'
 import { Menu as HeadlessMenu, Transition } from '@headlessui/react'
 import { Fragment, type ComponentProps } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { cnx } from '@/lib/utils'
 
 export function Menu(props: ComponentProps<typeof HeadlessMenu>) {
-  return <HeadlessMenu as='div' {...props} className={twMerge('relative', props.className)} />
+  return <HeadlessMenu as='div' {...props} className={cnx('relative', props.className)} />
 }
 export function MenuTrigger(props: ComponentProps<typeof HeadlessMenu.Button>) {
   return <HeadlessMenu.Button {...props} />
@@ -23,7 +23,7 @@ export function MenuContent(props: ComponentProps<typeof HeadlessMenu.Items>) {
     >
       <HeadlessMenu.Items
         {...props}
-        className={twMerge(
+        className={cnx(
           'absolute mt-1 flex flex-col overflow-hidden rounded-md bg-content1 text-sm shadow-small',
           props.className,
         )}
@@ -36,9 +36,6 @@ export function MenuContent(props: ComponentProps<typeof HeadlessMenu.Items>) {
 
 export function MenuItem(props: ComponentProps<typeof HeadlessMenu.Item>) {
   return (
-    <HeadlessMenu.Item
-      {...props}
-      className={twMerge('ui-active:bg-foreground-100', props.className)}
-    />
+    <HeadlessMenu.Item {...props} className={cnx('ui-active:bg-foreground-100', props.className)} />
   )
 }

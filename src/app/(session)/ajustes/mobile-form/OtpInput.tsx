@@ -1,7 +1,7 @@
 'use client'
 
 import { OTPInput as BaseOtpInput, REGEXP_ONLY_DIGITS } from 'input-otp'
-import { twMerge } from 'tailwind-merge'
+import { cnx } from '@/lib/utils'
 
 type Props = {
   validationCode: string
@@ -36,7 +36,7 @@ function Slot(props: { char: string | null; isActive: boolean }) {
 
   return (
     <div
-      className={twMerge(
+      className={cnx(
         'relative h-14 w-10 border-y border-r border-foreground-400 outline outline-0 flex-center first:rounded-l-sm first:border-l last:rounded-r-sm',
         props.isActive && 'outline-1 outline-foreground-600',
       )}

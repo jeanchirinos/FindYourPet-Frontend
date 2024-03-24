@@ -1,5 +1,4 @@
 import { updateImageProfile } from '@/controllers/UserController/updateImageProfile'
-import { BiSolidCamera } from 'react-icons/bi'
 import { useRef, useState } from 'react'
 import { CropperRef, Cropper, CircleStencil } from 'react-advanced-cropper'
 import 'react-advanced-cropper/dist/style.css'
@@ -9,6 +8,7 @@ import { User } from '@/models/User'
 import { handleResponse } from '@/utilities/handleResponse'
 import { Button } from '@nextui-org/button'
 import { Image } from '@/components/Image'
+import { IconCamera } from '@/icons'
 
 type Props = { user: User }
 
@@ -73,7 +73,7 @@ export function ProfileImage(props: Props) {
           color='primary'
           className='absolute bottom-5 right-5 cursor-pointer text-2xl'
         >
-          <BiSolidCamera />
+          <IconCamera />
           <input hidden type='file' accept='image/*' onChange={handleInputImage} />
         </Button>
       </section>

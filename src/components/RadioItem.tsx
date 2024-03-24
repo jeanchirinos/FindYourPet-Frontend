@@ -1,5 +1,5 @@
 import { Button } from '@nextui-org/button'
-import { twMerge } from 'tailwind-merge'
+import { cnx } from '@/lib/utils'
 
 export function RadioItem(
   props: React.ComponentProps<typeof Button<'label'>> & {
@@ -12,7 +12,7 @@ export function RadioItem(
         {...props}
         as='label'
         role={null as any}
-        className={twMerge('cursor-pointer', props.className)}
+        className={cnx('cursor-pointer', props.className)}
       >
         {props.children}
         <input type='radio' required hidden {...props.input} />

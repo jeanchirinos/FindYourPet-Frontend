@@ -1,6 +1,6 @@
 'use client'
 import { Input as NextUiInput } from '@nextui-org/input'
-import { twMerge } from 'tailwind-merge'
+import { cnx } from '@/lib/utils'
 
 type Props = React.ComponentProps<typeof NextUiInput> & { innerRef?: React.Ref<HTMLInputElement> }
 
@@ -12,7 +12,7 @@ export function Input(props: Props) {
       isRequired
       classNames={{
         ...classNames,
-        label: twMerge('after:hidden !text-foreground-500', classNames?.label),
+        label: cnx('after:hidden !text-foreground-500', classNames?.label),
       }}
       labelPlacement='outside'
       placeholder=' '

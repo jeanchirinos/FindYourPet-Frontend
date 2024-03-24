@@ -1,6 +1,6 @@
 import { IconPet } from '@/icons'
-import { Pagination } from '../../(home)/Pets/Pagination'
-import { PetCard } from '../../(home)/Pets/PetCard'
+import { Pagination } from '../../(index)/Pets/Pagination'
+import { PetCard } from '../../(index)/Pets/PetCard'
 import { PageSearchParamsProps2 } from '@/types'
 import { GetUserPetsParams, getUserPets } from '@/controllers/PetController/getUserPets'
 

@@ -1,10 +1,10 @@
 'use client'
 import { Popover as HeadlessPopover, Transition } from '@headlessui/react'
 import { Fragment, type ComponentProps } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { cnx } from '@/lib/utils'
 
 export function Popover(props: ComponentProps<typeof HeadlessPopover>) {
-  return <HeadlessPopover {...props} className={twMerge('relative', props.className)} />
+  return <HeadlessPopover {...props} className={cnx('relative', props.className)} />
 }
 
 export function PopoverTrigger(props: ComponentProps<typeof HeadlessPopover.Button>) {
@@ -24,7 +24,7 @@ export function PopoverContent(props: ComponentProps<typeof HeadlessPopover.Pane
     >
       <HeadlessPopover.Panel
         {...props}
-        className={twMerge('absolute mt-1 rounded-md', props.className)}
+        className={cnx('absolute mt-1 rounded-md', props.className)}
       >
         {props.children}
       </HeadlessPopover.Panel>

@@ -1,19 +1,15 @@
 'use client'
 
-import { FcGoogle } from 'react-icons/fc'
 import { Button } from '@nextui-org/button'
 import { useGoogle } from '@/hooks/useGoogle'
+import { IconGoogle } from '@/icons'
 
 export function Google() {
   const { openGoogleWindow } = useGoogle()
 
   return (
-    <Button
-      onPress={openGoogleWindow}
-      className='flex w-full items-center justify-center gap-x-1 rounded-md bg-content2 px-2 py-1 shadow-sm'
-    >
-      <FcGoogle />
-      <span>Continuar con Google</span>
+    <Button fullWidth onPress={openGoogleWindow} startContent={<IconGoogle />}>
+      Continuar con Google
     </Button>
   )
 }

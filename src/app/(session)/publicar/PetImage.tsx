@@ -1,10 +1,11 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { twJoin } from 'tailwind-merge'
+import { cn } from '@/lib/utils'
+
 import { Button } from '@nextui-org/button'
-import { CiImageOn } from 'react-icons/ci'
 import { toast } from 'sonner'
+import { IconPicture } from '@/icons'
 
 type Props = { initialImage?: string }
 
@@ -47,7 +48,7 @@ export function PetImage(props: Props) {
   return (
     <div className='flex w-[400px] max-w-full flex-col md:w-full'>
       <label
-        className={twJoin(
+        className={cn(
           'relative mx-auto flex aspect-square size-full max-w-[400px] cursor-pointer flex-col items-center justify-center rounded-md border',
           imagePreview
             ? 'border-transparent'
@@ -58,7 +59,7 @@ export function PetImage(props: Props) {
           <img src={imagePreview} alt='Mascota' className='size-full rounded-md object-cover' />
         ) : (
           <div className='flex flex-col items-center gap-y-2.5'>
-            <CiImageOn size={28} className='text-neutral-400' />
+            <IconPicture size={28} className='text-neutral-400' />
             <p className='max-w-[25ch] text-balance text-center text-sm leading-tight text-neutral-400'>
               Selecciona una imagen o arrástrala aquí
             </p>

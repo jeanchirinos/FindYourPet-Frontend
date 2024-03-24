@@ -1,7 +1,7 @@
 import { GetPetsAdminParams, getPetsAdmin } from '@/controllers/PetController/getPetsAdmin'
 import { IconPet } from '@/icons'
-import { PetCard } from '@/app/(session)/(home)/Pets/PetCard'
-import { Pagination } from '@/app/(session)/(home)/Pets/Pagination'
+import { PetCard } from '@/app/(session)/(index)/Pets/PetCard'
+import { Pagination } from '@/app/(session)/(index)/Pets/Pagination'
 import { PageSearchParamsProps2 } from '@/types'
 
 type Props = PageSearchParamsProps2<GetPetsAdminParams>

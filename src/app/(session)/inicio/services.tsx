@@ -1,7 +1,7 @@
 import SvgFind from '@/public/img/general/find.svg'
 import SvgAlert from '@/public/img/general/alert.svg'
 import SvgAdopt from '@/public/img/general/adopt.svg'
-import { twJoin } from 'tailwind-merge'
+import { cn } from '@/lib/utils'
 
 export function Services() {
   return (
@@ -24,12 +24,14 @@ export function Services() {
   )
 }
 
-function Card(props: {
+type CardProps = {
   id: 1 | 2 | 3
   title: string
   icon: React.ReactNode
   children: React.ReactNode
-}) {
+}
+
+function Card(props: CardProps) {
   const classNames = {
     1: {
       bg: 'bg-search',
@@ -49,10 +51,8 @@ function Card(props: {
 
   return (
     <article className='flex flex-col items-center gap-y-2 p-7'>
-      <picture className={twJoin('flex size-32 rounded-full p-7 text-white', bg)}>
-        {props.icon}
-      </picture>
-      <h2 className={twJoin('text-xl font-bold', text)}>{props.title}</h2>
+      <picture className={cn('flex size-32 rounded-full p-7 text-white', bg)}>{props.icon}</picture>
+      <h2 className={cn('text-xl font-bold', text)}>{props.title}</h2>
       <p className='max-w-[35ch]'>{props.children}</p>
     </article>
   )

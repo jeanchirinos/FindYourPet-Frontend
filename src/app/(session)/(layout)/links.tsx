@@ -9,12 +9,4 @@ export const links = [
     href: ROUTE.PETS.INDEX,
     text: 'Mascotas',
   },
-  // {
-  //   href: '/planes',
-  //   text: 'Planes',
-  // },
-  // {
-  //   href: '/casos-de-exito',
-  //   text: 'Casos de éxito',
-  // },
 ]

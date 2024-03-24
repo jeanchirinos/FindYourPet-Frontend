@@ -18,7 +18,7 @@ export default async function Page(props: Props) {
   return (
     <main className='mx-auto flex w-[768px] max-w-full grow flex-col px-2'>
       <Form
-        StatusInfoComponent={<StatusInfo status={pet.status} />}
+        StatusInfoComponent={<StatusInfo initialStatusId={pet.status} />}
         CategoryComponent={
           <Categories initialCategoryId={pet.breed.category_id} initialBreedId={pet.breed_id} />
         }

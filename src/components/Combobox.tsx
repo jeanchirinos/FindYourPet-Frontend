@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import { Combobox as HeadlessCombobox, Transition } from '@headlessui/react'
 import { IconArrowDown, IconCheck } from '@/icons'
 import { IconType } from 'react-icons'
-import { twJoin } from 'tailwind-merge'
+import { cn } from '@/lib/utils'
 
 type Props = Omit<React.ComponentProps<typeof HeadlessCombobox>, 'multiple'> & {
   query: string
@@ -86,7 +86,7 @@ export function Combobox(props: Props) {
                 <HeadlessCombobox.Option
                   key={option[itemKeyId]}
                   className={({ active }) =>
-                    twJoin(
+                    cn(
                       'relative cursor-default select-none py-2 pl-10 pr-4',
                       active && 'bg-primary text-white',
                     )
@@ -96,17 +96,14 @@ export function Combobox(props: Props) {
                   {({ selected, active }) => (
                     <>
                       <span
-                        className={twJoin(
-                          'block truncate',
-                          selected ? 'font-medium' : 'font-normal',
-                        )}
+                        className={cn('block truncate', selected ? 'font-medium' : 'font-normal')}
                       >
                         {getValue(option)}
                       </span>
 
                       {selected && (
                         <span
-                          className={twJoin(
+                          className={cn(
                             'absolute inset-y-0 left-0 flex items-center pl-3',
                             active ? 'text-white' : 'text-primary',
                           )}

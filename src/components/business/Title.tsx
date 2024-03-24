@@ -4,7 +4,7 @@ import { IconBack } from '@/icons'
 import { ROUTE } from '@/routes'
 import { Button } from '@nextui-org/button'
 import { useRouter } from 'next/navigation'
-import { twMerge } from 'tailwind-merge'
+import { cnx } from '@/lib/utils'
 
 type Props = React.ComponentProps<'div'> & { showBack?: boolean }
 
@@ -14,7 +14,9 @@ export function Title(props: Props) {
   const { back, push } = useRouter()
 
   function handleBack() {
-    if (window.history.length > 2) {
+    const hasNavigatedThroughPagesBefore = window.history.length > 2
+
+    if (hasNavigatedThroughPagesBefore) {
       back()
     } else {
       push(ROUTE.PETS.INDEX)
@@ -22,7 +24,7 @@ export function Title(props: Props) {
   }
 
   return (
-    <div {...restProps} className={twMerge('mb-8 flex items-center gap-x-4', props.className)}>
+    <div {...restProps} className={cnx('mb-8 flex items-center gap-x-4', props.className)}>
       {showBack && (
         <Button isIconOnly onClick={handleBack} size='sm' variant='faded' radius='full'>
           <IconBack />

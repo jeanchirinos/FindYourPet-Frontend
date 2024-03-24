@@ -1,4 +1,4 @@
-import { notAuthorized } from './utilities'
+import { redirectAfterUnauthorized } from './utilities'
 
 export interface BaseConfig extends Omit<RequestInit, 'body'> {
   body?: object
@@ -83,7 +83,7 @@ export async function requestAll<Response>(
   } catch (e) {
     if (res.status === 401 || res.status === 403) {
       if (config?.redirectIfUnauthorized) {
-        return notAuthorized()
+        return redirectAfterUnauthorized()
       }
     }
 
