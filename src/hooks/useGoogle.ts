@@ -8,8 +8,7 @@ export function useGoogle() {
   // EFFECT
   useEffect(() => {
     async function handleMessageFromAuthPage(e: MessageEvent<{ token: string }>) {
-      console.log('MESSAGE')
-      // await udpdateGoogleSession(e.data.token)
+      await udpdateGoogleSession(e.data.token)
       openedWindow.current?.close()
     }
 
