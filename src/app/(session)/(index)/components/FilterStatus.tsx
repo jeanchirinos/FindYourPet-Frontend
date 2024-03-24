@@ -26,7 +26,7 @@ export async function FilterStatus() {
             searchParamValue={item.id}
             className='flex w-full min-w-max cursor-pointer items-center justify-start rounded-lg p-2.5 text-sm shadow-md'
             classNames={{
-              selected: cn(classNames[item.id as keyof typeof classNames], 'text-white'),
+              selected: cn(classNames[item.id], 'text-white'),
               notSelected: 'bg-transparent hover:bg-foreground-100',
             }}
           >

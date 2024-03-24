@@ -1,14 +1,14 @@
 import { Suspense } from '@/components/other/CustomSuspense'
 import { GetPetsParams } from '@/controllers/PetController/getPets'
-import { PetGrid } from './Pets/PetGrid'
-import { FilterCategory } from './FilterCategory.tsx/FilterCategory'
-import { Order } from './Order'
-import { FilterPlace } from './FilterPlace/FilterPlace'
-import { FilterBreeds } from './FilterBreeds/FilterBreeds'
-import { FilterStatus } from './FilterStatus'
+import { PetGrid } from './components/PetGrid'
+import { FilterCategory } from './components/FilterCategory/FilterCategory'
+import { Order } from '@/components/business/Order'
+import { FilterPlace } from './components/FilterPlace/FilterPlace'
+import { FilterBreeds } from './components/FilterBreeds/FilterBreeds'
+import { FilterStatus } from './components/FilterStatus'
 import { Spinner } from '@nextui-org/spinner'
 import { PageSearchParamsProps2 } from '@/types'
-import { FilterToggle } from './FilterToggle'
+import { FilterToggle } from './components/FilterToggle'
 
 type Props = PageSearchParamsProps2<GetPetsParams>
 

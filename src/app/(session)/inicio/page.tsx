@@ -3,7 +3,7 @@ import ImgHeroImage from '@/public/img/inicio/hero-image.webp'
 import SvgVercel from '@/public/img/inicio/vercel.svg'
 
 import { IconForward } from '@/icons'
-import { Services } from './services'
+import { Services } from './components/services'
 import { Link } from '@/components/Link'
 import { ROUTE } from '@/routes'
 import { ButtonLink } from '@/components/ButtonLink'

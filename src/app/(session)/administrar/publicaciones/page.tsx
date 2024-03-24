@@ -1,8 +1,8 @@
 import { Suspense } from '@/components/other/CustomSuspense'
-import { PetList } from './PetList'
+import { PetList } from './components/PetList'
 import { GetPetsAdminParams } from '@/controllers/PetController/getPetsAdmin'
 import { Spinner } from '@nextui-org/spinner'
-import { PetVisibility } from '../../publicaciones/PetVisibility'
+import { PetVisibility } from '@/components/business/PetVisibility'
 import { PageSearchParamsProps2 } from '@/types'
 
 type Props = PageSearchParamsProps2<GetPetsAdminParams>

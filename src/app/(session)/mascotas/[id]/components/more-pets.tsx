@@ -1,30 +1,29 @@
 import { getMorePets } from '@/controllers/PetController/getMorePets'
 import { Pet } from '@/models/Pet'
 import { cn } from '@/lib/utils'
+import { PetCard } from '@/components/business/PetCard/PetCard'
 
-import { PetCard } from '../../(index)/Pets/PetCard'
+const states = {
+  1: {
+    text: 'buscadas',
+    textClassName: 'text-search',
+  },
+  2: {
+    text: 'perdidas',
+    textClassName: 'text-lost',
+  },
+  3: {
+    text: 'en adopción',
+    textClassName: 'text-adopt',
+  },
+}
 
 export async function MorePets(props: { pet: Pet }) {
   const { pet } = props
 
   const { morePets } = await getMorePets(pet.id)
 
-  const states = {
-    1: {
-      text: 'buscadas',
-      textClassName: 'text-search',
-    },
-    2: {
-      text: 'perdidas',
-      textClassName: 'text-lost',
-    },
-    3: {
-      text: 'en adopción',
-      textClassName: 'text-adopt',
-    },
-  }
-
-  const petState = states[Number(pet.status) as keyof typeof states]
+  const petState = states[pet.status]
 
   return (
     <>

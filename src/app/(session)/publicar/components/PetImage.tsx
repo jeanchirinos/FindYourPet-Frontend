@@ -49,7 +49,7 @@ export function PetImage(props: Props) {
     <div className='flex w-[400px] max-w-full flex-col md:w-full'>
       <label
         className={cn(
-          'relative mx-auto flex aspect-square size-full max-w-[400px] cursor-pointer flex-col items-center justify-center rounded-md border',
+          'relative mx-auto flex aspect-square size-full max-w-[400px] cursor-pointer flex-col rounded-md border flex-center',
           imagePreview
             ? 'border-transparent'
             : 'border-dashed border-foreground-300 bg-foreground-100',

@@ -1,8 +1,8 @@
 import { Suspense } from '@/components/other/CustomSuspense'
 import { Spinner } from '@nextui-org/spinner'
 import { Metadata } from 'next'
-import { PostsList } from './Posts/PostList'
-import { PetVisibility } from './PetVisibility'
+import { PostsList } from './components/PostList'
+import { PetVisibility } from '@/components/business/PetVisibility'
 import { PageSearchParamsProps2 } from '@/types'
 import { GetUserPetsParams } from '@/controllers/PetController/getUserPets'
 

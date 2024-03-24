@@ -1,13 +1,13 @@
 import { getPetById } from '@/controllers/PetController/getPetById'
 import { PageProps } from '@/types'
 // import PetMap from './map'
-import { PetStatusTag } from '@/components/business/PetStatusTag'
-import { ContactNumber } from './contactNumber'
+import { ContactNumber } from './components/contactNumber'
 import { Metadata } from 'next'
 import { Image } from '@/components/Image'
 import { IconLocation, IconMap } from '@/icons'
 import { Suspense } from '@/components/other/CustomSuspense'
-import { MorePets } from './more-pets'
+import { MorePets } from './components/more-pets'
+import { cn } from '@/lib/utils'
 
 type Props = PageProps<'id'>
 
@@ -29,6 +29,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 export default async function Page(props: Props) {
   const { pet } = await getPetById(props.params.id)
 
+  const colors = {
+    1: 'bg-search',
+    2: 'bg-lost',
+    3: 'bg-adopt',
+  }
+
+  const color = colors[pet.status]
+
   return (
     <div className='mx-auto w-[1600px] max-w-full space-y-10 px-2'>
       <section className='flex gap-x-10 gap-y-2 max-md:flex-col'>
@@ -43,7 +51,11 @@ export default async function Page(props: Props) {
           />
         </picture>
         <div className='flex grow flex-col gap-y-5'>
-          <PetStatusTag pet={pet} />
+          <span
+            className={cn('rounded-lg p-1.5 text-center text-lg font-semibold text-white', color)}
+          >
+            {pet.status_name}
+          </span>
           <section className='flex flex-col gap-y-12 rounded-md bg-foreground-200/50 px-4 py-5'>
             <div className='flex flex-col gap-y-4'>
               <div className='flex items-center gap-x-2'>

@@ -180,7 +180,7 @@ function SelectItem(props: React.PropsWithChildren<React.ComponentProps<typeof S
       {...otherProps}
     >
       <Select.ItemText>{children}</Select.ItemText>
-      <Select.ItemIndicator className='inline-flex w-[25px] items-center justify-center'>
+      <Select.ItemIndicator className='inline-flex w-[25px] flex-center'>
         <IconCheck />
       </Select.ItemIndicator>
     </Select.Item>

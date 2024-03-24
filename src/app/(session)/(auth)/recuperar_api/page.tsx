@@ -1,5 +1,5 @@
 import { verifyToken } from '@/controllers/AuthController/verifyToken'
-import { Form } from './Form'
+import { Form } from './components/Form'
 import { PageProps } from '@/types'
 
 type Props = PageProps<{}, 'token'>

@@ -1,6 +1,6 @@
 import { IconPet } from '@/icons'
-import { Pagination } from '../../(index)/Pets/Pagination'
-import { PetCard } from '../../(index)/Pets/PetCard'
+import { Pagination } from '@/components/business/Pagination'
+import { PetCard } from '@/components/business/PetCard/PetCard'
 import { PageSearchParamsProps2 } from '@/types'
 import { GetUserPetsParams, getUserPets } from '@/controllers/PetController/getUserPets'
 
@@ -24,7 +24,7 @@ export async function PostsList(props: Props) {
       <div className='templateColumns-[200px] grid grow auto-rows-min gap-4 lg:templateColumns-[250px]'>
         {posts.map((pet, i) => (
           <PetCard
-            key={`${pet.id} + ${searchParams.published} + ${i}`}
+            key={`${pet.id}_${searchParams.published}_${i}`}
             pet={pet}
             index={i}
             isEditable

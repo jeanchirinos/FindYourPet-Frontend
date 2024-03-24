@@ -1,9 +1,9 @@
-import { Categories } from '@/app/(session)/publicar/Categories/Categories'
-import { StatusInfo } from '@/app/(session)/publicar/StatusInfo'
-import { Place } from '@/app/(session)/publicar/Place/Place'
+import { Categories } from '@/app/(session)/publicar/components/Categories/Categories'
+import { StatusInfo } from '@/app/(session)/publicar/components/StatusInfo'
+import { Place } from '@/app/(session)/publicar/components/Place/Place'
 import { Metadata } from 'next'
 import { PageProps } from '@/types'
-import { Form } from './form'
+import { Form } from './components/form'
 import { getPetByIdEdit } from '@/controllers/PetController/getPetByIdEdit'
 
 export const metadata: Metadata = {
