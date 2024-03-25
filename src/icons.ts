@@ -10,6 +10,8 @@ export {
   HiMiniComputerDesktop as IconSystemTheme,
   HiOutlineMoon as IconDarkTheme,
   HiOutlineSun as IconLightTheme,
+  HiEye as IconEye,
+  HiEyeSlash as IconEyeSlash,
 } from 'react-icons/hi2'
 export {
   IoIosArrowBack as IconBack,
