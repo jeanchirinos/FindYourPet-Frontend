@@ -50,7 +50,7 @@ export function Register() {
       </form>
 
       {emailSent && (
-        <div className='absolute inset-0 z-10 flex-col gap-y-4 bg-content1 text-center flex-center'>
+        <div className='absolute inset-0 z-20 flex-col gap-y-4 bg-content1 text-center flex-center'>
           <div className='space-y-2'>
             <p>Se envió un correo de confirmación a :</p>
             <b>{currentEmail}</b>
