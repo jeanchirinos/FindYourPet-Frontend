@@ -38,7 +38,7 @@ export async function getData<Response>(
 
   const headers: HeadersInit = {}
 
-  if (config.auth) {
+  if (config.auth ?? authIsOptional) {
     const jwt = cookies().get('jwt')
 
     try {
