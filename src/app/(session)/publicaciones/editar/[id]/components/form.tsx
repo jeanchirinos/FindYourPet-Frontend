@@ -120,6 +120,7 @@ export function Form(props: Props) {
             label='Dirección (Opcional)'
             // @ts-ignore
             defaultValue={pet.location}
+            placeholder='Av. Cuba 361'
           />
 
           <input defaultValue={pet.id} name='id' hidden />
