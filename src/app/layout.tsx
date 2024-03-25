@@ -5,8 +5,10 @@ import { font } from './font'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Encuentra tu mascota',
-    default: 'Encuentra tu mascota',
+    // template: '%s | Encuentra tu mascota',
+    // default: 'Encuentra tu mascota',
+    template: '%s | Petcontrado',
+    default: 'Petcontrado',
   },
   description: 'Encuentra, adopta o reporta una mascota.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL!),
