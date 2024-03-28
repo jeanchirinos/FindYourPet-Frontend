@@ -1,7 +1,6 @@
 import { Image } from '@/components/Image'
 import ImgHeroImage from '@/public/img/inicio/hero-image.webp'
 import SvgVercel from '@/public/img/inicio/vercel.svg'
-
 import { IconForward } from '@/icons'
 import { Services } from './components/services'
 import { Link } from '@/components/Link'
@@ -20,10 +19,12 @@ export default function Page() {
             priority
           />
           <div className='space-y-5'>
-            <div className='text-4xl font-bold lg:text-7xl'>
-              <p>Encuentra a tu</p>
-              <p className='inline-block bg-main-gradient bg-clip-text text-transparent'>Mascota</p>
-            </div>
+            <h1 className='text-4xl font-bold lg:text-7xl'>
+              <span>Encuentra a tu</span>
+              <span className='inline-block bg-main-gradient bg-clip-text text-transparent'>
+                Mascota
+              </span>
+            </h1>
 
             <p className='max-w-[40ch] lg:text-xl'>
               Conecta a dueños y amantes de animales para localizar mascotas perdidas, facilitar

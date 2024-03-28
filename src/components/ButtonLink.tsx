@@ -8,5 +8,5 @@ type Props = React.ComponentProps<typeof Button<typeof Link>> & {
 export function ButtonLink(props: Props) {
   const { innerRef, ...restProps } = props
 
-  return <Button as={Link} {...restProps} ref={innerRef} />
+  return <Button as={Link} role='link' {...restProps} ref={innerRef} />
 }
