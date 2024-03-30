@@ -33,7 +33,12 @@ export function ThemeSwitcher() {
     <Listbox value={selectedTheme} onChange={theme => setTheme(theme.id)}>
       <div className='relative'>
         <Listbox.Button as={Fragment}>
-          <Button isIconOnly className='bg-default-100' size='sm' aria-label='Tema'>
+          <Button
+            isIconOnly
+            className='bg-default-100'
+            size='sm'
+            aria-label={`Tema ${selectedTheme.name}`}
+          >
             {selectedTheme.icon}
           </Button>
         </Listbox.Button>
@@ -51,7 +56,9 @@ export function ThemeSwitcher() {
               <Listbox.Option
                 key={theme.id}
                 value={theme}
+                onClick={() => setTheme(theme.id)}
                 className='flex cursor-pointer items-center justify-between gap-x-2 px-3 py-1.5 ui-active:bg-foreground-100'
+                aria-label={theme.name}
               >
                 <div className='flex items-center gap-x-1.5'>
                   {theme.icon}
