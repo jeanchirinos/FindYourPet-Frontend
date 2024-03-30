@@ -1,6 +1,7 @@
 const ROOT = {
   HOME: '/inicio',
   PUBLISH: '/publicar',
+  SUCCESS_STORIES: '/casos_de_exito',
   SETTINGS: '/ajustes',
 } as const
 
