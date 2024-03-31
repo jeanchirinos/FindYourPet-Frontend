@@ -1,5 +1,5 @@
-import { AuthSuccess } from './auth-success'
-import { AlreadyLinked } from './already-linked'
+import { AuthSuccess } from './components/auth-success'
+import { AlreadyLinked } from './components/already-linked'
 
 type Props = {
   searchParams: { status: 'success'; token: string } | { status: 'error' }

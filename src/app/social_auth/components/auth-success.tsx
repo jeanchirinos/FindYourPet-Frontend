@@ -3,7 +3,9 @@
 import { Spinner } from '@nextui-org/spinner'
 import { useEffect } from 'react'
 
-export function AuthSuccess(props: { token: string }) {
+type Props = { token: string }
+
+export function AuthSuccess(props: Props) {
   const { token } = props
 
   useEffect(() => {

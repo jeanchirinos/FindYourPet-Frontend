@@ -7,9 +7,9 @@ export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
   const token = searchParams.get('token')
 
-  if (!token) redirect(ROUTE.PETS.INDEX)
-
-  createAuthToken(token)
+  if (token) {
+    createAuthToken(token)
+  }
 
   redirect(ROUTE.PETS.INDEX)
 }

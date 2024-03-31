@@ -20,7 +20,7 @@ export default function Page() {
           />
           <div className='space-y-5'>
             <h1 className='text-4xl font-bold lg:text-7xl'>
-              <span>Encuentra a tu</span>
+              <span>Encuentra a tu</span>{' '}
               <span className='inline-block bg-main-gradient bg-clip-text text-transparent'>
                 Mascota
               </span>
