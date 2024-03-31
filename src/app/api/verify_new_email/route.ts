@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   const expires = new Date()
   expires.setDate(expires.getDate() + 7)
 
-  cookies().set('jwt', token as string, { expires })
+  cookies().set('jwt', token as string, { expires, domain: 'petcontrado.nijui.com' })
 
   redirect(ROUTE.PETS.INDEX)
 }
