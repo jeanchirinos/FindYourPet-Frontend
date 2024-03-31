@@ -5,18 +5,12 @@ import { type NextRequest } from 'next/server'
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
-  const cookie = searchParams.get('cookie')
   const token = searchParams.get('token')
 
-  // const expires = new Date()
-  // expires.setDate(expires.getDate() + 7)
+  const expires = new Date()
+  expires.setDate(expires.getDate() + 7)
 
-  // cookies().set('jwt', token as string, { expires })
+  cookies().set('jwt', token as string, { expires })
 
-  // redirect(ROUTE.PETS.INDEX)
-  return Response.json({
-    cookie,
-    token,
-    searchParams: searchParams.toString(),
-  })
+  redirect(ROUTE.PETS.INDEX)
 }
