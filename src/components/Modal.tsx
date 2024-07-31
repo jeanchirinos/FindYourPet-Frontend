@@ -14,7 +14,7 @@ export function Modal(props: Props) {
   const onClose = preventClose ? () => {} : close
 
   return (
-    <Transition appear show={isOpen} as={Fragment}>
+    <Transition show={isOpen} as={Fragment}>
       <Dialog onClose={onClose}>
         <Transition.Child
           as={Fragment}

@@ -5,8 +5,6 @@ import { font } from './font'
 
 export const metadata: Metadata = {
   title: {
-    // template: '%s | Encuentra tu mascota',
-    // default: 'Encuentra tu mascota',
     template: '%s | Petcontrado',
     default: 'Petcontrado',
   },
