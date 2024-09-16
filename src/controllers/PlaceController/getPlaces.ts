@@ -4,7 +4,7 @@ import { getData } from '@/utilities/actionRequest'
 
 async function getPlacesData(type: 'departments' | 'provinces' | 'districts') {
   const data = await getData<PlaceLocation[]>(
-    `https://ubigeosperu.nijui.site/api/${type}?order_by=is_capital`,
+    `http://ubigeosperu.nijui.site/api/${type}?order_by=is_capital`,
     {
       cache: 'force-cache',
     },

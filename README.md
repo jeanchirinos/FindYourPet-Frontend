@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://encuentratumascota.nijui.com/" target="_blank">
+  <a href="https://encuentratumascota.nijui.site/" target="_blank">
 <!--     <img src="public/img/company/logo binarial svg.svg" width="56"/> -->
   </a>
 </p>
